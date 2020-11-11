@@ -3,6 +3,13 @@
     "headlines": {
       "no_webshops": "No webshops exists",
       "webshops": "Webshops"
+    },
+    "headers": {
+      "config": "Identifiers",
+      "relay_name": "Ecommerce platform"
+    },
+    "buttons": {
+      "debug": "Debug"
     }
   }
 }

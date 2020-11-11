@@ -4,6 +4,13 @@
 {% else %}
   <h5 class="mb-3">{{ l.headlines.webshops }}</h5>
   <table class="table">
+    <thead>
+      <tr>
+        <th>{{ l.headers.config }}</th>
+        <th>{{ l.headers.relay_name }}</th>
+        <th></th>
+      </tr>
+    </thead>
     <tbody>
       {% for webshop in webshops %}
         {% assign relay_id = webshop.relay_id %}
@@ -12,11 +19,14 @@
           <td>
             {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
               {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
-                ,
+                ,&nbsp;
               {% endif %}
               {{ webshop.config[identifiable_config_key] | decrypt }}
             {% endfor %}
-        </td>
+          </td>
+          <td>
+            <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.debug }}</a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
