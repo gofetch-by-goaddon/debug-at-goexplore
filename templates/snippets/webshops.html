@@ -9,7 +9,11 @@
         {% assign relay_id = webshop.relay_id %}
         <tr>
           <td>{{ relays[relay_id].name }}</td>
-          <td>{{ webshop.config }}</td>
+          <td>
+            {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
+              {{ webshop.config[identifiable_config_key] | decrypt }}, 
+            {% endfor %}
+        </td>
         </tr>
       {% endfor %}
     </tbody>
