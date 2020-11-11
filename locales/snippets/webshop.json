@@ -7,8 +7,7 @@
     "inputs": {
       "updated_since": {
         "date": {
-          "placeholder": "E.g. 123",
-
+          "placeholder": "E.g. 123"
         }
       }
     },
