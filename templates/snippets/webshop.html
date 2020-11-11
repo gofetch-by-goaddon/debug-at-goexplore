@@ -16,7 +16,7 @@
     {% assign klass = request_settings[0] %}
     <p><b>{{ klass }}</b></p>
     {% for request_setting in request_settings[1] %}
-      {% assign request_key = request_settings[0] %}
+      {% assign request_key = request_setting[0] %}
       <p>{{ request_key }}</p>
       <form id="{{ request_key }}" action="{{ 'webshops__test' | path_for: id: webshop._id, format: 'js' }}" method="get" data-remote="true">
         {% for input in l.inputs[klass][request_key] %}
