@@ -12,4 +12,10 @@
       {{ webshop.config[identifiable_config_key] | decrypt }}
     {% endfor %}
   </p>
+  {% for request_settings in relay.paths %}
+    <p><b>{{ request_settings[0] }}</b></p>
+    {% for request_setting in request_settings[1] %}
+      <p>{{ request_setting[0] }}</p>
+    {% endfor %}    
+  {% endfor %}
 {% endif %}
