@@ -2,7 +2,7 @@
   "en": {
     "headlines": {
       "no_webshop": "No webshop exists",
-      "webshop": "Webshop with identifier"
+      "webshop": "Webshop from"
     },
     "headers": {
       "config": "Identifier",

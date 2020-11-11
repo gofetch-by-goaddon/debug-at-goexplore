@@ -2,13 +2,14 @@
   <h5 class="mb-3">{{ l.headlines.no_webshop }}</h5>
 {% else %}
   <h5 class="mb-3">
-    {{ l.headlines.webshop }}
+    {{ l.headlines.webshop }} {{ relay.name }}
+  </h5>
+  <p>
     {% for identifiable_config_key in relay.identifiable_config_keys %}
       {% if identifiable_config_key != relay.identifiable_config_keys.first %}
         ,&nbsp;
       {% endif %}
       {{ webshop.config[identifiable_config_key] | decrypt }}
     {% endfor %}
-    &nbsp;({{ relay.name }})
-  </h5>
+  </p>
 {% endif %}
