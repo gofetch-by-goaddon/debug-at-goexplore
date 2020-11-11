@@ -1,4 +1,6 @@
 {
-	"en": {
-	}
+  "en": {
+    "relay_not_found": "Unable to get data from the project API about relay",
+    "no_gofetch_project_api_token": "No gofetch_project_api_token"
+  }
 }

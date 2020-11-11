@@ -1,0 +1,15 @@
+{
+  "en": {
+    "headlines": {
+      "no_webshop": "No webshop exists",
+      "webshop": "Webshop with identifier"
+    },
+    "headers": {
+      "config": "Identifier",
+      "relay_name": "Ecommerce platform"
+    },
+    "buttons": {
+      "debug": "Debug"
+    }
+  }
+}
