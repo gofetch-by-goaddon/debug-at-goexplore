@@ -6,9 +6,16 @@
     {% assign relays = nil | new_hash %}
     {% for webshop in webshops %}
       {% if webshop.relay_id != nil %}
-        {% assign relay_response = "relay" | webhook: relay_id: webshop.relay_id, gofetch_shop_api_token: project.secrets.gofetch_project_api_token %}
-        {% if relay_response.code == 200 %}
-          {% assign relays = relays | push_to_hash: relay_response.body.document._id, relay_response.body.document %}
+        {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
+        {% if gofetch_project_api_token == nil %}
+          <p>{{ l.no_gofetch_project_api_token }}</p>
+        {% else %}
+          {% assign relay_response = "relay" | webhook: relay_id: webshop.relay_id, gofetch_project_api_token: gofetch_project_api_token %}
+          {% if relay_response.code != 200 %}
+            <p>{{ l.relay_not_found }}</p>
+          {% else %}
+            {% assign relays = relays | push_to_hash: relay_response.body.document._id, relay_response.body.document %}
+          {% endif %}
         {% endif %}
       {% endif %}
     {% endfor %}
