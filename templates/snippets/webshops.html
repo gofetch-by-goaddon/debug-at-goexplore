@@ -15,7 +15,6 @@
       {% for webshop in webshops %}
         {% assign relay_id = webshop.relay_id %}
         <tr>
-          <td>{{ relays[relay_id].name }}</td>
           <td>
             {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
               {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
@@ -24,6 +23,7 @@
               {{ webshop.config[identifiable_config_key] | decrypt }}
             {% endfor %}
           </td>
+          <td>{{ relays[relay_id].name }}</td>
           <td>
             <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.debug }}</a>
           </td>

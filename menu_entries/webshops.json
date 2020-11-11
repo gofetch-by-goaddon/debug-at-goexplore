@@ -5,8 +5,7 @@
 	"index": 0,
 	"paths": [
 		{
-			"controller": "webshops",
-			"action": "index"
+			"controller": "webshops"
 		}
 	]
 }

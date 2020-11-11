@@ -5,7 +5,7 @@
       "webshops": "Webshops"
     },
     "headers": {
-      "config": "Identifiers",
+      "config": "Identifier",
       "relay_name": "Ecommerce platform"
     },
     "buttons": {
