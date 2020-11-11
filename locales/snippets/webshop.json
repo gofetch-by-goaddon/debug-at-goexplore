@@ -3,6 +3,17 @@
     "headlines": {
       "no_webshop": "No webshop exists",
       "webshop": "Webshop from"
+    },
+    "inputs": {
+      "updated_since": {
+        "date": {
+          "placeholder": "E.g. 123",
+
+        }
+      }
+    },
+    "buttons": {
+      "test": "Test"
     }
   }
 }

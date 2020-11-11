@@ -13,9 +13,19 @@
     {% endfor %}
   </p>
   {% for request_settings in relay.paths %}
-    <p><b>{{ request_settings[0] }}</b></p>
+    {% assign klass = request_settings[0] %}
+    <p><b>{{ klass }}</b></p>
     {% for request_setting in request_settings[1] %}
-      <p>{{ request_setting[0] }}</p>
+      {% assign request_key = request_settings[0] %}
+      <p>{{ request_key }}</p>
+      <form id="{{ request_key }}" action="{{ 'webshops__test' | path_for: id: webshop._id, format: 'js' }}" method="get" data-remote="true">
+        {% for input in l.inputs[klass][request_key] %}
+          <div class="input-group">
+            <input class="form-control mr-3" type="text" name="{{ input[0] }}" placeholder="{{ input[1].placeholder }}" value="">
+            <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
+          </div>
+        {% endfor %}
+      </form>
     {% endfor %}    
   {% endfor %}
 {% endif %}
