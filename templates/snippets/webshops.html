@@ -1,0 +1,17 @@
+<h5 class="mb-3">{{ l.headline }}</h5>
+{% if webshops.size == 0 %}
+  <h5 class="mb-3">{{ l.headlines.no_webshops }}</h5>
+{% else %}
+  <h5 class="mb-3">{{ l.headlines.webshops }}</h5>
+  <table class="table">
+    <tbody>
+      {% for webshop in webshops %}
+        {% assign relay_id = webshop.relay_id %}
+        <tr>
+          <td>{{ relays[relay_id].name }}</td>
+          <td>{{ webshop.config }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}

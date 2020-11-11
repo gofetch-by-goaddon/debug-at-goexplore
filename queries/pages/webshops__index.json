@@ -1,0 +1,12 @@
+{
+  "webshops": {
+    "klass": "webshops",
+    "query": {
+      "company_id": "{{ company_id }}"
+    },
+    "projection": {
+      "_id": 1,
+      "config": 1
+    }
+  }
+}
