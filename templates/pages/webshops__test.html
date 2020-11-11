@@ -1,0 +1,6 @@
+{% if account != nil and user.superuser %}
+
+  {% capture form_id %}{{ params.klass }}-{{ params.request_key }}{% endcapture %}
+  $('[data-id="{{ form_id }}"]').find(":input[name='date']").val("");
+  alertify.success("{{ l.created }}");
+{% endif %}

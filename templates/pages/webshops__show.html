@@ -1,4 +1,4 @@
-{% if user.superuser %}
+{% if account != nil and user.superuser %}
 
   {% assign webshops_query    = "webshops" | db_find: _id: params.id, company_id: account._id %}
   {% assign webshop           = webshops_query.results.first %}

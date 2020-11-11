@@ -18,10 +18,12 @@
     {% for request_setting in request_settings[1] %}
       {% assign request_key = request_setting[0] %}
       <p>{{ request_key }}</p>
-      <form id="{{ request_key }}" action="{{ 'webshops__test' | path_for: id: webshop._id, format: 'js' }}" method="get" data-remote="true">
+      <form data-id="{{ klass }}-{{ request_key }}" action="{{ 'webshops__test' | path_for: id: webshop._id, format: 'js' }}" method="get" data-remote="true">
         {% for input in l.inputs[klass][request_key] %}
           <div class="input-group">
             <input class="form-control mr-3" type="text" name="{{ input[0] }}" placeholder="{{ input[1].placeholder }}" value="">
+            <input type="hidden" name="klass" value="{{ klass }}">
+            <input type="hidden" name="request_key" value="{{ request_key }}">
             <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
           </div>
         {% endfor %}
