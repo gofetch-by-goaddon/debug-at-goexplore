@@ -5,9 +5,11 @@
       "webshop": "Webshop from"
     },
     "inputs": {
-      "updated_since": {
-        "date": {
-          "placeholder": "E.g. 123"
+      "products": {
+        "updated_since": {
+          "date": {
+            "placeholder": "E.g. 123"
+          }
         }
       }
     },
