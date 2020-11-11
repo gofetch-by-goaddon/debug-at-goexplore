@@ -11,7 +11,10 @@
           <td>{{ relays[relay_id].name }}</td>
           <td>
             {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
-              {{ webshop.config[identifiable_config_key] | decrypt }}, 
+              {% if identifiable_config_key == relays[relay_id].identifiable_config_keys.first %}
+                ,
+              {% endif %}
+              {{ webshop.config[identifiable_config_key] | decrypt }}
             {% endfor %}
         </td>
         </tr>
