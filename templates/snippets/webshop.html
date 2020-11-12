@@ -78,7 +78,7 @@
                     </div>
 
                     <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
-                      <div class="card-body bortder-bottom">
+                      <div class="card-body border-bottom">
                         <form data-id="{{ request_id }}" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
                           {% for input in l.inputs[klass_name][request_key] %}
                             <div class="input-group">
