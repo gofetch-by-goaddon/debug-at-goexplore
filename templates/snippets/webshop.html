@@ -18,7 +18,7 @@
       {% assign klass = request_settings[0] %}
       {% for request_setting in request_settings[1] %}
         {% assign request_key = request_setting[0] %}
-        {% capture request_id %}{ klass }}-{{ request_key }}{% endcapture %}
+        {% capture request_id %}{{ klass }}-{{ request_key }}{% endcapture %}
         {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
         {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
         <div class="card">
