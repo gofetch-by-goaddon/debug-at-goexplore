@@ -17,6 +17,23 @@
             "placeholder": "E.g. 123"
           }
         }
+      },
+      "orders": {
+        "created_since": {
+          "date": {
+            "placeholder": "E.g. 123"
+          }
+        },
+        "updated_since": {
+          "date": {
+            "placeholder": "E.g. 123"
+          }
+        },
+        "close": {
+          "_id": {
+            "placeholder": "E.g. 123"
+          }
+        }
       }
     },
     "buttons": {
