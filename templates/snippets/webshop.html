@@ -12,42 +12,97 @@
       {{ webshop.config[identifiable_config_key] | decrypt }}
     {% endfor %}
   </p>
-  <div class="accordion" id="debug_accordion">
-    {% assign show_collapse = " show" %}
-    {% for request_settings in relay.paths %}
-      {% assign klass = request_settings[0] %}
-      {% for request_setting in request_settings[1] %}
-        {% assign request_key = request_setting[0] %}
-        {% capture request_id %}{{ klass }}-{{ request_key }}{% endcapture %}
-        {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
-        {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
-        <div class="card">
-          <div class="card-header" id="{{ heading_id }}">
-            <h2 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ collapse_id }}" aria-expanded="true" aria-controls="{{ collapse_id }}">
-                {{ klass }}: {{ request_key }}
-              </button>
-            </h2>
-          </div>
 
-          <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#debug_accordion">
-            <div class="card-body">
-              <form data-id="{{ request_id }}" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
-                {% for input in l.inputs[klass][request_key] %}
-                  <div class="input-group">
-                    <input class="form-control mr-3" type="text" name="{{ input[0] }}" placeholder="{{ input[1].placeholder }}" value="">
-                    <input type="hidden" name="klass" value="{{ klass }}">
-                    <input type="hidden" name="request_key" value="{{ request_key }}">
-                    <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
-                    <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
+
+
+
+  {% assign klass_names = "" %}
+  {% for path in relay.paths %}
+    {% if path != relay.paths.first %}
+      {% capture klass_names %} {{ klass_names }}{% endcapture %}
+    {% endif %}
+    {% capture klass_names %}{{ klass_names }}{{ path[0] }}{% endcapture %}
+  {% endfor %}
+  
+  {% assign klass_names = klass_names | split: " " | sort %}
+
+  {% assign number      = 0 %}
+  {% assign tab_id      = "debug_tab" %}
+
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs" id="{{ tab_id }}" role="tablist">
+        {% for klass_name in klass_names %}
+          <li class="nav-item">
+            {% if klass_name == klass_names.first %}
+              {% assign active_bool = " active" %}
+              {% assign selected    = "true" %}
+            {% else %}
+              {% assign active_bool = "" %}
+              {% assign selected    = "false" %}
+            {% endif %}
+            <a class="nav-link{{ active_bool }}" id="{{ klass_name }}-tab" data-toggle="tab" href="#{{ klass_name }}" role="tab" aria-controls="{{ klass_name }}" aria-selected="{{ selected }}">
+              {{ l.tab_headlines[klass_name] }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="tab-content" id="{{ tab_id }}_content">
+        {% for klass_name in klass_names %}
+          {% if klass_name == klass_names.first %}
+            {% assign show_active = " show active" %}
+          {% else %}
+            {% assign show_active = "" %}
+          {% endif %}
+          <div class="tab-pane fade{{ show_active }}" id="{{ klass_name }}" role="tabpanel" aria-labelledby="{{ klass_name }}-tab">
+            <div>
+
+
+              {% capture accordion_id %}{{ klass_name }}_accordion{% endcapture %}
+              <div class="accordion" id="{{ accordion_id }}">
+                {% assign show_collapse = " show" %}
+                {% for request_setting in relay.paths[klass_name] %}
+                  {% assign request_key = request_setting[0] %}
+                  {% capture request_id %}{{ klass_name }}-{{ request_key }}{% endcapture %}
+                  {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
+                  {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
+                  <div class="card">
+                    <div class="card-header" id="{{ heading_id }}">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ collapse_id }}" aria-expanded="true" aria-controls="{{ collapse_id }}">
+                          {{ klass_name }}: {{ request_key }}
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
+                      <div class="card-body">
+                        <form data-id="{{ request_id }}" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
+                          {% for input in l.inputs[klass_name][request_key] %}
+                            <div class="input-group">
+                              <input class="form-control mr-3" type="text" name="{{ input[0] }}" placeholder="{{ input[1].placeholder }}" value="">
+                              <input type="hidden" name="klass_name" value="{{ klass_name }}">
+                              <input type="hidden" name="request_key" value="{{ request_key }}">
+                              <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
+                              <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
+                            </div>
+                          {% endfor %}
+                        </form>
+                      </div>
+                    </div>
                   </div>
+                  {% assign show_collapse = "" %}
                 {% endfor %}
-              </form>
+              </div>
+
+
+
             </div>
           </div>
-        </div>
-        {% assign show_collapse = "" %}
-      {% endfor %}
-    {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
   </div>
 {% endif %}
