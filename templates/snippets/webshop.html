@@ -2,7 +2,6 @@
   <h5 class="mb-3">{{ l.headlines.no_webshop }}</h5>
 {% else %}
   <h5 class="mb-3">
-    {{relay}}
     {{ l.headlines.webshop }} {{ relay.name }}
   </h5>
   <p>
@@ -66,7 +65,6 @@
                 {% assign show_collapse = " show" %}
                 {% for klass_path in relay.paths[klass_name] %}
                   {% assign request_key = klass_path[0] %}
-                  <p>{{ request_key }}</p>
                   {% capture request_id %}{{ klass_name }}-{{ request_key }}{% endcapture %}
                   {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
                   {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
