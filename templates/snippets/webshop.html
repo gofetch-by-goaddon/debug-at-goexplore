@@ -12,23 +12,42 @@
       {{ webshop.config[identifiable_config_key] | decrypt }}
     {% endfor %}
   </p>
-  {% for request_settings in relay.paths %}
-    {% assign klass = request_settings[0] %}
-    <p><b>{{ klass }}</b></p>
-    {% for request_setting in request_settings[1] %}
-      {% assign request_key = request_setting[0] %}
-      <p>{{ request_key }}</p>
-      <form data-id="{{ klass }}-{{ request_key }}" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
-        {% for input in l.inputs[klass][request_key] %}
-          <div class="input-group">
-            <input class="form-control mr-3" type="text" name="{{ input[0] }}" placeholder="{{ input[1].placeholder }}" value="">
-            <input type="hidden" name="klass" value="{{ klass }}">
-            <input type="hidden" name="request_key" value="{{ request_key }}">
-            <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
-            <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
+  <div class="accordion" id="debug_accordion">
+    {% assign show_collapse = " show" %}
+    {% for request_settings in relay.paths %}
+      {% assign klass = request_settings[0] %}
+      {% for request_setting in request_settings[1] %}
+        {% assign request_key = request_setting[0] %}
+        {% capture request_id %}{ klass }}-{{ request_key }}{% endcapture %}
+        {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
+        {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
+        <div class="card">
+          <div class="card-header" id="{{ heading_id }}">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ collapse_id }}" aria-expanded="true" aria-controls="{{ collapse_id }}">
+                {{ klass }}: {{ request_key }}
+              </button>
+            </h2>
           </div>
-        {% endfor %}
-      </form>
-    {% endfor %}    
-  {% endfor %}
+
+          <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#debug_accordion">
+            <div class="card-body">
+              <form data-id="{{ request_id }}" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
+                {% for input in l.inputs[klass][request_key] %}
+                  <div class="input-group">
+                    <input class="form-control mr-3" type="text" name="{{ input[0] }}" placeholder="{{ input[1].placeholder }}" value="">
+                    <input type="hidden" name="klass" value="{{ klass }}">
+                    <input type="hidden" name="request_key" value="{{ request_key }}">
+                    <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
+                    <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
+                  </div>
+                {% endfor %}
+              </form>
+            </div>
+          </div>
+        </div>
+        {% assign show_collapse = "" %}
+      {% endfor %}
+    {% endfor %}
+  </div>
 {% endif %}
