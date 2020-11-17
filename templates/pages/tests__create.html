@@ -1,6 +1,6 @@
 {% if account != nil and user.superuser %}
 
-  {% capture form_id %}{{ params.klass_name }}-{{ params.request_key }}{% endcapture %}
-  $('[data-id="{{ form_id }}"]').find(":input[name='date']").val("");
+  {% capture form_response_id %}{{ params.klass_name }}-{{ params.request_key }}-response{% endcapture %}
+  $('[data-id="{{ form_response_id }}"]').html("hello");
   alertify.success("{{ l.tested }}");
 {% endif %}

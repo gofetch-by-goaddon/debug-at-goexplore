@@ -5,12 +5,14 @@
     {{ l.headlines.webshop }} {{ relay.name }}
   </h5>
   <p>
-    {% for identifiable_config_key in relay.identifiable_config_keys %}
-      {% if identifiable_config_key != relay.identifiable_config_keys.first %}
-        ,&nbsp;
-      {% endif %}
-      {{ webshop.config[identifiable_config_key] | decrypt }}
-    {% endfor %}
+    <samp>
+      {% for identifiable_config_key in relay.identifiable_config_keys %}
+        {% if identifiable_config_key != relay.identifiable_config_keys.first %}
+          ,&nbsp;
+        {% endif %}
+        {{ webshop.config[identifiable_config_key] | decrypt }}
+      {% endfor %}
+    </samp>
   </p>
 
 
@@ -86,6 +88,7 @@
                             <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
                           </div>
                         {% endfor %}
+                      <div data-id="{{ request_id }}-response"></div>
                       </form>
                     </div>
                   </div>
