@@ -6,9 +6,9 @@
 
     {% assign path = params.url | replace: gofetch_shop_api_url, "" %}
     {% capture shop_api_url %}{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
-    {% assign a_shop_api_url = shop_api_url | replace: "{{ order_id }}", params.order_id %}
-
-    {% assign response = "get_shop_api" | webhook: url: a_shop_api_url, token: project.secrets.gofetch_shop_api_token %}
+    {% assign shop_api_url = shop_api_url | replace: "{{ order_id }}", params.order_id %}
+    console.log("{{ shop_api_url }}");
+    {% assign response = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
 
     {% assign url = params.url %}
     {% include "shared/request_id" %}
