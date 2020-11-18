@@ -81,8 +81,8 @@
                           {% if param.key == "webshop_id" %}
                             <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
                           {% else %}
+                            <label for="{{ param.key }}">{{ param.description }}</label>
                             <div class="input-group">
-                              <p>{{ param.description }}</p>
                               <input class="form-control mr-3" type="text" name="{{ param.key }}">
                             </div>
                           {% endif %}
