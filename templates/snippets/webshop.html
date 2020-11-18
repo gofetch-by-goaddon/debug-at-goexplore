@@ -78,6 +78,7 @@
 
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
+                      <p>{{ endpoint.description }}</p>
                       <form data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
 
