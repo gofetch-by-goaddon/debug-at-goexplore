@@ -5,6 +5,19 @@
   {% if gofetch_shop_api_url != nil and gofetch_shop_api_url != "" %}
 
     {% assign path = params.url | replace: gofetch_shop_api_url, "" %}
+
+    {% assign url_parts = path | split: " " %}
+    {% if url_parts.size > 1 %}
+      {% for url_part in url_parts %}
+        {% for param in params %}
+          {% if url_part == param[1] %}
+            {% capture url_var %} {{ url_part }} {% endcapture %}
+            {% assign path = path | replace: url_var, param[1] | replace: "{{", "" | | replace: "}}", "" %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    {% endif %}
+
     {% capture shop_api_url %}{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
 
     {% assign shop_api_url  = shop_api_url | replace: "{{ order_id }}", params.order_id %}
