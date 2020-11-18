@@ -17,7 +17,7 @@
         {% endfor %}
       {% endfor %}
     {% endif %}
-    console.log("path: " + path);
+
     {% capture shop_api_url %}{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
 
     {% assign shop_api_url  = shop_api_url | replace: "{{ order_id }}", params.order_id %}
