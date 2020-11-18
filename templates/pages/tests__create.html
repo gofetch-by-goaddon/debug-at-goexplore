@@ -5,7 +5,7 @@
   {% if gofetch_shop_api_url != nil and gofetch_shop_api_url != "" %}
 
     {% assign path = params.url | replace: gofetch_shop_api_url, "" %}
-    {% capture shop_api_url %}http://{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
+    {% capture shop_api_url %}{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
     console.log("{{ shop_api_url }}");
     {% assign response = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
 
