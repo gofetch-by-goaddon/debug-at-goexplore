@@ -4,38 +4,6 @@
       "no_webshop": "No webshop exists",
       "webshop": "Webshop from"
     },
-    "tab_headlines": {
-      "products": "Products",
-      "orders": "Orders",
-      "statuses": "Statuses",
-      "shop_ids": "Shop ids"
-    },
-    "inputs": {
-      "products": {
-        "updated_since": {
-          "date": {
-            "placeholder": "E.g. 123"
-          }
-        }
-      },
-      "orders": {
-        "created_since": {
-          "date": {
-            "placeholder": "E.g. 123"
-          }
-        },
-        "updated_since": {
-          "date": {
-            "placeholder": "E.g. 123"
-          }
-        },
-        "close": {
-          "_id": {
-            "placeholder": "E.g. 123"
-          }
-        }
-      }
-    },
     "buttons": {
       "test": "Test"
     }

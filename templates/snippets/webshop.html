@@ -15,28 +15,24 @@
     </samp>
   </p>
 
-
-
-
   {% assign klass_names = "" %}
-  {% for path in relay.paths %}
-    {% if path != relay.paths.first %}
+  {% for endpoint in relay.shop_api.v1.endpoints %}
+    {% if endpoint != relay.shop_api.v1.endpoints.first %}
       {% capture klass_names %}{{ klass_names }} {% endcapture %}
     {% endif %}
     {% capture klass_names %}{{ klass_names }}{{ path[0] }}{% endcapture %}
   {% endfor %}
   
   {% assign klass_names = klass_names | split: " " | sort %}
-
-  {% assign number      = 0 %}
   {% assign tab_id      = "debug_tab" %}
 
   <div class="card">
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs" id="{{ tab_id }}" role="tablist">
-        {% for klass_name in klass_names %}
+        {% for klass_endpoints in relay.shop_api.v1.endpoints %}
+          {% assign klass_name = klass_endpoints[0] %}
           <li class="nav-item">
-            {% if klass_name == klass_names.first %}
+            {% if klass_endpoints == relay.shop_api.v1.endpoints.first %}
               {% assign active_bool = " active" %}
               {% assign selected    = "true" %}
             {% else %}
@@ -44,7 +40,7 @@
               {% assign selected    = "false" %}
             {% endif %}
             <a class="nav-link{{ active_bool }}" id="{{ klass_name }}-tab" data-toggle="tab" href="#{{ klass_name }}" role="tab" aria-controls="{{ klass_name }}" aria-selected="{{ selected }}">
-              {{ l.tab_headlines[klass_name] }}
+              {{ klass_name }}
             </a>
           </li>
         {% endfor %}
@@ -52,8 +48,9 @@
     </div>
     <div class="card-body">
       <div class="tab-content" id="{{ tab_id }}_content">
-        {% for klass_name in klass_names %}
-          {% if klass_name == klass_names.first %}
+        {% for klass_endpoints in relay.shop_api.v1.endpoints %}
+          {% assign klass_name = klass_endpoints[0] %}
+          {% if klass_endpoints == relay.shop_api.v1.endpoints.first %}
             {% assign show_active = " show active" %}
           {% else %}
             {% assign show_active = "" %}
@@ -61,17 +58,17 @@
           <div class="tab-pane fade{{ show_active }}" id="{{ klass_name }}" role="tabpanel" aria-labelledby="{{ klass_name }}-tab">
             {% capture accordion_id %}{{ klass_name }}_accordion{% endcapture %}
             <div class="accordion" id="{{ accordion_id }}">
+              {% assign number        = 0 %}
               {% assign show_collapse = " show" %}
-              {% for klass_path in relay.paths[klass_name] %}
-                {% assign request_key = klass_path[0] %}
-                {% capture request_id %}{{ klass_name }}-{{ request_key }}{% endcapture %}
+              {% for endpoint in klass_endpoints[1] %}
+                {% capture request_id %}{{ klass_name }}-{{ number }}{% endcapture %}
                 {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
                 {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
                 <div class="card border-bottom">
                   <div class="card-header" id="{{ heading_id }}">
                     <h2 class="mb-0">
                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ collapse_id }}" aria-expanded="true" aria-controls="{{ collapse_id }}">
-                        {{ request_key }}
+                        {{ endpoint.method | upcase }} {{ endpoint.url }}
                       </button>
                     </h2>
                   </div>
@@ -79,20 +76,24 @@
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
                       <form data-id="{{ request_id }}" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
-                        {% for input in l.inputs[klass_name][request_key] %}
-                          <div class="input-group">
-                            <input class="form-control mr-3" type="text" name="{{ input[0] }}" placeholder="{{ input[1].placeholder }}" value="">
-                            <input type="hidden" name="klass_name" value="{{ klass_name }}">
-                            <input type="hidden" name="request_key" value="{{ request_key }}">
+                        <input type="hidden" name="klass_name" value="{{ klass_name }}">
+                        {% for param in endpoint.params %}
+                          {% if param.key == "webshop_id" %}
                             <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
-                            <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
-                          </div>
+                          {% else %}
+                            <div class="input-group">
+                              <p>{{ param.decription }}</p>
+                              <input class="form-control mr-3" type="text" name="{{ param.key }}">
+                            </div>
+                          {% endif %}
                         {% endfor %}
-                      <div data-id="{{ request_id }}-response"></div>
+                        <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
                       </form>
+                      <div data-id="{{ request_id }}-response"></div>
                     </div>
                   </div>
                 </div>
+                {% assign number        = number | plus: 1 %}
                 {% assign show_collapse = "" %}
               {% endfor %}
             </div>
