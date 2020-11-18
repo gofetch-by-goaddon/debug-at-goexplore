@@ -1,17 +1,20 @@
 {% if account != nil and user.superuser %}
 
-  {% if project.secrets.shop_api_url != nil and project.secrets.shop_api_url != "" %}
+  {% assign gofetch_shop_api_url = project.secrets.gofetch_shop_api_url %}
 
-    {% assign url = params.url | replace: project.secrets.shop_api_url, "" %}
-    {% capture shop_api_url %}http://{{ project.secrets.shop_api_url }}{{ url }}{% endcapture %}
+  {% if gofetch_shop_api_url != nil and gofetch_shop_api_url != "" %}
 
-    {% assign response = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.shop_api_token %}
+    {% assign path = params.url | replace: gofetch_shop_api_url, "" %}
+    {% capture shop_api_url %}http://{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
 
+    {% assign response = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
+
+    {% assign url = params.url %}
     {% include "shared/request_id" %}
 
     $('[data-id="{{ request_id }}-response"]').html("hello");
     alertify.success("{{ l.tested }}");
   {% else %}
-    alertify.error("{{ l.no_shop_api_url }}");
+    alertify.error("{{ l.no_gofetch_shop_api_url }}");
   {% endif %}  
 {% endif %}
