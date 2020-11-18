@@ -61,8 +61,6 @@
               {% assign show_collapse = " show" %}
               {% for endpoint in klass_endpoints[1] %}
 
-                {% assign url = endpoint.url %}
-
                 {% include "shared/request_id" %}
 
                 {% capture heading_id %}heading_{{ request_id }}{% endcapture %}

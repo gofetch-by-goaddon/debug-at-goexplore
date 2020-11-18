@@ -1,9 +1,17 @@
 {% if account != nil and user.superuser %}
 
-  {% assign url = params.url %}
+  {% if project.secrets.shop_api_url != nil and project.secrets.shop_api_url != "" %}
 
-  {% include "shared/request_id" %}
+    {% assign url = params.url | replace: project.secrets.shop_api_url, "" %}
+    {% capture shop_api_url %}http://{{ project.secrets.shop_api_url }}{{ url }}{% endcapture %}
 
-  $('[data-id="{{ request_id }}-response"]').html("hello");
-  alertify.success("{{ l.tested }}");
+    {% assign response = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.shop_api_token %}
+
+    {% include "shared/request_id" %}
+
+    $('[data-id="{{ request_id }}-response"]').html("hello");
+    alertify.success("{{ l.tested }}");
+  {% else %}
+    alertify.error("{{ l.no_shop_api_url }}");
+  {% endif %}  
 {% endif %}

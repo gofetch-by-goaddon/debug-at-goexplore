@@ -1,5 +1,6 @@
 {
 	"en": {
-    "tested": "Tested"
+    "tested": "Tested",
+    "no_shop_api_url": "Please add a shop_api_url to your Goexplore secrets."
 	}
 }
