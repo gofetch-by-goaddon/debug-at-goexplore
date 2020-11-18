@@ -1,6 +1,13 @@
 {% if webshop == nil %}
   <h5 class="mb-3">{{ l.headlines.no_webshop }}</h5>
 {% else %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw==" crossorigin="anonymous"></script>
+  <script>
+    var converter = new showdown.Converter();
+    var markdown  = $(".markdown");
+    var text      = markdown.data("markdown");
+    markdown.html(converter.makeHtml(text));
+  </script>
   <h5 class="mb-3">
     {{ l.headlines.webshop }} {{ relay.name }}
   </h5>
@@ -78,7 +85,7 @@
 
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
-                      <p>{{ endpoint.description }}</p>
+                      <p class="markdown" data-markdown="{{ endpoint.description }}"></p>
                       <form data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
 
