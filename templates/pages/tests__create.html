@@ -12,7 +12,7 @@
         {% for param in params %}
           {% if url_part == param[1] %}
             {% capture url_var %} {{ url_part }} {% endcapture %}
-            {% assign path = path | replace: url_var, param[1] | replace: "{{", "" | | replace: "}}", "" %}
+            {% assign path = path | replace: url_var, param[1] | replace: "{{", "" | replace: "}}", "" %}
           {% endif %}
         {% endfor %}
       {% endfor %}
