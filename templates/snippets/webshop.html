@@ -60,7 +60,7 @@
             <div class="accordion" id="{{ accordion_id }}">
               {% assign show_collapse = " show" %}
               {% for endpoint in klass_endpoints[1] %}
-                {% assign request_id = endpoint.url | split: "v1/" | last | replace: "{", "" | replace: "}", "" %}
+                {% assign request_id = endpoint.url | split: "v1/" | last | replace: "{{ ", "" | replace: " }}", "" | replace: "/", "_" %}
                 {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
                 {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
                 <div class="card border-bottom">
