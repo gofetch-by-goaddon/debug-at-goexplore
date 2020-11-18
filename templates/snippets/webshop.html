@@ -87,9 +87,9 @@
                             {% if url_part contains "_id" %}
                               {% assign klass_part = url_part | replace: "_id", "" %}
                               {% if klass_name contains klass_part %}
-                                <label for="{{ klass_part }}">{{ klass_part }}</label>
+                                <label for="{{ url_part }}">{{ url_part }}</label>
                                 <div class="input-group mb-4">
-                                  <input class="form-control" type="text" name="{{ klass_part }}">
+                                  <input class="form-control" type="text" name="{{ url_part }}">
                                 </div>
                               {% endif %}
                             {% endif %}
