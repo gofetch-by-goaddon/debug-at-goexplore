@@ -80,6 +80,22 @@
                     <div class="card-body">
                       <form data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
+
+                        {% assign url_parts = endpoint.url | split: " " %}
+                        {% if url_parts.size > 1 %}
+                          {% for url_part in url_parts %}
+                            {% if url_part contains "_id" %}
+                              {% assign klass_part = url_part | replace: "_id", "" %}
+                              {% if klass_name contains klass_part %}
+                                <label for="{{ klass_part }}">{{ klass_part }}</label>
+                                <div class="input-group mb-4">
+                                  <input class="form-control" type="text" name="{{ klass_part }}">
+                                </div>
+                              {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+
                         {% for param in endpoint.params %}
                           {% if param.key == "webshop_id" %}
                             <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
