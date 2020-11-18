@@ -1,5 +1,9 @@
 {% if account != nil and user.superuser %}
 
-  $('[data-id="{{ params.request_key }}-response"]').html("hello");
+  {% assign url = params.url %}
+
+  {% include "shared/request_id" %}
+
+  $('[data-id="{{ request_id }}-response"]').html("hello");
   alertify.success("{{ l.tested }}");
 {% endif %}
