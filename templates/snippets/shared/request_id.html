@@ -1,0 +1,1 @@
+{% assign request_id = url | split: "v1/" | last | replace: "{{ ", "" | replace: " }}", "" | replace: "/", "_" %}
