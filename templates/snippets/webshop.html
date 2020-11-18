@@ -82,12 +82,12 @@
                             <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
                           {% else %}
                             <label for="{{ param.key }}">{{ param.description }}</label>
-                            <div class="input-group">
-                              <input class="form-control mr-3" type="text" name="{{ param.key }}">
+                            <div class="input-group mr-3">
+                              <input class="form-control" type="text" name="{{ param.key }}">
                             </div>
                           {% endif %}
                         {% endfor %}
-                        <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.test }}">
+                        <input class="btn btn-outline-primary mt-3" type="submit" value="{{ l.buttons.test }}">
                       </form>
                       <div data-id="{{ request_id }}-response"></div>
                     </div>
