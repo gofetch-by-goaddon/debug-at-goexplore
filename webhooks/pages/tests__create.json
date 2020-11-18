@@ -1,0 +1,10 @@
+{
+  "get_shop_api": {
+    "method": "get",
+    "url": "{{ url }}",
+    "headers": {
+      "Authorization": "{{ token }}",
+      "Content-Type": "application/json"
+    }
+  }
+}
