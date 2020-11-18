@@ -58,10 +58,10 @@
           <div class="tab-pane fade{{ show_active }}" id="{{ klass_name }}" role="tabpanel" aria-labelledby="{{ klass_name }}-tab">
             {% capture accordion_id %}{{ klass_name }}_accordion{% endcapture %}
             <div class="accordion" id="{{ accordion_id }}">
-              {% assign number        = 0 %}
               {% assign show_collapse = " show" %}
               {% for endpoint in klass_endpoints[1] %}
-                {% capture request_id %}{{ klass_name }}-{{ number }}{% endcapture %}
+                {% assign request_key = endpoint.url | split: "v1/" | last | replace: "{", "" | replace: "}", "" %}
+                {% capture request_id %}{{ klass_name }}-{{ request_key }}{% endcapture %}
                 {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
                 {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
                 <div class="card border-bottom">
@@ -75,8 +75,9 @@
 
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
-                      <form data-id="{{ request_id }}" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
-                        <input type="hidden" name="klass_name" value="{{ klass_name }}">
+                      <form data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
+                        <input type="hidden" name="url" value="{{ endpoint.url }}">
+                        <input type="hidden" name="request_id" value="{{ request_id }}">
                         {% for param in endpoint.params %}
                           {% if param.key == "webshop_id" %}
                             <input type="hidden" name="webshop_id" value="{{ webshop._id }}">

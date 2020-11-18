@@ -1,6 +1,5 @@
 {% if account != nil and user.superuser %}
 
-  {% capture form_response_id %}{{ params.klass_name }}-{{ params.request_key }}-response{% endcapture %}
-  $('[data-id="{{ form_response_id }}"]').html("hello");
+  $('[data-id="{{ params.request_key }}-response"]').html("hello");
   alertify.success("{{ l.tested }}");
 {% endif %}
