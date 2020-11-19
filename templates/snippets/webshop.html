@@ -6,6 +6,7 @@
     var converter = new showdown.Converter();
     var addMarkdown;
     addMarkdown = function() {
+      console.log("RUN");
       return $(".markdown").each(function() {
         return $(this).html(converter.makeHtml($(this).data("markdown")));
       });
