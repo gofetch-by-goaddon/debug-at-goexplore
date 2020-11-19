@@ -28,7 +28,7 @@
 
     var response_body = JSON.stringify({{ response.body | json }}, undefined, 2);
 
-    $('[data-id="{{ request_id }}-response"]').html('<pre class="language-json"><code class="language-json">' + {{ response.body }} + '</code></pre>');
+    $('[data-id="{{ request_id }}-response"]').html('<pre class="language-json"><code class="language-json">' + {{ response.body | json }} + '</code></pre>');
     {% if response.code == 200 or response.code == 204 %}
       alertify.success("{{ l.success }}");
     {% else %}
