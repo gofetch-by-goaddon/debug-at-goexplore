@@ -34,7 +34,6 @@
                 url += "?";
               }
               url += $(this).attr("name") + "=" + $(this).val();
-              console.log(url);
           }
         });
         return console.log(url);
@@ -150,7 +149,7 @@
                           {% else %}
                             <label class="markdown" for="{{ param.key }}">{{ param.description }}</label>
                             <div class="input-group mb-4">
-                              <input class="form-control" type="text" name="{{ param.key }}" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
+                              <input class="form-control" type="text" name="{{ param.key }}" data-type="param" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
                             </div>
                           {% endif %}
                         {% endfor %}
