@@ -9,7 +9,9 @@
         return $(this).html(converter.makeHtml($(this).data("markdown")));
       });
     };
-    addMarkdown();
+    $(document).on('turbolinks:load', function() {
+      addMarkdown();
+    })
   </script>
   <h5 class="mb-3">
     {{ l.headlines.webshop }} {{ relay.name }}
