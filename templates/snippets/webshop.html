@@ -8,7 +8,7 @@
     }
   </style>
   <script>
-    var converter = new showdown.Converter(simpleLineBreaks: true);
+    var converter = new showdown.Converter({simpleLineBreaks: true});
     var addMarkdown;
     addMarkdown = function() {
       return $(".markdown").each(function() {
