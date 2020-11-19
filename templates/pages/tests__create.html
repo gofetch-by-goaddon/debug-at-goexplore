@@ -30,7 +30,7 @@
 
     pre_div   = $("<pre>").addClass("language-json");
     code_div  = $("<code>").addClass("language-json");
-    code_div.html(response_body);
+    code_div.html({{ response.body | json }});
     pre_div.append(code_div);
     $('[data-id="{{ request_id }}-response"]').append(pre_div);
 
