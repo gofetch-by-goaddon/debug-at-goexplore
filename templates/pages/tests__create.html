@@ -26,8 +26,12 @@
     {% assign url = params.url %}
     {% include "shared/request_id" %}
 
-    $('[data-id="{{ request_id }}-response"]').html("hello");
-    alertify.success("{{ l.tested }}");
+    $('[data-id="{{ request_id }}-response"]').html({{ response.body }});
+    {% if response.code == 200 or response.code == 204 %}
+      alertify.success("{{ l.success }}");
+    {% else %}
+      alertify.error("{{ l.error }}");
+    {% endif %}
   {% else %}
     alertify.error("{{ l.no_gofetch_shop_api_url }}");
   {% endif %}  
