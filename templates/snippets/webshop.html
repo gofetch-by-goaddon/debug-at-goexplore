@@ -9,7 +9,7 @@
         return $(this).html(converter.makeHtml($(this).data("markdown")));
       });
     };
-    setTimeout(function(){ addMarkdown(); }, 1);
+    addMarkdown();
   </script>
   <h5 class="mb-3">
     {{ l.headlines.webshop }} {{ relay.name }}
