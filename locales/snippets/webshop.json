@@ -4,6 +4,9 @@
       "no_webshop": "No webshop exists",
       "webshop": "Webshop from"
     },
+    "placeholders": {
+      "default": "Type here..."
+    },
     "buttons": {
       "test": "Test"
     }
