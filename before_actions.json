@@ -1,4 +1,7 @@
 {
+  "authenticate": {
+    "authenticated": true
+  },
   "container": {
     "webshops__index": "authenticated",
     "webshops__show": "authenticated"
