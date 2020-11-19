@@ -26,7 +26,7 @@
     {% assign url = params.url %}
     {% include "shared/request_id" %}
 
-    $('[data-id="{{ request_id }}-response"]').html({{ response.body }});
+    $('[data-id="{{ request_id }}-response"]').html({{ response.body | json }});
     {% if response.code == 200 or response.code == 204 %}
       alertify.success("{{ l.success }}");
     {% else %}
