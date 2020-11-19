@@ -1,7 +1,6 @@
 {% if webshop == nil %}
   <h5 class="mb-3">{{ l.headlines.no_webshop }}</h5>
 {% else %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw==" crossorigin="anonymous"></script>
   <script>
     var converter = new showdown.Converter();
     var addMarkdown;
@@ -10,7 +9,7 @@
         return $(this).html(converter.makeHtml($(this).data("markdown")));
       });
     };
-    setTimeout(function(){ addMarkdown(); }, 1000);
+    setTimeout(function(){ addMarkdown(); }, 1);
   </script>
   <h5 class="mb-3">
     {{ l.headlines.webshop }} {{ relay.name }}
