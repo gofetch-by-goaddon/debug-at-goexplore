@@ -1,7 +1,7 @@
 {
   "get_shop_api": {
     "method": "get",
-    "url": "{{ url }}?updated_since=2019-12-31T23:59:59+01:00",
+    "url": "{{ url }}?updated_since=2019-12-31T23:59:59+01:00&webshop_id={{ webshop_id }}",
     "headers": {
       "Authorization": "{{ token }}",
       "Content-Type": "application/json"

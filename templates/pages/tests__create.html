@@ -21,7 +21,7 @@
     {% capture shop_api_url %}{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
 
     {% assign shop_api_url  = shop_api_url | replace: "{{ order_id }}", params.order_id %}
-    {% assign response      = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token, updated_since: params.updated_since %}
+    {% assign response      = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token, webshop_id: params.webshop_id %}
 
     var response_body   = JSON.stringify({{ response.body | json }}, undefined, 2);
     var highlight_body  = Prism.highlight(response_body, Prism.languages.json, 'json');
