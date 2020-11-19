@@ -21,7 +21,7 @@
       $(document).on("submit", ".shop-api-form", function(e) {
         var url;
         e.preventDefault();
-        url = $(this).find(":input[name=url]");
+        url = $(this).find(":input[name=url]").val();
         $(this).find(":input[type=text]").each(function() {
           switch ($(this).data("type")) {
             case "url_part":
