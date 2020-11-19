@@ -27,13 +27,9 @@
     {% include "shared/request_id" %}
 
     var response_body = JSON.stringify({{ response.body | json }}, undefined, 2);
-    var pre_div       = document.createElement('pre');
 
-    pre_div.classList.add('language-json');
-
-    var code_div      = document.createElement('code');
-
-    code_div.classList.add('language-json');
+    pre_div   = $("<pre>").addClass("language-json");
+    code_div  = $("<code>").addClass("language-json");
     code_div.html(response_body);
     pre_div.append(code_div);
     $('[data-id="{{ request_id }}-response"]').append(pre_div);
