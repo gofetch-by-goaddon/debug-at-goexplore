@@ -11,12 +11,37 @@
     var converter = new showdown.Converter({simpleLineBreaks: true});
     var addMarkdown;
     addMarkdown = function() {
-      return $(".markdown").each(function() {
-        return $(this).html(converter.makeHtml($(this).html()));
+      $(".markdown").each(function() {
+        $(this).html(converter.makeHtml($(this).html()));
       });
     };
+
+    submitRequest = function() {
+      $(document).off("submit");
+      $(document).on("submit", ".shop-api-form", function(e) {
+        var url;
+        e.preventDefault();
+        url = $(this).find(":input[name=url]");
+        $(this).find(":input[type=text]").each(function() {
+          switch ($(this).data("type")) {
+            case "url_part":
+              return url.replace("{{ " + $(this).attr("name") + " }}", $(this).val());
+            case "param":
+              if (url.includes("?")) {
+                url += "&";
+              } else {
+                url += "?";
+              }
+              return url += $(this).attr("name") + $(this).val();
+          }
+        });
+        return console.log(url);
+      });
+    };
+
     $(document).on('turbolinks:load', function() {
       addMarkdown();
+      submitRequest();
     })
   </script>
   <h5 class="mb-3">
@@ -97,7 +122,7 @@
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
                       <div class="markdown">{{ endpoint.description }}</div>
-                      <form data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
+                      <form class="shop-api-form" data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
 
                         {% assign url_parts = endpoint.url | split: " " %}
@@ -110,7 +135,7 @@
                                   {{ l.labels.default_1 }} {{ url_part }} {{ l.labels.default_2 }}
                                 </label>
                                 <div class="input-group mb-4">
-                                  <input class="form-control" type="text" name="{{ url_part }}" placeholder="{{ l.placeholders.default_1 }} {{ url_part }} {{ l.placeholders.default_2 }}">
+                                  <input class="form-control" type="text" data-type="url_part" name="{{ url_part }}" placeholder="{{ l.placeholders.default_1 }} {{ url_part }} {{ l.placeholders.default_2 }}">
                                 </div>
                               {% endif %}
                             {% endif %}
@@ -119,7 +144,7 @@
 
                         {% for param in endpoint.params %}
                           {% if param.key == "webshop_id" %}
-                            <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
+                            <input type="hidden" name="webshop_id" data-type="param" value="{{ webshop._id }}">
                           {% else %}
                             <label class="markdown" for="{{ param.key }}">{{ param.description }}</label>
                             <div class="input-group mb-4">
@@ -129,7 +154,7 @@
                         {% endfor %}
                         <input class="btn btn-outline-primary mt-3" type="submit" value="{{ l.buttons.test }}">
                       </form>
-                      <div data-id="{{ request_id }}-response"></div>
+                      <div style="max-height: 700px;" data-id="{{ request_id }}-response"></div>
                     </div>
                   </div>
                 </div>
