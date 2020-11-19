@@ -26,11 +26,12 @@
     {% assign url = params.url %}
     {% include "shared/request_id" %}
 
-    var response_body = JSON.stringify({{ response.body | json }}, undefined, 2);
+    var response_body   = JSON.stringify({{ response.body | json }}, undefined, 2);
+    var highlight_body  = Prism.highlight(response_body, Prism.languages.json, 'json');
 
     pre_div   = $("<pre>").addClass("language-json");
     code_div  = $("<code>").addClass("language-json");
-    code_div.html(response_body);
+    code_div.html(highlight_body);
     pre_div.append(code_div);
     $('[data-id="{{ request_id }}-response"]').append(pre_div);
 
