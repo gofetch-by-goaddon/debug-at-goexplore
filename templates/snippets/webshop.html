@@ -4,9 +4,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw==" crossorigin="anonymous"></script>
   <script>
     var converter = new showdown.Converter();
-    $(".markdown").each(function() {
-      $(this).html(converter.makeHtml($(this).data("markdown")));
-    });
+    var addMarkdown;
+    addMarkdown = function() {
+      return $(".markdown").each(function() {
+        return $(this).html(converter.makeHtml($(this).data("markdown")));
+      });
+    };
+    addMarkdown();
   </script>
   <h5 class="mb-3">
     {{ l.headlines.webshop }} {{ relay.name }}
