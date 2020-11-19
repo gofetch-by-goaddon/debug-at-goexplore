@@ -25,6 +25,7 @@
         $(this).find(":input[type=text]").each(function() {
           switch ($(this).data("type")) {
             case "url_part":
+              console.log({% raw  %}"{{ "{% endraw %} + $(this).attr("name") + {% raw  %}" }}"{% endraw %});
               return url.replace({% raw  %}"{{ "{% endraw %} + $(this).attr("name") + {% raw  %}" }}"{% endraw %}, $(this).val());
             case "param":
               if (url.includes("?")) {
