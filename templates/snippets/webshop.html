@@ -2,7 +2,7 @@
   <h5 class="mb-3">{{ l.headlines.no_webshop }}</h5>
 {% else %}
   <script>
-    var converter = new showdown.Converter();
+    var converter = new showdown.Converter(simpleLineBreaks: true);
     var addMarkdown;
     addMarkdown = function() {
       return $(".markdown").each(function() {
