@@ -106,9 +106,11 @@
                             {% if url_part contains "_id" %}
                               {% assign klass_part = url_part | replace: "_id", "" %}
                               {% if klass_name contains klass_part %}
-                                <label for="{{ url_part }}">{{ url_part }}</label>
+                                <label for="{{ url_part }}">
+                                  {{ l.labels.default_1 }} {{ url_part }} {{ l.labels.default_2 }}
+                                </label>
                                 <div class="input-group mb-4">
-                                  <input class="form-control" type="text" name="{{ url_part }}" placeholder="{{ l.placeholders.default }}">
+                                  <input class="form-control" type="text" name="{{ url_part }}" placeholder="{{ l.placeholders.default_1 }} {{ url_part }} {{ l.placeholders.default_2 }}">
                                 </div>
                               {% endif %}
                             {% endif %}
@@ -121,7 +123,7 @@
                           {% else %}
                             <label class="markdown" for="{{ param.key }}">{{ param.description }}</label>
                             <div class="input-group mb-4">
-                              <input class="form-control" type="text" name="{{ param.key }}" placeholder="{{ l.placeholders.default }}">
+                              <input class="form-control" type="text" name="{{ param.key }}" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
                             </div>
                           {% endif %}
                         {% endfor %}

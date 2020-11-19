@@ -4,8 +4,13 @@
       "no_webshop": "No webshop exists",
       "webshop": "Webshop from"
     },
+    "labels": {
+      "default_1": "Choose the",
+      "default_2": "that is the subject of your request"
+    },
     "placeholders": {
-      "default": "Type here..."
+      "default_1": "Type",
+      "default_2": "here..."
     },
     "buttons": {
       "test": "Test"
