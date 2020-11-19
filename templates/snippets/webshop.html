@@ -6,7 +6,7 @@
     var addMarkdown;
     addMarkdown = function() {
       return $(".markdown").each(function() {
-        return $(this).html(converter.makeHtml($(this).data("markdown")));
+        return $(this).html(converter.makeHtml($(this).html()));
       });
     };
     $(document).on('turbolinks:load', function() {
@@ -90,7 +90,7 @@
 
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
-                      <p class="markdown" data-markdown="{{ endpoint.description }}"></p>
+                      <p class="markdown">{{ endpoint.description }}</p>
                       <form data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
 
@@ -113,7 +113,7 @@
                           {% if param.key == "webshop_id" %}
                             <input type="hidden" name="webshop_id" value="{{ webshop._id }}">
                           {% else %}
-                            <label for="{{ param.key }}">{{ param.description }}</label>
+                            <label class="markdown" for="{{ param.key }}">{{ param.description }}</label>
                             <div class="input-group mb-4">
                               <input class="form-control" type="text" name="{{ param.key }}">
                             </div>
