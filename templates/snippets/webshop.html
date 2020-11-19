@@ -26,14 +26,14 @@
           if ($(this).val() != "") {
             switch ($(this).data("type")) {
               case "url_part":
-                url = url.replace({% raw  %}"{{ "{% endraw %} + $(this).attr("name") + {% raw  %}" }}"{% endraw %}, $(this).val());
+                return url = url.replace({% raw  %}"{{ "{% endraw %} + $(this).attr("name") + {% raw  %}" }}"{% endraw %}, $(this).val());
               case "param":
                 if (url.includes("?")) {
                   url += "&";
                 } else {
                   url += "?";
                 }
-                url += $(this).attr("name") + "=" + $(this).val();
+                return url += $(this).attr("name") + "=" + $(this).val();
             }
           }
         });
