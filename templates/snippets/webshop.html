@@ -29,11 +29,11 @@
               url = url.replace({% raw  %}"{{ "{% endraw %} + $(this).attr("name") + {% raw  %}" }}"{% endraw %}, $(this).val());
             case "param":
               if (url.includes("?")) {
-                url += "&";
+                url = url += "&";
               } else {
-                url += "?";
+                url = url += "?";
               }
-              return url += $(this).attr("name") + $(this).val();
+              url = url += $(this).attr("name") + $(this).val();
           }
         });
         return console.log(url);
