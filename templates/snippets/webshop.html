@@ -25,6 +25,7 @@
         $(this).find(":input[type=text], :input[type=hidden]").each(function() {
           if ($(this).val() != "") {
             switch ($(this).data("type")) {
+              console.log($(this));
               case "url_part":
                 url = url.replace({% raw  %}"{{ "{% endraw %} + $(this).attr("name") + {% raw  %}" }}"{% endraw %}, $(this).val());
               case "param":
