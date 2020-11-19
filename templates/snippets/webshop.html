@@ -121,7 +121,7 @@
                           {% else %}
                             <label class="markdown" for="{{ param.key }}">{{ param.description }}</label>
                             <div class="input-group mb-4">
-                              <input class="form-control" type="text" name="{{ param.key }}">
+                              <input class="form-control" type="text" name="{{ param.key }}" placeholder="{{ l.placeholders.default }}">
                             </div>
                           {% endif %}
                         {% endfor %}
