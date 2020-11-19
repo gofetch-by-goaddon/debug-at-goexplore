@@ -6,7 +6,7 @@
     },
     "labels": {
       "default_1": "Choose the",
-      "default_2": "that is the subject of your request"
+      "default_2": "that the request relates to."
     },
     "placeholders": {
       "default_1": "Type",
