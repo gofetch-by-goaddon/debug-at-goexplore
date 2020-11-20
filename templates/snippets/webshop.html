@@ -28,9 +28,10 @@
       $(document).off("submit");
       $(document).on("submit", ".shop-api-form", function(e) {
         e.preventDefault();
-        var form_action   = $(this).attr("action");
-        var form_method   = $(this).attr("method");
-        var url           = $(this).find(":input[name=url]").val();
+        var form_action         = $(this).attr("action");
+        var form_method         = $(this).attr("method");
+        var url                 = $(this).find(":input[name=url]").val();
+        var response_container  = $(this).find(".response-container");
         $(this).find(":input[type=text], :input[type=hidden]").each(function() {
           if ($(this).val() != "") {
             switch ($(this).data("type")) {
@@ -61,10 +62,10 @@
             var pre_div           = $("<pre>").addClass("language-json");
             var code_div          = $("<code>").addClass("language-json").html(highlighted_json);
             pre_div.append(code_div);
-            $(this).find(".response-container").append(pre_div);
+            response_container.append(pre_div);
           },
           error: function (data, status, error) {
-            $(this).find(".response-container").append(error);
+            response_container.append(error);
           }
         });
 
