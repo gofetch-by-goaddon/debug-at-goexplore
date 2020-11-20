@@ -50,6 +50,11 @@
           },
           success: function(data, status, xhr) {
             console.log(data);
+            var response_json     = JSON.stringify(data.response_json, undefined, 2);
+            var highlighted_json  = Prism.highlight(response_json, Prism.languages.json, 'json');
+            var pre_div           = $("<pre>").addClass("language-json");
+            var code_div          = $("<code>").addClass("language-json").html(highlighted_json);
+            response_div.append(pre_div);
           },
           error: function (data, status, error) {
             console.log(error);
@@ -143,7 +148,7 @@
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
                       <div class="markdown">{{ endpoint.description }}</div>
-                      <form class="shop-api-form" data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'js' }}" method="post" data-remote="true">
+                      <form class="shop-api-form" data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'json' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
 
                         {% assign url_parts = endpoint.url | split: " " %}
