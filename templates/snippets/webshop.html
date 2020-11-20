@@ -56,8 +56,8 @@
             var code_div          = $("<code>").addClass("language-json").html(highlighted_json);
             response_div.append(pre_div);
           },
-          error: function (XMLHttpRequest, status, error) {
-            console.log(error);
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(errorThrown);
           }
         });
 
