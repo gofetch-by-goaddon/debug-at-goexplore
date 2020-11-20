@@ -50,13 +50,8 @@
           },
           success: function(data, status, xhr) {
             console.log(data);
-            var response_json     = JSON.stringify(data.response_json, undefined, 2);
-            var highlighted_json  = Prism.highlight(response_json, Prism.languages.json, 'json');
-            var pre_div           = $("<pre>").addClass("language-json");
-            var code_div          = $("<code>").addClass("language-json").html(highlighted_json);
-            response_div.append(pre_div);
           },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
+          error: function (data, status, error) {
             console.log(errorThrown);
           }
         });
