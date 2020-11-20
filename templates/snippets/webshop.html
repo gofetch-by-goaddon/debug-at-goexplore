@@ -51,7 +51,9 @@
           success: function(data, status, xhr) {
             console.log(data.response_json);
             var response_json     = JSON.stringify(data.response_json, undefined, 2);
+            console.log(response_json);
             var highlighted_json  = Prism.highlight(response_json, Prism.languages.json, 'json');
+            console.log(highlighted_json);
             var pre_div           = $("<pre>").addClass("language-json");
             var code_div          = $("<code>").addClass("language-json").html(highlighted_json);
             response_div.append(pre_div);
