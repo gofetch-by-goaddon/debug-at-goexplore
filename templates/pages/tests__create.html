@@ -14,7 +14,7 @@
     {% if response.code == 200 or response.code == 204 %}
       {"status": "{{ response.code }}", "response_body": {{ response.body | json }}}
     {% else %}
-      {"status": "{{ response.code }}", "error": "{{ response.body }}"}
+      {"status": "{{ response.code }}", "error": "{{ response.body | json }}"}
     {% endif %}
   {% else %}
     {"status": "{{ response.code }}", "error": "{{ l.no_gofetch_shop_api_url }}"}
