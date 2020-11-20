@@ -43,13 +43,15 @@
         $.ajax({
           url: form_action,
           type: form_method,
+          dataType: "script",
           data: {
             request_id: request_id,
             url: url,
             body: null
           },
-          dataType: "script"
-        }).success(function(data) {});
+          success: function(data, status, xhr) {
+          }
+        });
 
         return
       });
