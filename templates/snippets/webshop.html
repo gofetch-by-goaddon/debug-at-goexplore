@@ -19,25 +19,39 @@
     submitRequest = function() {
       $(document).off("submit");
       $(document).on("submit", ".shop-api-form", function(e) {
-        var url;
         e.preventDefault();
-        url = $(this).find(":input[name=url]").val();
+        var form_action   = $(this).attr("action");
+        var form_method   = $(this).attr("method");
+        var request_id    = $(this).find(":input[name=request_id]").val();
+        var url           = $(this).find(":input[name=url]").val();
         $(this).find(":input[type=text], :input[type=hidden]").each(function() {
           if ($(this).val() != "") {
             switch ($(this).data("type")) {
               case "url_part":
-                return url = url.replace({% raw  %}"{{ "{% endraw %} + $(this).attr("name") + {% raw  %}" }}"{% endraw %}, $(this).val());
+                return url = url.replace({% raw %}"{{ "{% endraw %} + $(this).attr("name") + {% raw %}" }}"{% endraw %}, $(this).val());
               case "param":
                 if (url.includes("?")) {
                   url += "&";
                 } else {
                   url += "?";
                 }
+
                 return url += $(this).attr("name") + "=" + $(this).val();
             }
           }
         });
-        return $(this).submit();
+        $.ajax({
+          url: form_action,
+          type: form_method,
+          data: {
+            request_id: request_id,
+            url: url,
+            body: null
+          },
+          dataType: "script"
+        }).success(function(data) {});
+
+        return
       });
     };
 
