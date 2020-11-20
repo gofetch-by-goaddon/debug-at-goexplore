@@ -13,7 +13,8 @@
       "default_2": "here..."
     },
     "buttons": {
-      "test": "Submit"
+      "submit": "Submit",
+      "submitting": "Submitting...",
     }
   }
 }

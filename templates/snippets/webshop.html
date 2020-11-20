@@ -10,7 +10,7 @@
     .response-container pre {
       max-height: 700px;
       overflow: scroll;
-      width: 800px;
+      width: 1000px;
     }
   </style>
   <script>
@@ -26,10 +26,13 @@
       $(document).off("submit");
       $(document).on("submit", ".shop-api-form", function(e) {
         e.preventDefault();
-        var form_action         = $(this).attr("action");
-        var form_method         = $(this).attr("method");
-        var url                 = $(this).find(":input[name=url]").val();
-        var response_container  = $(this).find(".response-container");
+        var form_action             = $(this).attr("action");
+        var form_method             = $(this).attr("method");
+        var url                     = $(this).find(":input[name=url]").val();
+        var response_container      = $(this).find(".response-container");
+        var form_submit             = $(this).find(":input[type=submit]");
+        var form_submitting         = $(this).find(":input[data-type=submitting]");
+
         $(this).find(":input[type=text], :input[type=hidden]").each(function() {
           if ($(this).val() != "") {
             switch ($(this).data("type")) {
@@ -46,6 +49,10 @@
             }
           }
         });
+
+        form_submit.hide();
+        form_submitting.show();
+
         $.ajax({
           url: form_action,
           type: form_method,
@@ -59,11 +66,16 @@
             var highlighted_json  = Prism.highlight(response_json, Prism.languages.json, 'json');
             var pre_div           = $("<pre>").addClass("language-json");
             var code_div          = $("<code>").addClass("language-json").html(highlighted_json);
+
             pre_div.append(code_div);
             response_container.append(pre_div);
+            form_submit.show();
+            form_submitting.hide();
           },
           error: function (data, status, error) {
             response_container.append(error);
+            form_submit.show();
+            form_submitting.hide();
           }
         });
 
@@ -184,7 +196,8 @@
                             </div>
                           {% endif %}
                         {% endfor %}
-                        <input class="btn btn-outline-primary mt-3" type="submit" value="{{ l.buttons.test }}">
+                        <input class="btn btn-outline-primary mt-3" type="submit" value="{{ l.buttons.submit }}">
+                        <button class="btn btn-outline-primary mt-3 disabled" data-type="submitting" disbled="" value="{{ l.buttons.submitting }}" style="display: none;">
                         <div class="response-container"></div>
                       </form>
                     </div>
