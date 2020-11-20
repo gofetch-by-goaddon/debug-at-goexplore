@@ -11,11 +11,9 @@
     {% assign shop_api_url  = shop_api_url | replace: "{{ order_id }}", params.order_id %}
     {% assign response      = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
 
-    {% if response.code == 200 or response.code == 204 %}
-      {"status": "{{ response.code }}", "response_body": {{ response.body | json }}}
-    {% else %}
-      {"status": "{{ response.code }}", "error": "{{ response.body | json }}"}
-    {% endif %}
+    {% assign response_json = response.body | json %}
+
+    {"status": "{{ response.code }}", "response_json": "{{ response_json }}"}
   {% else %}
     {"status": "{{ response.code }}", "error": "{{ l.no_gofetch_shop_api_url }}"}
   {% endif %}  
