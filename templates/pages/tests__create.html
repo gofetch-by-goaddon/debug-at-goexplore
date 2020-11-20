@@ -11,24 +11,12 @@
     {% assign shop_api_url  = shop_api_url | replace: "{{ order_id }}", params.order_id %}
     {% assign response      = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
 
-    var response_body   = JSON.stringify({{ response.body | json }}, undefined, 2);
-    var highlight_body  = Prism.highlight(response_body, Prism.languages.json, 'json');
-    pre_div             = $("<pre>").addClass("language-json");
-    code_div            = $("<code>").addClass("language-json").html(highlight_body);
-
-    pre_div.empty().append(code_div);
-
-    {% assign url       = params.url %}
-    {% include "shared/request_id" %}
-
-    $('[data-id="{{ request_id }}-response"]').append(pre_div);
-
     {% if response.code == 200 or response.code == 204 %}
-      alertify.success("{{ l.success }}");
+      {"status": "{{ response.code }}", "response_body": {{ response.body | json }}}
     {% else %}
-      alertify.error("{{ l.error }}");
+      {"status": "{{ response.code }}", "error": "{{ response.body }}"}
     {% endif %}
   {% else %}
-    alertify.error("{{ l.no_gofetch_shop_api_url }}");
+    {"status": "{{ response.code }}", "error": "{{ l.no_gofetch_shop_api_url }}"}
   {% endif %}  
 {% endif %}

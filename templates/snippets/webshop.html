@@ -22,8 +22,8 @@
         e.preventDefault();
         var form_action   = $(this).attr("action");
         var form_method   = $(this).attr("method");
-        var request_id    = $(this).find(":input[name=request_id]").val();
         var url           = $(this).find(":input[name=url]").val();
+        var response_div  = $(this).find("[data-id=response]");
         $(this).find(":input[type=text], :input[type=hidden]").each(function() {
           if ($(this).val() != "") {
             switch ($(this).data("type")) {
@@ -43,13 +43,17 @@
         $.ajax({
           url: form_action,
           type: form_method,
-          dataType: "script",
+          dataType: "json",
           data: {
-            request_id: request_id,
             url: url,
             body: null
           },
           success: function(data, status, xhr) {
+            var response_body   = JSON.stringify(data.result, undefined, 2);
+            var highlight_body  = Prism.highlight(response_body, Prism.languages.json, 'json');
+            var pre_div         = $("<pre>").addClass("language-json");
+            var code_div        = $("<code>").addClass("language-json").html(highlight_body);
+            response_div.append(pre_div);
           }
         });
 
@@ -171,8 +175,8 @@
                           {% endif %}
                         {% endfor %}
                         <input class="btn btn-outline-primary mt-3" type="submit" value="{{ l.buttons.test }}">
+                        <div style="max-height: 700px;" data-id="response"></div>
                       </form>
-                      <div style="max-height: 700px;" data-id="{{ request_id }}-response"></div>
                     </div>
                   </div>
                 </div>
