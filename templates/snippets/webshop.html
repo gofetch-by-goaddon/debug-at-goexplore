@@ -29,7 +29,7 @@
         var form_action             = $(this).attr("action");
         var form_method             = $(this).attr("method");
         var url                     = $(this).find(":input[name=url]").val();
-        var response_code           = $(this).find(".response-container pre code");
+        var response_container      = $(this).find(".response-container");
         var form_submit             = $(this).find(":input[type=submit]");
         var form_submitting         = $(this).find(":input[data-type=submitting]");
 
@@ -52,6 +52,7 @@
 
         form_submit.hide();
         form_submitting.show();
+        $(response_container).find("pre").slideUp("slow")
 
         $.ajax({
           url: form_action,
@@ -65,12 +66,14 @@
             var response_json     = JSON.stringify(data.response_json, undefined, 2);
             var highlighted_json  = Prism.highlight(response_json, Prism.languages.json, 'json');
 
-            response_code.empty().html(highlighted_json);
+            $(response_container).find("pre").slideDown("slow")
+            $(response_container).find("pre code").empty().html(highlighted_json);
             form_submit.show();
             form_submitting.hide();
           },
           error: function (data, status, error) {
-            response_code.empty().html(error);
+            $(response_container).find("pre").slideDown("slow")
+            $(response_container).find("pre code").empty().html(error);
             form_submit.show();
             form_submitting.hide();
           }
