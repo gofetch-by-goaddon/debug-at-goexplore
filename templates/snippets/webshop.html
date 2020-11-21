@@ -10,7 +10,6 @@
     .response-container pre {
       max-height: 700px;
       overflow: scroll;
-      width: 1000px;
     }
   </style>
   <script>
@@ -197,6 +196,9 @@
                               <input class="form-control" type="text" name="{{ param.key }}" data-type="param" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
                             </div>
                           {% endif %}
+                        {% endfor %}
+                        {% for field in endpoint.body %}
+
                         {% endfor %}
                         <input class="btn btn-outline-primary mt-3 btn-fullwidth" type="submit" value="{{ l.buttons.submit }}">
                         <button class="btn btn-outline-primary mt-3 btn-fullwidth disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.submitting }}</button>
