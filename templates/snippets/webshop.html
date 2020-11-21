@@ -10,6 +10,7 @@
     .response-container pre {
       max-height: 700px;
       overflow: scroll;
+      width: 1000px;
     }
   </style>
   <script>
@@ -28,7 +29,7 @@
         var form_action             = $(this).attr("action");
         var form_method             = $(this).attr("method");
         var url                     = $(this).find(":input[name=url]").val();
-        var response_container      = $(".response-container");
+        var response_container      = $(this).find(".response-container");
         var form_submit             = $(this).find(":input[type=submit]");
         var form_submitting         = $(this).find(":input[data-type=submitting]");
 
@@ -197,6 +198,7 @@
                         {% endfor %}
                         <input class="btn btn-outline-primary mt-3" type="submit" value="{{ l.buttons.submit }}">
                         <button class="btn btn-outline-primary mt-3 disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.submitting }}</button>
+                        <div class="response-container"></div>
                       </form>
                     </div>
                   </div>
@@ -209,5 +211,4 @@
       </div>
     </div>
   </div>
-  <div class="response-container"></div>
 {% endif %}
