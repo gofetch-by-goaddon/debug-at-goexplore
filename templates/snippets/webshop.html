@@ -66,14 +66,14 @@
             var response_json     = JSON.stringify(data.response_json, undefined, 2);
             var highlighted_json  = Prism.highlight(response_json, Prism.languages.json, 'json');
 
-            $(response_container).find("pre").slideDown("slow")
-            $(response_container).find("pre code").empty().html(highlighted_json);
+            response_container.find("pre").slideDown("slow");
+            response_container.find("pre code").empty().html(highlighted_json);
             form_submit.show();
             form_submitting.hide();
           },
           error: function (data, status, error) {
-            $(response_container).find("pre").slideDown("slow");
-            $(response_container).find("pre code").empty().html(error);
+            response_container.find("pre").slideDown("slow");
+            response_container.find("pre code").empty().html(error);
             form_submit.show();
             form_submitting.hide();
           }
@@ -199,7 +199,7 @@
                         <input class="btn btn-outline-primary mt-3" type="submit" value="{{ l.buttons.submit }}">
                         <button class="btn btn-outline-primary mt-3 disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.submitting }}</button>
                         <div class="response-container mt-4">
-                          <pre class="language-json">
+                          <pre class="language-json" style="display: none;">
                             <code class="language-json">
                             </code>
                           </pre>
