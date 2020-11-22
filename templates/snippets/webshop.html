@@ -59,7 +59,7 @@
         var response_code           = response_pre.find("code");
         var form_submit             = $(this).find(":input[type=submit]");
         var form_submitting         = $(this).find(":input[data-type=submitting]");
-        var request_data            = {"url": url}
+        var request_data            = {"url": url};
         var body_input              = $(this).find(":input[name=body]");
         if (body_input) {
           request_data["body"] = JSON.parse(body_input.val());
