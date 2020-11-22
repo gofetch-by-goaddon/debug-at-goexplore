@@ -25,7 +25,6 @@
       $(".body-container").each(function() {
         var edit_area, editor, text_area;
         text_area = $(this).find("textarea");
-        text_area.val(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
         edit_area = $("<div>", {
           "class": text_area.attr("class")
         }).insertBefore(text_area);
@@ -41,7 +40,7 @@
         });
         editor.setTheme("ace/theme/tomorrow");
         editor.getSession().setMode("ace/mode/json");
-        editor.getSession().setValue(text_area.val());
+        editor.getSession().setValue(JSON.stringify(text_area.val(), undefined, '\t'));
         return text_area.closest("form").submit(function() {
           return text_area.val(editor.getSession().getValue());
         });
