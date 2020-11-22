@@ -61,7 +61,7 @@
         var form_submitting         = $(this).find(":input[data-type=submitting]");
         var body_input              = $(this).find(":input[name=body]");
         if (body_input) {
-          var body = JSON.parse(body_input.val());
+          var body = JSON.stringify(JSON.parse(body_input.val()));
         } else {
           var body = null;
         }
@@ -91,11 +91,7 @@
           url: form_action,
           type: form_method,
           dataType: "json",
-          contentType: "application/json",
-          data: {
-            url: url,
-            body: body
-          },
+          data: body,
           success: function(data, status, xhr) {
             var response_json     = JSON.stringify(data.response_json, undefined, 2);
             var highlighted_json  = Prism.highlight(response_json, Prism.languages.json, 'json');
