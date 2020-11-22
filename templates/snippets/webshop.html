@@ -23,8 +23,8 @@
 
     indentJson = function() {
       $(".shop-api-form ace .ace-container textarea").each(function() {
-        var indented_json = JSON.stringify($(this).html(), undefined, 2);
-        $(this).html(indented_json);
+        var indented_json = JSON.stringify($(this).val(), undefined, 2);
+        $(this).val(indented_json);
       });
     };
 
