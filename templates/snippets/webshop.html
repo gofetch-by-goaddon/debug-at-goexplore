@@ -91,6 +91,7 @@
           url: form_action,
           type: form_method,
           dataType: "json",
+          contentType: "application/json",
           data: body,
           success: function(data, status, xhr) {
             var response_json     = JSON.stringify(data.response_json, undefined, 2);
