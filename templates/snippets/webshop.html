@@ -61,7 +61,7 @@
         var form_submitting         = $(this).find(":input[data-type=submitting]");
         var body_input              = $(this).find(":input[name=body]");
         if (body_input) {
-          var body = body_input.val();
+          var body = JSON.stringify(JSON.parse(body_input.val()));
         } else {
           var body = null;
         }
