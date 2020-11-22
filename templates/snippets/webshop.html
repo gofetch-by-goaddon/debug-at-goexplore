@@ -198,7 +198,7 @@
                           {% endif %}
                         {% endfor %}
 
-                        {% if endpoint.body != nil %}
+                        {% if endpoint.body != nil and endpoint.body != {} %}
                           <div class="ace-container" class="border" data-mode="json">
                             <textarea name="body">{{ endpoint.body }}</textarea>
                           </div>
