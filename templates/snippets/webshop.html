@@ -200,7 +200,7 @@
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
                           <div class="ace-container" class="border" data-mode="json">
-                            <textarea name="body">{{ endpoint.body }}</textarea>
+                            <textarea name="body">{{ endpoint.body | json }}</textarea>
                           </div>
                         {% endif %}
                         <input class="btn btn-outline-primary mt-3 btn-fullwidth" type="submit" value="{{ l.buttons.submit }}">
