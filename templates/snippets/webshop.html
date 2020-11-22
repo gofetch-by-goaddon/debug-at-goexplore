@@ -25,7 +25,7 @@
       $(".body-container").each(function() {
         var edit_area, editor, text_area;
         text_area = $(this).find("textarea");
-        text_area.val(JSON.stringify(text_area.val(), undefined, '\t'));
+        text_area.val(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
         edit_area = $("<div>", {
           "class": text_area.attr("class")
         }).insertBefore(text_area);
