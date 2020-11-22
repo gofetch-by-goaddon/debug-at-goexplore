@@ -22,7 +22,34 @@
     };
 
     indentJson = function() {
-      $(".shop-api-form .ace-container textarea").each(function() {
+      $(".body-container").each(function() {
+        var edit_area, editor, text_area;
+        text_area = $(this).find("textarea");
+        text_area.val(JSON.stringify(text_area.val(), undefined, 2));
+        edit_area = $("<div>", {
+          "class": text_area.attr("class")
+        }).insertBefore(text_area);
+        text_area.css("display", "none");
+        editor = ace.edit(edit_area[0]);
+        editor.setFontSize("14px");
+        editor.$blockScrolling = Infinity;
+        editor.setShowPrintMargin(false);
+        editor.setOptions({
+          minLines: 2,
+          maxLines: 20,
+          tabSize: 2
+        });
+        editor.setTheme("ace/theme/tomorrow");
+        editor.getSession().setMode("ace/mode/json");
+        editor.getSession().setValue(text_area.val());
+        return text_area.closest("form").submit(function() {
+          return text_area.val(editor.getSession().getValue());
+        });
+      });
+
+
+
+      $(".aced-textarea").each(function() {
         var indented_json = JSON.stringify($(this).val(), undefined, 2);
         $(this).val(indented_json);
       });
@@ -207,8 +234,8 @@
                         {% endfor %}
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
-                          <div class="ace-container" class="border" data-mode="json">
-                            <textarea name="body">{{ endpoint.body | json }}</textarea>
+                          <div class="body-container">
+                            <textarea class="border" name="body">{{ endpoint.body | json }}</textarea>
                           </div>
                         {% endif %}
                         <input class="btn btn-outline-primary mt-3 btn-fullwidth" type="submit" value="{{ l.buttons.submit }}">
