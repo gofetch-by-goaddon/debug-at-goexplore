@@ -21,6 +21,13 @@
       });
     };
 
+    indentJson = function() {
+      $(".shop-api-form ace .ace-container textarea").each(function() {
+        var indented_json = JSON.stringify($(this).html(), undefined, 2);
+        $(this).html(indented_json);
+      });
+    };
+
     submitRequest = function() {
       $(document).off("submit");
       $(document).on("submit", ".shop-api-form", function(e) {
