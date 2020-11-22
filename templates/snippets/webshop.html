@@ -88,13 +88,13 @@
         $(response_container).find("pre").slideUp(120);
 
         $.ajax({
-          "url": form_action,
-          "type": form_method,
-          "dataType": "json",
-          "Content-Type": "application/json",
-          "data": {
-            "url": url,
-            "body": body
+          url: form_action,
+          type: form_method,
+          dataType: "json",
+          contentType: "application/json",
+          data: {
+            url: url,
+            body: body
           },
           success: function(data, status, xhr) {
             var response_json     = JSON.stringify(data.response_json, undefined, 2);
