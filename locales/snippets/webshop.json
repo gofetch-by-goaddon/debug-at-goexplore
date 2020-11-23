@@ -6,6 +6,11 @@
       "or": "or",
       "return": "return"
     },
+    "headers": {
+      "description": "Description",
+      "params": "Parameters",
+      "body": "Body"
+    },
     "body_sample": {
       "intro": "Edit the request body, based on",
       "link": "these instructions"

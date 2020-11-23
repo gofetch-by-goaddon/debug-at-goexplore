@@ -211,6 +211,7 @@
 
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
+                      <h6>{{ l.headers.description }}</h6>
                       <div class="markdown" data-test="{{ endpoint.description | newline_to_br }}">{{ endpoint.description | newline_to_br }}</div>
                       <form class="shop-api-form" data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'json' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
@@ -232,18 +233,25 @@
                           {% endfor %}
                         {% endif %}
 
-                        {% for param in endpoint.params %}
-                          {% if param.key == "webshop_id" %}
-                            <input type="hidden" name="webshop_id" data-type="param" value="{{ webshop._id }}">
-                          {% else %}
-                            <div class="markdown" for="{{ param.key }}">{{ param.description }}</div>
-                            <div class="input-group mb-4">
-                              <input class="form-control" type="text" name="{{ param.key }}" data-type="param" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
-                            </div>
-                          {% endif %}
-                        {% endfor %}
+                        {% if endpoint.params != nil and endpoint.params.size > 0 %}
+                          <h6>{{ l.headers.params }}</h6>
+
+                          {% for param in endpoint.params %}
+                            {% if param.key == "webshop_id" %}
+                              <input type="hidden" name="webshop_id" data-type="param" value="{{ webshop._id }}">
+                            {% else %}
+                              <div class="markdown" for="{{ param.key }}">{{ param.description }}</div>
+                              <div class="input-group mb-4">
+                                <input class="form-control" type="text" name="{{ param.key }}" data-type="param" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
+
+                          <h6>{{ l.headers.body }}</h6>
+
                           {% capture body_sample_id %}body_{{ request_id }}{% endcapture %}
                           <p>{{ l.body_sample.intro }} <a class="" data-toggle="collapse" href="#{{ body_sample_id }}" role="button" aria-expanded="false" aria-controls="{{ body_sample_id }}">{{ l.body_sample.link }} <i class="fas fa-caret-down"></i></a></p>
                           <div class="collapse" id="{{ body_sample_id }}">
