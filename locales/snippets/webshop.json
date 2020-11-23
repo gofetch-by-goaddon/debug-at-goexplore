@@ -2,7 +2,9 @@
   "en": {
     "headlines": {
       "no_webshop": "No webshop exists",
-      "webshop": "Webshop from"
+      "webshop": "Debug webshop from",
+      "or": "or",
+      "return": "return"
     },
     "body_sample": {
       "intro": "Edit the request body, based on",

@@ -1,5 +1,7 @@
 {% if webshop == nil %}
-  <h5 class="mb-3">{{ l.headlines.no_webshop }}</h5>
+  <h5 class="mb-3">
+    {{ l.headlines.no_webshop }}, <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }}<i class="fas fa-undo"></i></a>
+  </h5>
 {% else %}
   <style>
     label p {
@@ -131,7 +133,11 @@
     })
   </script>
   <h5 class="mb-3">
-    {{ l.headlines.webshop }} {{ relay.name }}
+    {{ l.headlines.no_webshop }}, <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }}<i class="fas fa-undo"></i></a>
+  </h5>
+
+  <h5 class="mb-3">
+    {{ l.headlines.webshop }} {{ relay.name }} {{ l.headlines.or }}, <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }}<i class="fas fa-undo"></i></a>
   </h5>
   <p>
     <samp>
