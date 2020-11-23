@@ -26,7 +26,7 @@
         var sample_code       = $(this).find("pre code");
         var sample_json       = JSON.stringify(JSON.parse($(this).find(".json-raw").html()), undefined, 2);
         var highlighted_json  = Prism.highlight(sample_json, Prism.languages.json, 'json');
-        sample_code.empty().html(highlighted_json.trim());
+        sample_code.empty().html(highlighted_json);
       });
     };
 
@@ -243,10 +243,7 @@
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
                           <div class="json-sample-container">
                             <div class="json-raw" style="display: none;">{{ endpoint.body | json }}</div>
-                            <pre class="language-json">
-                              <code class="language-json">
-                              </code>
-                            </pre>
+                            <pre class="language-json"><code class="language-json"></code></pre>
                           </div>
                           <div class="body-container">
                             <textarea class="border" name="body">{{ endpoint.body | json }}</textarea>
