@@ -18,9 +18,6 @@
     addMarkdown = function() {
       $(".markdown").each(function() {
         $(this).html(converter.makeHtml($(this).html()));
-        if ($(this).hasClass("language-json")) {
-          $(this).html()
-        }
       });
     };
 
@@ -233,8 +230,8 @@
                           {% endif %}
                         {% endfor %}
 
-                        {% if endpoint.body != nil %}
-                          <pre class="language-json" style="display: none;">
+                        {% if endpoint.body != nil and endpoint.body.size > 0 %}
+                          <pre class="language-json">
                             <code class="language-json markdown">
                               {{ endpoint.body | json }}
                             </code>
