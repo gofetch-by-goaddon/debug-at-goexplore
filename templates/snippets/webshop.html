@@ -19,7 +19,7 @@
     var addMarkdown;
     addMarkdown = function() {
       $(".markdown").each(function() {
-        $(this).html(converter.makeHtml($(this).html().replace("<br /><br />", "<br />")));
+        $(this).html(converter.makeHtml($(this).html().replace(/(<br\s*\/?>){3,}/gi, '<br>')));
       });
     };
 
