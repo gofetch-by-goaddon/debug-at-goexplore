@@ -138,7 +138,7 @@
             form_submitting.hide();
           },
           error: function (data, status, error) {
-            console.log(data);
+            console.log(data.responseJSON);
             response_pre.slideDown("slow");
             response_code.empty().html(error);
             form_submit.show();
