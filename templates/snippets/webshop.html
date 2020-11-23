@@ -215,9 +215,9 @@
                             {% if url_part contains "_id" %}
                               {% assign klass_part = url_part | replace: "_id", "" %}
                               {% if klass_name contains klass_part %}
-                                <label for="{{ url_part }}">
+                                <p for="{{ url_part }}">
                                   {{ l.labels.default_1 }} {{ url_part }} {{ l.labels.default_2 }}
-                                </label>
+                                </p>
                                 <div class="input-group mb-4">
                                   <input class="form-control" type="text" data-type="url_part" name="{{ url_part }}" placeholder="{{ l.placeholders.default_1 }} {{ url_part }} {{ l.placeholders.default_2 }}">
                                 </div>
