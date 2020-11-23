@@ -23,13 +23,16 @@
 
     indentJsonSamples = function() {
       $(".json-sample-container").each(function() {
-        var sample_json       = JSON.stringify($(this).data("json"), undefined, 2);
+        var sample_code       = $(this).find("pre code");
+        console.log("sample_code:");
+        console.log(sample_code);
+        var sample_json       = JSON.stringify(sample_code.html(), undefined, 2);
         console.log("sample_json:");
         console.log(sample_json);
         var highlighted_json  = Prism.highlight(sample_json, Prism.languages.json, 'json');
         console.log("highlighted_json:");
         console.log(highlighted_json);
-        $(this).find("pre code").empty().html(highlighted_json);
+        sample_code.empty().html(highlighted_json);
       });
     };
 
@@ -244,9 +247,10 @@
                         {% endfor %}
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
-                          <div class="json-sample-container" data-json="{{ endpoint.body | json }}">
-                            <pre class="language-json">
-                              <code class="language-json">
+                          <div class="json-sample-container">
+                            <pre class="">
+                              <code class="">
+                                {{ endpoint.body | json }}
                               </code>
                             </pre>
                           </div>
