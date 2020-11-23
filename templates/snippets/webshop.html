@@ -89,10 +89,9 @@
         var request_data            = {"url": url};
         var body_input              = $(this).find(":input[name=body]");
 
-        if (body_input) {
+        if (body_input.length > 0) {
           request_data["body"] = JSON.parse(body_input.val());
         }
-        console.log(request_data);
         form_submit.hide();
         form_submitting.show();
         $(response_container).find("pre").slideUp(120);
