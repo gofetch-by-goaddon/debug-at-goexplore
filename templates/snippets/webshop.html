@@ -211,7 +211,7 @@
 
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
-                      <b>{{ l.headers.description }}</b>
+                      <p><b>{{ l.headers.description }}</b></p>
                       <div class="markdown" data-test="{{ endpoint.description | newline_to_br }}">{{ endpoint.description | newline_to_br }}</div>
                       <form class="shop-api-form" data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'json' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
@@ -234,7 +234,7 @@
                         {% endif %}
 
                         {% if endpoint.params != nil and endpoint.params.size > 0 %}
-                          <b>{{ l.headers.params }}</b>
+                          <p><b>{{ l.headers.params }}</b></p>
 
                           {% for param in endpoint.params %}
                             {% if param.key == "webshop_id" %}
@@ -250,7 +250,7 @@
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
 
-                          <b>{{ l.headers.body }}</b>
+                          <p><b>{{ l.headers.body }}</b></p>
 
                           {% capture body_sample_id %}body_{{ request_id }}{% endcapture %}
                           <p>{{ l.body_sample.intro }} <a class="" data-toggle="collapse" href="#{{ body_sample_id }}" role="button" aria-expanded="false" aria-controls="{{ body_sample_id }}">{{ l.body_sample.link }} <i class="fas fa-caret-down"></i></a></p>
