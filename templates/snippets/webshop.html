@@ -170,22 +170,22 @@
     </samp>
   </p>
 
-  {% assign klass_names = "" %}
+  {% assign resource_names = "" %}
   {% for endpoint in relay.shop_api.v1.endpoints %}
     {% if endpoint != relay.shop_api.v1.endpoints.first %}
-      {% capture klass_names %}{{ klass_names }} {% endcapture %}
+      {% capture resource_names %}{{ resource_names }} {% endcapture %}
     {% endif %}
-    {% capture klass_names %}{{ klass_names }}{{ path[0] }}{% endcapture %}
+    {% capture resource_names %}{{ resource_names }}{{ path[0] }}{% endcapture %}
   {% endfor %}
   
-  {% assign klass_names = klass_names | split: " " | sort %}
-  {% assign tab_id      = "debug_tab" %}
+  {% assign resource_names  = resource_names | split: " " | sort %}
+  {% assign tab_id          = "debug_tab" %}
 
   <div class="card">
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs" id="{{ tab_id }}" role="tablist">
         {% for klass_endpoints in relay.shop_api.v1.endpoints %}
-          {% assign klass_name = klass_endpoints[0] %}
+          {% assign resource_name = klass_endpoints[0] %}
           <li class="nav-item">
             {% if klass_endpoints == relay.shop_api.v1.endpoints.first %}
               {% assign active_bool = " active" %}
@@ -194,8 +194,8 @@
               {% assign active_bool = "" %}
               {% assign selected    = "false" %}
             {% endif %}
-            <a class="nav-link{{ active_bool }}" id="{{ klass_name }}-tab" data-toggle="tab" href="#{{ klass_name }}" role="tab" aria-controls="{{ klass_name }}" aria-selected="{{ selected }}">
-              {{ l.klass_names.klass_name }}
+            <a class="nav-link{{ active_bool }}" id="{{ resource_name }}-tab" data-toggle="tab" href="#{{ resource_name }}" role="tab" aria-controls="{{ resource_name }}" aria-selected="{{ selected }}">
+              {{ l.resource_names[resource_name] }}
             </a>
           </li>
         {% endfor %}
@@ -204,14 +204,14 @@
     <div class="card-body">
       <div class="tab-content" id="{{ tab_id }}_content">
         {% for klass_endpoints in relay.shop_api.v1.endpoints %}
-          {% assign klass_name = klass_endpoints[0] %}
+          {% assign resource_name = klass_endpoints[0] %}
           {% if klass_endpoints == relay.shop_api.v1.endpoints.first %}
             {% assign show_active = " show active" %}
           {% else %}
             {% assign show_active = "" %}
           {% endif %}
-          <div class="tab-pane fade{{ show_active }}" id="{{ klass_name }}" role="tabpanel" aria-labelledby="{{ klass_name }}-tab">
-            {% capture accordion_id %}{{ klass_name }}_accordion{% endcapture %}
+          <div class="tab-pane fade{{ show_active }}" id="{{ resource_name }}" role="tabpanel" aria-labelledby="{{ resource_name }}-tab">
+            {% capture accordion_id %}{{ resource_name }}_accordion{% endcapture %}
             <div class="accordion" id="{{ accordion_id }}">
               {% assign show_collapse = " show" %}
               {% for endpoint in klass_endpoints[1] %}
@@ -244,7 +244,7 @@
                           {% for url_part in url_parts %}
                             {% if url_part contains "_id" %}
                               {% assign klass_part = url_part | replace: "_id", "" %}
-                              {% if klass_name contains klass_part %}
+                              {% if resource_name contains klass_part %}
                                 <p for="{{ url_part }}">
                                   {{ l.labels.default_1 }} {{ url_part }} {{ l.labels.default_2 }}
                                 </p>
