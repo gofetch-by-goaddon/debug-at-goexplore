@@ -139,7 +139,7 @@
           },
           error: function (data, status, error) {
             response_pre.slideDown("slow");
-            response_code.empty().html(error);
+            response_code.empty().html(error + data.response_json);
             form_submit.show();
             form_submitting.hide();
           }
