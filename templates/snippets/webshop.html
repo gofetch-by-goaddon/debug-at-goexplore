@@ -233,7 +233,7 @@
                           {% endif %}
                         {% endfor %}
 
-                        {% if endpoint.body != nil and endpoint.body.size > 0 %}
+                        {% if endpoint.body != nil %}
                           <pre class="language-json" style="display: none;">
                             <code class="language-json markdown">
                               {{ endpoint.body | json }}
