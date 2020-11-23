@@ -138,7 +138,7 @@
             form_submitting.hide();
           },
           error: function (data, status, error) {
-            if (data.responseJSON) != `undefined` {
+            if (data.responseJSON != `undefined`) {
               var response_json     = JSON.stringify(data.responseJSON, undefined, 2);
               var highlighted_json  = Prism.highlight(response_json, Prism.languages.json, 'json');
             } else {
