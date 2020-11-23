@@ -195,7 +195,7 @@
               {% assign selected    = "false" %}
             {% endif %}
             <a class="nav-link{{ active_bool }}" id="{{ klass_name }}-tab" data-toggle="tab" href="#{{ klass_name }}" role="tab" aria-controls="{{ klass_name }}" aria-selected="{{ selected }}">
-              {{ klass_name }}
+              {{ l.klass_names.klass_name }}
             </a>
           </li>
         {% endfor %}

@@ -6,6 +6,13 @@
       "or": "or",
       "return": "return"
     },
+    "resource_names": {
+      "products": "Products",
+      "variants": "Variants",
+      "orders": "Orders",
+      "shop_ids": "Shop ID's",
+      "statuses": "Statuses"
+    },
     "headers": {
       "description": "Description",
       "params": "Parameters",
