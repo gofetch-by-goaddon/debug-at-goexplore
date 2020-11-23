@@ -269,7 +269,7 @@
                           {% endfor %}
                         {% endif %}
 
-                        {% if endpoint.body != nil and endpoint.body.size > 0 %}
+                        {% if endpoint.body_description != nil and endpoint.body_description.size > 0 %}
 
                           <p><b>{{ l.headers.body }}</b></p>
 
@@ -278,13 +278,13 @@
                           <div class="collapse" id="{{ body_sample_id }}">
                             <div class="card border-0 mb-3">
                               <div class="json-sample-container">
-                                <div class="json-sample" style="display: none;">{{ endpoint.body | json }}</div>
+                                <div class="json-sample" style="display: none;">{{ endpoint.body_description | json }}</div>
                                 <pre class="language-json"><code class="language-json"></code></pre>
                               </div>
                             </div>
                           </div>
                           <div class="body-container">
-                            <textarea class="border" name="body">{{ endpoint.body | json }}</textarea>
+                            <textarea class="border" name="body">{{ endpoint.body_example | json }}</textarea>
                           </div>
                         {% endif %}
                         <input class="btn btn-outline-primary mt-3 btn-fullwidth" type="submit" value="{{ l.buttons.submit }}">
