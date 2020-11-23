@@ -24,14 +24,8 @@
     indentJsonSamples = function() {
       $(".json-sample-container").each(function() {
         var sample_code       = $(this).find("pre code");
-        console.log("sample_code:");
-        console.log(sample_code);
         var sample_json       = JSON.stringify(JSON.parse($(this).find(".json-raw").html()), undefined, 2);
-        console.log("sample_json:");
-        console.log(sample_json);
-        var highlighted_json  = Prism.highlight(sample_json, Prism.languages.json, 'json');
-        console.log("highlighted_json:");
-        console.log(highlighted_json);
+        var highlighted_json  = Prism.highlight($.trim(sample_json), Prism.languages.json, 'json');
         sample_code.empty().html(highlighted_json);
       });
     };
