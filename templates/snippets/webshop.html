@@ -13,13 +13,17 @@
       max-height: 700px;
       overflow: scroll;
     }
+
+    .markdown p br + br {
+      display: none;
+    }
   </style>
   <script>
     var converter = new showdown.Converter({simpleLineBreaks: true});
     var addMarkdown;
     addMarkdown = function() {
       $(".markdown").each(function() {
-        $(this).html(converter.makeHtml($(this).html().replace(/(<br\s*\/?>){3,}/gi, '<br>')));
+        $(this).html(converter.makeHtml($(this).html()));
       });
     };
 
