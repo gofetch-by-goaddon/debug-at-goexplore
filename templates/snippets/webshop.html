@@ -13,13 +13,9 @@
       max-height: 700px;
       overflow: scroll;
     }
-
-    .markdown p br + br {
-      display: none;
-    }
   </style>
   <script>
-    var converter = new showdown.Converter({simpleLineBreaks: true});
+    var converter = new showdown.Converter({});
     var addMarkdown;
     addMarkdown = function() {
       $(".markdown").each(function() {
