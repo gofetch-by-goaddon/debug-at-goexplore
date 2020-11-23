@@ -10,8 +10,6 @@
     .response-container pre {
       max-height: 700px;
       overflow: scroll;
-      word-break:break-word;
-      white-space:normal;
     }
   </style>
   <script>
@@ -192,9 +190,7 @@
               {% assign show_collapse = " show" %}
               {% for endpoint in klass_endpoints[1] %}
 
-                {% assign url = endpoint.url | replace: project.secrets.gofetch_shop_api_url, "" %}
-
-                {% include "shared/request_id" %}
+                {% assign request_id = endpoint.url | split: "v1/" | last | replace: "{{ ", "" | replace: " }}", "" | replace: "/", "_" %}
 
                 {% capture heading_id %}heading_{{ request_id }}{% endcapture %}
                 {% capture collapse_id %}collapse_{{ request_id }}{% endcapture %}
@@ -242,9 +238,15 @@
                         {% endfor %}
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
-                          <div class="json-sample-container">
-                            <div class="json-sample" style="display: none;">{{ endpoint.body | json }}</div>
-                            <pre class="language-json"><code class="language-json"></code></pre>
+                          {% capture body_sample_id %}body_{{ request_id }}{% endcapture %}
+                          {{ l.body_sample.intro }} <a class="btn btn-link" data-toggle="collapse" href="#{{ body_sample_id }}" role="button" aria-expanded="false" aria-controls="{{ body_sample_id }}">{{ l.body_sample.link }}</a>.
+                          <div class="collapse" id="{{ body_sample_id }}">
+                            <div class="card card-body">
+                              <div class="json-sample-container">
+                                <div class="json-sample" style="display: none;">{{ endpoint.body | json }}</div>
+                                <pre class="language-json"><code class="language-json"></code></pre>
+                              </div>
+                            </div>
                           </div>
                           <div class="body-container">
                             <textarea class="border" name="body">{{ endpoint.body | json }}</textarea>
