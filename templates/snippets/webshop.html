@@ -18,12 +18,18 @@
     addMarkdown = function() {
       $(".markdown").each(function() {
         $(this).html(converter.makeHtml($(this).html()));
-        if ($(this).hasClass("language-json")) {
-        }
       });
     };
 
-    indentJson = function() {
+    indentJsonSamples = function() {
+      $(".json-sample-container").each(function() {
+        var sample_json     = JSON.stringify($(this).html(), undefined, 2);
+        var highlighted_json  = Prism.highlight(sample_json, Prism.languages.json, 'json');
+        $(this).html(highlighted_json);
+      });
+    };
+
+    indentJsonInput = function() {
       $(".body-container").each(function() {
         var edit_area, editor, text_area;
         text_area = $(this).find("textarea");
@@ -120,7 +126,8 @@
     $(document).on('turbolinks:load', function() {
       addMarkdown();
       submitRequest();
-      indentJson();
+      indentJsonInput();
+      indentJsonSamples();
     })
   </script>
   <h5 class="mb-3">
@@ -233,11 +240,13 @@
                         {% endfor %}
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
-                          <pre class="language-json">
-                            <code class="language-json">
-                              {{ endpoint.body | json }}
-                            </code>
-                          </pre>
+                          <div class="json-sample-container">
+                            <pre class="language-json">
+                              <code class="language-json">
+                                {{ endpoint.body | json }}
+                              </code>
+                            </pre>
+                          </div>
                           <div class="body-container">
                             <textarea class="border" name="body">{{ endpoint.body | json }}</textarea>
                           </div>
