@@ -18,6 +18,9 @@
     addMarkdown = function() {
       $(".markdown").each(function() {
         $(this).html(converter.makeHtml($(this).html()));
+        if ($(this).hasClass("language-json")) {
+          $(this).html()
+        }
       });
     };
 
@@ -79,6 +82,7 @@
 
         var request_data            = {"url": url};
         var body_input              = $(this).find(":input[name=body]");
+
         if (body_input) {
           request_data["body"] = JSON.parse(body_input.val());
         }
@@ -230,6 +234,11 @@
                         {% endfor %}
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
+                          <pre class="language-json" style="display: none;">
+                            <code class="language-json markdown">
+                              {{ endpoint.body | json }}
+                            </code>
+                          </pre>
                           <div class="body-container">
                             <textarea class="border" name="body">{{ endpoint.body | json }}</textarea>
                           </div>
