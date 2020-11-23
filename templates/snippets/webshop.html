@@ -25,8 +25,8 @@
       $(".json-sample-container").each(function() {
         var sample_code       = $(this).find("pre code");
         var sample_json       = JSON.stringify(JSON.parse($(this).find(".json-raw").html()), undefined, 2);
-        var highlighted_json  = Prism.highlight($.trim(sample_json), Prism.languages.json, 'json');
-        sample_code.empty().html(highlighted_json);
+        var highlighted_json  = Prism.highlight(jQuery.trim(sample_json), Prism.languages.json, 'json');
+        sample_code.empty().html(jQuery.trim(highlighted_json));
       });
     };
 
