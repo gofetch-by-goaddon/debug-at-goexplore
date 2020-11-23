@@ -18,6 +18,8 @@
     addMarkdown = function() {
       $(".markdown").each(function() {
         $(this).html(converter.makeHtml($(this).html()));
+        if ($(this).hasClass("language-json")) {
+        }
       });
     };
 
@@ -223,7 +225,7 @@
                           {% if param.key == "webshop_id" %}
                             <input type="hidden" name="webshop_id" data-type="param" value="{{ webshop._id }}">
                           {% else %}
-                            <label class="markdown" for="{{ param.key }}">{{ param.description }}</label>
+                            <div class="markdown" for="{{ param.key }}">{{ param.description }}</div>
                             <div class="input-group mb-4">
                               <input class="form-control" type="text" name="{{ param.key }}" data-type="param" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
                             </div>
@@ -232,7 +234,7 @@
 
                         {% if endpoint.body != nil and endpoint.body.size > 0 %}
                           <pre class="language-json">
-                            <code class="language-json markdown">
+                            <code class="language-json">
                               {{ endpoint.body | json }}
                             </code>
                           </pre>
