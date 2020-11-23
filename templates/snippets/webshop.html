@@ -207,7 +207,7 @@
 
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
-                      <div class="markdown">{{ endpoint.description | newline_to_br | replace: '<br><br>', '<br>' }}</div>
+                      <div class="markdown">{{ endpoint.description | newline_to_br | replace: '</br></br>', '</br>' }}</div>
                       <form class="shop-api-form" data-id="{{ request_id }}-form" action="{{ 'tests__create' | path_for: format: 'json' }}" method="post" data-remote="true">
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
 
