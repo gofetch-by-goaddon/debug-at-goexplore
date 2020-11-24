@@ -5,12 +5,42 @@
 
   {% include "shared/indent_json_input" %}
 
-  <form class="update-webshop" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'js' }}" method="patch" data-remote="true">
+  <script>
+    submitRequest = function() {
+      $(document).off("submit");
+      $(document).on("submit", ".update-webshop-form", function(e) {
+        e.preventDefault();
+        var form_action             = $(this).attr("action");
+        var form_method             = $(this).attr("method");
+        var form_submit             = $(this).find(":input[type=submit]");
+        var form_submitting         = $(this).find("[data-type=submitting]");
+        var config_input            = $(this).find(":input[name=config]");
+        var request_data            = {"config": JSON.parse(config_input.val())};
+
+        form_submit.hide();
+        form_submitting.show();
+
+        $.ajax({
+          url: form_action,
+          type: form_method,
+          dataType: "json",
+          contentType: "application/json",
+          data: JSON.stringify(request_data)
+        });
+
+        return
+      });
+    };
+  </script>
+
+  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'js' }}" method="patch" data-remote="true">
 
     <div class="json-container">
       <textarea class="border" name="config">{{ webshop.config | json }}</textarea>
     </div>
 
-    <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.update }}">
+    <input class="btn btn-outline-primary mt-3 btn-fullwidth" type="submit" value="{{ l.buttons.submit }}">
+    <button class="btn btn-outline-primary mt-3 btn-fullwidth disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.submitting }}</button>
+
   </form>
 {% endif %}

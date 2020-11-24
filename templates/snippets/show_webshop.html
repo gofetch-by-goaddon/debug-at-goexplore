@@ -67,7 +67,7 @@
         var response_pre            = response_container.find("pre");
         var response_code           = response_pre.find("code");
         var form_submit             = $(this).find(":input[type=submit]");
-        var form_submitting         = $(this).find(":input[data-type=submitting]");
+        var form_submitting         = $(this).find("[data-type=submitting]");
 
         $(this).find(":input[type=text], :input[type=hidden]").each(function() {
           if ($(this).val() != "") {
