@@ -6,4 +6,8 @@
   <h5 class="mb-3">
     {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
+
+  <div class="body-container">
+    <textarea class="border" name="body">{{ webshop.config | json }}</textarea>
+  </div>
 {% endif %}
