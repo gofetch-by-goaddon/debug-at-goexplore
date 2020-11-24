@@ -9,7 +9,16 @@
     {% capture shop_api_url %}{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
 
     {% assign shop_api_url  = shop_api_url | replace: "{{ order_id }}", params.order_id %}
-    {% assign response      = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
+
+    {% if params.method == "get" %}
+
+      {% assign response      = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
+
+    {% elsif params.method == "patch" %}
+
+      {% assign response      = "patch_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token, body: params.body %}
+
+    {% endif %}
 
     {% assign response_json = response.body | json %}
 

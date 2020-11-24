@@ -6,5 +6,23 @@
       "Authorization": "{{ token }}",
       "Content-Type": "application/json"
     }
+  },
+  "patch_shop_api": {
+    "method": "patch",
+    "url": "{{ url }}",
+    "headers": {
+      "Authorization": "{{ token }}",
+      "Content-Type": "application/json"
+    },
+    "body": "{{ body | json }}"
+  },
+  "post_shop_api": {
+    "method": "patch",
+    "url": "{{ url }}",
+    "headers": {
+      "Authorization": "{{ token }}",
+      "Content-Type": "application/json"
+    },
+    "body": "{{ body | json }}"
   }
 }
