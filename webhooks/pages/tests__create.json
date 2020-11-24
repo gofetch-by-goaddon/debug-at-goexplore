@@ -24,5 +24,13 @@
       "Content-Type": "application/json"
     },
     "body": "{{ body | json }}"
+  },
+  "delete_shop_api": {
+    "method": "delete",
+    "url": "{{ url }}",
+    "headers": {
+      "Authorization": "{{ token }}",
+      "Content-Type": "application/json"
+    }
   }
 }
