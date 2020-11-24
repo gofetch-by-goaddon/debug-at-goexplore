@@ -89,6 +89,7 @@
         var form_action             = $(this).attr("action");
         var form_method             = $(this).attr("method");
         var url                     = $(this).find(":input[name=url]").val();
+        var method                  = $(this).find(":input[name=method]").val();
         var response_container      = $(this).find(".response-container");
         var response_pre            = response_container.find("pre");
         var response_code           = response_pre.find("code");
