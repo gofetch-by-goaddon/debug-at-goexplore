@@ -2,7 +2,7 @@
   "en": {
     "headlines": {
       "no_webshop": "No webshop exists",
-      "webshop": "Debug webshop from",
+      "webshop": "Request the Shop API for",
       "or": "or",
       "return": "return"
     },
