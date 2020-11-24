@@ -23,7 +23,7 @@
         $.ajax({
           url: form_action,
           type: form_method,
-          dataType: "json",
+          dataType: "js",
           contentType: "application/json",
           data: JSON.stringify(request_data)
         });
@@ -37,7 +37,7 @@
   })
   </script>
 
-  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
+  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'jsn' }}" method="patch" data-remote="true">
 
     <div class="json-container">
       <textarea class="border" name="config">{{ webshop.config | json }}</textarea>
