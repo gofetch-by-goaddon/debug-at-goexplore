@@ -31,6 +31,10 @@
         return
       });
     };
+
+  $(document).on('turbolinks:load', function() {
+    submitRequest();
+  })
   </script>
 
   <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
