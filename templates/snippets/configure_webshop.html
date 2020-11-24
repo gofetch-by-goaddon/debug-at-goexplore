@@ -45,14 +45,16 @@
   })
   </script>
 
+  {% assign config = "" | new_hash %}
+  <p>{{ webshop.config }}</p>
+  {% for kv in webshop.config %}
+    {% assign klassname = kv[1] | klassname %}
+    <p>{{ klassname }}</p>
+  {% endfor %}
+
   <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'js' }}" method="patch" data-remote="true">
 
     <div class="json-container">
-      {% assign config = "" | new_hash %}
-      {% for kv in webshop.config %}
-        {% assign klassname = k[1] | klassname %}
-        <p>{{ klassname }}</p>
-      {% endfor %}
       <textarea class="border" name="config">{{ webshop.config | json }}</textarea>
     </div>
 
