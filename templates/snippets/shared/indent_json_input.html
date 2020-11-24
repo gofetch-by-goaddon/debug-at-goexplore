@@ -1,26 +1,28 @@
 <script>
   indentJsonInput = function() {
     $(".json-container").each(function() {
-      var text_area           = $(this).find("textarea");
-      var edit_area           = $("<div>", {
-        "class": text_area.attr("class")
-      }).insertBefore(text_area);
-      text_area.css("display", "none");
-      var editor              = ace.edit(edit_area[0]);
-      editor.setFontSize("14px");
-      editor.$blockScrolling  = Infinity;
-      editor.setShowPrintMargin(false);
-      editor.setOptions({
-        minLines: 2,
-        maxLines: 20,
-        tabSize: 2
-      });
-      editor.setTheme("ace/theme/tomorrow");
-      editor.getSession().setMode("ace/mode/json");
-      editor.getSession().setValue(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
-      return text_area.closest("form").submit(function() {
-        return text_area.val(editor.getSession().getValue());
-      });
+      if ($(".ace_editor").length == 0) {
+        var text_area           = $(this).find("textarea");
+        var edit_area           = $("<div>", {
+          "class": text_area.attr("class")
+        }).insertBefore(text_area);
+        text_area.css("display", "none");
+        var editor              = ace.edit(edit_area[0]);
+        editor.setFontSize("14px");
+        editor.$blockScrolling  = Infinity;
+        editor.setShowPrintMargin(false);
+        editor.setOptions({
+          minLines: 2,
+          maxLines: 20,
+          tabSize: 2
+        });
+        editor.setTheme("ace/theme/tomorrow");
+        editor.getSession().setMode("ace/mode/json");
+        editor.getSession().setValue(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
+        return text_area.closest("form").submit(function() {
+          return text_area.val(editor.getSession().getValue());
+        });
+      }
     });
   };
 
