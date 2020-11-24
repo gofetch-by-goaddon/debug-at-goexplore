@@ -10,7 +10,7 @@
     },
     "buttons": {
       "shop_api": "Shop API",
-      "edit": "Edit"
+      "config": "Configuration"
     }
   }
 }

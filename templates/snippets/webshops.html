@@ -24,10 +24,10 @@
             {% endfor %}
           </td>
           <td>{{ relays[relay_id].name }}</td>
-          <td class="text-right">
-            <a class="btn btn-outline-primary" href="{{ 'webshops__edit' | path_for: id: webshop._id }}">{{ l.buttons.edit }}</a>
+          <td class="text-right text-nowrap" width="1">
+            <a class="btn btn-outline-primary" href="{{ 'webshops__config' | path_for: id: webshop._id }}">{{ l.buttons.config }}</a>
           </td>
-          <td class="text-right">
+          <td class="text-right text-nowrap" width="1">
             <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.shop_api }}</a>
           </td>
         </tr>
