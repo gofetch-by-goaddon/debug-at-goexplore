@@ -14,7 +14,11 @@
 
     {% assign response      = webhook_name | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token, body: params.body %}
 
-    {% assign response_json = response.body | json %}
+    {% if response.body != nil %}
+
+      {% assign response_json = response.body | json %}
+
+    {% endif %}
 
     {% if response_json == nil or response_json == "" %}
       {% assign response_json = response.body %}
