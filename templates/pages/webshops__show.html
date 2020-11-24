@@ -8,11 +8,11 @@
 
       <p>{{ l.no_relay_id }}</p>
 
-    {% else if project.secrets.gofetch_shop_api_url == nil %}
+    {% elsif project.secrets.gofetch_shop_api_url == nil %}
 
       <p>{{ l.no_gofetch_shop_api_url }}</p>
 
-    {% else if project.secrets.gofetch_shop_api_token == nil %}
+    {% elsif project.secrets.gofetch_shop_api_token == nil %}
 
       <p>{{ l.no_gofetch_shop_api_token }}</p>
 
