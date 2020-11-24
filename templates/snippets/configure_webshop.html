@@ -44,21 +44,22 @@
     submitRequest();
   })
   </script>
-0
+
   {% assign config = nil | new_hash %}
-1
+
   {% for kv in webshop.config %}
-2 
+
     {% assign klassname = kv[1] | klassname %}
+
     {% if klassname == "String" %}
-3
+
       {% assign decrypted = kv[1] | decrypt %}
       {% assign config    = config | push_to_hash: kv[0], decrypted %}
-4
+
     {% else %}
-5
+
       {% assign config    = config | push_to_hash: kv[0], kv[1] %}
-6
+
     {% endif %}
   {% endfor %}
 

@@ -1,6 +1,24 @@
 {% if account != nil and user.superuser %}
 
-  {% assign webshops_update = "update_webshop" | db_update_one: company_id: account._id, config: params.config, _id: params.id %}
+  {% assign config = nil | new_hash %}
+
+  {% for kv in params.config %}
+
+    {% assign klassname = kv[1] | klassname %}
+
+    {% if klassname == "String" %}
+
+      {% assign decrypted = kv[1] | encrypt %}
+      {% assign config    = config | push_to_hash: kv[0], decrypted %}
+
+    {% else %}
+
+      {% assign config    = config | push_to_hash: kv[0], kv[1] %}
+
+    {% endif %}
+  {% endfor %}
+
+  {% assign webshops_update = "update_webshop" | db_update_one: company_id: account._id, config: config, _id: params.id %}
 
   {% if webshops_update.matched_count != 1 %}
     alertify.error("{{ l.not_found }}");
