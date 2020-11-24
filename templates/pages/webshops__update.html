@@ -1,25 +1,25 @@
 {% if account != nil and user.superuser %}
-0
+
   {% assign config = nil | new_hash %}
-1
+
   {% for kv in params.config %}
-2
+
     {% assign klassname = kv[1] | klassname %}
-3
+
     {% if klassname == "String" %}
-4
+
       {% assign encrypted = kv[1] | encrypt %}
       {% assign config    = config | push_to_hash: kv[0], encrypted %}
-5
+
     {% else %}
-6
+
       {% assign config    = config | push_to_hash: kv[0], kv[1] %}
-7
+
     {% endif %}
   {% endfor %}
-8
+{{ config }}
   {% assign webshops_update = "update_webshop" | db_update_one: company_id: account._id, config: config, _id: params.id %}
-9
+
   {% if webshops_update.matched_count != 1 %}
     alertify.error("{{ l.not_found }}");
   {% elsif webshops_update.updated_count != 1 %}
