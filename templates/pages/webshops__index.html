@@ -20,7 +20,11 @@
 
           {% assign relay_response = "relay" | webhook: relay_id: webshop.relay_id, gofetch_project_api_token: gofetch_project_api_token %}
 
-          {% if relay_response.code != 200 %}
+          {% if relay_response.error != nil %}
+
+            <p>{{ l.project_api_error }}: {{ relay_response.error }}</p>
+
+          {% elsif relay_response.code != 200 %}
 
             <p>{{ l.relay_not_found }} {{ relay_response.code }}</p>
 
