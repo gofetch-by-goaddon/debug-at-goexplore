@@ -22,7 +22,7 @@
 
           {% if relay_response.code != 200 %}
 
-            <p>{{ l.relay_not_found }}</p>
+            <p>{{ l.relay_not_found }} {{ relay_response.code }}</p>
 
           {% else %}
 
