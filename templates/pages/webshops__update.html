@@ -8,8 +8,8 @@
 
     {% if klassname == "String" %}
 
-      {% assign decrypted = kv[1] | encrypt %}
-      {% assign config    = config | push_to_hash: kv[0], decrypted %}
+      {% assign encrypted = kv[1] | encrypt %}
+      {% assign config    = config | push_to_hash: kv[0], encrypted %}
 
     {% else %}
 
