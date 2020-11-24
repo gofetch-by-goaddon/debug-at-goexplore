@@ -15,10 +15,7 @@
         var form_submit             = $(this).find(":input[type=submit]");
         var form_submitting         = $(this).find("[data-type=submitting]");
         var config_input            = $(this).find(":input[name=config]");
-        console.log(config_input.val());
-        console.log(JSON.parse(config_input.val()));
         var request_data            = {"config": JSON.parse(config_input.val())};
-        console.log(request_data);
 
         form_submit.hide();
         form_submitting.show();
@@ -28,7 +25,15 @@
           type: form_method,
           dataType: "js",
           contentType: "application/json",
-          data: JSON.stringify(request_data)
+          data: JSON.stringify(request_data),
+          success: function(data, status, xhr) {
+            form_submit.show();
+            form_submitting.hide();
+          },
+          error: function (data, status, error) {
+            form_submit.show();
+            form_submitting.hide();
+          }
         });
 
         return

@@ -6,7 +6,7 @@
     },
     "buttons": {
       "submit": "Update",
-      "submitting": "Updating"
+      "submitting": "Updating..."
     }
   }
 }
