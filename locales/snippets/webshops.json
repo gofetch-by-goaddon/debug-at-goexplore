@@ -9,7 +9,8 @@
       "relay_name": "Ecommerce platform"
     },
     "buttons": {
-      "debug": "Debug"
+      "shop_api": "Shop API",
+      "edit": "Edit"
     }
   }
 }

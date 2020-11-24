@@ -4,7 +4,19 @@
   {% assign webshop           = webshops_query.results.first %}
 
   {% if webshop != nil %}
-    {% if webshop.relay_id != nil %}
+    {% if webshop.relay_id == nil %}
+
+      <p>{{ l.no_relay_id }}</p>
+
+    {% else if project.secrets.gofetch_shop_api_url == nil %}
+
+      <p>{{ l.no_gofetch_shop_api_url }}</p>
+
+    {% else if project.secrets.gofetch_shop_api_token == nil %}
+
+      <p>{{ l.no_gofetch_shop_api_token }}</p>
+
+    {% else %}
 
       {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
 

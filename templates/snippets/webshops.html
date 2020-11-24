@@ -8,6 +8,7 @@
         <th>{{ l.headers.config }}</th>
         <th>{{ l.headers.relay_name }}</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +25,10 @@
           </td>
           <td>{{ relays[relay_id].name }}</td>
           <td class="text-right">
-            <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.debug }}</a>
+            <a class="btn btn-outline-primary" href="{{ 'webshops__edit' | path_for: id: webshop._id }}">{{ l.buttons.edit }}</a>
+          </td>
+          <td class="text-right">
+            <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.shop_api }}</a>
           </td>
         </tr>
       {% endfor %}

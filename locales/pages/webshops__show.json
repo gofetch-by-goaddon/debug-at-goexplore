@@ -1,6 +1,9 @@
 {
   "en": {
+    "no_relay_id": "The webshop does not belong to a relay",
     "relay_not_found": "Unable to get data from the project API about relay",
-    "no_gofetch_project_api_token": "No gofetch_project_api_token"
+    "no_gofetch_shop_api_url": "No gofetch_shop_api_url",
+    "no_gofetch_shop_api_token": "No gofetch_shop_api_token",
+    "no_gofetch_project_api_token": "No gofetch_project_api_token",
   }
 }
