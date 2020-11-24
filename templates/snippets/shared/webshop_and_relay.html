@@ -4,15 +4,15 @@
 {% if webshop != nil %}
   {% if webshop.relay_id == nil %}
 
-    <p>{{ l.no_relay_id }}</p>
+    {% assign error = l.errors.no_relay_id %}
 
   {% elsif project.secrets.gofetch_shop_api_url == nil %}
 
-    <p>{{ l.no_gofetch_shop_api_url }}</p>
+    {% assign error = l.errors.no_gofetch_shop_api_url %}
 
   {% elsif project.secrets.gofetch_shop_api_token == nil %}
 
-    <p>{{ l.no_gofetch_shop_api_token }}</p>
+    {% assign error = l.errors.no_gofetch_shop_api_token %}
 
   {% else %}
 
@@ -20,7 +20,7 @@
 
     {% if gofetch_project_api_token == nil %}
 
-      <p>{{ l.no_gofetch_project_api_token }}</p>
+      {% assign error = l.errors.no_gofetch_project_api_token %}
 
     {% else %}
 
@@ -28,7 +28,7 @@
 
       {% if relay_response.code != 200 %}
 
-        <p>{{ l.relay_not_found }}</p>
+        {% assign error = l.errors.relay_not_found %}
 
       {% else %}
 
@@ -37,4 +37,11 @@
       {% endif %}
     {% endif %}
   {% endif %}
+{% endif %}
+
+{% if error != nil %}
+  <h5 class="mb-3">
+    {{ l.headlines.error }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }}<i class="fas fa-undo"></i></a>
+  </h5>
+  <p>{{ error }}</p>
 {% endif %}
