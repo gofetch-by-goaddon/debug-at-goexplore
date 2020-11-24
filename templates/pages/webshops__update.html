@@ -1,0 +1,12 @@
+{% if account != nil and user.superuser %}
+
+  {% assign webshops_update = "update_webshop" | db_update_one: company_id: account._id, config: params.config, _id: params.id %}
+
+  {% if webshops_update.matched_count != 1 %}
+    alertify.error("{{ l.not_found }}");
+  {% elsif webshops_update.updated_count != 1 %}
+    alertify.message("{{ l.not_updated }}");
+  {% else %}
+    alertify.success("{{ l.updated }}");
+  {% endif %}
+{% endif %}

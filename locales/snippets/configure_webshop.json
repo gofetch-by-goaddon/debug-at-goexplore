@@ -3,6 +3,9 @@
     "headlines": {
       "intro": "Configure this webshop, or",
       "return": "return"
+    },
+    "buttons": {
+      "update": "Update"
     }
   }
 }

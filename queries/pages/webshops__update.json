@@ -1,0 +1,12 @@
+{
+  "update_webshop": {
+    "klass": "webshops",
+    "query": {
+      "company_id": "{{ company_id }}",
+      "_id": "{{ _id }}"
+    },
+    "document": {
+      "config": "{{ config }}"
+    }
+  }
+}

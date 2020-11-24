@@ -7,7 +7,14 @@
     {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
-  <div class="body-container">
-    <textarea class="border" name="body">{{ webshop.config | json }}</textarea>
-  </div>
+  {% include "shared/indent_json_input" %}
+
+  <form class="update-webshop" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'js' }}" method="patch" data-remote="true">
+
+    <div class="json-container">
+      <textarea class="border" name="body">{{ webshop.config | json }}</textarea>
+    </div>
+
+    <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.update }}">
+  </form>
 {% endif %}
