@@ -27,10 +27,10 @@
           contentType: "application/json",
           data: JSON.stringify(request_data),
           success: function(data, status, xhr) {
-            console.log(data.success);
-            if (data.success != `undefined`) {
+            if (data.success !== undefined) {
+              console.log(data.success);
               alertify.success(data.success);
-            } else if (data.message != `undefined`) {
+            } else if (data.message !== undefined) {
               alertify.message(data.message);
             }
 
@@ -38,7 +38,7 @@
             form_submitting.hide();
           },
           error: function (data, status, error) {
-            if (data.error != `undefined`) {
+            if (data.error !== undefined) {
               alertify.error(data.error);
             } else {
               alertify.error("{{ l.messages.internal_error }}");
