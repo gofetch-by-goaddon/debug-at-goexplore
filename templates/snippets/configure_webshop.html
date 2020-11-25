@@ -95,7 +95,7 @@
   </p>
 
   {% for attribute in webshop %}
-    {% captute got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
+    {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
     {% if got_at == "got_at" %}
       <p>{{ attribute[0] }}: {{ attribute[1] }}</p>
     {% endif %}
