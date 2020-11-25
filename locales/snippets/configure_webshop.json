@@ -8,7 +8,7 @@
       "submit": "Update",
       "submitting": "Updating...",
       "reset": "Reset",
-      "resetting": "Resetting..."
+      "resetting": "Reset"
     },
     "messages": {
       "internal_error": "Internal error"
