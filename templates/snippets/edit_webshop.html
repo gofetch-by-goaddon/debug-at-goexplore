@@ -177,9 +177,7 @@
             {% assign active_option = "true" %}
             <span class="text-danger">{{ l.explainers.active.inactive }}</span>.
           {% endif %}
-          {{ l.explainers.active.p2 }}
-          <input type="hidden" name="active" value="{{ active_option }}">
-          <input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary" value="{{ l.explainers.active.active_options[status] }}">.
+          {{ l.explainers.active.p2 }}<input type="hidden" name="active" value="{{ active_option }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary" value="{{ l.explainers.active.active_options[status] }}">.
         </p>
       </form>
     </div>
