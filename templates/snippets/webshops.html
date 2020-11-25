@@ -22,6 +22,9 @@
               {% endif %}
               {{ webshop.config[identifiable_config_key] | decrypt }}
             {% endfor %}
+            {% if webshop.active != true %}
+              <span class="badge badge-danger">{{ l.badges.inactive }}</span>
+            {% endif %}
           </td>
           <td>{{ relays[relay_id].name }}</td>
           <td class="text-right text-nowrap" width="1">

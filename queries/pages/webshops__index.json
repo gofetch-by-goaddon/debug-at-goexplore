@@ -7,6 +7,7 @@
     "projection": {
       "_id": 1,
       "relay_id": 1,
+      "active": 1,
       "config": 1
     }
   }

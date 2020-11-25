@@ -11,6 +11,9 @@
     "buttons": {
       "shop_api": "Request",
       "edit": "Edit"
+    },
+    "badges": {
+      "inactive": "INACTIVE"
     }
   }
 }
