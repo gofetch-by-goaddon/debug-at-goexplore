@@ -84,9 +84,12 @@
               }
               if (request_data["active"] !== undefined) {
                 $(".toggle-active").each(function() {
+                  console.log($(this).data("active") + " vs " + request_data["active"]);
                   if ($(this).data("active") == request_data["active"]) {
+                    console.log("HIDE")
                     $(this).hide();
                   } else {
+                    console.log("SHOW")
                     $(this).show();
                   }
                 });
