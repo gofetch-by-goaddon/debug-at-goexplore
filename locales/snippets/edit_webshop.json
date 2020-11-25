@@ -21,14 +21,11 @@
       "config": "Below you can change the configuration of this webshop.",
       "reset": {
         "p1": "Gofetch registers everytime a scheduled import takes place. Imports run as frequent as your schedule allows for",
-        "p2": "If you reset one of the registered timestamps, the shop will be immediately queued for the import that scheduled by this timestamp."
+        "p2": "If you reset one of the registered timestamps, the shop will be immediately queued for the import that scheduled by this timestamp"
       }
     },
-    "labels": {
-      "got_at_attr": "Timestamp to reset"
-    },
     "placeholders": {
-      "got_at_attr": "Select..."
+      "got_at_attr": "Select timestamp to reset..."
     },
     "input": {
       "ago": "ago"
