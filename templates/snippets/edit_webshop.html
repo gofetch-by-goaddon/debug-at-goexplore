@@ -92,12 +92,14 @@
     };
 
     formatState = function(state) {
-      console.log(state);
-      var parts = state.text.split(",");
-      if (parts.length == 1) {
-        return parts[0];
+      if (state.element == undefined) {
+        return state.text
       } else {
-        return jQuery.parseHTML(parts[0] + ' <span class=text-secondary><small>' + parts[1] + '</small></span>');
+        var title = state.element.attributes["data-title"].value;
+        if (state.element.attributes["data-time"].value != "") {
+          var title = title.cancat(' <span class=text-secondary><small>' + state.element.attributes["data-time"].value + '</small></span>');
+        }
+        return jQuery.parseHTML(title);
       }
     };
 
