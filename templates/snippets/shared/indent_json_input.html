@@ -1,7 +1,7 @@
 <script>
   indentJsonInput = function() {
     $(".json-container").each(function() {
-      if ($(".ace_editor").length == 0) {
+      if ($(this).find(".ace_editor").length == 0) {
         var text_area           = $(this).find("textarea");
         var edit_area           = $("<div>", {
           "class": text_area.attr("class")
