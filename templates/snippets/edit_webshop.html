@@ -185,10 +185,7 @@
                   {% assign attribute_name = attribute[0] %}
                   <option value="{{ attribute_name }}">
                     {{ l.attributes[attribute_name] }}
-                    {% if attribute[1] != nil %}
-                      {% assign time = attribute[1] | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-                      , {{ time | time_distance_in_words: now }} {{ l.input.ago }}
-                    {% endif %}
+                    {% if attribute[1] != nil %}{% assign time = attribute[1] | date: "%Y-%m-%d %H:%M:%S" | parse_time %}, {{ time | time_distance_in_words: now }} {{ l.input.ago }}{% endif %}
                   </option>
                 {% endif %}
               {% endfor %}
