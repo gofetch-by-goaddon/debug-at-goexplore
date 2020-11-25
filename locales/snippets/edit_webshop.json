@@ -24,7 +24,7 @@
         "p2": "If you reset one of the registered timestamps, the shop will be immediately queued for the import that scheduled by this timestamp"
       },
       "active": {
-        "p1:": "This webshop is",
+        "p1": "This webshop is",
         "active": "active",
         "inactive": "deactivated",
         "p2": "You can",
