@@ -5,6 +5,21 @@
 
   {% include "shared/indent_json_input" %}
 
+  <style>
+    .input-select2 {
+      width: 100%;
+    }
+
+    .select2-selection--single, .select2-search__field {
+      outline: none;
+    }
+
+    .select2-selection__choice {
+      margin-bottom: 5px;
+      background-color: #e9ecef !important;
+    }
+  </style>
+
   <script>
     submitRequest = function() {
       $(document).off("submit");
@@ -28,7 +43,6 @@
           data: JSON.stringify(request_data),
           success: function(data, status, xhr) {
             if (data.success !== undefined) {
-              console.log(data.success);
               alertify.success(data.success);
             } else if (data.message !== undefined) {
               alertify.message(data.message);
@@ -52,8 +66,39 @@
       });
     };
 
+    select2GotAt = function() {
+      $(".input-select2-got_at_attribute").select2({
+        width: "100%",
+        placeholder: "{{ l.placeholders.got_at_attribute }}",
+        multiple: false,
+        allowClear: false,
+        tags: false,
+        sorter: function(data) {
+          return data.sort(function(a, b) {
+            a = a.text.toLowerCase();
+            b = b.text.toLowerCase();
+            if (a > b) {
+              return 1;
+            } else if (a < b) {
+              return -1;
+            }
+            return 0;
+          });
+        }
+      });
+      
+      $(".input-got-at").on("select2:select", function(e) {
+        var id, option;
+        id = e.params.data.id;
+        option = $(e.target).children("[value='" + id + "']");
+        option.detach();
+        return $(e.target).append(option).change();
+      });
+    };
+
   $(document).on('turbolinks:load', function() {
     submitRequest();
+    select2GotAt();
   })
   </script>
 
@@ -94,10 +139,18 @@
     {{ l.explainers.timestamps.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ relay.name }} <i class="fas fa-external-link-alt"></i></a>. {{ l.explainers.timestamps.p2 }}.
   </p>
 
-  {% for attribute in webshop %}
-    {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
-    {% if got_at == "got_at" %}
-      <p>{{ attribute[0] }}: {{ attribute[1] }}</p>
-    {% endif %}
-  {% endfor %}
+  <form class="reset-got-at-form mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
+    <div class="form-group">
+      <b><label for="got_at_attribute">{{ l.labels.got_at_attribute }}</label></b>
+      <select name="got_at_attribute" class="form-control input-select2 input-select2-got_at_attribute" multiple>
+        <option value="" label=" "></option>
+        {% for attribute in webshop %}
+          {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
+          {% if got_at == "got_at" %}
+            <option value="{{ attribute[0] }}">{{ attribute[1] }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </form>
 {% endif %}

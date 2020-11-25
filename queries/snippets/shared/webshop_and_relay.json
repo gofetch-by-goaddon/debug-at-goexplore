@@ -9,6 +9,7 @@
       "_id": 1,
       "relay_id": 1,
       "config": 1,
+      "got_started_at": 1,
       "got_products_created_since_catch_all_date_at": 1,
       "got_products_created_since_last_request_at": 1,
       "got_products_updated_since_catch_all_date_at": 1,

@@ -2,29 +2,36 @@
 
   {% assign config = nil | new_hash %}
 
-  {% for kv in params.config %}
+  {% if params.config != nil %}
+    {% for kv in params.config %}
 
-    {% assign klassname = kv[1] | klassname %}
+      {% assign klassname = kv[1] | klassname %}
 
-    {% if klassname == "String" %}
+      {% if klassname == "String" %}
 
-      {% assign encrypted = kv[1] | encrypt %}
-      {% assign config    = config | push_to_hash: kv[0], encrypted %}
+        {% assign encrypted = kv[1] | encrypt %}
+        {% assign config    = config | push_to_hash: kv[0], encrypted %}
 
-    {% else %}
+      {% else %}
 
-      {% assign config    = config | push_to_hash: kv[0], kv[1] %}
+        {% assign config    = config | push_to_hash: kv[0], kv[1] %}
 
-    {% endif %}
-  {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 
-  {% assign webshops_update = "update_webshop" | db_update_one: company_id: account._id, config: config, _id: params.id %}
-
-  {% if webshops_update.matched_count != 1 %}
-    {"status": "422", "error": "{{ l.not_found }}"}
-  {% elsif webshops_update.updated_count != 1 %}
-    {"status": "200", "message": "{{ l.not_updated }}"}
+  {% if config.size == 0 %}
+    {"status": "422", "error": "{{ l.no_config }}"}
   {% else %}
-    {"status": "200", "success": "{{ l.updated }}"}
+
+    {% assign webshops_update = "update_webshop" | db_update_one: company_id: account._id, config: config, _id: params.id %}
+
+    {% if webshops_update.matched_count != 1 %}
+      {"status": "422", "error": "{{ l.not_found }}"}
+    {% elsif webshops_update.updated_count != 1 %}
+      {"status": "200", "message": "{{ l.not_updated }}"}
+    {% else %}
+      {"status": "200", "success": "{{ l.updated }}"}
+    {% endif %}
   {% endif %}
 {% endif %}
