@@ -23,10 +23,11 @@
         $.ajax({
           url: form_action,
           type: form_method,
-          dataType: "js",
+          dataType: "json",
           contentType: "application/json",
           data: JSON.stringify(request_data),
           success: function(data, status, xhr) {
+            alertify.message(data.message);
             form_submit.show();
             form_submitting.hide();
           },
@@ -63,7 +64,7 @@
     {% endif %}
   {% endfor %}
 
-  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'js' }}" method="patch" data-remote="true">
+  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
 
     <div class="json-container">
       <textarea class="border" name="config">{{ config | json }}</textarea>
