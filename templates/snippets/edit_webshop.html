@@ -51,6 +51,7 @@
         var got_at_attr_input       = $(this).find(":input[name=got_at_attr]");
         if (got_at_attr_input.length > 0) {
           request_data["got_at_attr"] = got_at_attr_input.val();
+          var got_at_option           = $(this).find("option[value=" + request_data["got_at_attr"] + "]");
         }
 
         form_submit.hide();
@@ -65,6 +66,9 @@
           success: function(data, status, xhr) {
             if (data.success !== undefined) {
               alertify.success(data.success);
+              if (got_at_option !== undefined) {
+                got_at_option.html("hello");
+              }
             } else if (data.message !== undefined) {
               alertify.message(data.message);
             }
