@@ -19,6 +19,7 @@
         editor.setTheme("ace/theme/tomorrow");
         editor.getSession().setMode("ace/mode/json");
         editor.getSession().setValue(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
+        // Do we need this?
         return text_area.closest("form").submit(function() {
           return text_area.val(editor.getSession().getValue());
         });

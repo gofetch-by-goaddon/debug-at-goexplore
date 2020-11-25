@@ -25,6 +25,7 @@
   {% elsif webshops_update.updated_count != 1 %}
     alertify.message("{{ l.not_updated }}");
   {% else %}
+    console.log("Hello");
     alertify.success("{{ l.updated }}");
   {% endif %}
 {% endif %}
