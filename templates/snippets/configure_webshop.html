@@ -68,7 +68,7 @@
           form_submitting.hide();
         }
       });
-      console.log("HEJ");
+
       false
     };
 
@@ -128,7 +128,7 @@
     {% endif %}
   {% endfor %}
 
-  <form class="mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true" onsubmit="submitConfig()">
+  <form class="mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true" onsubmit="return submitConfig()">
 
     <div class="json-container">
       <textarea class="border" name="config">{{ config | json }}</textarea>
