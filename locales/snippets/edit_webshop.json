@@ -28,8 +28,10 @@
         "active": "active",
         "inactive": "deactivated",
         "p2": "You can",
-        "activate": "active it",
-        "deactivate": "deactivate it"
+        "active_options": {
+          "active": "active it",
+          "inactive": "deactivate it"
+        }
       }
     },
     "placeholders": {

@@ -30,6 +30,15 @@
     .select2-selection__arrow {
       height: 37px !important;
     }
+
+    .submit-link {
+      background: none !important;
+      text-decoration: underline;
+    }
+
+    .submit-link:focus {
+      outline: none;
+    }
   </style>
 
   <script>
@@ -158,14 +167,21 @@
     {% endif %}    
 
     <div style="{{ style }}">
-      <p>
-        {{ l.explainers.active.p1 }}
-        {% if status == "active" %}
-          <span class="text-success">{{ l.explainers.active.active }}</span>.
-        {% else %}
-          <span class="text-danger">{{ l.explainers.active.inactive }}</span>.
-        {% endif %}
-      </p>
+      <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
+        <p>
+          {{ l.explainers.active.p1 }}
+          {% if status == "active" %}
+            {% assign active_option = "false" %}
+            <span class="text-success">{{ l.explainers.active.active }}</span>.
+          {% else %}
+            {% assign active_option = "true" %}
+            <span class="text-danger">{{ l.explainers.active.inactive }}</span>.
+          {% endif %}
+          {{ l.explainers.active.p2 }}
+          <input type="hidden" name="active" value="{{ active_option }}">
+          <input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary" value="{{ l.explainers.active_options[status] }}">.
+        </p>
+      </form>
     </div>
   {% endfor %}
 
