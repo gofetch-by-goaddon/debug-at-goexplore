@@ -172,7 +172,9 @@
                 {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
                 {% if got_at == "got_at" %}
                   {% assign attribute_name = attribute[0] %}
-                  <option value="{{ attribute_name }}">{{ l.attributes[attribute_name] }}</option>
+                  <option value="{{ attribute_name }}">
+                    {{ l.attributes[attribute_name] }} <span class="text-secondary">{{ attribute[1] }}</span>
+                  </option>
                 {% endif %}
               {% endfor %}
             </select>
