@@ -65,7 +65,7 @@
           data: JSON.stringify(request_data),
           success: function(data, status, xhr) {
             if (got_at_option !== undefined) {
-              got_at_option.data("time", "");
+              got_at_option.attr("data-time", "hello");
               got_at_option.trigger('change');
             }
             if (data.success !== undefined) {
