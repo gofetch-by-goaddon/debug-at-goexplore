@@ -38,8 +38,8 @@
             form_submitting.hide();
           },
           error: function (data, status, error) {
-            if (data.error !== undefined) {
-              alertify.error(data.error);
+            if (data.responseJSON !== undefined) {
+              alertify.error(data.responseJSON.error);
             } else {
               alertify.error("{{ l.messages.internal_error }}");
             }
