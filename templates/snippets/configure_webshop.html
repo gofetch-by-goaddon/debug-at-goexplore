@@ -39,8 +39,17 @@
         var form_method             = $(this).attr("method");
         var form_submit             = $(this).find(":input[type=submit]");
         var form_submitting         = $(this).find("[data-type=submitting]");
+        var request_data            = {};
+
         var config_input            = $(this).find(":input[name=config]");
-        var request_data            = {"config": JSON.parse(config_input.val())};
+        if (config_input.length > 0) {
+          request_data["config"] = JSON.parse(config_input.val());
+        }
+
+        var got_at_attribute_input            = $(this).find(":input[name=got_at_attribute_input]");
+        if (got_at_attribute_input.length > 0) {
+          request_data["got_at_attribute_input"] = got_at_attribute_input.val();
+        }
 
         form_submit.hide();
         form_submitting.show();
@@ -139,7 +148,7 @@
       <textarea class="border" name="config">{{ config | json }}</textarea>
     </div>
 
-    <input class="btn btn-outline-primary mt-3 btn-fullwidth" type="submit" value="{{ l.buttons.submit }}">
+    <input type="submit" class="btn btn-outline-primary mt-3 btn-fullwidth" value="{{ l.buttons.submit }}">
     <button class="btn btn-outline-primary mt-3 btn-fullwidth disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.submitting }}</button>
 
   </form>
@@ -149,7 +158,7 @@
     {{ l.explainers.reset.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ relay.name }} <i class="fas fa-external-link-alt"></i></a>. {{ l.explainers.reset.p2 }}.
   </p>
 
-  <form class="reset-got-at-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
+  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
     <b><label for="got_at_attribute">{{ l.labels.got_at_attribute }}</label></b>
     <table>
       <tr>
@@ -169,6 +178,7 @@
         </td>
         <td style="vertical-align: top;">
           <input type="submit" class="btn btn-outline-primary ml-1" value="{{ l.buttons.reset }}">
+          <button class="btn btn-outline-primary mt-3 btn-fullwidth disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.resetting }}</button>
         </td>
       </tr>
     </table>
