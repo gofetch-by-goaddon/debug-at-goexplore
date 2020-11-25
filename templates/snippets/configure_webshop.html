@@ -89,7 +89,7 @@
 
     formatState = function(state) {
       var parts = state.text.split(",");
-      if (parts.text.size == 1) {
+      if (parts.size == 1) {
         return parts[0];
       } else {
         return parts[0] + "<span class=text-secondary>" + parts[1] + "</span>";
