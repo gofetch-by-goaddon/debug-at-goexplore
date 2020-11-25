@@ -85,9 +85,9 @@
               if (request_data["active"] !== undefined) {
                 $(".toggle-active").each(function() {
                   if ($(this).data("active") == request_data["active"]) {
-                    $(this).hide();
-                  } else {
                     $(this).show();
+                  } else {
+                    $(this).hide();
                   }
                 });
               }
