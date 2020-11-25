@@ -27,11 +27,21 @@
           contentType: "application/json",
           data: JSON.stringify(request_data),
           success: function(data, status, xhr) {
-            alertify.message(data.message);
+            if (data.success != `undefined`) {
+              alertify.success(data.success);
+            } else if (data.message != `undefined`) {
+              alertify.message(data.message);
+            }
+
             form_submit.show();
             form_submitting.hide();
           },
           error: function (data, status, error) {
+            if (data.error != `undefined`) {
+              alertify.error(data.error);
+            } else {
+              alertify.error("{{ l.messages.internal_error }}");
+            }
             form_submit.show();
             form_submitting.hide();
           }

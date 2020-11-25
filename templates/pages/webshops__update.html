@@ -21,11 +21,10 @@
   {% assign webshops_update = "update_webshop" | db_update_one: company_id: account._id, config: config, _id: params.id %}
 
   {% if webshops_update.matched_count != 1 %}
-    {% assign message = l.not_found %}
+    {"status": "422", "error": "{{ l.not_found }}"}
   {% elsif webshops_update.updated_count != 1 %}
-    {% assign message = l.not_updated %}
+    {"status": "200", "message": "{{ l.not_updated }}"}
   {% else %}
-    {% assign message = l.updated %}
+    {"status": "200", "success": "{{ l.updated }}"}
   {% endif %}
-  {"status": "200", "message": "{{ message }}"}
 {% endif %}
