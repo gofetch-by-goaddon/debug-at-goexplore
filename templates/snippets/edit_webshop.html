@@ -152,18 +152,18 @@
   {% for status in statuses %}
 
     {% if status == webshop_status %}
-      {% assign style = "display: none;" %}
-    {% else %}
       {% assign style = "" %}
+    {% else %}
+      {% assign style = "display: none;" %}
     {% endif %}    
 
     <div style="{{ style }}">
       <p>
         {{ l.explainers.active.p1 }}
         {% if status == "active" %}
-          <span class="text-success">{{ l.explainers.active.active }}</span>
+          <span class="text-success">{{ l.explainers.active.active }}</span>.
         {% else %}
-          <span class="text-danger">{{ l.explainers.active.inactive }}</span>
+          <span class="text-danger">{{ l.explainers.active.inactive }}</span>.
         {% endif %}
       </p>
     </div>
