@@ -181,14 +181,16 @@
     {% endif %}    
 
     {% if status == "active" %}
-      {% assign active_option = "false" %}
-      {% assign active_colour = "success" %}
+      {% assign data_active     = "true" %}
+      {% assign active_option   = "false" %}
+      {% assign active_colour   = "success" %}
     {% else %}
-      {% assign active_option = "true" %}
-      {% assign active_colour = "danger" %}
+      {% assign data_active     = "false" %}
+      {% assign active_option   = "true" %}
+      {% assign active_colour   = "danger" %}
     {% endif %}
 
-    <div class="toggle-active" data-active="{{ status }}" style="{{ style }}">
+    <div class="toggle-active" data-active="{{ data_active }}" style="{{ style }}">
       <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
         <p>
           {{ l.explainers.active.p1 }}
