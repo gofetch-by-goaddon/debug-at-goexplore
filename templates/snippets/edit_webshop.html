@@ -141,6 +141,34 @@
   })
   </script>
 
+  {% if webshop.active %}
+    {% assign webshop_status = "active" %}
+  {% else %}
+    {% assign webshop_status = "inactive" %}
+  {% endif %}
+
+  {% assign statuses = "active inactive" | split: " " %}
+
+  {% for status in statuses %}
+
+    {% if status == webshop_status %}
+      {% assign style = "display: none;" %}
+    {% else %}
+      {% assign style = "" %}
+    {% endif %}    
+
+    <div style="{{ style }}">
+      <p>
+        {{ l.explainers.active.p1 }}
+        {% if status == "active" %}
+          <span class="text-success">{{ l.explainers.active.active }}</span>
+        {% else %}
+          <span class="text-danger">{{ l.explainers.active.inactive }}</span>
+        {% endif %}
+      </p>
+    </div>
+  {% endfor %}
+
   <p><b>{{ l.headers.config }}</b></p>
   <p>{{ l.explainers.config }}</p>
 
