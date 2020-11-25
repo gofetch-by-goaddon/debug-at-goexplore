@@ -45,12 +45,12 @@
 
         var config_input            = $(this).find(":input[name=config]");
         if (config_input.length > 0) {
-          request_data["config"] = JSON.parse(config_input.val());
+          request_data["config"]      = JSON.parse(config_input.val());
         }
 
-        var got_at_attr_input            = $(this).find(":input[name=got_at_attr_input]");
+        var got_at_attr_input       = $(this).find(":input[name=got_at_attrt]");
         if (got_at_attr_input.length > 0) {
-          request_data["got_at_attr_input"] = got_at_attr_input.val();
+          request_data["got_at_attr"] = got_at_attr_input.val();
         }
 
         form_submit.hide();
