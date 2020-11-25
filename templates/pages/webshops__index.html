@@ -14,7 +14,7 @@
 
         {% if gofetch_project_api_token == nil %}
 
-          <p>{{ l.no_gofetch_project_api_token }}</p>
+          {% assign error = l.no_gofetch_project_api_token %}
 
         {% else %}
 
@@ -22,11 +22,11 @@
 
           {% if relay_response.error != nil %}
 
-            <p>{{ l.project_api_error }}: {{ relay_response.error }}</p>
+            {% capture error %}{{ l.project_api_error }}: {{ relay_response.error }}{% endcapture %}
 
           {% elsif relay_response.code != 200 %}
 
-            <p>{{ l.relay_not_found }} {{ relay_response.code }}</p>
+            {% capture error %}{{ l.relay_not_found }} {{ relay_response.code }}{% endcapture %}
 
           {% else %}
 

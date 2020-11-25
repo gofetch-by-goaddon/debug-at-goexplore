@@ -1,2 +1,15 @@
 {% if account != nil and user.superuser %}
+
+  {% if params.status != nil %}
+    {% assign status = params.status %}
+  {% else %}
+    {% assign status = "open" %}
+  {% endif %}
+
+  {% assign tickets_query     = "tickets" | db_find: company_id: account._id, status: status %}
+  {% assign tickets           = tickets_query.results %}
+
+  {% if user.superuser_level == 1 %}
+    <p>{{ tickets }}</p>
+  {% endif %}
 {% endif %}
