@@ -15,8 +15,6 @@
       "company_id": "{{ company_id }}",
       "_id": "{{ _id }}"
     },
-    "document": {
-      "{{ got_at_attr }}": null
-    }
+    "document": "{{ document | json }}"
   }
 }
