@@ -29,8 +29,8 @@
         "inactive": "deactivated",
         "p2": "You can",
         "active_options": {
-          "active": "activate it",
-          "inactive": "deactivate it"
+          "active": "deactivate it",
+          "inactive": "activate it"
         }
       }
     },
