@@ -57,6 +57,7 @@
   })
   </script>
 
+  <p><b>{{ l.headers.config }}</b></p>
   <p>{{ l.explainers.config }}</p>
 
   {% assign config = nil | new_hash %}
@@ -87,4 +88,9 @@
     <button class="btn btn-outline-primary mt-3 btn-fullwidth disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.submitting }}</button>
 
   </form>
+
+  <p><b>{{ l.headers.timestamps }}</b></p>
+  <p>
+    {{ l.explainers.timestamps.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ l.explainers.timestamps.p1 }} {{ relay.name }}</a>. {{ l.explainers.timestamps.p1 }}.
+  </p>
 {% endif %}
