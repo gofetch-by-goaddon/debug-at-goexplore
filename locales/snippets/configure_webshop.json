@@ -30,6 +30,9 @@
     "placeholders": {
       "got_at_attr": "Select..."
     },
+    "input": {
+      "ago": "ago"
+    },
     "attributes": {
       "got_started_at": "Started last import",
       "got_products_created_since_catch_all_date_at": "Got products created since day 0",
