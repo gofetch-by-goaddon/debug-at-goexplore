@@ -32,7 +32,6 @@
 
   <script>
     submitRequest = function() {
-      $(document).off("submit");
       $(document).on("submit", ".update-webshop-form", function(e) {
         e.preventDefault();
         var form_action             = $(this).attr("action");
