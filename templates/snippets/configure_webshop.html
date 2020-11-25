@@ -134,24 +134,33 @@
 
   </form>
 
-  <p><b>{{ l.headers.timestamps }}</b></p>
+  <p><b>{{ l.headers.reset }}</b></p>
   <p>
-    {{ l.explainers.timestamps.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ relay.name }} <i class="fas fa-external-link-alt"></i></a>. {{ l.explainers.timestamps.p2 }}.
+    {{ l.explainers.reset.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ relay.name }} <i class="fas fa-external-link-alt"></i></a>. {{ l.explainers.reset.p2 }}.
   </p>
 
   <form class="reset-got-at-form mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
-    <div class="form-group">
-      <b><label for="got_at_attribute">{{ l.labels.got_at_attribute }}</label></b>
-      <select name="got_at_attribute" class="form-control input-select2 input-select2-got_at_attribute" multiple>
-        <option value="" label=" "></option>
-        {% for attribute in webshop %}
-          {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
-          {% if got_at == "got_at" %}
-            {% assign attribute_name = attribute[0] %}
-            <option value="{{ attribute_name }}">{{ l.attributes[attribute_name] }}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
-    </div>
+    <b><label for="got_at_attribute">{{ l.labels.got_at_attribute }}</label></b>
+    <table>
+      <tr>
+        <td width="100%">
+          <div class="form-group">
+            <select name="got_at_attribute" class="form-control input-select2 input-select2-got_at_attribute" multiple>
+              <option value="" label=" "></option>
+              {% for attribute in webshop %}
+                {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
+                {% if got_at == "got_at" %}
+                  {% assign attribute_name = attribute[0] %}
+                  <option value="{{ attribute_name }}">{{ l.attributes[attribute_name] }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        </td>
+        <td style="vertical-align: top;">
+          <input type="submit" class="btn btn-outline-primary ml-1" value="{{ l.buttons.reset }}">
+        </td>
+      </tr>
+    </table>
   </form>
 {% endif %}
