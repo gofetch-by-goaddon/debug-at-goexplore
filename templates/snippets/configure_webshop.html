@@ -31,49 +31,45 @@
   </style>
 
   <script>
-    submitRequest = function() {
-      $(document).off("submit");
-      $(document).on("submit", ".update-webshop-form", function(e) {
-        e.preventDefault();
-        var form_action             = $(this).attr("action");
-        var form_method             = $(this).attr("method");
-        var form_submit             = $(this).find(":input[type=submit]");
-        var form_submitting         = $(this).find("[data-type=submitting]");
-        var config_input            = $(this).find(":input[name=config]");
-        var request_data            = {"config": JSON.parse(config_input.val())};
+    submitConfig = function() {
+      var form_action             = $(this).attr("action");
+      var form_method             = $(this).attr("method");
+      var form_submit             = $(this).find(":input[type=submit]");
+      var form_submitting         = $(this).find("[data-type=submitting]");
+      var config_input            = $(this).find(":input[name=config]");
+      var request_data            = {"config": JSON.parse(config_input.val())};
 
-        form_submit.hide();
-        form_submitting.show();
+      form_submit.hide();
+      form_submitting.show();
 
-        $.ajax({
-          url: form_action,
-          type: form_method,
-          dataType: "json",
-          contentType: "application/json",
-          data: JSON.stringify(request_data),
-          success: function(data, status, xhr) {
-            if (data.success !== undefined) {
-              alertify.success(data.success);
-            } else if (data.message !== undefined) {
-              alertify.message(data.message);
-            }
-
-            form_submit.show();
-            form_submitting.hide();
-          },
-          error: function (data, status, error) {
-            if (data.responseJSON !== undefined) {
-              alertify.error(data.responseJSON.error);
-            } else {
-              alertify.error("{{ l.messages.internal_error }}");
-            }
-            form_submit.show();
-            form_submitting.hide();
+      $.ajax({
+        url: form_action,
+        type: form_method,
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(request_data),
+        success: function(data, status, xhr) {
+          if (data.success !== undefined) {
+            alertify.success(data.success);
+          } else if (data.message !== undefined) {
+            alertify.message(data.message);
           }
-        });
 
-        return
+          form_submit.show();
+          form_submitting.hide();
+        },
+        error: function (data, status, error) {
+          if (data.responseJSON !== undefined) {
+            alertify.error(data.responseJSON.error);
+          } else {
+            alertify.error("{{ l.messages.internal_error }}");
+          }
+          form_submit.show();
+          form_submitting.hide();
+        }
       });
+
+      return
     };
 
     select2GotAt = function() {
@@ -107,7 +103,6 @@
     };
 
   $(document).on('turbolinks:load', function() {
-    submitRequest();
     select2GotAt();
   })
   </script>
@@ -133,7 +128,7 @@
     {% endif %}
   {% endfor %}
 
-  <form class="update-webshop-form mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
+  <form class="mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true" onsubmit="submitConfig()">
 
     <div class="json-container">
       <textarea class="border" name="config">{{ config | json }}</textarea>
