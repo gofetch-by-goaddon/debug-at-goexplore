@@ -35,7 +35,7 @@
 
     {% endif %}
 
-  {% elsif params.active == "true" or params.active == "false" %}
+  {% elsif params.active == true or params.active == false %}
     {% assign webshops_update = "toggle_active" | db_update_one: company_id: account._id, _id: params.id, active: params.active %}
   {% endif %}
 
