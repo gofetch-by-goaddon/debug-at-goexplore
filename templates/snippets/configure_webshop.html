@@ -27,6 +27,7 @@
           contentType: "application/json",
           data: JSON.stringify(request_data),
           success: function(data, status, xhr) {
+            console.log(data.success);
             if (data.success != `undefined`) {
               alertify.success(data.success);
             } else if (data.message != `undefined`) {
