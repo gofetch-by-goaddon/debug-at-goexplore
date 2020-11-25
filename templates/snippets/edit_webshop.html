@@ -63,6 +63,11 @@
           var got_at_option           = $(this).find("option[value=" + request_data["got_at_attr"] + "]");
         }
 
+        var active_input            = $(this).find(":input[name=active]");
+        if (active_input.length > 0) {
+          request_data["active"]      = active_input.val();
+        }
+
         form_submit.hide();
         form_submitting.show();
 
@@ -76,6 +81,15 @@
             if (data.success !== undefined) {
               if (got_at_option !== undefined) {
                 got_at_option.attr("data-time", "").trigger('change');
+              }
+              if (request_data["active"] !== undefined) {
+                $(".toggle-active").each(function() {
+                  if ($(this).data("active") == request_data["active"]) {
+                    $(this).hide();
+                  } else {
+                    $(this).show();
+                  }
+                };
               }
               alertify.success(data.success);
             } else if (data.message !== undefined) {
@@ -166,17 +180,19 @@
       {% assign style = "display: none;" %}
     {% endif %}    
 
-    <div style="{{ style }}">
+    {% if status == "active" %}
+      {% assign active_option = "false" %}
+      {% assign active_colour = "success" %}
+    {% else %}
+      {% assign active_option = "true" %}
+      {% assign active_colour = "danger" %}
+    {% endif %}
+
+    <div class="toggle-active" data-active="{{ status }}" style="{{ style }}">
       <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
         <p>
           {{ l.explainers.active.p1 }}
-          {% if status == "active" %}
-            {% assign active_option = "false" %}
-            <span class="text-success">{{ l.explainers.active.active }}</span>.
-          {% else %}
-            {% assign active_option = "true" %}
-            <span class="text-danger">{{ l.explainers.active.inactive }}</span>.
-          {% endif %}
+          <span class="text-{{ active_colour }}">{{ l.explainers.active[status] }}</span>.
           {{ l.explainers.active.p2 }}<input type="hidden" name="active" value="{{ active_option }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary" value="{{ l.explainers.active.active_options[status] }}">.
         </p>
       </form>

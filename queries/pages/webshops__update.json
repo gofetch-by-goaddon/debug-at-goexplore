@@ -16,5 +16,15 @@
       "_id": "{{ _id }}"
     },
     "document": "{{ document | json }}"
+  },
+  "toggle_active": {
+    "klass": "webshops",
+    "query": {
+      "company_id": "{{ company_id }}",
+      "_id": "{{ _id }}"
+    },
+    "document": {
+      "active": "{{ active | bool }}"
+    }
   }
 }
