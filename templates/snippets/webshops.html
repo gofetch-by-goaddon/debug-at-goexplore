@@ -16,12 +16,14 @@
         {% assign relay_id = webshop.relay_id %}
         <tr>
           <td>
-            {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
-              {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
-                ,&nbsp;
-              {% endif %}
-              {{ webshop.config[identifiable_config_key] | decrypt }}
-            {% endfor %}
+            <samp>
+              {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
+                {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
+                  ,&nbsp;
+                {% endif %}
+                {{ webshop.config[identifiable_config_key] | decrypt }}
+              {% endfor %}
+            </samp>
             {% if webshop.active != true %}
               <span class="badge badge-danger">{{ l.badges.inactive }}</span>
             {% endif %}
