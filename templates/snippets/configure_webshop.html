@@ -147,7 +147,8 @@
         {% for attribute in webshop %}
           {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
           {% if got_at == "got_at" %}
-            <option value="{{ attribute[0] }}">{{ attribute[1] }}</option>
+            {% assign attribute_name = attribute[0] %}
+            <option value="{{ attribute_name }}">{{ l.attributes[attribute_name] }}</option>
           {% endif %}
         {% endfor %}
       </select>
