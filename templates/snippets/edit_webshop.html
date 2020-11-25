@@ -92,6 +92,7 @@
     };
 
     formatState = function(state) {
+      console.log(state);
       var parts = state.text.split(",");
       if (parts.length == 1) {
         return parts[0];
@@ -187,9 +188,13 @@
                 {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
                 {% if got_at == "got_at" %}
                   {% assign attribute_name = attribute[0] %}
-                  <option value="{{ attribute_name }}">
-                    {{ l.attributes[attribute_name] }}{% if attribute[1] != nil %}{% assign time = attribute[1] | date: "%Y-%m-%d %H:%M:%S" | parse_time %}, {{ time | time_distance_in_words: now }} {{ l.input.ago }}{% endif %}
-                  </option>
+                  {% if attribute[1] != nil %}
+                    {% assign time = attribute[1] | date: '%Y-%m-%d %H:%M:%S' | parse_time %}
+                    {% capture time_text %}{{ time | time_distance_in_words: now }} {{ l.input.ago }}{% endcapture %}
+                  {% else %}
+                    {% assign time_text = nil %}
+                  {% endif %}
+                  <option value="{{ attribute_name }}" data-title="{{ l.attributes[attribute_name] }}" data-time="{{ time_text }}"></option>
                 {% endif %}
               {% endfor %}
             </select>
