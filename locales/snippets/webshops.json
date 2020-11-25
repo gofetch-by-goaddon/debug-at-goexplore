@@ -9,7 +9,7 @@
       "relay_name": "Ecommerce platform"
     },
     "buttons": {
-      "shop_api": "Interact",
+      "shop_api": "Request",
       "edit": "Edit"
     }
   }
