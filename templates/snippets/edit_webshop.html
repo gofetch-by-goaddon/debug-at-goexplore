@@ -64,11 +64,11 @@
           contentType: "application/json",
           data: JSON.stringify(request_data),
           success: function(data, status, xhr) {
+            if (got_at_option !== undefined) {
+              got_at_option.html("hello");
+            }
             if (data.success !== undefined) {
               alertify.success(data.success);
-              if (got_at_option !== undefined) {
-                got_at_option.html("hello");
-              }
             } else if (data.message !== undefined) {
               alertify.message(data.message);
             }
