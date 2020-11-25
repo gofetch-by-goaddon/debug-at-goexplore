@@ -66,8 +66,7 @@
           success: function(data, status, xhr) {
             if (data.success !== undefined) {
               if (got_at_option !== undefined) {
-                got_at_option.attr("data-time", "");
-                got_at_option.trigger('change');
+                got_at_option.attr("data-time", "").trigger('change');
               }
               alertify.success(data.success);
             } else if (data.message !== undefined) {
