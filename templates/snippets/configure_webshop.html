@@ -87,6 +87,11 @@
       });
     };
 
+    function formatState (state) {
+      var parts = state.split(",");
+      return parts.join(" : ");
+    };
+
     select2GotAt = function() {
       $(".input-select2-got_at_attr").select2({
         width: "100%",
@@ -105,7 +110,8 @@
             }
             return 0;
           });
-        }
+        },
+        templateResult: formatState
       });
       
       $(".input-got-at").on("select2:select", function(e) {
@@ -173,7 +179,7 @@
                 {% if got_at == "got_at" %}
                   {% assign attribute_name = attribute[0] %}
                   <option value="{{ attribute_name }}">
-                    {{ l.attributes[attribute_name] }} <span class="text-secondary">{{ attribute[1] }}</span>
+                    {{ l.attributes[attribute_name] }},{{ attribute[1] }}
                   </option>
                 {% endif %}
               {% endfor %}
