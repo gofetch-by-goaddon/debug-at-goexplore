@@ -25,10 +25,10 @@
       }
     },
     "labels": {
-      "got_at_attribute": "Timestamp to reset"
+      "got_at_attr": "Timestamp to reset"
     },
     "placeholders": {
-      "got_at_attribute": "Select..."
+      "got_at_attr": "Select..."
     },
     "attributes": {
       "got_started_at": "Started last import",

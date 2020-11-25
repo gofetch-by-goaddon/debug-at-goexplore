@@ -1,8 +1,9 @@
 {% if account != nil and user.superuser %}
 
-  {% assign config = nil | new_hash %}
-
   {% if params.config != nil %}
+
+    {% assign config = nil | new_hash %}
+
     {% for kv in params.config %}
 
       {% assign klassname = kv[1] | klassname %}
@@ -18,14 +19,24 @@
 
       {% endif %}
     {% endfor %}
+
+    {% assign webshops_update = "update_config" | db_update_one: company_id: account._id, _id: params.id, config: config %}
+
+  {% elsif params.got_at_attr != nil %}
+
+    {% capture got_at %}{{ params.got_at_attr | slice: 0, 3 }}{{ params.got_at_attr | slice: -3, 3 }}{% endcapture %}
+
+    {% if got_at == "got_at" %}
+
+      {% assign webshops_update = "reset_got_at_attr" | db_update_one: company_id: account._id, _id: params.id, got_at_attr: params.got_at_attr %}
+
+    {% endif %}
+
   {% endif %}
 
-  {% if config.size == 0 %}
-    {"status": "422", "error": "{{ l.no_config }}"}
+  {% if webshops_update == nil %}
+    {"status": "422", "error": "{{ l.invalid_params }}"}
   {% else %}
-
-    {% assign webshops_update = "update_webshop" | db_update_one: company_id: account._id, config: config, _id: params.id %}
-
     {% if webshops_update.matched_count != 1 %}
       {"status": "422", "error": "{{ l.not_found }}"}
     {% elsif webshops_update.updated_count != 1 %}

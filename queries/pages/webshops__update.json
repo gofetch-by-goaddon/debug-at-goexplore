@@ -1,5 +1,5 @@
 {
-  "update_webshop": {
+  "update_config": {
     "klass": "webshops",
     "query": {
       "company_id": "{{ company_id }}",
@@ -7,6 +7,16 @@
     },
     "document": {
       "config": "{{ config | json }}"
+    }
+  },
+  "reset_got_at_attr": {
+    "klass": "webshops",
+    "query": {
+      "company_id": "{{ company_id }}",
+      "_id": "{{ _id }}"
+    },
+    "document": {
+      "{{ got_at_attr }}": null
     }
   }
 }

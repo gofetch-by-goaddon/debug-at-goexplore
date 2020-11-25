@@ -3,6 +3,6 @@
     "updated": "You have updated the webshop",
     "not_found": "The webshop was not found",
     "not_updated": "The webshop was not updated",
-    "no_config": "Can not update with an empty config"
+    "invalid_params": "No valid parameters"
   }
 }

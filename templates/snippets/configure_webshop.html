@@ -48,9 +48,9 @@
           request_data["config"] = JSON.parse(config_input.val());
         }
 
-        var got_at_attribute_input            = $(this).find(":input[name=got_at_attribute_input]");
-        if (got_at_attribute_input.length > 0) {
-          request_data["got_at_attribute_input"] = got_at_attribute_input.val();
+        var got_at_attr_input            = $(this).find(":input[name=got_at_attr_input]");
+        if (got_at_attr_input.length > 0) {
+          request_data["got_at_attr_input"] = got_at_attr_input.val();
         }
 
         form_submit.hide();
@@ -88,9 +88,9 @@
     };
 
     select2GotAt = function() {
-      $(".input-select2-got_at_attribute").select2({
+      $(".input-select2-got_at_attr").select2({
         width: "100%",
-        placeholder: "{{ l.placeholders.got_at_attribute }}",
+        placeholder: "{{ l.placeholders.got_at_attr }}",
         multiple: false,
         allowClear: false,
         tags: false,
@@ -161,12 +161,12 @@
   </p>
 
   <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
-    <b><label for="got_at_attribute">{{ l.labels.got_at_attribute }}</label></b>
+    <b><label for="got_at_attr">{{ l.labels.got_at_attr }}</label></b>
     <table>
       <tr>
         <td width="100%">
           <div class="form-group">
-            <select name="got_at_attribute" class="form-control input-select2 input-select2-got_at_attribute" multiple>
+            <select name="got_at_attr" class="form-control input-select2 input-select2-got_at_attr" multiple>
               <option value="" label=" "></option>
               {% for attribute in webshop %}
                 {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
