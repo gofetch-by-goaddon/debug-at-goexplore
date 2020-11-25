@@ -87,7 +87,7 @@
       });
     };
 
-    function formatState (state) {
+    formatState = function(state) {
       var parts = state.text.split(",");
       if (parts.text.size == 1) {
         return parts[0];
