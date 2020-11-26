@@ -1,5 +1,6 @@
 {
   "en": {
+    "title": "Tickets",
     "project_api_error": "Error",
     "relays_not_found": "Unable to get data about relays. The Project API responsed with code",
     "no_gofetch_project_api_token": "No gofetch_project_api_token",
