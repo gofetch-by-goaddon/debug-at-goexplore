@@ -48,7 +48,7 @@
         <p>{{ l.auth_explainers[auth_field_name] }}</p>
 
         {% assign encrypted_hash = auth[auth_field_name] %}
-        {% include "decrypt_hash" %}
+        {% include "shared/decrypt_hash" %}
 
         <div class="json-pre-container">
           <div class="json-sample" style="display: none;">{{ decrypted_hash | json }}</div>

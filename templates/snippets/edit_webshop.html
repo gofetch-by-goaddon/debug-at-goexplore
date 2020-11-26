@@ -208,7 +208,7 @@
   <p>{{ l.explainers.config }}</p>
 
   {% assign encrypted_hash = webshop.config %}
-  {% include "decrypt_hash" %}
+  {% include "shared/decrypt_hash" %}
 
   <form class="update-webshop-form mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
 
