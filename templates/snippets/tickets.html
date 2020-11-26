@@ -34,12 +34,19 @@
         {% assign company_id      = ticket.company_id %}
         <tr>
           <td>
-            {% if companies[company_id] != nil %}
-              <form method="patch" action="/en/accounts/{{ company_id }}/switch" data-remote="true">
-                <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
-                <input class="submit-link d-inline border-0 py-0 pr-0 text-primary" type="submit" value="{{ companies[company_id].website }}">
-              </form>
-            {% endif %}
+            {% if company_id == account._id %}
+              {{ companies[company_id].website }}
+            {% else %}
+              {% if company_id == nil %}
+                <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
+              {% if companies[company_id] == nil %}
+                <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ {{ l.informations.no_company }} }}</b></span>
+              {% else %}
+                <form method="patch" action="/en/accounts/{{ company_id }}/switch" data-remote="true">
+                  <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
+                  <input class="submit-link d-inline border-0 py-0 pr-0 text-primary" type="submit" value="{{ companies[company_id].website }}">
+                </form>
+              {% endif %}
           </td>
           <td class="text-center text-nowrap" width="1">
             {% if ticket.webshop_id == nil %}

@@ -25,6 +25,8 @@
       "edit": "Edit"
     },
     "informations": {
+      "no_company_id": "NO",
+      "no_company": "NOT FOUND",
       "webshop_exists": "YES",
       "no_webshop": "NO"
     }
