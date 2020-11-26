@@ -6,10 +6,13 @@
     {% assign status = "open" %}
   {% endif %}
 
-  {% assign tickets_query     = "tickets" | db_find: company_id: account._id, status: status %}
-  {% assign tickets           = tickets_query.results %}
-
   {% if user.superuser_level == 1 %}
-    <p>{{ tickets }}</p>
+    {% assign tickets_query = "tickets" | db_find: company_id: account._id, status: status %}
+  {% else %}
+    {% assign tickets_query = "relay_tickets" | db_find: company_id: account._id, status: status, relay_ids: user.relay_ids %}
   {% endif %}
+
+  {% assign tickets = tickets_query.results %}
+
+  {% include "tickets" %}
 {% endif %}

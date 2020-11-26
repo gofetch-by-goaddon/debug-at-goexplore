@@ -1,7 +1,8 @@
 {
 	"en": {
     "project_api_error": "Error",
-    "relay_not_found": "Unable to get data about relay. The Project API responsed with code",
-    "no_gofetch_project_api_token": "No gofetch_project_api_token"
+    "relays_not_found": "Unable to get data about relays. The Project API responsed with code",
+    "no_gofetch_project_api_token": "No gofetch_project_api_token",
+    "no_relay_ids": "No relay_ids"
 	}
 }
