@@ -72,6 +72,7 @@
             {% endif %}
           </td>
           <td>
+            {{ ticket }}
             <span title="{{ ticket[status_time_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
               {{ ticket[status_time_name] | time_distance_in_words: now }} {{ l.informations.ago }}
             </span>
