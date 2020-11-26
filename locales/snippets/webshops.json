@@ -13,6 +13,7 @@
       "edit": "Edit"
     },
     "badges": {
+      "no_relay": "NO RELAY",
       "inactive": "INACTIVE"
     }
   }

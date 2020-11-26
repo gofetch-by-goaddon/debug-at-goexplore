@@ -1,0 +1,25 @@
+{
+  "en": {
+    "headlines": {
+      "tickets": "Tickets"
+    },
+    "explainers": {
+      "no_tickets": {
+        "p1": "No",
+        "open": "open",
+        "closed": "closed",
+        "p2": "tickets"
+      }
+    },
+    "headers": {
+      "company_website": "Company",
+      "relay_name": "Ecommerce platform"
+    },
+    "badges": {
+      "no_relay": "NO RELAY"
+    }
+  },
+  "buttons": {
+    "edit": "Edit"
+  }
+}

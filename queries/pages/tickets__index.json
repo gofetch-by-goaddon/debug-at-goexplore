@@ -1,0 +1,37 @@
+{
+  "tickets": {
+    "klass": "tickets",
+    "query": {
+      "status": "{{ status }}"
+    },
+    "projection": {
+      "_id": 1,
+      "relay_id": 1,
+      "auth_id": 1,
+      "company_id": 1
+    }
+  },
+  "relay_tickets": {
+    "klass": "tickets",
+    "query": {
+      "status": "{{ status }}",
+      "relay_id": {"$in": "{{ relay_ids }}"}
+    },
+    "projection": {
+      "_id": 1,
+      "relay_id": 1,
+      "auth_id": 1,
+      "company_id": 1
+    }
+  },
+  "companies": {
+    "klass": "companies",
+    "query": {
+      "_id": {"$in": "{{ company_ids }}"}
+    },
+    "projection": {
+      "_id": 1,
+      "website": 1
+    }
+  }
+}
