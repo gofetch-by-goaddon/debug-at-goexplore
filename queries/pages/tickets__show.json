@@ -4,17 +4,6 @@
     "query": {
       "company_id": "{{ company_id }}",
       "_id": "{{ _id }}"
-    },
-    "projection": {
-      "_id": 1,
-      "relay_id": 1,
-      "webshop_id": 1,
-      "auth_id": 1,
-      "company_id": 1,
-      "status": 1,
-      "open_at": 1,
-      "in_progress_at": 1,
-      "closed_at": 1
     }
   }
 }
