@@ -13,6 +13,7 @@
         {% if user.relay_ids contains ticket.relay_id %}
         {% else %}
           {% assign error = l.no_access %}
+        {% endif %}
       {% endif %}
     {% endif %}
   {% endif %}
