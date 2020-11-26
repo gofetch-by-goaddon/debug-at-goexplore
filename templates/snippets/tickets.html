@@ -92,7 +92,7 @@
               {% else %}
                 <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
                   <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id }}">
-                  <input class="submit-link d-inline border-0 py-0 pr-0 text-primary" type="submit" value="{{ l.buttons.show }}">
+                  <input class="submit-link d-inline border-0 p-0 text-primary" type="submit" value="{{ l.buttons.show }}">
                 </form>
               {% endif %}
             {% endif %}
