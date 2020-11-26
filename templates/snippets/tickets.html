@@ -7,6 +7,18 @@
 {% if tickets.size == 0 %}
   <p>{{ l.no_tickets.p1 }} {{ l.no_tickets[status] }} {{ l.no_tickets.p2 }}</p>
 {% else %}
+
+  <style>
+    .submit-link {
+      background: none !important;
+      text-decoration: underline;
+    }
+
+    .submit-link:focus {
+      outline: none;
+    }
+  </style>
+
   <table class="table">
     <thead>
       <tr>
@@ -44,7 +56,7 @@
             {% endif %}
           </td>
           <td class="text-right text-nowrap" width="1">
-            <a class="btn btn-outline-primary" href="{{ 'tickets__edit' | path_for: id: ticket._id }}">{{ l.buttons.edit }}</a>
+            <a class="submit-link d-inline border-0 py-0 pr-0 text-primary" href="{{ 'tickets__edit' | path_for: id: ticket._id }}">{{ l.buttons.edit }}</a>
           </td>
         </tr>
       {% endfor %}
