@@ -39,7 +39,7 @@
     </thead>
     <tbody>
 
-      {% assign sorted_tickets = tickets | sort: headline_name %}
+      {% assign sorted_tickets = tickets | sort: headline_name | reverse %}
 
       {% for ticket in sorted_tickets %}
         {% assign relay_id        = ticket.relay_id %}
