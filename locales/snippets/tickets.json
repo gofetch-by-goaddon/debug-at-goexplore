@@ -4,11 +4,7 @@
       "tickets": "Tickets"
     },
     "explainers": {
-      "no_tickets": {
-        "p1": "No",
-        "open": "open",
-        "closed": "closed",
-        "p2": "tickets"
+      "no_tickets": "No tickets..."
       }
     },
     "headers": {
@@ -18,6 +14,7 @@
     },
     "badges": {
       "open": "OPEN",
+      "in_progress": "IN PROGRESS",
       "closed": "CLOSED",
       "no_relay": "NO ECOMMERCE PLATFORM"
     },
