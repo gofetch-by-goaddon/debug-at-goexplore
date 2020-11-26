@@ -29,7 +29,7 @@
       <tr>
         <th class="border-bottom-0">{{ l.headers.company_website }}</th>
         <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
-        <th class="border-bottom-0">{{ l.headers.webshop_exists }}</th>
+        <th class="border-bottom-0 text-center">{{ l.headers.webshop_exists }}</th>
         <th class="border-bottom-0">
           {% capture headline_name %}{{ status }}_at{% endcapture %}
           {{ l.headers[headline_name] }}
@@ -69,7 +69,7 @@
               {{ relays[relay_id].name }}
             {% endif %}
           </td>
-          <td class="text-center text-nowrap" width="1">
+          <td class="text-center text-nowrap">
             {% if ticket.webshop_id == nil %}
               <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_webshop }}</b></span>
             {% else %}
