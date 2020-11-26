@@ -17,6 +17,8 @@
       "webshop_exists": "Webshop"
     },
     "badges": {
+      "open": "OPEN",
+      "closed": "CLOSED",
       "no_relay": "NO ECOMMERCE PLATFORM"
     },
     "buttons": {
