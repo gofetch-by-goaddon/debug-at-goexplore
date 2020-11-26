@@ -71,9 +71,9 @@
           </td>
           <td class="text-nowrap">
             {% if ticket.webshop_id == nil %}
-              <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_webshop }}</b></span>
+              <span class="text-secondary"><b><i class="fas fa-minus-circle"></i><span class="d-none d-md-inline"> {{ l.informations.no_webshop }}</span></b></span>
             {% else %}
-              <span class="text-success"><b><i class="fas fa-check-circle"></i> {{ l.informations.webshop_exists }}</b></span>
+              <span class="text-success"><b><i class="fas fa-check-circle"></i><span class="d-none d-md-inline"> {{ l.informations.webshop_exists }}</span></b></span>
             {% endif %}
           </td>
           <td>
