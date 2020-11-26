@@ -16,8 +16,6 @@
 
   {% if tickets.size > 0 %}
 
-    <p>{{ tickets }}</p>
-
     {% assign relay_ids   = "" %}
     {% assign company_ids = "" %}
 
@@ -75,12 +73,6 @@
     {% endif %}
 
   {% endif %}
-
-  <p>{{ company_ids }}</p>
-  <p>{{ relay_ids }}</p>
-
-  <p>{{ companies }}</p>
-  <p>{{ relays }}</p>
 
   {% include "tickets" %}
 {% endif %}
