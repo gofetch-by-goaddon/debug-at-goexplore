@@ -16,10 +16,10 @@
       "relay_name": "Ecommerce platform"
     },
     "badges": {
-      "no_relay": "NO RELAY"
+      "no_relay": "NO ECOMMERCE PLATFORM"
+    },
+    "buttons": {
+      "edit": "Edit"
     }
-  },
-  "buttons": {
-    "edit": "Edit"
   }
 }
