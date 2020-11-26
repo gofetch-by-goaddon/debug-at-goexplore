@@ -65,7 +65,7 @@
             {% if relays[relay_id] == nil %}
               <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
             {% else %}
-              {% if ticket.webshop_id == nil %}
+              {% if ticket.webshop_id == nil or companies[company_id] == nil %}
                 {{ relays[relay_id].name }}
               {% else %}
                 {% if company_id == account._id %}
