@@ -16,6 +16,10 @@
 
   {% if tickets.size > 0 %}
 
+    {% for ticket in tickets %}
+      <p>{{ ticket }}</p>
+    {% endfor %}
+
     {% assign relay_ids   = "" %}
     {% assign company_ids = "" %}
 
