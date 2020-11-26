@@ -40,15 +40,34 @@
   </table>
 
   {% if auth != nil %}
-    {% assign auth_field_names = "webshop_config setup_config log" | split: " " %}
+    {% assign auth_field_names = "webshop_config setup_config error log" | split: " " %}
 
     {% for auth_field_name in auth_field_names %}
       {% if auth[auth_field_name] != nil %}
         <p><b>{{ l.auth_headlines[auth_field_name] }}</b></p>
         <p>{{ l.auth_explainers[auth_field_name] }}</p>
 
-        {% assign encrypted_hash = auth[auth_field_name] %}
-        {% include "shared/decrypt_hash" %}
+        {% if auth_field_name == "error" %}
+
+          {% assign auth_error = "" | split: " " %}
+
+          {% for auth_e in auth.error %}
+
+            {% assign encrypted_hash = auth_e %}
+            {% include "shared/decrypt_hash" %}
+
+            {% assign auth_error = auth_error | push_to_array: decrypted_hash %}
+
+          {% endfor %}
+
+          {% assign decrypted_hash = auth_error %}
+
+        {% else %}
+
+          {% assign encrypted_hash = auth[auth_field_name] %}
+          {% include "shared/decrypt_hash" %}
+
+        {% endif %}
 
         <div class="json-pre-container">
           <div class="json-sample" style="display: none;">{{ decrypted_hash | json }}</div>
