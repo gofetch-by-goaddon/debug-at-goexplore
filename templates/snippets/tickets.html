@@ -29,7 +29,6 @@
       <tr>
         <th class="border-bottom-0">{{ l.headers.company_website }}</th>
         <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
-        <th class="border-bottom-0">{{ l.headers.webshop_exists }}</th>
         <th class="border-bottom-0">
           {% capture headline_name %}{{ status }}_at{% endcapture %}
           {{ l.headers[headline_name] }}
@@ -66,14 +65,18 @@
             {% if relays[relay_id] == nil %}
               <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
             {% else %}
-              {{ relays[relay_id].name }}
-            {% endif %}
-          </td>
-          <td>
-            {% if ticket.webshop_id == nil %}
-              <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_webshop }}</b></span>
-            {% else %}
-              <span class="text-success"><b><i class="fas fa-check-circle"></i> {{ l.informations.webshop_exists }}</b></span>
+              {% if ticket.webshop_id == nil %}
+                {{ relays[relay_id].name }}
+              {% else %}
+                {% if company_id == account._id %}
+                  <a href="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}">{{ relays[relay_id].name }}</a>
+                {% else %}
+                  <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                    <input type="hidden" name="redirect" value="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}">
+                    <input class="submit-link d-inline border-0 p-0 text-primary" type="submit" value="{{ relays[relay_id].name }}">
+                  </form>
+                {% endif %}
+              {% endif %}
             {% endif %}
           </td>
           <td>
