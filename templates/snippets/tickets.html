@@ -57,7 +57,7 @@
               {% else %}
                 <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
                   <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
-                  <input class="submit-link d-inline border-0 py-0 pr-0 text-primary" type="submit" value="{{ companies[company_id].website }}">
+                  <input class="submit-link d-inline border-0 p-0 text-primary" type="submit" value="{{ companies[company_id].website }}">
                 </form>
               {% endif %}
             {% endif %}
