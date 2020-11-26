@@ -37,7 +37,7 @@
             {% if companies[company_id] != nil %}
               <form method="patch" action="/en/accounts/{{ company_id }}/switch" data-remote="true">
                 <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
-                <input class="btn btn-link m-0 p-0" type="submit" value="{{ companies[company_id].website }}">
+                <input class="submit-link d-inline border-0 py-0 pr-0 text-primary" type="submit" value="{{ companies[company_id].website }}">
               </form>
             {% endif %}
           </td>
@@ -56,7 +56,7 @@
             {% endif %}
           </td>
           <td class="text-right text-nowrap" width="1">
-            <a class="submit-link d-inline border-0 py-0 pr-0 text-primary" href="{{ 'tickets__edit' | path_for: id: ticket._id }}">{{ l.buttons.edit }}</a>
+            <a class="btn btn-outline-primary" href="{{ 'tickets__edit' | path_for: id: ticket._id }}">{{ l.buttons.edit }}</a>
           </td>
         </tr>
       {% endfor %}
