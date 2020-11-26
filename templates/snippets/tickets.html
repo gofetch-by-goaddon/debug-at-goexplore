@@ -40,7 +40,7 @@
               {% if company_id == nil %}
                 <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
               {% if companies[company_id] == nil %}
-                <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ {{ l.informations.no_company }} }}</b></span>
+                <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
               {% else %}
                 <form method="patch" action="/en/accounts/{{ company_id }}/switch" data-remote="true">
                   <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
