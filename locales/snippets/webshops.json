@@ -9,7 +9,7 @@
       "relay_name": "Ecommerce platform"
     },
     "buttons": {
-      "shop_api": "Request",
+      "show": "Request",
       "edit": "Edit"
     },
     "badges": {
