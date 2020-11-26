@@ -11,8 +11,8 @@
     <thead>
       <tr>
         <th class="border-bottom-0">{{ l.headers.company_website }}</th>
-        <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
         <th class="border-bottom-0">{{ l.headers.webshop_exists }}</th>
+        <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
         <th class="border-bottom-0"></th>
       </tr>
     </thead>
@@ -26,18 +26,18 @@
               {{ companies[company_id].website }}
             {% endif %}
           </td>
-          <td>
-            {% if relays[relay_id] == nil %}
-              <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
-            {% else %}
-              {{ relays[relay_id].name }}
-            {% endif %}
-          </td>
           <td class="text-center text-nowrap" width="1">
             {% if ticket.webshop_id == nil %}
               <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_webshop }}</b></span>
             {% else %}
               <span class="text-success"><b><i class="fas fa-check-circle"></i> {{ l.informations.webshop_exists }}</b></span>
+            {% endif %}
+          </td>
+          <td>
+            {% if relays[relay_id] == nil %}
+              <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
+            {% else %}
+              {{ relays[relay_id].name }}
             {% endif %}
           </td>
           <td class="text-right text-nowrap" width="1">
