@@ -36,7 +36,14 @@
     {% endif %}
 
   {% elsif params.active == "true" or params.active == "false" %}
-    {% assign webshops_update = "toggle_active" | db_update_one: company_id: account._id, _id: params.id, active: params.active %}
+
+    {% if params.active == "true" %}
+      {% assign active = true %}
+    {% else %}
+      {% assign active = false %}
+    {% endif %}
+
+    {% assign webshops_update = "toggle_active" | db_update_one: company_id: account._id, _id: params.id, active: active %}
   {% endif %}
 
   {% if webshops_update == nil %}

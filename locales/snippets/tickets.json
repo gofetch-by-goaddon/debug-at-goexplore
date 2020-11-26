@@ -13,7 +13,8 @@
     },
     "headers": {
       "company_website": "Company",
-      "relay_name": "Ecommerce platform"
+      "relay_name": "Ecommerce platform",
+      "webshop_exists": "Webshop"
     },
     "badges": {
       "no_relay": "NO ECOMMERCE PLATFORM"

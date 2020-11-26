@@ -6,7 +6,7 @@
       "_id": "{{ _id }}"
     },
     "document": {
-      "config": "{{ config | json }}"
+      "config": "{{ config }}"
     }
   },
   "reset_got_at_attr": {
@@ -15,7 +15,7 @@
       "company_id": "{{ company_id }}",
       "_id": "{{ _id }}"
     },
-    "document": "{{ document | json }}"
+    "document": "{{ document }}"
   },
   "toggle_active": {
     "klass": "webshops",
@@ -24,7 +24,7 @@
       "_id": "{{ _id }}"
     },
     "document": {
-      "active": "{{ active | bool }}"
+      "active": "{{ active }}"
     }
   }
 }

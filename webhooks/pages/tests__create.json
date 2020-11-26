@@ -14,7 +14,7 @@
       "Authorization": "{{ token }}",
       "Content-Type": "application/json"
     },
-    "body": "{{ body | json }}"
+    "body": "{{ body }}"
   },
   "post_shop_api": {
     "method": "patch",
@@ -23,7 +23,7 @@
       "Authorization": "{{ token }}",
       "Content-Type": "application/json"
     },
-    "body": "{{ body | json }}"
+    "body": "{{ body }}"
   },
   "delete_shop_api": {
     "method": "delete",
