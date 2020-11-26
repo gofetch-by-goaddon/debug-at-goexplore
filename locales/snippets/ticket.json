@@ -31,8 +31,8 @@
     "informations": {
       "ago": "ago",
       "edit_webshop": "Edit",
-      "or"
-      "test"
+      "or": "or",
+      "show_webshop": "test the integration"
     },
     "auth_headlines": {
       "webshop_config": "Configuration",
