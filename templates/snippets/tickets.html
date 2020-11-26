@@ -69,10 +69,10 @@
                 {{ relays[relay_id].name }}
               {% else %}
                 {% if company_id == account._id %}
-                  <a href="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}">{{ relays[relay_id].name }}</a>
+                  <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ relays[relay_id].name }}</a>
                 {% else %}
                   <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                    <input type="hidden" name="redirect" value="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}">
+                    <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">
                     <input class="submit-link d-inline border-0 p-0 text-primary" type="submit" value="{{ relays[relay_id].name }}">
                   </form>
                 {% endif %}
