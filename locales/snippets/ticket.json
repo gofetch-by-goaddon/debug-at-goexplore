@@ -17,12 +17,18 @@
       "ftp_username": "FTP username",
       "ftp_password": "FTP password",
       "ssh_address": "SSH address",
-      "ssh_password": "SSH password"
+      "ssh_password": "SSH password",
+      "open_at": "Opened at",
+      "in_progress_at": "In progress since",
+      "closed_at": "Closed at"
     },
     "statuses": {
       "open": "Open",
       "in_progress": "In progress",
       "closed": "Closed"
+    },
+    "informations": {
+      "ago": "ago"
     }
   }
 }
