@@ -28,6 +28,10 @@
         <th class="border-bottom-0">{{ l.headers.company_website }}</th>
         <th class="border-bottom-0">{{ l.headers.webshop_exists }}</th>
         <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
+        <th class="border-bottom-0">
+          {% capture headline_name %}{{ status }}_at{% endcapture %}
+          {{ l.headers[headline_name] }}
+        </th>
         <th class="border-bottom-0"></th>
       </tr>
     </thead>
@@ -35,6 +39,7 @@
       {% for ticket in tickets %}
         {% assign relay_id        = ticket.relay_id %}
         {% assign company_id      = ticket.company_id %}
+        {% capture status_time_name %}{{ ticket.status }}_at{% endcapture %}
         <tr>
           <td>
             {% if company_id == account._id %}
@@ -65,6 +70,11 @@
             {% else %}
               {{ relays[relay_id].name }}
             {% endif %}
+          </td>
+          <td>
+            <span title="{{ ticket[status_time_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+              {{ ticket[status_time_name] | time_distance_in_words: now }} {{ l.informations.ago }}
+            </span>
           </td>
           <td class="text-right text-nowrap" width="1">
             <a class="btn btn-outline-primary" href="{{ 'tickets__edit' | path_for: id: ticket._id }}">{{ l.buttons.edit }}</a>

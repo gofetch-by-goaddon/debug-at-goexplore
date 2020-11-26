@@ -9,7 +9,10 @@
     "headers": {
       "company_website": "Company",
       "relay_name": "Ecommerce platform",
-      "webshop_exists": "Webshop"
+      "webshop_exists": "Webshop",
+      "open_at": "Opened at",
+      "in_progress_at": "In progress since",
+      "closed_at": "Closed at"
     },
     "badges": {
       "open": "OPEN",
@@ -24,7 +27,8 @@
       "no_company_id": "NO",
       "no_company": "NOT FOUND",
       "webshop_exists": "YES",
-      "no_webshop": "NO"
+      "no_webshop": "NO",
+      "ago": "ago"
     }
   }
 }
