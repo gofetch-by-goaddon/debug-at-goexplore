@@ -1,5 +1,9 @@
 <h5 class="mb-3">{{ l.headlines.tickets }}</h5>
 
+{% if error != nil %}
+  <p><span class="badge badge-danger">{{ error }}</span></p>
+{% endif %}
+
 {% if tickets.size == 0 %}
   <p>{{ l.no_tickets.p1 }} {{ l.no_tickets[status] }} {{ l.no_tickets.p2 }}</p>
 {% else %}

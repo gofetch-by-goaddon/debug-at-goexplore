@@ -1,7 +1,7 @@
 {% if webshops.size == 0 %}
   <h5 class="mb-3">{{ l.headlines.no_webshops }}</h5>
   {% if error != nil %}
-    <p>{{ error }}</p>
+    <p><span class="badge badge-danger">{{ error }}</span></p>
   {% endif %}
 {% else %}
   <h5 class="mb-3">{{ l.headlines.webshops }}</h5>
