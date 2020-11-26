@@ -11,7 +11,6 @@
   <style>
     .submit-link {
       background: none !important;
-      text-decoration: underline;
     }
 
     .submit-link:focus {
@@ -44,7 +43,7 @@
               {% else %}
                 <form method="patch" action="/en/accounts/{{ company_id }}/switch" data-remote="true">
                   <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
-                  <input class="submit-link d-inline border-0 py-0 pr-0 text-primary text-decoration-none" type="submit" value="{{ companies[company_id].website }}">
+                  <input class="submit-link d-inline border-0 py-0 pr-0 text-primary" type="submit" value="{{ companies[company_id].website }}">
                 </form>
               {% endif %}
             {% endif %}

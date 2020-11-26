@@ -33,7 +33,6 @@
 
     .submit-link {
       background: none !important;
-      text-decoration: underline;
     }
 
     .submit-link:focus {
@@ -195,7 +194,7 @@
         <p>
           {{ l.explainers.active.p1 }}
           <span class="text-{{ active_colour }}"><b>{{ l.explainers.active[status] }}</b></span>.
-          {{ l.explainers.active.p2 }}<input type="hidden" name="active" value="{{ active_option }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary text-decoration-none" value="{{ l.explainers.active.active_options[status] }}">.
+          {{ l.explainers.active.p2 }}<input type="hidden" name="active" value="{{ active_option }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary" value="{{ l.explainers.active.active_options[status] }}">.
         </p>
       </form>
     </div>
