@@ -4,6 +4,9 @@
   </h5>
   <p>{{ error }}</p>
 {% else %}
+
+  {% include "shared/indent_json_pre" %}
+
   <h5 class="mb-3">
     {{ l.headlines.intro }} <a href="{{ 'tickets__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
@@ -37,6 +40,19 @@
   </table>
 
   {% if auth != nil %}
+    {% auth_field_names = "webshop_config setup_config error log" | split: " " %}
+
+    {% for auth_field_name in auth_field_names %}
+      {% if auth[auth_field_name] != nil %}
+        <p><b>{{ l.auth_headlines[auth_field_name] }}</b></p>
+        <p>{{ l.auth_explainers[auth_field_name] }}</p>
+        <div class="json-pre-container">
+          <div class="json-sample" style="display: none;">{{ auth[auth_field_name] | json }}</div>
+          <pre class="language-json"><code class="language-json"></code></pre>
+        </div>
+      {% endif %}
+    {% endfor %}
+
     {% for attribute in auth %}
       <p>{{ attribute[0] }}: {{ attribute[1] }}</p>
     {% endfor %}

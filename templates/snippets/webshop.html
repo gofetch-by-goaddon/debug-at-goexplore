@@ -36,22 +36,13 @@
   </style>
 
   {% include "shared/indent_json_input" %}
+  {% include "shared/indent_json_pre" %}
 
   <script>
-    var converter = new showdown.Converter({});
-    var addMarkdown;
     addMarkdown = function() {
+      var converter = new showdown.Converter({});
       $(".markdown").each(function() {
         $(this).html(converter.makeHtml($(this).html()));
-      });
-    };
-
-    indentJsonSamples = function() {
-      $(".json-sample-container").each(function() {
-        var sample_code       = $(this).find("pre code");
-        var sample_json       = JSON.stringify(JSON.parse($(this).find(".json-sample").html()), undefined, 2);
-        var highlighted_json  = Prism.highlight(sample_json, Prism.languages.json, 'json');
-        sample_code.empty().html(highlighted_json);
       });
     };
 
@@ -133,7 +124,6 @@
     $(document).on('turbolinks:load', function() {
       addMarkdown();
       submitRequest();
-      indentJsonSamples();
     })
   </script>
   <h5 class="mb-3">
@@ -258,7 +248,7 @@
                           <p>{{ l.body_sample.intro }} <a class="" data-toggle="collapse" href="#{{ body_sample_id }}" role="button" aria-expanded="false" aria-controls="{{ body_sample_id }}">{{ l.body_sample.link }} <i class="fas fa-caret-down"></i></a></p>
                           <div class="collapse" id="{{ body_sample_id }}">
                             <div class="card border-0 mb-3">
-                              <div class="json-sample-container">
+                              <div class="json-pre-container">
                                 <div class="json-sample" style="display: none;">{{ endpoint.body_description | json }}</div>
                                 <pre class="language-json"><code class="language-json"></code></pre>
                               </div>

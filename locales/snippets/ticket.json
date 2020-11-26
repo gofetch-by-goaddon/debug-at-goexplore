@@ -29,6 +29,18 @@
     },
     "informations": {
       "ago": "ago"
+    },
+    "auth_headlines": {
+      "webshop_config": "Configuration",
+      "setup_config": "Setup configuration",
+      "error": "Error",
+      "log": "Log"
+    },
+    "auth_explainers": {
+      "webshop_config": "This configuration was applied.",
+      "setup_config": "This setup configuration was applied",
+      "error": "This error occurred",
+      "log": "This was logged"
     }
   }
 }
