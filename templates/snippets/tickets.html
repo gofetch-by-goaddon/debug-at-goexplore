@@ -38,7 +38,10 @@
       </tr>
     </thead>
     <tbody>
-      {% for ticket in tickets %}
+
+      {% assign sorted_tickets = tickets | sort: headline_name %}
+
+      {% for ticket in sorted_tickets %}
         {% assign relay_id        = ticket.relay_id %}
         {% assign company_id      = ticket.company_id %}
         {% capture status_time_name %}{{ ticket.status }}_at{% endcapture %}
