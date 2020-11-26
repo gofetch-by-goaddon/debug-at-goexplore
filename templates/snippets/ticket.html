@@ -18,6 +18,17 @@
       {% assign input_field_names   = "mail_address phone comments admin_url admin_username admin_password ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}
       {% assign field_names  = status_field_names | concat: input_field_names %}
 
+      {% if ticket.webshop_id != nil %}
+        <tr>
+          <td width="1" class="text-nowrap">
+            <b>{{ l.headers.webshop }}:</b>
+          </td>
+          <td>
+            <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}" target="_blank">{{ l.informations.edit_webshop }} <i class="fas fa-external-link-alt"></i></a> {% l.informations.or %} <a href="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}" target="_blank">{{ l.informations.show_webshop }} <i class="fas fa-external-link-alt"></i></a>
+          </td>
+        </tr>
+      {% endif %}
+
       {% for field_name in field_names %}
         {% if ticket[field_name] != nil and ticket[field_name] != "" %}
           <tr>

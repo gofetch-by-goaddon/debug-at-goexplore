@@ -6,6 +6,7 @@
       "return": "return"
     },
     "headers": {
+      "webshop": "Webshop",
       "mail_address": "Email",
       "phone": "Phone",
       "status": "Status",
@@ -28,7 +29,10 @@
       "closed": "Closed"
     },
     "informations": {
-      "ago": "ago"
+      "ago": "ago",
+      "edit_webshop": "Edit",
+      "or"
+      "test"
     },
     "auth_headlines": {
       "webshop_config": "Configuration",
