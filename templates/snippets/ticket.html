@@ -44,8 +44,10 @@
 
     {% for auth_field_name in auth_field_names %}
       {% if auth[auth_field_name] != nil %}
-        <p><b>{{ l.auth_headlines[auth_field_name] }}</b></p>
-        <p>{{ l.auth_explainers[auth_field_name] }}</p>
+        <p class="mt-4">
+          <b>{{ l.auth_headlines[auth_field_name] }}</b>
+        </p>
+        <p>{{ l.auth_explainers[auth_field_name] }}:</p>
 
         {% if auth_field_name == "error" %}
 
