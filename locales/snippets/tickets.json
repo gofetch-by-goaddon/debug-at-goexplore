@@ -21,6 +21,10 @@
     },
     "buttons": {
       "edit": "Edit"
+    },
+    "informations": {
+      "webshop_exists": "YES",
+      "no_webshop": "NO"
     }
   }
 }

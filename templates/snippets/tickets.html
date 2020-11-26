@@ -35,9 +35,9 @@
           </td>
           <td class="text-center text-nowrap" width="1">
             {% if ticket.webshop_id == nil %}
-              <i class="fas fa-minus-circle text-secondary"></i>
+              <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_webshop }}</b></span>
             {% else %}
-              <i class="fas fa-check-circle text-success"></i>
+              <span class="text-secondary"><b><i class="fas fa-check-circle text-success"></i> {{ l.informations.webshop_exists }}</b></span>
             {% endif %}
           </td>
           <td class="text-right text-nowrap" width="1">
