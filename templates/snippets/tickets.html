@@ -24,7 +24,7 @@
           <td>
             {% if companies[company_id] != nil %}
               <form method="patch" action="/en/accounts/{{ company_id }}/switch">
-                <input class="btn btn-link" type="submit" value="{{ companies[company_id].website }}">
+                <input class="btn btn-link m-0 p-0" type="submit" value="{{ companies[company_id].website }}">
               </form>
             {% endif %}
           </td>
