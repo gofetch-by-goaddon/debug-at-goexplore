@@ -73,7 +73,8 @@
 
       {% assign companies_query = "companies" | db_find: company_ids: company_ids %}
       {% assign companies       = companies_query.results | to_hash: "_id" %}
-
+      <p>companies_query: {{ companies_query }}</p>
+      <p>companies: {{ companies }}</p>
     {% endif %}
 
   {% endif %}
