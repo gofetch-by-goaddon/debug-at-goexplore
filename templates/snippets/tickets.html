@@ -88,11 +88,7 @@
             {% if company_id == account._id %}
               <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.show }}</a>
             {% else %}
-              {% if company_id == nil %}
-                <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
-              {% elsif companies[company_id] == nil %}
-                <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
-              {% else %}
+              {% if company_id != nil and companies[company_id] != nil %}
                 <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
                   <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id }}">
                   <input class="submit-link d-inline border-0 p-0 text-primary" type="submit" value="{{ l.buttons.show }}">
