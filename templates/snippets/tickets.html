@@ -82,19 +82,15 @@
             </span>
           </td>
           <td class="text-right text-nowrap" width="1">
-            {% if company_id == account._id %}
-              {{ companies[company_id].website }}
+            {% if company_id == nil %}
+              <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
+            {% elsif companies[company_id] == nil %}
+              <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
             {% else %}
-              {% if company_id == nil %}
-                <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
-              {% elsif companies[company_id] == nil %}
-                <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
-              {% else %}
-                <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                  <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id }}">
-                  <input class="submit-link d-inline border-0 py-0 pr-0 text-primary" type="submit" value="{{ l.buttons.edit }}">
-                </form>
-              {% endif %}
+              <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id }}">
+                <input class="submit-link d-inline border-0 py-0 pr-0 text-primary" type="submit" value="{{ l.buttons.edit }}">
+              </form>
             {% endif %}
           </td>
         </tr>
