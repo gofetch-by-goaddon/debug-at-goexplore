@@ -4,6 +4,25 @@
       "error": "Error, please",
       "intro": "View this ticket, or",
       "return": "return"
+    },
+    "headers": {
+      "mail_address": "Email",
+      "phone": "Phone",
+      "status": "Status",
+      "comments": "Comments",
+      "admin_url": "Admin URL",
+      "admin_username": "Admin username",
+      "admin_password": "Admin password",
+      "ftp_host": "FTP host",
+      "ftp_username": "FTP username",
+      "ftp_password": "FTP password",
+      "ssh_address": "SSH address",
+      "ssh_password": "SSH password"
+    },
+    "statuses": {
+      "open": "Open",
+      "in_progress": "In progress",
+      "closed": "Closed"
     }
   }
 }
