@@ -5,5 +5,11 @@
       "company_id": "{{ company_id }}",
       "_id": "{{ _id }}"
     }
+  },
+  "auths": {
+    "klass": "auths",
+    "query": {
+      "_id": "{{ _id }}"
+    }
   }
 }

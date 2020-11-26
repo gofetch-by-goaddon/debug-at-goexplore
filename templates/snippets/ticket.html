@@ -35,4 +35,10 @@
       {% endfor %}
     </tbody>
   </table>
+
+  {% if auth != nil %}
+    {% for attribute in auth %}
+      <p>{{ auth[0] }}: {{ auth[1] }}</p>
+    {% endfor %}
+  {% endif %}
 {% endif %}

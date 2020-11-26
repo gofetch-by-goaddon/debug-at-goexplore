@@ -1,20 +1,35 @@
 {% if account != nil and user.superuser %}
 
   {% assign tickets_query = "tickets" | db_find: company_id: account._id, _id: params.id %}
-  {% assign ticket = tickets_query.results.first %}
+  {% assign ticket        = tickets_query.results.first %}
 
   {% if ticket == nil %}
+
     {% assign error = l.no_ticket %}
+
   {% else %}
     {% if user.superuser_level != 1 %}
       {% if user.relay_ids == nil %}
+
         {% assign error = l.no_access %}
+
       {% else %}
+
         {% if user.relay_ids contains ticket.relay_id %}
         {% else %}
+
           {% assign error = l.no_access %}
+
         {% endif %}
       {% endif %}
+    {% endif %}
+
+    {% if error == nil and ticket.auth_id != nil %}
+
+      {% assign auths_query = "auths" | db_find: company_id: account._id, _id: params.id %}
+      {% assign auth        = auths_query.results.first %}
+
+
     {% endif %}
   {% endif %}
 
