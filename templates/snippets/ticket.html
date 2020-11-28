@@ -18,6 +18,17 @@
       {% assign input_field_names   = "mail_address phone comments admin_url admin_username admin_password ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}
       {% assign field_names  = status_field_names | concat: input_field_names %}
 
+      {% if relay != nil %}
+        <tr>
+          <td width="1" class="text-nowrap">
+            <b>{{ l.headers.relay }}:</b>
+          </td>
+          <td>
+            {{ relay.name }}
+          </td>
+        </tr>
+      {% endif %}
+
       {% if ticket.webshop_id != nil %}
         <tr>
           <td width="1" class="text-nowrap">

@@ -1,0 +1,10 @@
+{
+  "relay": {
+    "method": "get",
+    "url": "http://0.0.0.0:3001/project_api/v1/relays/{{ relay_id }}",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "{{ gofetch_project_api_token }}"
+    }
+  }
+}

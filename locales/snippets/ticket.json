@@ -6,6 +6,7 @@
       "return": "return"
     },
     "headers": {
+      "relay": "Ecommerce platform",
       "webshop": "Webshop",
       "mail_address": "Email",
       "phone": "Phone",

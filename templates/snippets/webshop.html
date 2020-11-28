@@ -47,8 +47,8 @@
     };
 
     submitRequest = function() {
-      $(document).off("submit");
-      $(document).on("submit", ".shop-api-form", function(e) {
+      $(".shop-api-form").off("submit");
+      $(".shop-api-form").on("submit", function(e) {
         e.preventDefault();
         var form_action             = $(this).attr("action");
         var form_method             = $(this).attr("method");

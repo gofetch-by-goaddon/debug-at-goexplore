@@ -46,19 +46,19 @@
 
       {% else %}
 
-        {% assign relay_response = "relays" | webhook: relay_ids: relay_ids, gofetch_project_api_token: gofetch_project_api_token %}
+        {% assign relays_response = "relays" | webhook: relay_ids: relay_ids, gofetch_project_api_token: gofetch_project_api_token %}
 
-        {% if relay_response.error != nil %}
+        {% if relays_response.error != nil %}
 
-          {% capture error %}{{ l.project_api_error }}: {{ relay_response.error }}{% endcapture %}
+          {% capture error %}{{ l.project_api_error }}: {{ relays_response.error }}{% endcapture %}
 
-        {% elsif relay_response.code != 200 %}
+        {% elsif relays_response.code != 200 %}
 
-          {% capture error %}{{ l.relays_not_found }} {{ relay_response.code }}{% endcapture %}
+          {% capture error %}{{ l.relays_not_found }} {{ relays_response.code }}{% endcapture %}
 
         {% else %}
 
-          {% assign relays = relay_response.body.documents | to_hash: "_id" %}
+          {% assign relays = relays_response.body.documents | to_hash: "_id" %}
 
         {% endif %}
       {% endif %}

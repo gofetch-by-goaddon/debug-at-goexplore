@@ -1,6 +1,10 @@
 {
   "en": {
     "title": "Ticket",
-    "no_ticket": "No ticket"
+    "no_ticket": "No ticket",
+    "project_api_error": "Project API error",
+    "relay_not_found": "Unable to get data about the relay. The Project API responsed with code",
+    "no_gofetch_project_api_token": "No gofetch_project_api_token",
+    "no_relay_ids": "No relay_ids"
   }
 }
