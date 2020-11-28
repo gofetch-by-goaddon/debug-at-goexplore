@@ -33,7 +33,7 @@
       "ago": "ago",
       "edit_webshop": "Edit",
       "or": "or",
-      "show_webshop": "test the integration"
+      "show_webshop": "test the Shop API"
     },
     "auth_headlines": {
       "webshop_config": "Configuration",
