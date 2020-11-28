@@ -55,7 +55,7 @@
 
         {% else %}
 
-          {% assign relays = relay_response.body.documents | to_hash: "_id" %}
+          {% assign relay = relay_response.body.document %}
 
         {% endif %}
       {% endif %}
