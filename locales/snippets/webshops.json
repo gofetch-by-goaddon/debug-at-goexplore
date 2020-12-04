@@ -15,6 +15,9 @@
     "badges": {
       "no_relay": "NO RELAY",
       "inactive": "INACTIVE"
+    },
+    "informations": {
+      "no_identifiable_config_keys": "None"
     }
   }
 }
