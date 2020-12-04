@@ -21,16 +21,20 @@
           <td>
             {% if relays[relay_id] != nil %}
               <samp>
-                {% if relays[relay_id].identifiable_config_keys.size == 0 %}
+                {% assign identifiable_config_keys = 0 %}
+                {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
+                  {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
+                    ,&nbsp;
+                  {% endif %}
+                  {% if webshop.config[identifiable_config_key] != nil and webshop.config[identifiable_config_key] != "" %}
+                    {% assign identifiable_config_keys = identifiable_config_keys | plus: 1 %}
+                    {{ webshop.config[identifiable_config_key] | decrypt }}
+                  {% endif %}
+                {% endfor %}
+
+                {% if identifiable_config_keys == 0 %}
                   {{ l.informations.no_identifiable_config_keys }}
                 {% else %}
-                  {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
-                    {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
-                      ,&nbsp;
-                    {% endif %}
-                    {{ webshop.config[identifiable_config_key] | decrypt }}
-                  {% endfor %}
-                {% endif %}  
               </samp>
             {% endif %}
 
