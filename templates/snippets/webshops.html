@@ -32,9 +32,11 @@
                   {% endif %}
                 {% endfor %}
 
-                {% if identifiable_config_keys == 0 %}
-                  {{ l.informations.no_identifiable_config_keys }}
-                {% endif %}
+                <span class="text-secondary">
+                  {% if identifiable_config_keys == 0 %}
+                    {{ l.informations.no_identifiable_config_keys }}
+                  {% endif %}
+                </span>
               </samp>
             {% endif %}
 
