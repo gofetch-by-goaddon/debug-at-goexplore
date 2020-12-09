@@ -269,12 +269,12 @@
       {% else %}
         {{ l.explainers.tickets.tickets }}
       {% endif %}
-      {{ l.explainers.reset.p2 }}.
+      {{ l.explainers.tickets.p2 }}.
     </p>
 
     {% assign now         = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
     {% assign field_names = "opened_at in_progress_at closed_at escalated_at" | split: " " %}
-
+    <p>{{ tickets }}</p>
     <table class="table">
       <thead>
         <tr>
@@ -285,7 +285,6 @@
         </tr>
       </thead>
       <tbody>
-
         {% assign sorted_tickets = tickets | sort: "opened_at" | reverse %}
 
         {% for ticket in sorted_tickets %}
