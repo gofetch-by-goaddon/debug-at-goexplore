@@ -273,7 +273,7 @@
     </p>
 
     {% assign now         = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-    {% assign field_names = "opened_at in_progress_at closed_at escalated_at" | split: " " %}
+    {% assign field_names = "open_at in_progress_at closed_at escalated_at" | split: " " %}
 
     <table class="table">
       <thead>

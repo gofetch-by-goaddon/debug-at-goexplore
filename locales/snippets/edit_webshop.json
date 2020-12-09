@@ -65,7 +65,7 @@
     },
     "tickets": {
       "headers": {
-        "opened_at": "Opened",
+        "open_at": "Opened",
         "in_progress_at": "In progress since",
         "closed_at": "Closed",
         "escalated_at": "Escalated"
