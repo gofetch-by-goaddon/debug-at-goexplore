@@ -4,7 +4,7 @@
 
   {% if error == nil %}
     {% assign tickets_query    = "tickets" | db_find: webshop_id: webshop._id %}
-    {% assign tickets          = webshops_query.results %}    
+    {% assign tickets          = tickets_query.results %}    
   {% endif %}
 
   {% include "edit_webshop" %}
