@@ -72,7 +72,7 @@
               {% if action_count == 1 or action_number == action_count %}
                 <p>1</p>
                 {% assign append_string = "" %}
-              {% elsif action_number == second_last_action_number or users_query.total_results_count == 1 %}
+              {% elsif action_number == second_last_action_number and users_query.total_results_count == 1 %}
                 <p>2</p>
                 {% assign append_string = l.update_status.append_strings.or %}
               {% elsif action_number == action_count and users.size > 1 %}
