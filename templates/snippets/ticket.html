@@ -55,8 +55,19 @@
           <b>{{ l.headers.options }}:</b>
         </td>
         <td>
-          {% assign statuses = "in_progress closed escalated" | split: " " %}
-          {% assign first_status = false %}
+          {% assign statuses      = "in_progress closed escalated" | split: " " %}
+          {% assign action_count  = 0 %}
+
+          {% for status in statuses %}
+            {% if ticket.status != status %}
+              {% assign action_count = action_count | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+
+          {% assign second_last_action_number = action_count | minus: 1 %}
+          {% assign first_status  = false %}
+          {% assign action_number = 0 %}
+
           {% for status in statuses %}
             {% if ticket.status != status %}
               {% if first_status == false %}
@@ -65,9 +76,18 @@
               {% else %}
                 {% assign status_klass = "pr-0" %}
               {% endif %}
+
+              {% if action_count == 1 %}
+                {% assign append_string = "" %}
+              {% elsif action_number == second_last_action_number %}
+                {% assign append_string = l.update_status.append_strings.or %}
+              {% else %}
+                {% assign append_string = ", " %}
+              {% endif %}
               <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 text-primary bg-white {{ status_klass }}" value="{{ l.update_status.links[status] }}">
+                <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 text-primary bg-white {{ status_klass }}" value="{{ l.update_status.links[status] }}">{{ append_string }}
               </form>
+              {% assign action_number = action_number | plus: 1 %}
             {% endif %}
           {% endfor %}
         </td>

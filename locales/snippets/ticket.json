@@ -54,6 +54,9 @@
         "in_progress": "Self-assign",
         "closed": "close",
         "escalated": "escalate"
+      },
+      "append_strings": {
+        "or": " or "
       }
     }
   }
