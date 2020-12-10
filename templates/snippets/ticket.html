@@ -66,7 +66,7 @@
 
           {% assign second_last_action_number = action_count | minus: 1 %}
           {% assign first_status  = false %}
-          {% assign action_number = 0 %}
+          {% assign action_number = 1 %}
 
           {% for status in statuses %}
             {% if ticket.status != status %}
@@ -74,7 +74,7 @@
                 {% assign first_status = true %}
                 {% assign status_klass = "px-0" %}
               {% else %}
-                {% assign status_klass = "pr-0" %}
+                {% assign status_klass = "px-0" %}
               {% endif %}
 
               {% if action_count == 1 %}
