@@ -9,7 +9,10 @@
       "submitting": "Updating...",
       "reset": "Reset",
       "resetting": "Resetting...",
-      "show_ticket": "View"
+      "opened": "Opened",
+      "in_progress": "In progress",
+      "closed": "Closed",
+      "escalated": "Escalated"
     },
     "messages": {
       "internal_error": "Internal error"
@@ -68,7 +71,8 @@
         "opened_at": "Opened",
         "in_progress_at": "In progress since",
         "closed_at": "Closed",
-        "escalated_at": "Escalated"
+        "escalated_at": "Escalated",
+        "status": "Status"
       },
       "body": {
         "ago": "ago"
