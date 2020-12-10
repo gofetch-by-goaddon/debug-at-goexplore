@@ -10,7 +10,7 @@
       text-decoration: underline;
     }
 
-    .submit-link:focus {
+    .dropdown-link:focus, .submit-link:focus {
       outline: none;
     }
   </style>
@@ -103,7 +103,7 @@
 
           {% if superusers_query.results_count > 1 %}
             <div class="d-inline" class="dropdown">
-              <button class="d-inline border-0 py-0 px-0 text-primary bg-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="dropdown-link d-inline border-0 py-0 px-0 text-primary bg-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ l.update_status.links.reassign }}
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
