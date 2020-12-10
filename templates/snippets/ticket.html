@@ -60,12 +60,13 @@
           {% for status in statuses %}
             {% if ticket.status != status %}
               {% if first_status == false %}
-                {% status_action = "px-0" %}
+                {% assign first_status = true %}
+                {% assign status_klass = "px-0" %}
               {% else %}
-                {% status_action = "pr-0" %}
+                {% assign status_klass = "pr-0" %}
               {% endif %}
               <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 text-primary bg-white {{ status_action }}" value="{{ l.update_status.links[status] }}">
+                <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 text-primary bg-white {{ status_klass }}" value="{{ l.update_status.links[status] }}">
               </form>
             {% endif %}
           {% endfor %}
