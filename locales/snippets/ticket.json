@@ -20,7 +20,7 @@
       "ftp_password": "FTP password",
       "ssh_address": "SSH address",
       "ssh_password": "SSH password",
-      "open_at": "Opened at",
+      "opened_at": "Opened at",
       "in_progress_at": "In progress since",
       "closed_at": "Closed at"
     },

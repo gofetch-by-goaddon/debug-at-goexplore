@@ -10,7 +10,7 @@
       "company_website": "Company",
       "relay_name": "Ecommerce platform",
       "webshop_exists": "Webshop",
-      "open_at": "Opened at",
+      "opened_at": "Opened at",
       "in_progress_at": "In progress since",
       "closed_at": "Closed at"
     },
