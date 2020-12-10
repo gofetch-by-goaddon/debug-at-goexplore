@@ -5,6 +5,16 @@
   <p>{{ error }}</p>
 {% else %}
 
+  <style>
+    .submit-link:hover {
+      text-decoration: underline;
+    }
+
+    .submit-link:focus {
+      outline: none;
+    }
+  </style>
+
   {% include "shared/indent_json_pre" %}
 
   <h5 class="mb-3">
@@ -48,8 +58,8 @@
           {% assign statuses = "in_progress closed escalated" | split: " " %}
           {% for status in statuses %}
             {% if ticket.status != status %}
-              <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                {{ l.update_status.intros[statuses] }}<input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary" value="{{ l.update_status.links[status] }}">
+              <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                {{ l.update_status.intros[statuses] }}<input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary bg-white" value="{{ l.update_status.links[status] }}">
               </form>
             {% endif %}
           {% endfor %}
