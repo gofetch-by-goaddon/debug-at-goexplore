@@ -53,7 +53,8 @@
       "links": {
         "in_progress": "Self-assign",
         "closed": "close",
-        "escalated": "escalate"
+        "escalated": "escalate",
+        "reassign": "re-assign"
       },
       "append_strings": {
         "or": " or "
