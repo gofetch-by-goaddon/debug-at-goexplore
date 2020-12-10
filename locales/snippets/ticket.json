@@ -8,6 +8,7 @@
     "headers": {
       "relay": "Ecommerce platform",
       "webshop": "Webshop",
+      "options": "Options",
       "mail_address": "Email",
       "phone": "Phone",
       "status": "Status",
@@ -22,7 +23,8 @@
       "ssh_password": "SSH password",
       "opened_at": "Opened at",
       "in_progress_at": "In progress since",
-      "closed_at": "Closed at"
+      "closed_at": "Closed at",
+      "escalated_at": "Escalated at"
     },
     "statuses": {
       "open": "Open",
@@ -46,6 +48,18 @@
       "setup_config": "This setup configuration was applied",
       "error": "This error occurred",
       "log": "This was logged"
+    },
+    "update_status": {
+      "intros": {
+        "in_progress": "",
+        "closed": "",
+        "escalated": ""
+      },
+      "links": {
+        "in_progress": "Self-assign",
+        "closed": "close",
+        "escalated": "escalate"
+      }
     }
   }
 }

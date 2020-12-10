@@ -260,7 +260,7 @@
 
   {% if tickets.size > 0 %}
 
-    <p class="mt-4"><b>{{ l.headers.tickets }}</b></p>
+    <p class="mt-3"><b>{{ l.headers.tickets }}</b></p>
     <p>
       {{ l.explainers.tickets.p1 }}
       {{ tickets.size }}
@@ -295,6 +295,8 @@
                   <span title="{{ ticket[field_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
                     {{ ticket[field_name] | time_distance_in_words: now }} {{ l.tickets.body.ago }}
                   </span>
+                {% else %}
+                  -
                 {% endif %}
               </td>
             {% endfor %}
