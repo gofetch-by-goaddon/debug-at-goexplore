@@ -11,5 +11,16 @@
     "query": {
       "_id": "{{ _id }}"
     }
+  },
+  "users": {
+    "klass": "users",
+    "query": {
+      "project_id": "{{ project_id }}",
+      "superuser": true
+    },
+    "projection": {
+      "_id": 1,
+      "email":
+    }
   }
 }
