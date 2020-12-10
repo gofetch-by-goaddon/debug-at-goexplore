@@ -70,16 +70,23 @@
           {% for status in statuses %}
             {% if ticket.status != status %}
               {% if action_count == 1 or action_number == action_count %}
-                <p>1</p>
-                {% assign append_string = "" %}
-              {% elsif action_number == second_last_action_number and users_query.total_results_count == 1 %}
-                <p>2</p>
-                {% assign append_string = l.update_status.append_strings.or %}
-              {% elsif action_number == action_count and users.size > 1 %}
-                <p>3</p>
-                {% assign append_string = l.update_status.append_strings.or %}
+                {% if users_query.total_results_count == 1 %}
+                  <p>1.1</p>
+                  {% assign append_string = "" %}
+                {% else %}
+                  <p>1.2</p>
+                  {% assign append_string = l.update_status.append_strings.or %}
+                {% endif %}
+              {% elsif action_number == second_last_action_number %}
+                {% if users_query.total_results_count == 1 %}
+                  <p>2.1</p>
+                  {% assign append_string = l.update_status.append_strings.or %}
+                {% else %}
+                  <p>2.2</p>
+                  {% assign append_string = ", " %}
+                {% endif %}                
               {% else %}
-                <p>4</p>
+                <p>3</p>
                 {% assign append_string = ", " %}
               {% endif %}
               <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
