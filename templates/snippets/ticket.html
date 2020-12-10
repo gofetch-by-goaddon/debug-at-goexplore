@@ -45,11 +45,12 @@
           <b>{{ l.headers.options }}:</b>
         </td>
         <td>
-          {% for status_field_name in status_field_names %}
-            {% if ticket[status_field_name] == nil %}
+          {% assign statuses = "in_progress closed escalated" | split: " " %}
+          {% for status in statuses %}
+            {% if ticket.status != status %}
               <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
                 <p>
-                  {{ l.update_status.intros[status_field_name] }}<input type="hidden" name="status" value="{{ status_field_name }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary" value="{{ l.update_status.links[status_field_name] }}">
+                  {{ l.update_status.intros[status_field_name] }}<input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary" value="{{ l.update_status.links[status] }}">
                 </p>
               </form>
             {% endif %}
