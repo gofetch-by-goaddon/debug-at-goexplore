@@ -56,10 +56,16 @@
         </td>
         <td>
           {% assign statuses = "in_progress closed escalated" | split: " " %}
+          {% assign first_status = false %}
           {% for status in statuses %}
             {% if ticket.status != status %}
+              {% if first_status == false %}
+                {% status_action = "px-0" %}
+              {% else %}
+                {% status_action = "pr-0" %}
+              {% endif %}
               <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                {{ l.update_status.intros[statuses] }}<input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary bg-white" value="{{ l.update_status.links[status] }}">
+                <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 text-primary bg-white {{ status_action }}" value="{{ l.update_status.links[status] }}">
               </form>
             {% endif %}
           {% endfor %}

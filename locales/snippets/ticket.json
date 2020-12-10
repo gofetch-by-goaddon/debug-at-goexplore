@@ -50,11 +50,6 @@
       "log": "This was logged"
     },
     "update_status": {
-      "intros": {
-        "in_progress": "",
-        "closed": "",
-        "escalated": ""
-      },
       "links": {
         "in_progress": "Self-assign",
         "closed": "close",
