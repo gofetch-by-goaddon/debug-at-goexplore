@@ -3,7 +3,7 @@
   {% if params.status != nil %}
     {% assign status = params.status %}
   {% else %}
-    {% assign status = "open" %}
+    {% assign status = "opened" %}
   {% endif %}
 
   {% if user.superuser_level == 1 %}
