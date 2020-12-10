@@ -109,7 +109,11 @@
               <div class="dropdown-menu" aria-labelledby="reassign_ticket">
                 {% for superuser in superusers %}
                   {% if superuser._id != user._id %}
-                    <a class="dropdown-item" href="#">{{ superuser.email }}</a>
+
+                    <form class="" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                      <input type="hidden" name="superuser_id" value="{{ superuser._id }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ superuser.email }}">
+                    </form>
+
                   {% endif %}
                 {% endfor %}
               </div>
