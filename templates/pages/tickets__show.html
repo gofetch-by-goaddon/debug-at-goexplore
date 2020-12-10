@@ -58,7 +58,6 @@
           {% assign relay = relay_response.body.document %}
 
           {% assign users_query = "users" | db_find: project_id: project._id %}
-          {{ users_query }}
           {% assign users       = users_query.results %}
 
         {% endif %}
