@@ -110,8 +110,8 @@
                 {% for superuser in superusers %}
                   {% if superuser._id != user._id or superuser._id == user._id %}
 
-                    <form class="mx-2" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                      <input type="hidden" name="superuser_id" value="{{ superuser._id }}"><input type="submit" class="btn btn-link" value="{{ superuser.email }}">
+                    <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                      <input type="hidden" name="superuser_id" value="{{ superuser._id }}"><input type="submit" class="px-2 btn btn-link" value="{{ superuser.email }}">
                     </form>
 
                   {% endif %}
