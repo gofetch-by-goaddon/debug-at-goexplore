@@ -221,7 +221,7 @@
 
   </form>
 
-  <p><b>{{ l.headers.reset }}</b></p>
+  <p class="mt-4"><b>{{ l.headers.reset }}</b></p>
   <p>
     {{ l.explainers.reset.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ relay.name }} <i class="fas fa-external-link-alt"></i></a>. {{ l.explainers.reset.p2 }}.
   </p>
@@ -260,7 +260,7 @@
 
   {% if tickets.size > 0 %}
 
-    <p><b>{{ l.headers.tickets }}</b></p>
+    <p class="mt-4"><b>{{ l.headers.tickets }}</b></p>
     <p>
       {{ l.explainers.tickets.p1 }}
       {{ tickets.size }}
