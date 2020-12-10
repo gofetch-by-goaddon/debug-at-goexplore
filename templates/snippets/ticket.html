@@ -108,7 +108,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="reassign_ticket">
                 <h6 class="dropdown-header px-3">{{ l.reassign.header }}</h6>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider mb-1"></div>
                 {% for superuser in superusers %}
                   {% if superuser._id != user._id or superuser._id == user._id %}
 
