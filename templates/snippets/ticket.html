@@ -104,9 +104,10 @@
           {% if superusers_query.results_count > 1 %}
             <div class="dropright d-inline">
               <button class="dropdown-link d-inline border-0 py-0 px-0 text-primary bg-white dropdown-toggle" type="button" id="reassign_ticket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ l.update_status.links.reassign }}
+                {{ l.reassign.link }}
               </button>
               <div class="dropdown-menu" aria-labelledby="reassign_ticket">
+                <h6 class="dropdown-header">{{ l.reassign.header }}</h6>
                 {% for superuser in superusers %}
                   {% if superuser._id != user._id or superuser._id == user._id %}
 

@@ -53,12 +53,15 @@
       "links": {
         "in_progress": "Self-assign",
         "closed": "close",
-        "escalated": "escalate",
-        "reassign": "re-assign"
+        "escalated": "escalate"
       },
       "append_strings": {
         "or": " or "
-      }
+      },
+    },
+    "reassign": {
+      "link": "re-assign",
+      "header": "Choose assignee"
     }
   }
 }
