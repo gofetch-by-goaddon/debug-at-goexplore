@@ -114,8 +114,15 @@
                 {% assign append_string = ", " %}
 
               {% endif %}
+
+              {% if action_number == 1 %}
+                {% assign link_text = l.update_status.links[status] | capitalize %}
+              {% else %}
+                {% assign link_text = l.update_status.links[status] %}
+              {% endif %}
+
               <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ l.update_status.links[status] }}">{{ append_string }}
+                <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ link_text }}">{{ append_string }}
               </form>
               {% assign action_number = action_number | plus: 1 %}
             {% endif %}
