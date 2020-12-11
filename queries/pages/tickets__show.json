@@ -15,7 +15,7 @@
   "superusers": {
     "klass": "users",
     "query": {
-      "project_id": "{{ project_id }}",
+      "app_id": "{{ app_id }}",
       "superuser": true
     },
     "projection": {

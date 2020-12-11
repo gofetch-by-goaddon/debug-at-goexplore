@@ -57,7 +57,7 @@
 
           {% assign relay = relay_response.body.document %}
 
-          {% assign superusers_query = "superusers" | db_find: project_id: project._id %}
+          {% assign superusers_query = "superusers" | db_find: app_id: project.app_id %}
           {% assign superusers       = superusers_query.results %}
 
         {% endif %}
