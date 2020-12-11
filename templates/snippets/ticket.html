@@ -79,7 +79,6 @@
           {% endfor %}
 
           {% assign second_last_action_number = action_count | minus: 1 %}
-          {% assign action_number = action_number | plus: 1 %}
 
           {% for status in statuses %}
             {% if ticket.status != status %}
