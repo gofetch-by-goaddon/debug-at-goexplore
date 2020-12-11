@@ -8,6 +8,7 @@
     "headers": {
       "relay": "Ecommerce platform",
       "webshop": "Webshop",
+      "assignee": "Assignee",
       "options": "Options",
       "mail_address": "Email",
       "phone": "Phone",
@@ -33,7 +34,9 @@
       "ago": "ago",
       "edit_webshop": "Edit",
       "or": "or",
-      "show_webshop": "test the Shop API"
+      "show_webshop": "test the Shop API",
+      "assigned_to_user": "You",
+      "escalated": "Escalated"
     },
     "auth_headlines": {
       "webshop_config": "Configuration",

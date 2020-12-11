@@ -50,6 +50,26 @@
         </tr>
       {% endif %}
 
+      {% if ticket.superuser_id != nil or ticket.status == "escalated" %}
+        <tr>
+          <td width="1" class="text-nowrap">
+            <b>{{ l.headers.assignee }}:</b>
+          </td>
+          <td>
+            {% for superuser in superusers %}
+              {% if ticket.superuser_id == user._id %}
+                {{ l.informations.assigned_to_user }}
+              {% else %}
+                {{ superuser.email }}
+              {% endif %}
+            {% endfor %}
+            {% if ticket.status == "escalated" %}
+              <span class="badge badge-secondary">{{ l.informations.escalated }}</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endif %}
+
       <tr>
         <td width="1" class="text-nowrap">
           <b>{{ l.headers.options }}:</b>
