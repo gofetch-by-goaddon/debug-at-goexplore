@@ -57,8 +57,9 @@
         "or": " or "
       }
     },
-    "reassign": {
-      "link": "re-assign",
+    "assign": {
+      "assign": "assign",
+      "reassign": "re-assign",
       "header": "Choose assignee"
     }
   }

@@ -78,12 +78,19 @@
             {% endif %}
           {% endfor %}
 
+          {% assign superusers_count = 0 %}
+          {% for superuser in superusers %}
+            {% if superuser._id != user._id and superuser._id != ticket.superuser_id %}
+              {% assign superusers_count = superusers_count | plus: 1 %}
+            {% endif %}
+          {% endif %}
+
           {% assign second_last_action_number = action_count | minus: 1 %}
 
           {% for status in statuses %}
             {% if ticket.status != status %}
               {% if action_count == 1 or action_number == action_count %}
-                {% if superusers_query.results_count == 1 %}
+                {% if superusers_count == 0 %}
 
                   {% assign append_string = "" %}
 
@@ -93,7 +100,7 @@
 
                 {% endif %}
               {% elsif action_number == second_last_action_number %}
-                {% if superusers_query.results_count == 1 %}
+                {% if superusers_count == 0 %}
 
                   {% assign append_string = l.update_status.append_strings.or %}
 
@@ -114,16 +121,20 @@
             {% endif %}
           {% endfor %}
 
-          {% if superusers_query.results_count > 1 %}
+          {% if superusers_count > 0 %}
             <div class="dropright d-inline">
-              <button class="dropdown-link d-inline border-0 py-0 px-0 text-primary bg-white dropdown-toggle" type="button" id="reassign_ticket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ l.reassign.link }}
+              <button class="dropdown-link d-inline border-0 py-0 px-0 text-primary bg-white dropdown-toggle" type="button" id="assign_ticket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% if ticket.superuser_id == nil %}
+                  {{ l.assign.assign }}
+                {% else %}
+                  {{ l.assign.reassign }}
+                {% endif %}
               </button>
-              <div class="dropdown-menu" aria-labelledby="reassign_ticket">
-                <h6 class="dropdown-header px-3">{{ l.reassign.header }}</h6>
+              <div class="dropdown-menu" aria-labelledby="assign_ticket">
+                <h6 class="dropdown-header px-3">{{ l.assign.header }}</h6>
                 <div class="dropdown-divider mb-1"></div>
                 {% for superuser in superusers %}
-                  {% if superuser._id != user._id %}
+                  {% if superuser._id != user._id and superuser._id != ticket.superuser_id %}
 
                     <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
                       <input type="hidden" name="superuser_id" value="{{ superuser._id }}"><input type="submit" class="px-3 btn btn-link" value="{{ superuser.email }}">
