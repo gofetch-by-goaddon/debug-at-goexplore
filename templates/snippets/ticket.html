@@ -83,7 +83,7 @@
             {% if superuser._id != user._id and superuser._id != ticket.superuser_id %}
               {% assign superusers_count = superusers_count | plus: 1 %}
             {% endif %}
-          {% endif %}
+          {% endfor %}
 
           {% assign second_last_action_number = action_count | minus: 1 %}
 
