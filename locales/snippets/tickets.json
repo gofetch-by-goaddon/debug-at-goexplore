@@ -11,12 +11,10 @@
       "relay_name": "Ecommerce platform",
       "webshop_exists": "Webshop",
       "opened_at": "Opened at",
-      "in_progress_at": "In progress since",
       "closed_at": "Closed at"
     },
     "badges": {
       "open": "OPEN",
-      "in_progress": "IN PROGRESS",
       "closed": "CLOSED",
       "no_relay": "NO ECOMMERCE PLATFORM"
     },

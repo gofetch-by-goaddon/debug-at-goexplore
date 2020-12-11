@@ -22,13 +22,11 @@
       "ssh_address": "SSH address",
       "ssh_password": "SSH password",
       "opened_at": "Opened at",
-      "in_progress_at": "In progress since",
       "closed_at": "Closed at",
       "escalated_at": "Escalated at"
     },
     "statuses": {
       "open": "Open",
-      "in_progress": "In progress",
       "closed": "Closed"
     },
     "informations": {
@@ -51,7 +49,7 @@
     },
     "update_status": {
       "links": {
-        "in_progress": "Self-assign",
+        "claim": "Claim",
         "closed": "close",
         "escalated": "escalate"
       },

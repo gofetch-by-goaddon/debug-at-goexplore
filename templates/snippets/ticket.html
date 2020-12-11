@@ -24,7 +24,7 @@
   <table class="table">
     <tbody>
       {% assign now                 = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-      {% assign status_field_names  = "opened_at in_progress_at closed_at escalated_at" | split: " " %}
+      {% assign status_field_names  = "opened_at closed_at escalated_at" | split: " " %}
       {% assign input_field_names   = "mail_address phone comments admin_url admin_username admin_password ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}
       {% assign field_names  = status_field_names | concat: input_field_names %}
 
@@ -55,8 +55,20 @@
           <b>{{ l.headers.options }}:</b>
         </td>
         <td>
-          {% assign statuses      = "in_progress closed escalated" | split: " " %}
+
           {% assign action_count  = 0 %}
+
+          {% if ticket.superuser_id != user._id %}
+
+            {% assign action_count  = action_count | plus: 1 %}
+
+            <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+              <input type="hidden" name="superuser_id" value="{{ user._id }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ l.update_status.links.claim }}">,
+            </form>
+
+          {% endif %}
+
+          {% assign statuses      = "closed escalated" | split: " " %}
 
           {% for status in statuses %}
             {% if ticket.status != status %}

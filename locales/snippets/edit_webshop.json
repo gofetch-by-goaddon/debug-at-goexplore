@@ -10,7 +10,6 @@
       "reset": "Reset",
       "resetting": "Resetting...",
       "opened": "Opened",
-      "in_progress": "In progress",
       "closed": "Closed",
       "escalated": "Escalated"
     },
@@ -69,7 +68,6 @@
     "tickets": {
       "headers": {
         "opened_at": "Opened",
-        "in_progress_at": "In progress since",
         "closed_at": "Closed",
         "escalated_at": "Escalated",
         "status": "Status"
