@@ -30,9 +30,7 @@
     },
     "statuses": {
       "opened": "Opened",
-      "closed": "Closed",
-      "re_opened": "Re-opened",
-      "escalated": "Escalated"
+      "closed": "Closed"
     },
     "informations": {
       "ago": "ago",

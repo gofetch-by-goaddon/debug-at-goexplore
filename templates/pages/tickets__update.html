@@ -21,17 +21,17 @@
 
     {% endif %}
 
-    {% if params.status == "re_opened" %}
+    {% if params.status == "re_opened" or params.status == "escalated" %}
 
-      {% assign status        = "opened" %}
+      {% assign status = "opened" %}
 
     {% else %}    
 
-      {% assign status        = params.status %}
+      {% assign status = params.status %}
 
     {% endif %}    
 
-    {% assign document      = document | push_to_hash: "status", status %}
+    {% assign document = document | push_to_hash: "status", status %}
 
   {% endif %}
 
