@@ -5,14 +5,14 @@
   {% endif %}
 
   {% if tickets_update == nil %}
-    {"status": "422", "error": "{{ l.invalid_params }}"}
+    alertify.success("{{ l.invalid_params }}");
   {% else %}
     {% if tickets_update.matched_count != 1 %}
-      {"status": "422", "error": "{{ l.not_found }}"}
+      alertify.success("{{ l.not_found }}");
     {% elsif tickets_update.updated_count != 1 %}
-      {"status": "200", "message": "{{ l.not_updated }}"}
+      alertify.success("{{ l.not_updated }}");
     {% else %}
-      {"status": "200", "success": "{{ response_text }}"}
+      alertify.success("{{ response_text }}");
     {% endif %}
   {% endif %}
 {% endif %}
