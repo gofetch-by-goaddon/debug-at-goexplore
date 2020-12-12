@@ -15,6 +15,16 @@
     {% assign document      = document | push_to_hash: "status", params.status %}
     {% assign response_text = l.response_texts.status_changed %}
 
+    {% if params.status == "closed" %}
+
+      {% assign document      = document | push_to_hash: "re_opened_at", nil %}
+
+    {% elsif params.status == "re_opened" %}
+
+      {% assign document      = document | push_to_hash: "closed_at", nil %}
+
+    {% endif %}
+
   {% endif %}
 
   {% if document.size > 0 %}
