@@ -18,10 +18,7 @@
     {% if params.status == "closed" %}
 
       {% assign document      = document | push_to_hash: "re_opened_at", nil %}
-
-    {% elsif params.status == "re_opened" %}
-
-
+      {% assign document      = document | push_to_hash: "escalated_at", nil %}
 
     {% endif %}
 
