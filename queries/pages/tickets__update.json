@@ -1,0 +1,9 @@
+{
+  "update_ticket": {
+    "klass": "tickets",
+    "query": {
+      "_id": "{{ _id }}"
+    },
+    "document": "{{ document }}"
+  }
+}
