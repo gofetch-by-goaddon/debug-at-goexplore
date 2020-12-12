@@ -39,7 +39,7 @@
       "or": "or",
       "show_webshop": "test the Shop API",
       "assigned_to_you": "You",
-      "escalated": "Escalated"
+      "escalated": "ESCALATED"
     },
     "auth_headlines": {
       "webshop_config": "Configuration",
