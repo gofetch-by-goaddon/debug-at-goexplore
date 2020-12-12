@@ -1,1 +1,20 @@
+{% if account != nil and user.superuser %}
+  {% if params.superuser_id != nil %}
+    {% assign tickets_update = "update_superuser_id" | db_update_one: _id: params.id, superuser_id: params.superuser_id %}
+    {% assign response_text = l.response_texts.superuser_id_updated %}
+  {% endif %}
+
+  {% if tickets_update == nil %}
+    {"status": "422", "error": "{{ l.invalid_params }}"}
+  {% else %}
+    {% if tickets_update.matched_count != 1 %}
+      {"status": "422", "error": "{{ l.not_found }}"}
+    {% elsif tickets_update.updated_count != 1 %}
+      {"status": "200", "message": "{{ l.not_updated }}"}
+    {% else %}
+      {"status": "200", "success": "{{ response_text }}"}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
 location.href = location.href;
