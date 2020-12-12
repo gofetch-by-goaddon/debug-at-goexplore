@@ -1,4 +1,15 @@
 {
+  "tickets": {
+    "klass": "tickets",
+    "query": {
+      "company_id": "{{ company_id }}",
+      "_id": "{{ _id }}"
+    },
+    "projection": {
+      "_id": 1,
+      "log": 1
+    }
+  },
   "update_ticket": {
     "klass": "tickets",
     "query": {

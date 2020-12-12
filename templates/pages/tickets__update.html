@@ -1,60 +1,78 @@
 {% if account != nil and user.superuser %}
 
-  {% assign document = nil | new_hash %}
+  {% assign tickets_query = "tickets" | db_find: company_id: account._id, _id: params.id %}
+  {% assign ticket        = tickets_query.results.first %}
 
-  {% if params.superuser_id != nil %}
-    {% assign document      = document | push_to_hash: "superuser_id", params.superuser_id %}
-    {% assign response_text = l.response_texts.superuser_id_updated %}
-  
-  {% elsif params.status != nil %}
+  {% if ticket == nil %}
 
-    {% capture status_time %}{{ params.status }}_at{% endcapture %}
+    alertify.error("{{ l.response_texts.not_found }}");
 
-    {% assign now           = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-    {% assign document      = document | push_to_hash: status_time, now %}
-    {% assign response_text = l.response_texts.status_changed %}
+  {% else %}
 
-    {% if params.status == "closed" %}
+    {% assign now       = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+    {% assign document  = nil | new_hash %}
+    {% assign log_entry = nil | new_hash %}
+    {% assign log_entry = log_entry | push_to_hash: "time", now %}
 
-      {% assign document = document | push_to_hash: "re_opened_at", nil %}
-      {% assign document = document | push_to_hash: "escalated_at", nil %}
-      {% assign document = document | push_to_hash: "de_escalated_at", nil %}
+    {% if params.superuser_id != nil %}
 
-    {% elsif params.status == "de_escalated" %}
+      {% assign document    = document | push_to_hash: "superuser_id", params.superuser_id %}
+      {% assign log_entry   = log_entry | push_to_hash: "superuser_id", params.superuser_id %}
+      {% assign document    = document | push_to_hash: "log", log %}
 
-      {% assign document = document | push_to_hash: "escalated_at", nil %}
+      {% assign response_text = l.response_texts.superuser_id_updated %}
+    
+    {% elsif params.status != nil %}
+
+      {% capture status_time %}{{ params.status }}_at{% endcapture %}
+
+      {% assign document      = document | push_to_hash: status_time, now %}
+      {% assign log_entry     = log_entry | push_to_hash: "status", params.status %}
+      {% assign response_text = l.response_texts.status_changed %}
+
+      {% if params.status == "closed" %}
+
+        {% assign document = document | push_to_hash: "re_opened_at", nil %}
+        {% assign document = document | push_to_hash: "escalated_at", nil %}
+        {% assign document = document | push_to_hash: "de_escalated_at", nil %}
+
+      {% elsif params.status == "de_escalated" %}
+
+        {% assign document = document | push_to_hash: "escalated_at", nil %}
+
+      {% endif %}
+
+      {% if params.status == "re_opened" or params.status == "de_escalated" %}
+
+        {% assign status = "opened" %}
+
+      {% else %}    
+
+        {% assign status = params.status %}
+
+      {% endif %}    
+
+      {% assign document = document | push_to_hash: "status", status %}
 
     {% endif %}
 
-    {% if params.status == "re_opened" or params.status == "de_escalated" %}
+    {% if document.size > 0 %}
+      {% assign log             = ticket.log | push_to_array: log_entry %}
+      {% assign document        = document | push_to_hash: "log", log %}
+      {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, document: document %}
 
-      {% assign status = "opened" %}
+    {% endif %}
 
-    {% else %}    
-
-      {% assign status = params.status %}
-
-    {% endif %}    
-
-    {% assign document = document | push_to_hash: "status", status %}
-
-  {% endif %}
-
-  {% if document.size > 0 %}
-
-    {% assign tickets_update = "update_ticket" | db_update_one: _id: params.id, document: document %}
-
-  {% endif %}
-
-  {% if tickets_update == nil %}
-    alertify.error("{{ l.response_texts.invalid_params }}");
-  {% else %}
-    {% if tickets_update.matched_count != 1 %}
-      alertify.error("{{ l.response_texts.not_found }}");
-    {% elsif tickets_update.updated_count != 1 %}
-      alertify.message("{{ l.response_texts.not_updated }}");
+    {% if tickets_update == nil %}
+      alertify.error("{{ l.response_texts.invalid_params }}");
     {% else %}
-      alertify.success("{{ response_text }}");
+      {% if tickets_update.matched_count != 1 %}
+        alertify.error("{{ l.response_texts.not_found }}");
+      {% elsif tickets_update.updated_count != 1 %}
+        alertify.message("{{ l.response_texts.not_updated }}");
+      {% else %}
+        alertify.success("{{ response_text }}");
+      {% endif %}
     {% endif %}
   {% endif %}
 {% endif %}

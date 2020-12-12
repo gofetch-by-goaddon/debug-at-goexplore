@@ -29,9 +29,7 @@
       {% assign auths_query = "auths" | db_find: _id: ticket.auth_id %}
       {% assign auth        = auths_query.results.first %}
 
-
     {% endif %}
-
 
     {% if error == nil and ticket.relay_id != nil %}
 
