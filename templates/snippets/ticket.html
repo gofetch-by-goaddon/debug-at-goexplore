@@ -24,7 +24,7 @@
   <table class="table">
     <tbody>
       {% assign now                 = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-      {% assign status_field_names  = "opened_at closed_at re_opened_at escalated_at" | split: " " %}
+      {% assign status_field_names  = "opened_at re_opened_at closed_at escalated_at" | split: " " %}
       {% assign input_field_names   = "mail_address phone comments admin_url admin_username admin_password ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}
       {% assign field_names  = status_field_names | concat: input_field_names %}
 
