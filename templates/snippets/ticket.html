@@ -58,7 +58,8 @@
           <b>{{ l.headers.status }}:</b>
         </td>
         <td>
-          {{ l.ticket.statuses[status] }}
+          {% assign ticket_status = ticket.status %}
+          {{ l.ticket.statuses[ticket_status] }}
         </td>
       </tr>
 
