@@ -256,61 +256,78 @@
 
   {% if ticket.log != nil %}
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="border-bottom-0">{{ l.log_headers.event }}</th>
-          <th class="border-bottom-0 text-right">{{ l.log_headers.time }}</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div class="accordion" id="log_accordion">
+       <div class="card border">
+          <div class="card-header p-1" id="card_log">
+            <h5 class="mb-0">
+              <button aria-controls="collapse_card_log" aria-expanded="false" class="btn btn-link collapsed" data-target="#collapse_card_log" data-toggle="collapse" type="button">
+                <div class="text-dark">
+                  {% l.log.header %}
+                </div>
+              </button>
+            </h5>
+          </div>
+          <div aria-labelledby="card_log" class="collapse show" data-parent="#log_accordion" id="collapse_card_log" style="">
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="border-bottom-0">{{ l.log_headers.event }}</th>
+                    <th class="border-bottom-0 text-right">{{ l.log_headers.time }}</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-        {% assign log = ticket.log | reverse %}
+                  {% assign log = ticket.log | reverse %}
 
-        {% for log_entry in log %}
+                  {% for log_entry in log %}
 
-          <tr>
-            <td>
-              {% if log_entry.superuser_id != nil %}
+                    <tr>
+                      <td>
+                        {% if log_entry.superuser_id != nil %}
 
-                {{ l.log_body.superuser_id }}
+                          {{ l.log_body.superuser_id }}
 
-                {% assign superuser_matched = false %}
+                          {% assign superuser_matched = false %}
 
-                {% for superuser in superusers %}
+                          {% for superuser in superusers %}
 
-                  {% if superuser._id == log_entry.superuser_id %}
+                            {% if superuser._id == log_entry.superuser_id %}
 
-                    {{ superuser.email }}
+                              {{ superuser.email }}
 
-                    {% assign superuser_matched = true %}
+                              {% assign superuser_matched = true %}
 
-                  {% endif %}
+                            {% endif %}
 
-                {% endfor %}
+                          {% endfor %}
 
-                {% unless superuser_matched %}
+                          {% unless superuser_matched %}
 
-                  {{ log_entry.superuser_id }}
+                            {{ log_entry.superuser_id }}
 
-                {% endunless %}
-              
-              {% elsif log_entry.status != nil %}
-                {% assign log_entry_status = log_entry.status %}
-                {{ l.log_body.statuses[log_entry_status] }}
-              {% endif %}
-            </td>
-            <td class="text-right">
-              <span title="{{ log_entry.time | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-                {{ log_entry.time | time_distance_in_words: now }} {{ l.informations.ago }}
-              </span>
-            </td>
-          </tr>
+                          {% endunless %}
+                        
+                        {% elsif log_entry.status != nil %}
+                          {% assign log_entry_status = log_entry.status %}
+                          {{ l.log_body.statuses[log_entry_status] }}
+                        {% endif %}
+                      </td>
+                      <td class="text-right">
+                        <span title="{{ log_entry.time | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                          {{ log_entry.time | time_distance_in_words: now }} {{ l.informations.ago }}
+                        </span>
+                      </td>
+                    </tr>
 
-        {% endfor %}
+                  {% endfor %}
 
-      </tbody>
-    </table>
+                </tbody>
+              </table>
+             </div>
+          </div>
+       </div>
+    </div>
 
   {% endif %}
 

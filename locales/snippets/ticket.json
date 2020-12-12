@@ -70,6 +70,9 @@
       "reassign": "re-assign",
       "header": "Choose assignee"
     },
+    "log": {
+      "header": "Activity log"
+    },
     "log_headers": {
       "event": "Event",
       "time": "Time"
