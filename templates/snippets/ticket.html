@@ -255,8 +255,8 @@
   </table>
 
   <form class="mb-3" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-    <textarea name="message" placeholder="{{ l.message.placeholder }}" rows="3" class="form-control"></textarea>
-    <input type="submit" class="btn btn-outline-primary mt-1 btn-fullwidth" value="{{ l.message.submit }}">
+    <textarea name="message" placeholder="{{ l.message.placeholder }}" rows="3" class="form-control" style="resize: none;"></textarea>
+    <input type="submit" class="btn btn-outline-primary btn-fullwidth" value="{{ l.message.submit }}">
   </form>
 
   <div class="accordion" id="log_accordion">
