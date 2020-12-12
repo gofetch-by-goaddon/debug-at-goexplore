@@ -295,7 +295,7 @@
   {% endif %}
 
   <p>{{ ticket }}<p>
-  <p>{{ ticket.log }}</p>
+  <p>{{ ticket.log | reverse }}</p>
 
   {% if ticket.log != nil %}
 
