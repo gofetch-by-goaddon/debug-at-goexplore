@@ -137,11 +137,15 @@
 
           {% else %}
 
-            {% assign statuses      = "closed escalated de_escalated" | split: " " %}
+            {% assign statuses      = "closed" | split: " " %}
+
+            {% if status.escalated_at != nil %}
+              {% assign statuses = statuses | push_to_array: "escalated" %}
+            {% else %}
+              {% assign statuses = statuses | push_to_array: "escalated" %}
+            {% endif %}
 
           {% endif %}
-
-          {% assign statuses      = "re_opened closed escalated de_escalated escalated" | split: " " %}
 
           {% for status in statuses %}
             {% if ticket.status != status %}
@@ -289,5 +293,4 @@
       {% endif %}
     {% endfor %}
   {% endif %}
-  {{ ticket }}
 {% endif %}
