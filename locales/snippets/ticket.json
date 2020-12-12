@@ -25,7 +25,8 @@
       "ssh_password": "SSH password",
       "opened_at": "Opened at",
       "closed_at": "Closed at",
-      "escalated_at": "Escalated at"
+      "escalated_at": "Escalated at",
+      "reopened_at": "Re-opened at"
     },
     "statuses": {
       "open": "Open",
