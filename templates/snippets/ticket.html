@@ -294,9 +294,6 @@
     {% endfor %}
   {% endif %}
 
-  <p>{{ ticket }}<p>
-  <p>{{ ticket.log | reverse }}</p>
-
   {% if ticket.log != nil %}
 
     <table class="table">
@@ -308,7 +305,9 @@
       </thead>
       <tbody>
 
-        {% for log_entry in ticket.log.reverse %}
+        {% assign log = ticket.log | reverse %}
+
+        {% for log_entry in log %}
 
           <tr>
             <td width="1" class="text-nowrap">
