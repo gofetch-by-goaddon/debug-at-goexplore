@@ -293,5 +293,62 @@
       {% endif %}
     {% endfor %}
   {% endif %}
-  <p>{{ ticket.log }}</p>
+
+  {% if ticket.log != nil %}
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="border-bottom-0">{{ l.log_headers.event }}</th>
+          <th class="border-bottom-0">{{ l.log_headers.time }}</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for log_entry in ticket.log.reverse %}
+
+          <tr>
+            <td width="1" class="text-nowrap">
+              {% if log_entry.superuser_id != nil %}
+
+                {{ l.log_body.superuser_id }}
+
+                {% assign superuser_matched = false %}
+
+                {% for superuser in superusers %}
+
+                  {% if superuser._id == log_entry.superuser_id %}
+
+                    {{ superuser.email }}
+
+                    {% assign superuser_matched = true %}
+
+                  {% endif %}
+
+                {% endfor %}
+
+                {% unless superuser_matched %}
+
+                  {{ log_entry.superuser_id }}
+
+                {% endunless %}
+              
+              {% elsif log_entry.status != nil %}
+                {% assign log_entry_status = log_entry.status %}
+                {{ l.log_body.statuses[log_entry_status] }}
+              {% endif %}
+            </td>
+            <td>
+              <span title="{{ log_entry.time | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                {{ log_entry.time | time_distance_in_words: now }} {{ l.informations.ago }}
+              </span>
+            </td>
+          </tr>
+
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+  {% endif %}
 {% endif %}

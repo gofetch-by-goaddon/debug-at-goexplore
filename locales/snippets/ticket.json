@@ -69,6 +69,19 @@
       "assign": "assign",
       "reassign": "re-assign",
       "header": "Choose assignee"
+    },
+    "log_headers": {
+      "event": "Event",
+      "time": "Time"
+    },
+    "log_body": {
+      "superuser_id": "Assigned to",
+      "statuses": {
+        "closed": "Closed",
+        "escalated": "Escalated",
+        "de_escalated": "De-escalated",
+        "re_opened": "Re-opened"
+      }
     }
   }
 }
