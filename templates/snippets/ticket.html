@@ -140,7 +140,7 @@
             {% assign statuses      = "closed" | split: " " %}
 
             {% if status.escalated_at != nil %}
-              {% assign statuses = statuses | push_to_array: "deescalated" %}
+              {% assign statuses = statuses | push_to_array: "de_escalated" %}
             {% else %}
               {% assign statuses = statuses | push_to_array: "escalated" %}
             {% endif %}
