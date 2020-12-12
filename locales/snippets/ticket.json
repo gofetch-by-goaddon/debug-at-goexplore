@@ -58,7 +58,7 @@
         "closed": "close",
         "escalated": "escalate",
         "de_escalated": "de-escalate",
-        "re_opened": "Re-open"
+        "re_opened": "re-open"
       },
       "append_strings": {
         "or": " or "
