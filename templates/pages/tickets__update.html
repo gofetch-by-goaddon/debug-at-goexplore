@@ -18,10 +18,11 @@
 
       {% assign document      = document | push_to_hash: "re_opened_at", nil %}
       {% assign document      = document | push_to_hash: "escalated_at", nil %}
+      {% assign document      = document | push_to_hash: "de_escalated_at", nil %}
 
     {% endif %}
 
-    {% if params.status == "re_opened" %}
+    {% if params.status == "re_opened" or params.status == "de_escalated" %}
 
       {% assign status = "opened" %}
 
