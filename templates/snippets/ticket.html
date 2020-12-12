@@ -56,13 +56,15 @@
             <b>{{ l.headers.assignee }}:</b>
           </td>
           <td>
-            {% for superuser in superusers %}
-              {% if ticket.superuser_id == user._id %}
-                {{ l.informations.assigned_to_you }}
-              {% else %}
-                {{ superuser.email }}
-              {% endif %}
-            {% endfor %}
+            {% if ticket.superuser_id == user._id %}
+              {{ l.informations.assigned_to_you }}
+            {% else %}
+              {% for superuser in superusers %}
+                {% if ticket.superuser_id == superuser._id %}
+                  {{ superuser.email }}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
             {% if ticket.status == "escalated" %}
               <span class="badge badge-secondary">{{ l.informations.escalated }}</span>
             {% endif %}
