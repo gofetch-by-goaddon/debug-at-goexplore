@@ -15,10 +15,14 @@
 
   {% endif %}
 
-  {% assign tickets_update = "update_ticket" | db_update_one: _id: params.id, document: document %}
+  {% if document.size > 0 %}
+    Hello
+    {% assign tickets_update = "update_ticket" | db_update_one: _id: params.id, document: document %}
+
+  {% endif %}
 
   {% if tickets_update == nil %}
-    alertify.success("{{ l.response_texts.invalid_params }}");
+    alertify.error("{{ l.response_texts.invalid_params }}");
   {% else %}
     {% if tickets_update.matched_count != 1 %}
       alertify.error("{{ l.response_texts.not_found }}");
