@@ -29,7 +29,7 @@
       "re_opened_at": "Re-opened at"
     },
     "statuses": {
-      "opened": "Open",
+      "opened": "Opened",
       "closed": "Closed",
       "re_opened": "Re-opened",
       "escalated": "Escalated"
