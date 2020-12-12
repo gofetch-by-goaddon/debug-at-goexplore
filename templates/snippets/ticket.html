@@ -129,7 +129,11 @@
 
           {% if ticket.status == "closed" %}
 
-            {% assign statuses      = "re_opened closed" | split: " " %}
+            {% assign statuses      = "re_opened" | split: " " %}
+
+          {% if ticket.status == "escalated" %}
+
+            {% assign statuses      = "de_escalated closed" | split: " " %}
 
           {% else %}
 

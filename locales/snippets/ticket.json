@@ -57,6 +57,7 @@
         "claim": "Claim",
         "closed": "close",
         "escalated": "escalate",
+        "de_escalated": "de-escalate",
         "re_opened": "Re-open"
       },
       "append_strings": {
