@@ -32,8 +32,8 @@
         {% if ticket[status_field_name] != nil %}
 
           {% assign status_field = nil | new_hash %}
-          {% assign status_field = push_to_hash | "name", status_field_name %}
-          {% assign status_field = push_to_hash | "value", ticket[status_field_name] %}
+          {% assign status_field = status_field | push_to_hash: "name", status_field_name %}
+          {% assign status_field = status_field | push_to_hash: "value", ticket[status_field_name] %}
 
           {% assign timeline = timeline | push_to_array: status_field %}
 
