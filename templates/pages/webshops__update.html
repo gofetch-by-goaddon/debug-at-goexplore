@@ -47,14 +47,14 @@
   {% endif %}
 
   {% if webshops_update == nil %}
-    {"status": "422", "error": "{{ l.invalid_params }}"}
+    {"status": "422", "error": "{{ l.response_texts.invalid_params }}"}
   {% else %}
     {% if webshops_update.matched_count != 1 %}
-      {"status": "422", "error": "{{ l.not_found }}"}
+      {"status": "422", "error": "{{ l.response_texts.not_found }}"}
     {% elsif webshops_update.updated_count != 1 %}
-      {"status": "200", "message": "{{ l.not_updated }}"}
+      {"status": "200", "message": "{{ l.response_texts.not_updated }}"}
     {% else %}
-      {"status": "200", "success": "{{ l.updated }}"}
+      {"status": "200", "success": "{{ l.response_texts.updated }}"}
     {% endif %}
   {% endif %}
 {% endif %}

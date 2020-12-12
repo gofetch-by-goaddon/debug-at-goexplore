@@ -1,10 +1,11 @@
 {
   "en": {
     "response_texts": {
-      "superuser_id_updated": "You have assigned the ticket"
-    },
-    "not_found": "The ticket was not found",
-    "not_updated": "The ticket was not updated",
-    "invalid_params": "No valid parameters"
+      "superuser_id_updated": "You have assigned the ticket",
+      "status_changed": "You have changed the status",
+      "not_found": "The ticket was not found",
+      "not_updated": "The ticket was not updated",
+      "invalid_params": "No valid parameters"
+    }
   }
 }
