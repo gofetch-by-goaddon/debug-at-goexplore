@@ -31,7 +31,8 @@
     "statuses": {
       "open": "Open",
       "closed": "Closed",
-      "re_opened": "Re-opened"
+      "re_opened": "Re-opened",
+      "escalated": "Escalated"
     },
     "informations": {
       "ago": "ago",
