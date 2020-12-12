@@ -141,6 +141,8 @@
 
           {% endif %}
 
+          {% assign statuses      = "re_opened closed escalated de_escalated escalated" | split: " " %}
+
           {% for status in statuses %}
             {% if ticket.status != status %}
               {% assign action_count = action_count | plus: 1 %}
