@@ -35,7 +35,7 @@
       "edit_webshop": "Edit",
       "or": "or",
       "show_webshop": "test the Shop API",
-      "assigned_to_user": "You",
+      "assigned_to_you": "You",
       "escalated": "Escalated"
     },
     "auth_headlines": {
