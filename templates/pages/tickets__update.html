@@ -16,7 +16,7 @@
   {% endif %}
 
   {% if document.size > 0 %}
-    Hello
+    Hello: {{ document }}
     {% assign tickets_update = "update_ticket" | db_update_one: _id: params.id, document: document %}
 
   {% endif %}
