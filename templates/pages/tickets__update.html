@@ -1,5 +1,7 @@
 {% if account != nil and user.superuser %}
+
   {% assign document = nil | new_hash %}
+
   {% if params.superuser_id != nil %}
     {% assign document      = document | push_to_hash: "superuser_id", params.superuser_id %}
     {% assign response_text = l.response_texts.superuser_id_updated %}

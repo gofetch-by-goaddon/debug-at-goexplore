@@ -29,7 +29,8 @@
     },
     "statuses": {
       "open": "Open",
-      "closed": "Closed"
+      "closed": "Closed",
+      "re_opened": "Re-opened"
     },
     "informations": {
       "ago": "ago",
@@ -55,7 +56,8 @@
       "links": {
         "claim": "Claim",
         "closed": "close",
-        "escalated": "escalate"
+        "escalated": "escalate",
+        "re_opened": "Re-open"
       },
       "append_strings": {
         "or": " or "

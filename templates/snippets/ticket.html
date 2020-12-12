@@ -101,7 +101,15 @@
 
           {% endif %}
 
-          {% assign statuses      = "closed escalated" | split: " " %}
+          {% if ticket.status == "closed" %}
+
+            {% assign statuses      = "re_opened closed" | split: " " %}
+
+          {% else %}
+
+            {% assign statuses      = "closed escalated" | split: " " %}
+
+          {% endif %}
 
           {% for status in statuses %}
             {% if ticket.status != status %}
