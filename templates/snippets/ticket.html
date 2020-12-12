@@ -294,6 +294,8 @@
     {% endfor %}
   {% endif %}
 
+  {{ ticket.log.reverse }}
+
   {% if ticket.log != nil %}
 
     <table class="table">
