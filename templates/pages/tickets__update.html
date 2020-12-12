@@ -12,7 +12,6 @@
 
     {% assign now           = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
     {% assign document      = document | push_to_hash: status_time, now %}
-    {% assign document      = document | push_to_hash: "status", params.status %}
     {% assign response_text = l.response_texts.status_changed %}
 
     {% if params.status == "closed" %}
@@ -21,6 +20,18 @@
       {% assign document      = document | push_to_hash: "escalated_at", nil %}
 
     {% endif %}
+
+    {% if params.status == "re_opened" %}
+
+      {% assign status        = "opened" %}
+
+    {% else %}    
+
+      {% assign status        = params.status%}
+
+    {% endif %}    
+
+    {% assign document      = document | push_to_hash: "status", status %}
 
   {% endif %}
 
