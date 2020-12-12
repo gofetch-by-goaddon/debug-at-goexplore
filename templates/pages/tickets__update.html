@@ -57,7 +57,17 @@
     {% endif %}
 
     {% if document.size > 0 %}
-      {% assign log             = ticket.log | push_to_array: log_entry %}
+      {% if ticket.log == nil %}
+
+        {% assign log = "" | split: " " %}
+
+      {% else %}
+
+        {% assign log = ticket.log %}
+
+      {% endif %}
+
+      {% assign log             = log | push_to_array: log_entry %}
       {% assign document        = document | push_to_hash: "log", log %}
       {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, document: document %}
 
