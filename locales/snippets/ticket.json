@@ -6,6 +6,7 @@
       "return": "return"
     },
     "headers": {
+      "status": "Status",
       "relay": "Ecommerce platform",
       "webshop": "Webshop",
       "assignee": "Assignee",
