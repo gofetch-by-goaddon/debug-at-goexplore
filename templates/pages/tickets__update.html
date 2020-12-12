@@ -1,16 +1,28 @@
 {% if account != nil and user.superuser %}
+  {% assign document = nil | new_hash %}
   {% if params.superuser_id != nil %}
-    {% assign tickets_update = "update_superuser_id" | db_update_one: _id: params.id, superuser_id: params.superuser_id %}
+    {% assign document = document | push_to_hash: "superuser_id", params.superuser_id %}
     {% assign response_text = l.response_texts.superuser_id_updated %}
+  
+  {% elsif params.status != nil %}
+
+    {% capture status_time %}{{ params.status }}_at{% endcapture %}
+
+    {% assign now      = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+    {% assign document = document | push_to_hash: status_time, now %}
+    {% assign document = document | push_to_hash: "status", params.status %}
+
   {% endif %}
+
+  {% assign tickets_update = "update_ticket" | db_update_one: _id: params.id, document: document %}
 
   {% if tickets_update == nil %}
     alertify.success("{{ l.invalid_params }}");
   {% else %}
     {% if tickets_update.matched_count != 1 %}
-      alertify.success("{{ l.not_found }}");
+      alertify.error("{{ l.not_found }}");
     {% elsif tickets_update.updated_count != 1 %}
-      alertify.success("{{ l.not_updated }}");
+      alertify.message("{{ l.not_updated }}");
     {% else %}
       alertify.success("{{ response_text }}");
     {% endif %}
