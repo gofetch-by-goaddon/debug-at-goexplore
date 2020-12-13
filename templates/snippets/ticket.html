@@ -294,7 +294,7 @@
                           {{ l.log_body.superuser_id }}
 
                           {% assign superuser_id = log_entry.superuser_id %}
-                          {% include "superuser_email" %}
+                          {% include "ticket/superuser_email" %}
                         
                         {% elsif log_entry.message != nil %}
 
@@ -306,7 +306,7 @@
                             {% else %}
 
                               {% assign superuser_id = log_entry.author_id %}
-                              {% include "superuser_email" %}
+                              {% include "ticket/superuser_email" %}
 
                             {% endif %}
                           </b>
