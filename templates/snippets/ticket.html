@@ -20,7 +20,7 @@
       var converter = new showdown.Converter({});
       $(".markdown").each(function() {
         if ($(this).data("markdown") !== undefined) {
-          var markdown = decodeURIComponent($(this).data("markdown"));
+          var markdown = decodeURIComponent($(this).data("markdown")).replace("+", " ");
           $(this).html(converter.makeHtml(markdown));
         }
       });
