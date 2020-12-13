@@ -24,7 +24,7 @@
     {% elsif params.message != nil %}
 
       {% assign log_entry   = log_entry | push_to_hash: "message", params.message %}
-      {% assign log_entry   = log_entry | push_to_hash: "author_id", user.id %}
+      {% assign log_entry   = log_entry | push_to_hash: "author_id", user._id %}
 
       {% assign response_text = l.response_texts.message_sent %}
 
