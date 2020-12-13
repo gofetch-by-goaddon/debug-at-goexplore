@@ -301,18 +301,16 @@
                           <p>{{ log_entry.message }}</p>
 
                           <footer class="blockquote-footer">
-                            <b>
-                              {% if log_entry.author_id == "gofetch" %}
+                            {% if log_entry.author_id == "gofetch" %}
 
-                                {{ l.log.body.gofetch }}
+                              {{ l.log.body.gofetch }}
 
-                              {% else %}
+                            {% else %}
 
-                                {% assign superuser_id = log_entry.author_id %}
-                                {% include "ticket/superuser_email" %}
+                              {% assign superuser_id = log_entry.author_id %}
+                              {% include "ticket/superuser_email" %}
 
-                              {% endif %}
-                            </b>
+                            {% endif %}
                           </footer>
 
                         {% elsif log_entry.status != nil %}
