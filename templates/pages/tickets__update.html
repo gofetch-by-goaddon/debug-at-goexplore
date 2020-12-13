@@ -18,10 +18,14 @@
 
       {% assign document    = document | push_to_hash: "superuser_id", params.superuser_id %}
       {% assign log_entry   = log_entry | push_to_hash: "superuser_id", params.superuser_id %}
-      {% assign document    = document | push_to_hash: "log", log %}
 
       {% assign response_text = l.response_texts.superuser_id_updated %}
     
+    {% elsif params.message != nil %}
+
+      {% assign log_entry   = log_entry | push_to_hash: "message", params.message %}
+      {% assign log_entry   = log_entry | push_to_hash: "author_id", user.id %}
+
     {% elsif params.status != nil %}
 
       {% capture status_time %}{{ params.status }}_at{% endcapture %}
