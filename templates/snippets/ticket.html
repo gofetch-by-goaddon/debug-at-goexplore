@@ -298,20 +298,22 @@
                         
                         {% elsif log_entry.message != nil %}
 
-                          <b>
-                            {% if log_entry.author_id == "gofetch" %}
+                          <p>
+                            <b>
+                              {% if log_entry.author_id == "gofetch" %}
 
-                              {{ l.log.body.gofetch }}:
+                                {{ l.log.body.gofetch }}
 
-                            {% else %}
+                              {% else %}
 
-                              {% assign superuser_id = log_entry.author_id %}
-                              {% include "ticket/superuser_email" %}:
+                                {% assign superuser_id = log_entry.author_id %}
+                                {% include "ticket/superuser_email" %}
 
-                            {% endif %}
-                          </b>
+                              {% endif %}
+                            </b>
+                          </p>
 
-                          {{ log_entry.message }}
+                          <p>{{ log_entry.message }}</p>
 
                         {% elsif log_entry.status != nil %}
                           {% assign log_entry_status = log_entry.status %}
