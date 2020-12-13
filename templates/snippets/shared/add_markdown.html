@@ -3,6 +3,7 @@
     var converter = new showdown.Converter({});
     $(".markdown").each(function() {
       if ($(this).data("markdown") !== undefined) {
+        console.log($(this).data("markdown"));
         var markdown = decodeURIComponent($(this).data("markdown").replaceAll("+", " "));
         $(this).html(converter.makeHtml(markdown));
       }
