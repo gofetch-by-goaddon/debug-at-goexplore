@@ -72,7 +72,7 @@
     },
     "message": {
       "label": "Message",
-      "placeholder": "Type internal message with markdown such as `code`, *bold*, _italic_, [links](https://example.com), etc...",
+      "placeholder": "Type internal message with markdown such as `code`, **bold**, _italic_, [links](https://example.com), etc...",
       "submit": "Send"
     },
     "log": {
