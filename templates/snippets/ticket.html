@@ -19,7 +19,10 @@
     addMarkdown = function() {
       var converter = new showdown.Converter({});
       $(".markdown").each(function() {
-        $(this).html(converter.makeHtml($(this).html()));
+        if ($(this).data("markdown") !== undefined) {
+          var markdown = decodeURIComponent($(this).data("markdown"));
+          $(this).html(converter.makeHtml(markdown));
+        }
       });
     };
 
@@ -313,7 +316,7 @@
 
                           <blockquote class="blockquote mb-0">
                             <small>
-                              <div class="mb-0 markdown" data-markdown="{{ log_entry.message | url_encode }}">{{ log_entry.message | newline_to_br }}</div>
+                              <div class="mb-0 markdown" data-markdown="{{ log_entry.message | url_encode }}"></div>
                             </small>
 
                             <footer class="blockquote-footer">
