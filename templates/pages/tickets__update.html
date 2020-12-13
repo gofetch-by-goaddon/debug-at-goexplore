@@ -89,7 +89,7 @@
       {% else %}
         alertify.success("{{ response_text }}");
         {% if log_entry.message != nil %}
-          $("#log_table tr:first").before("<tr><td>A</td><td>B</td></tr>");
+          $("#log_table tbody tr:first").before("<tr><td>A</td><td>B</td></tr>");
         {% else %}
           Turbolinks.visit(window.location);
         {% endif %}
