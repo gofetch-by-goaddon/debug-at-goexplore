@@ -1,5 +1,5 @@
 {% if error != nil %}
-  <h5 class="mb-3">
+  <h5 class="mb-4">
     {{ l.headlines.error }} <a href="{{ 'tickets__index' | path_for }}">{{ l.headlines.return }}<i class="fas fa-undo"></i></a>
   </h5>
   <p>{{ error }}</p>
@@ -18,7 +18,7 @@
   {% include "shared/indent_json_pre" %}
   {% include "shared/add_markdown" %}
 
-  <h5 class="mb-3">
+  <h5 class="mb-4">
     {{ l.headlines.intro }} <a href="{{ 'tickets__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
@@ -345,9 +345,9 @@
 
     {% for auth_field_name in auth_field_names %}
       {% if auth[auth_field_name] != nil %}
-        <p class="mt-4">
+        <h5 class="mb-4">
           <b>{{ l.auth_headlines[auth_field_name] }}</b>
-        </p>
+        </h5>
         <p>{{ l.auth_explainers[auth_field_name] }}:</p>
 
         {% if auth_field_name == "error" %}
