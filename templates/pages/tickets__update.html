@@ -89,7 +89,7 @@
       {% else %}
         alertify.success("{{ response_text }}");
         {% if log_entry.message != nil %}
-          $("#log_table tbody tr:first").before("<tr><td>A</td><td>B</td></tr>");
+          $("#log_table tbody tr:first").before('<tr><td><blockquote class="blockquote mb-0"> <small> <div class="mb-0 markdown" data-markdown="{{ log_entry.message | url_encode }}"></div> </small> <footer class="blockquote-footer"> {{ user.email }} </footer> </blockquote></td><td class="text-right">{{ l.table.now }}</td></tr>');
         {% else %}
           Turbolinks.visit(window.location);
         {% endif %}
