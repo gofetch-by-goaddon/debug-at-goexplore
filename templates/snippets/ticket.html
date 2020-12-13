@@ -293,26 +293,26 @@
 
                           {{ l.log_body.superuser_id }}
 
-                          {% assign superuser_matched = false %}
+                          {% assign superuser_id = log_entry.superuser_id %}
+                          {% include "superuser_email" %}
+                        
+                        {% elsif log_entry.message != nil %}
 
-                          {% for superuser in superusers %}
+                          <b>
+                            {% if log_entry.author_id == "gofetch" %}
 
-                            {% if superuser._id == log_entry.superuser_id %}
+                              {{ l.log.body.gofetch }}
 
-                              {{ superuser.email }}
+                            {% else %}
 
-                              {% assign superuser_matched = true %}
+                              {% assign superuser_id = log_entry.author_id %}
+                              {% include "superuser_email" %}
 
                             {% endif %}
+                          </b>
 
-                          {% endfor %}
+                          {{ log_entry.message }}
 
-                          {% unless superuser_matched %}
-
-                            {{ log_entry.superuser_id }}
-
-                          {% endunless %}
-                        
                         {% elsif log_entry.status != nil %}
                           {% assign log_entry_status = log_entry.status %}
                           {{ l.log_body.statuses[log_entry_status] }}
