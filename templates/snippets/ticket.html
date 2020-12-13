@@ -21,8 +21,6 @@
       $(".markdown").each(function() {
         if ($(this).data("markdown") !== undefined) {
           var markdown = decodeURIComponent($(this).data("markdown").replaceAll("+", " "));
-          console.log("markdown:");
-          console.log(markdown);
           $(this).html(converter.makeHtml(markdown));
         }
       });

@@ -42,7 +42,10 @@
     addMarkdown = function() {
       var converter = new showdown.Converter({});
       $(".markdown").each(function() {
-        $(this).html(converter.makeHtml($(this).html()));
+        if ($(this).data("markdown") !== undefined) {
+          var markdown = decodeURIComponent($(this).data("markdown").replaceAll("+", " "));
+          $(this).html(converter.makeHtml(markdown));
+        }
       });
     };
 
@@ -203,7 +206,7 @@
                   <div id="{{ collapse_id }}" class="collapse{{ show_collapse }}" aria-labelledby="{{ heading_id }}" data-parent="#{{ accordion_id }}">
                     <div class="card-body">
                       <p><b>{{ l.headers.description }}</b></p>
-                      <div class="markdown" data-test="{{ endpoint.description | newline_to_br }}">{{ endpoint.description | newline_to_br }}</div>
+                      <div class="markdown" data-markdown="{{ endpoint.description | url_encode }}"></div>
                       <form class="shop-api-form" action="{{ 'tests__create' | path_for: format: 'json' }}" method="post" data-remote="true">
                         
                         <p><b>{{ l.headers.params }}</b></p>
@@ -232,7 +235,7 @@
                             {% if param.key == "webshop_id" %}
                               <input type="hidden" name="webshop_id" data-type="param" value="{{ webshop._id }}">
                             {% else %}
-                              <div class="markdown" for="{{ param.key }}">{{ param.description }}</div>
+                              <div class="markdown" data-markdown="{{ param.description | url_encode }}" for="{{ param.key }}">{{ param.description }}</div>
                               <div class="input-group mb-4">
                                 <input class="form-control" type="text" name="{{ param.key }}" data-type="param" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
                               </div>
