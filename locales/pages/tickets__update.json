@@ -2,6 +2,7 @@
   "en": {
     "response_texts": {
       "superuser_id_updated": "You have assigned the ticket",
+      "message_sent": "Message sent",
       "status_changed": "You have changed the status",
       "not_found": "The ticket was not found",
       "not_updated": "The ticket was not updated",

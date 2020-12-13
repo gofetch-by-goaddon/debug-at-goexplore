@@ -26,6 +26,8 @@
       {% assign log_entry   = log_entry | push_to_hash: "message", params.message %}
       {% assign log_entry   = log_entry | push_to_hash: "author_id", user.id %}
 
+      {% assign response_text = l.response_texts.message_sent %}
+
     {% elsif params.status != nil %}
 
       {% capture status_time %}{{ params.status }}_at{% endcapture %}
@@ -60,7 +62,7 @@
 
     {% endif %}
 
-    {% if document.size > 0 %}
+    {% if document.size > 0 or log_entry.size > 1 %}
       {% if ticket.log == nil %}
 
         {% assign log = "" | split: " " %}
