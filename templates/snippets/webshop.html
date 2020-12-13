@@ -37,18 +37,9 @@
 
   {% include "shared/indent_json_input" %}
   {% include "shared/indent_json_pre" %}
+  {% include "shared/add_markdown" %}
 
   <script>
-    addMarkdown = function() {
-      var converter = new showdown.Converter({});
-      $(".markdown").each(function() {
-        if ($(this).data("markdown") !== undefined) {
-          var markdown = decodeURIComponent($(this).data("markdown").replaceAll("+", " "));
-          $(this).html(converter.makeHtml(markdown));
-        }
-      });
-    };
-
     submitRequest = function() {
       $(".shop-api-form").off("submit");
       $(".shop-api-form").on("submit", function(e) {
@@ -125,7 +116,6 @@
     };
 
     $(document).on('turbolinks:load', function() {
-      addMarkdown();
       submitRequest();
     })
   </script>
