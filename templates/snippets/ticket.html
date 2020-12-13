@@ -298,7 +298,9 @@
                         
                         {% elsif log_entry.message != nil %}
 
-                          <p>
+                          <p>{{ log_entry.message }}</p>
+
+                          <footer class="blockquote-footer">
                             <b>
                               {% if log_entry.author_id == "gofetch" %}
 
@@ -311,9 +313,7 @@
 
                               {% endif %}
                             </b>
-                          </p>
-
-                          <p>{{ log_entry.message }}</p>
+                          </footer>
 
                         {% elsif log_entry.status != nil %}
                           {% assign log_entry_status = log_entry.status %}
