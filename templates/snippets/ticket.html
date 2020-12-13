@@ -19,7 +19,7 @@
     addMarkdown = function() {
       var converter = new showdown.Converter({});
       $(".markdown").each(function() {
-        $(this).html(converter.makeHtml($(this).data("text")));
+        $(this).html(converter.makeHtml($(this).html()));
       });
     };
 
@@ -310,9 +310,10 @@
                           {% include "ticket/superuser_email" %}
                         
                         {% elsif log_entry.message != nil %}
+                          {% assign abc = log_entry.message | klassname %}
                           <blockquote class="blockquote mb-0">
                             <small>
-                              <p class="mb-0 markdown" data-text="{{ log_entry.message }}"></p>
+                              <p class="mb-0 markdown">{{ log_entry.message | newline_to_br }}</p>
                             </small>
 
                             <footer class="blockquote-footer">
