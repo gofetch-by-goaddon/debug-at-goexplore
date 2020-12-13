@@ -310,9 +310,9 @@
                           {% include "ticket/superuser_email" %}
                         
                         {% elsif log_entry.message != nil %}
-                          <blockquote class="blockquote">
+                          <blockquote class="blockquote mb-0">
                             <small>
-                              <p class="mb-0 markdown">{{ log_entry.message | newline_to_br }}</p>
+                              <p class="mb-0 markdown">{{ log_entry.message }}</p>
                             </small>
 
                             <footer class="blockquote-footer">
