@@ -311,7 +311,9 @@
                         
                         {% elsif log_entry.message != nil %}
                           <blockquote class="blockquote">
-                            <p class="mb-0 markdown">{{ log_entry.message }}</p>
+                            <div class="markdown">
+                              {{ log_entry.message }}
+                            </div>
 
                             <footer class="blockquote-footer">
                               {% if log_entry.author_id == "gofetch" %}
