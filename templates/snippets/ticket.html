@@ -253,7 +253,7 @@
               {% assign bottom_border_klass = "" %}
 
               {% if t == timeline.last %}
-                {% left_tr_count >= right_tr_count and ticket.comments != nil and ticket.comments != "" %}
+                {% if left_tr_count >= right_tr_count and ticket.comments != nil and ticket.comments != "" %}
 
                   {% assign bottom_border_klass = "border-bottom" %}
 
