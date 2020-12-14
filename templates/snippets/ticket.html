@@ -18,7 +18,7 @@
   <script>
     function textAreaAdjust(element) {
       element.style.height = "1px";
-      element.style.height = (25+element.scrollHeight)+"px";
+      element.style.height = (25 + element.scrollHeight) + "px";
     }
   </script>
 
@@ -249,13 +249,22 @@
             {% assign status_name = t.name %}
             {% if ticket[status_name] != nil and ticket[status_name] != "" %}
 
-              {% assign left_tr_count = left_tr_count | plus: 1 %}
+              {% assign left_tr_count       = left_tr_count | plus: 1 %}
+              {% assign bottom_border_klass = "" %}
+
+              {% if t == timeline.last %}
+                {% if left_tr_count < right_tr_count and ticket.comments != nil and ticket.comments != "" %}
+
+                  {% assign bottom_border_klass = "border-bottom" %}
+
+                {% endif %}
+              {% endif %}
 
               <tr>
-                <td width="1" class="text-nowrap">
+                <td width="1" class="text-nowrap {{ bottom_border_klass }}">
                   <b>{{ l.headers[status_name] }}:</b>
                 </td>
-                <td>
+                <td class="{{ bottom_border_klass }}">
                   <span title="{{ ticket[field_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
                     {{ ticket[status_name] | time_distance_in_words: now }} {{ l.informations.ago }}
                   </span>
