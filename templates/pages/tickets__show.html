@@ -13,8 +13,8 @@
     {% if user.superuser_level != 1 %}
       {% if ticket.superuser_id != user._id %}
         {% unless user.relay_ids != nil and user.relay_ids contains ticket.relay_id %}
-          <p>Hello</p>
           {% assign error = l.no_access %}
+          <p>error 1: {{ error }}</p>
         {% endunless %}
       {% endif %}
     {% endif %}
@@ -60,6 +60,6 @@
 
 
   {% endif %}
-
+  <p>error 2: {{ error }}</p>
   {% include "ticket" %}
 {% endif %}
