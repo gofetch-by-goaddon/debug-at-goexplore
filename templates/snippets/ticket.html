@@ -42,24 +42,16 @@
 
             {% if ticket[status_field_name] != nil %}
 
-              {% assign status_field = nil | new_hash %}
-              {% assign status_field = status_field | push_to_hash: "name", status_field_name %}
-              {% assign status_field = status_field | push_to_hash: "value", ticket[status_field_name] %}
-
-              {% assign timeline = timeline | push_to_array: status_field %}
+              {% assign status_field  = nil | new_hash %}
+              {% assign status_field  = status_field | push_to_hash: "name", status_field_name %}
+              {% assign status_field  = status_field | push_to_hash: "value", ticket[status_field_name] %}
+              {% assign timeline      = timeline | push_to_array: status_field %}
 
             {% endif %}
 
           {% endfor %}
 
-          {% assign timeline            = timeline | sort: "value" %}
-          {% assign field_names         = "" | split: " " %}
-
-          {% for t in timeline %}
-
-            {% assign field_names = field_names | push_to_array: t.name %}
-
-          {% endfor %}
+          {% assign timeline = timeline | sort: "value" %}
 
           <tr>
             <td width="1" class="text-nowrap">
@@ -232,18 +224,17 @@
             </td>
           </tr>
 
-          {% for field_name in field_names %}
-            {% if ticket[field_name] != nil and ticket[field_name] != "" %}
+          {% for t in timeline %}
+            {% assign status_name = t.name %}
+            {% if ticket[status_name] != nil and ticket[status_name] != "" %}
               <tr>
                 <td width="1" class="text-nowrap">
-                  <b>{{ l.headers[field_name] }}:</b>
+                  <b>{{ l.headers[status_name] }}:</b>
                 </td>
                 <td>
-                  {% if status_field_names contains field_name %}
-                    <span title="{{ ticket[field_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-                      {{ ticket[field_name] | time_distance_in_words: now }} {{ l.informations.ago }}
-                    </span>
-                  {% endif %}
+                  <span title="{{ ticket[field_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                    {{ ticket[status_name] | time_distance_in_words: now }} {{ l.informations.ago }}
+                  </span>
                 </td>
               </tr>
             {% endif %}
