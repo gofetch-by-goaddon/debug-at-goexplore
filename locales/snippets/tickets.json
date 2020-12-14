@@ -28,8 +28,8 @@
     },
     "status_names": {
       "opened": "Opened",
-      "closed": "Closed",
-      "escalated": "Escalated"
+      "escalated": "Escalated",
+      "closed": "Closed"
     }
   }
 }

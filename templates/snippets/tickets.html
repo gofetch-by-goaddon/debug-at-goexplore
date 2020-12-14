@@ -17,7 +17,7 @@
 
   {% assign now           = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
   {% assign tab_id        = "tickets_tab" %}
-  {% assign status_names  = "opened escalated closed" %}
+  {% assign status_names  = "opened escalated closed" | split: " " %}
 
   <div class="card">
     <div class="card-header">
