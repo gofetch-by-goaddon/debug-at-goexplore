@@ -16,9 +16,6 @@
     "badges": {
       "no_relay": "NO ECOMMERCE PLATFORM"
     },
-    "buttons": {
-      "show": "View"
-    },
     "informations": {
       "no_company_id": "NO",
       "no_company": "NOT FOUND",
@@ -26,6 +23,7 @@
     },
     "status_names": {
       "opened": "Opened",
+      "escalated": "Escalated",
       "closed": "Closed"
     }
   }
