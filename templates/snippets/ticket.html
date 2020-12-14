@@ -109,7 +109,8 @@
               {% endfor %}
             {% endif %}
             {% if ticket.status == "escalated" %}
-              <span class="badge badge-secondary">{{ l.informations.escalated }}</span>
+              {% assign ticket_status = "escalated" %}
+              {% include "ticket/status" %}
             {% endif %}
           </td>
         </tr>
