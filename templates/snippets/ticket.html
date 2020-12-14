@@ -67,7 +67,7 @@
         </td>
         <td>
           {% assign ticket_status = ticket.status %}
-          {% include "ticket/ticket_status" %}
+          {% include "ticket/status" %}
         </td>
       </tr>
 
@@ -323,7 +323,7 @@
 
                           {% elsif log_entry.status != nil %}
                             {% assign ticket_status = log_entry.status %}
-                            {% include "ticket/ticket_status" %}
+                            {% include "ticket/status" %}
                           {% endif %}
                         </td>
                         {% include "shared/tickets/log_entry_time_td" %}
