@@ -25,16 +25,16 @@
       var input                   = document.querySelector("[data-copy='" + form_field_name + "']");
       var button                  = document.querySelector("[data-copy-button='" + form_field_name + "']");
       var placeholder             = document.querySelector("[data-copy-placeholder='" + form_field_name + "']");
-      input.style.display         = "block";
+      input.style.display         = "inline";
       button.style.display        = "none";
-      placeholder.style.display   = "block";
+      placeholder.style.display   = "inline";
       input.select();
       input.setSelectionRange(0, 99999);
       document.execCommand("copy");
       input.style.display         = "none";
       alertify.success("{{ l.flash.copied }} " + input.value);
       setTimeout(function(){
-        button.style.display      = "block";
+        button.style.display      = "inline";
         placeholder.style.display = "none";
       }, 1000);
     }
