@@ -39,82 +39,89 @@
       </ul>
     </div>
     <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th class="border-bottom-0">{{ l.headers.company_website }}</th>
-            <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
-            <th class="border-bottom-0">
-              {% capture headline_name %}{{ status }}_at{% endcapture %}
-              {{ l.headers[headline_name] }}
-            </th>
-            <th class="border-bottom-0"></th>
-          </tr>
-        </thead>
-        <tbody>
 
-          {% assign sorted_tickets = tickets | sort: headline_name | reverse %}
+      {% if tickets.size == 0 %}
 
-          {% for ticket in sorted_tickets %}
-            {% assign relay_id        = ticket.relay_id %}
-            {% assign company_id      = ticket.company_id %}
-            {% capture status_time_name %}{{ ticket.status }}_at{% endcapture %}
+        <p>{{ l.explainers.no_tickets }}</p>
+
+      {% else %}
+        <table class="table">
+          <thead>
             <tr>
-              <td>
-                {% if company_id == account._id %}
-                  {{ companies[company_id].website }}
-                {% else %}
-                  {% if company_id == nil %}
-                    <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
-                  {% elsif companies[company_id] == nil %}
-                    <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
+              <th class="border-bottom-0">{{ l.headers.company_website }}</th>
+              <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
+              <th class="border-bottom-0">
+                {% capture headline_name %}{{ status }}_at{% endcapture %}
+                {{ l.headers[headline_name] }}
+              </th>
+              <th class="border-bottom-0"></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% assign sorted_tickets = tickets | sort: headline_name | reverse %}
+
+            {% for ticket in sorted_tickets %}
+              {% assign relay_id        = ticket.relay_id %}
+              {% assign company_id      = ticket.company_id %}
+              {% capture status_time_name %}{{ ticket.status }}_at{% endcapture %}
+              <tr>
+                <td>
+                  {% if company_id == account._id %}
+                    {{ companies[company_id].website }}
                   {% else %}
-                    <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                      <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
-                      <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ companies[company_id].website }}">
-                    </form>
-                  {% endif %}
-                {% endif %}
-              </td>
-              <td>
-                {% if relays[relay_id] == nil %}
-                  <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
-                {% else %}
-                  {% if ticket.webshop_id == nil or companies[company_id] == nil %}
-                    {{ relays[relay_id].name }}
-                  {% else %}
-                    {% if company_id == account._id %}
-                      <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ relays[relay_id].name }}</a>
+                    {% if company_id == nil %}
+                      <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
+                    {% elsif companies[company_id] == nil %}
+                      <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
                     {% else %}
                       <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                        <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">
-                        <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ relays[relay_id].name }}">
+                        <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
+                        <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ companies[company_id].website }}">
                       </form>
                     {% endif %}
                   {% endif %}
-                {% endif %}
-              </td>
-              <td>
-                <span title="{{ ticket[status_time_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-                  {{ ticket[status_time_name] | time_distance_in_words: now }} {{ l.informations.ago }}
-                </span>
-              </td>
-              <td class="text-right text-nowrap" width="1">
-                {% if company_id == account._id %}
-                  <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.show }}</a>
-                {% else %}
-                  {% if company_id != nil and companies[company_id] != nil %}
-                    <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                      <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id }}">
-                      <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ l.buttons.show }}">
-                    </form>
+                </td>
+                <td>
+                  {% if relays[relay_id] == nil %}
+                    <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
+                  {% else %}
+                    {% if ticket.webshop_id == nil or companies[company_id] == nil %}
+                      {{ relays[relay_id].name }}
+                    {% else %}
+                      {% if company_id == account._id %}
+                        <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ relays[relay_id].name }}</a>
+                      {% else %}
+                        <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                          <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">
+                          <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ relays[relay_id].name }}">
+                        </form>
+                      {% endif %}
+                    {% endif %}
                   {% endif %}
-                {% endif %}
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                </td>
+                <td>
+                  <span title="{{ ticket[status_time_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                    {{ ticket[status_time_name] | time_distance_in_words: now }} {{ l.informations.ago }}
+                  </span>
+                </td>
+                <td class="text-right text-nowrap" width="1">
+                  {% if company_id == account._id %}
+                    <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.show }}</a>
+                  {% else %}
+                    {% if company_id != nil and companies[company_id] != nil %}
+                      <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                        <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id }}">
+                        <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ l.buttons.show }}">
+                      </form>
+                    {% endif %}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
     </div>
   </div>
 {% endif %}
