@@ -99,12 +99,9 @@
             <b>{{ l.headers.assignee }}:</b>
           </td>
           <td>
-            {% if ticket.superuser_id == user._id %}
-              {{ l.informations.assigned_to_you }}
-            {% else %}
-              {% assign superuser_id = ticket.superuser_id %}
-              {% include "ticket/superuser_identifier" %}
-            {% endif %}
+            {% assign superuser_id = ticket.superuser_id %}
+            {% include "ticket/superuser_identifier" %}
+            {{ identifier }}
           </td>
         </tr>
       {% endif %}
