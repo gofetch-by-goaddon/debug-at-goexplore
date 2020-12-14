@@ -14,7 +14,6 @@
       "mail_address": "Email",
       "phone": "Phone",
       "status": "Status",
-      "comments": "Comments",
       "admin_url": "Admin URL",
       "admin_username": "Admin username",
       "admin_password": "Admin password",
@@ -73,6 +72,9 @@
     },
     "log_body": {
       "superuser_id": "Assigned to"
+    },
+    "flash": {
+      "copied": "Copied"
     }
   }
 }
