@@ -21,7 +21,7 @@
 
       {% assign response_text = l.response_texts.superuser_id_updated %}
     
-    {% elsif params.message != nil %}
+    {% elsif params.message != nil and params.message != "" %}
 
       {% assign log_entry   = log_entry | push_to_hash: "message", params.message %}
       {% assign log_entry   = log_entry | push_to_hash: "author_id", user._id %}
