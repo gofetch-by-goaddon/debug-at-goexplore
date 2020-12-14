@@ -25,6 +25,11 @@
       "no_company_id": "NO",
       "no_company": "NOT FOUND",
       "ago": "ago"
+    },
+    "status_names": {
+      "opened": "Opened",
+      "closed": "Closed",
+      "escalated": "Escalated"
     }
   }
 }

@@ -18,82 +18,106 @@
     }
   </style>
 
-  {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+  {% assign now           = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+  {% assign tab_id        = "tickets_tab" %}
+  {% assign status_names  = "opened escalated closed" %}
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="border-bottom-0">{{ l.headers.company_website }}</th>
-        <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
-        <th class="border-bottom-0">
-          {% capture headline_name %}{{ status }}_at{% endcapture %}
-          {{ l.headers[headline_name] }}
-        </th>
-        <th class="border-bottom-0"></th>
-      </tr>
-    </thead>
-    <tbody>
-
-      {% assign sorted_tickets = tickets | sort: headline_name | reverse %}
-
-      {% for ticket in sorted_tickets %}
-        {% assign relay_id        = ticket.relay_id %}
-        {% assign company_id      = ticket.company_id %}
-        {% capture status_time_name %}{{ ticket.status }}_at{% endcapture %}
-        <tr>
-          <td>
-            {% if company_id == account._id %}
-              {{ companies[company_id].website }}
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        {% for status_name in status_names %}
+          <li class="nav-item">
+            {% if status_name == status %}
+              {% assign active_bool = " active" %}
+              {% assign selected    = "true" %}
             {% else %}
-              {% if company_id == nil %}
-                <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
-              {% elsif companies[company_id] == nil %}
-                <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
-              {% else %}
-                <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                  <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
-                  <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ companies[company_id].website }}">
-                </form>
-              {% endif %}
+              {% assign active_bool = "" %}
+              {% assign selected    = "false" %}
             {% endif %}
-          </td>
-          <td>
-            {% if relays[relay_id] == nil %}
-              <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
-            {% else %}
-              {% if ticket.webshop_id == nil or companies[company_id] == nil %}
-                {{ relays[relay_id].name }}
-              {% else %}
+            <a class="nav-link{{ active_bool }}" href="{{ 'ticket__index' | path_for: status: status_name }}">
+              {{ l.status_names[resource_name] }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="border-bottom-0">{{ l.headers.company_website }}</th>
+            <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
+            <th class="border-bottom-0">
+              {% capture headline_name %}{{ status }}_at{% endcapture %}
+              {{ l.headers[headline_name] }}
+            </th>
+            <th class="border-bottom-0"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% assign sorted_tickets = tickets | sort: headline_name | reverse %}
+
+          {% for ticket in sorted_tickets %}
+            {% assign relay_id        = ticket.relay_id %}
+            {% assign company_id      = ticket.company_id %}
+            {% capture status_time_name %}{{ ticket.status }}_at{% endcapture %}
+            <tr>
+              <td>
                 {% if company_id == account._id %}
-                  <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ relays[relay_id].name }}</a>
+                  {{ companies[company_id].website }}
                 {% else %}
-                  <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                    <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">
-                    <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ relays[relay_id].name }}">
-                  </form>
+                  {% if company_id == nil %}
+                    <span class="text-secondary"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company_id }}</b></span>
+                  {% elsif companies[company_id] == nil %}
+                    <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
+                  {% else %}
+                    <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                      <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
+                      <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ companies[company_id].website }}">
+                    </form>
+                  {% endif %}
                 {% endif %}
-              {% endif %}
-            {% endif %}
-          </td>
-          <td>
-            <span title="{{ ticket[status_time_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-              {{ ticket[status_time_name] | time_distance_in_words: now }} {{ l.informations.ago }}
-            </span>
-          </td>
-          <td class="text-right text-nowrap" width="1">
-            {% if company_id == account._id %}
-              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.show }}</a>
-            {% else %}
-              {% if company_id != nil and companies[company_id] != nil %}
-                <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                  <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id }}">
-                  <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ l.buttons.show }}">
-                </form>
-              {% endif %}
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+              </td>
+              <td>
+                {% if relays[relay_id] == nil %}
+                  <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
+                {% else %}
+                  {% if ticket.webshop_id == nil or companies[company_id] == nil %}
+                    {{ relays[relay_id].name }}
+                  {% else %}
+                    {% if company_id == account._id %}
+                      <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ relays[relay_id].name }}</a>
+                    {% else %}
+                      <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                        <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">
+                        <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ relays[relay_id].name }}">
+                      </form>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              </td>
+              <td>
+                <span title="{{ ticket[status_time_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                  {{ ticket[status_time_name] | time_distance_in_words: now }} {{ l.informations.ago }}
+                </span>
+              </td>
+              <td class="text-right text-nowrap" width="1">
+                {% if company_id == account._id %}
+                  <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.show }}</a>
+                {% else %}
+                  {% if company_id != nil and companies[company_id] != nil %}
+                    <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                      <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id }}">
+                      <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ l.buttons.show }}">
+                    </form>
+                  {% endif %}
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endif %}
