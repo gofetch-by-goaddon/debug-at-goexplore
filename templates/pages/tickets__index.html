@@ -1,15 +1,25 @@
 {% if account != nil and user.superuser %}
 
-  {% if params.status != nil %}
-    {% assign status = params.status %}
-  {% else %}
-    {% assign status = "opened" %}
+  {% if params.status == nil or params.status == "" or params.status == "opened" %}
+
+    {% assign status          = "opened" %}
+    {% assign query_statuses  = "opened escalated" | split: " " %}
+
+  {% elsif params.status == "closed" %}
+
+    {% assign status          = "closed" %}
+    {% assign query_statuses  = "closed" | split: " " %}
+
   {% endif %}
 
   {% if user.superuser_level == 1 %}
-    {% assign tickets_query = "tickets" | db_find: company_id: account._id, status: status %}
+
+    {% assign tickets_query = "superuser_level_1_tickets" | db_find: statuses: query_statuses %}
+
   {% else %}
-    {% assign tickets_query = "relay_tickets" | db_find: company_id: account._id, status: status, relay_ids: user.relay_ids %}
+
+    {% assign tickets_query = "superuser_tickets" | db_find: user_id: user._id, statuses: query_statuses %}
+
   {% endif %}
 
   {% assign tickets = tickets_query.results %}
@@ -22,11 +32,15 @@
     {% for ticket in tickets %}
 
       {% if ticket.relay_id != nil %}
+
         {% capture relay_ids %}{{ relay_ids }} {{ ticket.relay_id }}{% endcapture %}
+
       {% endif %}
 
       {% if ticket.company_id != nil %}
+
         {% capture company_ids %}{{ company_ids }} {{ ticket.company_id }}{% endcapture %}
+
       {% endif %}
 
     {% endfor %}

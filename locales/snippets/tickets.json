@@ -14,8 +14,6 @@
       "closed_at": "Closed at"
     },
     "badges": {
-      "open": "OPEN",
-      "closed": "CLOSED",
       "no_relay": "NO ECOMMERCE PLATFORM"
     },
     "buttons": {
@@ -28,7 +26,6 @@
     },
     "status_names": {
       "opened": "Opened",
-      "escalated": "Escalated",
       "closed": "Closed"
     }
   }

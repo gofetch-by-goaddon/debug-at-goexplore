@@ -1,8 +1,8 @@
 {
-  "tickets": {
+  "superuser_level_1_tickets": {
     "klass": "tickets",
     "query": {
-      "status": "{{ status }}"
+      "status": {"$in": "{{ statuses }}"}
     },
     "projection": {
       "_id": 1,
@@ -15,11 +15,11 @@
       "closed_at": 1
     }
   },
-  "relay_tickets": {
+  "superuser_tickets": {
     "klass": "tickets",
     "query": {
-      "status": "{{ status }}",
-      "relay_id": {"$in": "{{ relay_ids }}"}
+      "superuser_id": "{{ user_id }}",
+      "status": {"$in": "{{ statuses }}"},
     },
     "projection": {
       "_id": 1,
