@@ -44,7 +44,7 @@
   {% include "shared/add_markdown" %}
 
   <h5 class="mb-4">
-    {{ l.headlines.intro }} <a href="{{ 'tickets__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
+    {{ l.headlines.intro }} <a href="{{ 'tickets__index' | path_for: status: params.referer }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
   {% assign now               = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
