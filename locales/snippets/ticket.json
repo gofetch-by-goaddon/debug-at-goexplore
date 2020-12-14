@@ -71,10 +71,6 @@
     "log": {
       "header": "Activity log"
     },
-    "log_headers": {
-      "event": "Event",
-      "time": "Time"
-    },
     "log_body": {
       "superuser_id": "Assigned to"
     }

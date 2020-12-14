@@ -31,7 +31,7 @@
 
   {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
 
-  <div class="row">
+  <div class="row mb-3">
     <div class="col-md-12 col-lg-6">
       <table class="table">
         <tbody>
@@ -280,7 +280,7 @@
     </div>
   </div>
 
-  <form class="mb-3" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+  <form class="mb-4" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
     <textarea name="message" placeholder="{{ l.message.placeholder }}" class="form-control rounded-0 border-bottom-0" rows="2" onkeyup="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
     <input type="submit" class="btn btn-outline-primary rounded-0 btn-fullwidth" value="{{ l.message.submit }}">
   </form>
@@ -298,13 +298,7 @@
         </div>
         <div aria-labelledby="card_log" class="collapse show" data-parent="#log_accordion" id="collapse_card_log" style="">
           <div class="card-body">
-            <table class="table" id="log_table">
-              <thead>
-                <tr>
-                  <th class="border-bottom-0">{{ l.log_headers.event }}</th>
-                  <th class="border-bottom-0 text-right">{{ l.log_headers.time }}</th>
-                </tr>
-              </thead>
+            <table class="table table-striped" id="log_table">
               <tbody>
 
                 {% if ticket.log != nil %}
