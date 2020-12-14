@@ -301,7 +301,9 @@
                   {{ ticket[form_field_name] | decrypt }}
                 </td>
                 <td width="1">
-                  <input type="text" value="{{ ticket[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}" style="">
+                  <div style="display:none;">
+                    <input type="text" value="{{ ticket[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}">
+                  </div>
                   <i class="far fa-copy text-primary" onclick="copyFormInput('{{ form_field_name }}')" style="cursor:pointer;"></i>
                 </td>
               </tr>
