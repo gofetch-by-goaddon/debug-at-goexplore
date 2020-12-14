@@ -241,15 +241,11 @@
           {% endfor %}
           {% if ticket.comments != nil and ticket.comments != "" %}
             <tr>
-              <td width="1" class="text-nowrap">
-                <b>{{ l.headers.comments }}:</b>
-              </td>
-              <td>
-              </td>
             </tr>
             <tr>
               <td colspan="2" class="border-top-0 pt-0">
-                {{ ticket.comments | decrypt }}
+                <p><b>{{ l.headers.comments }}:</b></p>
+                <p>{{ ticket.comments | decrypt }}</p>
               </td>
             </tr>
           {% endif %}
