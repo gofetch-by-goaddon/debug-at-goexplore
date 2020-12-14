@@ -28,11 +28,6 @@
       "escalated_at": "Escalated at",
       "re_opened_at": "Re-opened at"
     },
-    "statuses": {
-      "opened": "Opened",
-      "closed": "Closed",
-      "escalated": "Escalated"
-    },
     "informations": {
       "ago": "ago",
       "edit_webshop": "Edit",
@@ -83,13 +78,7 @@
       "time": "Time"
     },
     "log_body": {
-      "superuser_id": "Assigned to",
-      "statuses": {
-        "closed": "Closed",
-        "escalated": "Escalated",
-        "de_escalated": "De-escalated",
-        "re_opened": "Re-opened"
-      }
+      "superuser_id": "Assigned to"
     }
   }
 }

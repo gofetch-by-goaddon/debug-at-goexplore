@@ -67,7 +67,7 @@
         </td>
         <td>
           {% assign ticket_status = ticket.status %}
-          {{ l.statuses[ticket_status] }}
+          {% include "ticket/ticket_status" %}
         </td>
       </tr>
 
@@ -304,11 +304,11 @@
                       {% else %}
 
                         {% assign superuser_id = log_entry.author_id %}
-                        {% include "tickets/log_entry_identifier" %}
+                        {% include "shared/tickets/log_entry_identifier" %}
 
                       {% endif %}
 
-                      {% include "tickets/message_tr" %}
+                      {% include "shared/tickets/message_tr" %}
 
                     {% else %}
 
@@ -319,14 +319,14 @@
                             {{ l.log_body.superuser_id }}
 
                             {% assign superuser_id = log_entry.superuser_id %}
-                            {% include "tickets/log_entry_identifier" %}
+                            {% include "shared/tickets/log_entry_identifier" %}
 
                           {% elsif log_entry.status != nil %}
-                            {% assign log_entry_status = log_entry.status %}
-                            {{ l.log_body.statuses[log_entry_status] }}
+                            {% assign ticket_status = log_entry.status %}
+                            {% include "ticket/ticket_status" %}
                           {% endif %}
                         </td>
-                        {% include "tickets/log_entry_time_td" %}
+                        {% include "shared/tickets/log_entry_time_td" %}
                       </tr>
                     {% endif %}
                   {% endfor %}

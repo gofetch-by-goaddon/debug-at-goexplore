@@ -1,0 +1,9 @@
+{% case ticket_status %}
+{% when "opened" %}
+  {% assign status_style = "danger" %}
+{% when "closed" %}
+  {% assign status_style = "success" %}
+{% else %}
+  {% assign status_style = "warning" %}
+{% endcase %}
+<span class="{{ status_style }} border-rounded border-{{ status_style }}">{{ l[ticket_status] }}</span>

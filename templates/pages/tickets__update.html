@@ -89,7 +89,7 @@
       {% else %}
         alertify.success("{{ response_text }}");
         {% if log_entry.message != nil %}
-          $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "tickets/message_tr" %}');
+          $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
           addMarkdown();
           $("textarea[name='message']").val("");
         {% else %}
