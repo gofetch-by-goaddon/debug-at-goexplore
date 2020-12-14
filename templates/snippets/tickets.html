@@ -31,7 +31,7 @@
               {% assign active_bool = "" %}
               {% assign selected    = "false" %}
             {% endif %}
-            <a class="nav-link{{ active_bool }}" href="{{ 'ticket__index' | path_for: status: status_name }}">
+            <a class="nav-link{{ active_bool }}" href="{{ 'tickets__index' | path_for: status: status_name }}">
               {{ l.status_names[status_name] }}
             </a>
           </li>
