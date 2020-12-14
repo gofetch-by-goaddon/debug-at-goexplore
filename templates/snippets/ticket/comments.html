@@ -1,6 +1,6 @@
 {% if left_tr_count >= right_tr_count %}
 
-  {% assign border_klass = " border-top-0" %}
+  {% assign border_klass = "border-top-0" %}
 
 {% else %}
 
@@ -8,7 +8,7 @@
 
 {% endif %}
 <tr>
-  <td width="1" class="text-nowrap">
+  <td width="1" class="text-nowrap {{ border_klass }}">
     <b>{{ l.headers.comments }}:</b>
   </td>
   <td class="{{ border_klass }}">
