@@ -267,16 +267,8 @@
   </div>
 
   {% if ticket.comments != nil and ticket.comments != "" %}
-    <blockquote class="blockquote mb-0">
-      <small>
-        <div class="mb-0">
-          {{  ticket.comments | decrypt }}
-        </div>
-      </small>
-      <footer class="blockquote-footer">
-        {{ l.informations.comment }}
-      </footer>
-    </blockquote>
+    <p>{{ l.informations.comment }}</p>
+    <p>{{ ticket.comments | decrypt }}</p>
   {% endif %}
 
   <form class="mb-3" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
