@@ -326,7 +326,14 @@
             </button>
           </h5>
         </div>
-        <div aria-labelledby="card_log" class="collapse show" data-parent="#log_accordion" id="collapse_card_log" style="">
+
+        {% if ticket.log != nil %}
+          {% assign toggle_klass = " show" %}
+        {% else %}
+          {% assign toggle_klass = "" %}
+        {% endif %}
+
+        <div aria-labelledby="card_log" class="collapse{{ toggle_klass }}" data-parent="#log_accordion" id="collapse_card_log" style="">
           <div class="card-body">
             <table class="table" id="log_table">
               <tbody>

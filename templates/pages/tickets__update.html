@@ -93,6 +93,7 @@
           $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
           addMarkdown();
           $("textarea[name='message']").val("");
+          $("#log_accordion .collapse").addClass("show");
         {% else %}
           Turbolinks.visit(window.location);
         {% endif %}
