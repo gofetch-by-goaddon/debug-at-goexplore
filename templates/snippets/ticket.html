@@ -239,6 +239,18 @@
               </tr>
             {% endif %}
           {% endfor %}
+          {% if ticket.comments != nil and ticket.comments != "" %}
+            <tr>
+              <td width="1" class="text-nowrap">
+                <b>{{ l.headers.comments }}:</b>
+              </td>
+              <td>
+              </td>
+              <td colspan="2">
+                {{ ticket.comments | decrypt }}
+              </td>
+            </tr>
+          {% endif %}
         </tbody>
       </table>
     </div>
@@ -265,11 +277,6 @@
       </table>
     </div>
   </div>
-
-  {% if ticket.comments != nil and ticket.comments != "" %}
-    <p>{{ l.informations.comment }}</p>
-    <p>{{ ticket.comments | decrypt }}</p>
-  {% endif %}
 
   <form class="mb-3" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
     <textarea name="message" placeholder="{{ l.message.placeholder }}" class="form-control rounded-0 border-bottom-0" rows="2" onkeyup="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
