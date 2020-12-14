@@ -22,11 +22,13 @@
     }
 
     function copyFormInput(form_field_name) {
-      var copyText = document.querySelector("[data-copy='" + form_field_name + "']");
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);
+      var input = document.querySelector("[data-copy='" + form_field_name + "']");
+      input.style.display = "block";
+      input.select();
+      input.setSelectionRange(0, 99999);
       document.execCommand("copy");
-      alertify.success("{{ l.flash.copied }} " + copyText.value);
+      input.style.display = "none";
+      alertify.success("{{ l.flash.copied }} " + input.value);
     }
   </script>
 
@@ -301,9 +303,7 @@
                   {{ ticket[form_field_name] | decrypt }}
                 </td>
                 <td width="1">
-                  <div style="display:none;">
-                    <input type="text" value="{{ ticket[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}">
-                  </div>
+                  <input type="text" value="{{ ticket[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}" style="display:none;">
                   <i class="far fa-copy text-primary" onclick="copyFormInput('{{ form_field_name }}')" style="cursor:pointer;"></i>
                 </td>
               </tr>
