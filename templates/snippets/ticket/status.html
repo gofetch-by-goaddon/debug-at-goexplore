@@ -1,5 +1,5 @@
 {% case ticket_status %}
-{% when "opened" %}
+{% when "opened", "re_opened" %}
   {% assign status_style = "danger" %}
 {% when "closed" %}
   {% assign status_style = "success" %}
