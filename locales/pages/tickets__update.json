@@ -7,9 +7,6 @@
       "not_found": "The ticket was not found",
       "not_updated": "The ticket was not updated",
       "invalid_params": "No valid parameters"
-    },
-    "table": {
-      "now": "Now"
     }
   }
 }

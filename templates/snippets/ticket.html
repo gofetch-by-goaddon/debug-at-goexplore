@@ -297,7 +297,7 @@
                       {% else %}
 
                         {% assign superuser_id = log_entry.author_id %}
-                        {% include "tickets/superuser_identifier" %}
+                        {% include "tickets/log_entry_identifier" %}
 
                       {% endif %}
 
@@ -312,7 +312,7 @@
                             {{ l.log_body.superuser_id }}
 
                             {% assign superuser_id = log_entry.superuser_id %}
-                            {% include "tickets/superuser_identifier" %}
+                            {% include "tickets/log_entry_identifier" %}
 
                           {% elsif log_entry.status != nil %}
                             {% assign log_entry_status = log_entry.status %}
