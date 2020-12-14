@@ -18,7 +18,7 @@
   <script>
     function textAreaAdjust(element) {
       element.style.height = "1px";
-      element.style.height = (25+element.scrollHeight)+"px";
+      element.style.height = (element.scrollHeight)+"px";
     }
   </script>
 
@@ -263,7 +263,7 @@
   </table>
 
   <form class="mb-3" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-    <textarea name="message" placeholder="{{ l.message.placeholder }}" class="form-control rounded-0" rows="2" onkeyup="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
+    <textarea name="message" placeholder="{{ l.message.placeholder }}" class="form-control rounded-0" rows="1" onkeyup="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
     <input type="submit" class="btn btn-outline-primary rounded-0 btn-fullwidth" value="{{ l.message.submit }}">
   </form>
 
