@@ -22,12 +22,15 @@
     }
 
     function copyFormInput(form_field_name) {
-      var input = document.querySelector("[data-copy='" + form_field_name + "']");
-      input.style.display = "block";
+      var input                   = document.querySelector("[data-copy='" + form_field_name + "']");
+      var input_toggle            = document.querySelector("[data-copy-toggle='" + form_field_name + "']");
+      input.style.display         = "block";
+      input_toggle.style.display  = "none";
       input.select();
       input.setSelectionRange(0, 99999);
       document.execCommand("copy");
-      input.style.display = "none";
+      input.style.display         = "none";
+      input_toggle.style.display  = "block";
       alertify.success("{{ l.flash.copied }} " + input.value);
     }
   </script>
@@ -297,13 +300,13 @@
             {% if ticket[form_field_name] != nil and ticket[form_field_name] != "" %}
               <tr>
                 <td width="1" class="text-nowrap">
-                  <b>{{ l.headers[form_field_name] }}:</b>
+                  <b data-copy-toggle="{{ form_field_name }}">{{ l.headers[form_field_name] }}:</b>
+                  <input type="text" value="{{ ticket[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}" style="display:none;">
                 </td>
                 <td>
                   {{ ticket[form_field_name] | decrypt }}
                 </td>
                 <td width="1">
-                  <input type="text" value="{{ ticket[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}" style="display:none;">
                   <i class="far fa-copy text-primary" onclick="copyFormInput('{{ form_field_name }}')" style="cursor:pointer;"></i>
                 </td>
               </tr>
