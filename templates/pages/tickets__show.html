@@ -1,5 +1,6 @@
 {% if account != nil and user.superuser %}
 
+  {% assign error         = nil %}
   {% assign tickets_query = "tickets" | db_find: company_id: account._id, _id: params.id %}
   {% assign ticket        = tickets_query.results.first %}
 
@@ -8,9 +9,11 @@
     {% assign error = l.no_ticket %}
 
   {% else %}
+
     {% if user.superuser_level != 1 %}
       {% if ticket.superuser_id != user._id %}
         {% unless user.relay_ids != nil and user.relay_ids contains ticket.relay_id %}
+          <p>Hello</p>
           {% assign error = l.no_access %}
         {% endunless %}
       {% endif %}
