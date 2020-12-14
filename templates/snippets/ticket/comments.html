@@ -16,6 +16,6 @@
 </tr>
 <tr>
   <td colspan="2" class="border-top-0 pt-0">
-    {{ ticket.comments | decrypt }}
+    <span class="markdown" data-markdown="{{ ticket.comments | decrypt | url_encode }}"></span>
   </td>
 </tr>
