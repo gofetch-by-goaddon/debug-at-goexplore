@@ -93,7 +93,7 @@
         </tr>
       {% endif %}
 
-      {% if ticket.superuser_id != nil or ticket.status == "escalated" %}
+      {% if ticket.superuser_id != nil %}
         <tr>
           <td width="1" class="text-nowrap">
             <b>{{ l.headers.assignee }}:</b>
@@ -102,15 +102,8 @@
             {% if ticket.superuser_id == user._id %}
               {{ l.informations.assigned_to_you }}
             {% else %}
-              {% for superuser in superusers %}
-                {% if ticket.superuser_id == superuser._id %}
-                  {{ superuser.email }}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-            {% if ticket.status == "escalated" %}
-              {% assign ticket_status = "escalated" %}
-              {% include "ticket/status" %}
+              {% assign superuser_id = ticket.superuser_id %}
+              {% include "ticket/superuser_identifier" %}
             {% endif %}
           </td>
         </tr>
@@ -305,7 +298,7 @@
                       {% else %}
 
                         {% assign superuser_id = log_entry.author_id %}
-                        {% include "shared/tickets/log_entry_identifier" %}
+                        {% include "ticket/superuser_identifier" %}
 
                       {% endif %}
 
@@ -320,7 +313,7 @@
                             {{ l.log_body.superuser_id }}
 
                             {% assign superuser_id = log_entry.superuser_id %}
-                            {% include "shared/tickets/log_entry_identifier" %}
+                            {% include "ticket/superuser_identifier" %}
 
                           {% elsif log_entry.status != nil %}
                             {% assign ticket_status = log_entry.status %}
