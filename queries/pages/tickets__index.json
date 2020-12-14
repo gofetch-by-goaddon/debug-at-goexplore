@@ -19,7 +19,7 @@
     "klass": "tickets",
     "query": {
       "superuser_id": "{{ user_id }}",
-      "status": {"$in": "{{ statuses }}"},
+      "status": {"$in": "{{ statuses }}"}
     },
     "projection": {
       "_id": 1,
