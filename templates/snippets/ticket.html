@@ -33,7 +33,7 @@
 
   <div class="row mb-3">
     <div class="col-md-12 col-lg-6">
-      <table class="table">
+      <table class="table mb-0">
         <tbody>
           {% assign status_field_names  = "opened_at escalated_at closed_at re_opened_at" | split: " " %}
           {% assign assign timeline     = "" | split: " " %}
@@ -258,7 +258,7 @@
     </div>
 
     <div class="col-md-12 col-lg-6">
-      <table class="table">
+      <table class="table mb-0">
         <tbody>
 
           {% assign field_names = "mail_address phone admin_url admin_username admin_password ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}
