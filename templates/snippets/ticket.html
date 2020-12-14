@@ -20,6 +20,14 @@
       element.style.height = "1px";
       element.style.height = (25 + element.scrollHeight) + "px";
     }
+
+    function copyFormInput(form_field_name) {
+      var copyText = document.querySelector("[data-copy='" + form_field_name + "']");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      alert("Copied the text: " + copyText.value);
+    }
   </script>
 
   {% include "shared/indent_json_pre" %}
@@ -293,7 +301,8 @@
                   {{ ticket[form_field_name] | decrypt }}
                 </td>
                 <td width="1">
-                  <i class="far fa-copy text-primary"></i>
+                  <input type="hidden" value="{{ ticket[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}">
+                  <i class="far fa-copy text-primary" onclick="copyFormInput('{{ form_field_name }}')" style="cursor:pointer;"></i>
                 </td>
               </tr>
             {% endif %}
