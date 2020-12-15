@@ -294,6 +294,7 @@
                   {{ ticket.opened_at | time_distance_in_words: now }} {{ l.tickets.body.ago }}
                 </span>
               </a>
+              &#183;
               <a href="{{ 'tickets__show' | path_for: id: ticket._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
             </td>
             <td>
