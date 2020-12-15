@@ -395,6 +395,10 @@
 
                       <tr>
                         <td>
+                          <p>{{log_entry.first[0]}}</p>
+                          <p>{{log_entry[0]}}</p>
+                          <p>{{log_entry.first[1]}}</p>
+                          <p>{{log_entry[1]}}</p>
                           {% if log_entry.first[0] == "superuser_id" and log_entry.first[1] == nil %}
                           
                             {{ l.log_body.unassigned }}
