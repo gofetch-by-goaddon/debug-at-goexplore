@@ -1,0 +1,10 @@
+{
+  "tickets": {
+    "klass": "tickets",
+    "query": {
+      "webshop_id": "{{ webshop_id }}",
+      "superuser_id": "{{ user_id }}",
+      "status": {"$in": "{{ statuses }}"}
+    }
+  }
+}

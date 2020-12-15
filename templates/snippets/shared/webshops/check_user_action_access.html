@@ -1,0 +1,15 @@
+{% assign error = nil %}
+
+{% if user.superuser_level != 1 %}
+  {% unless user.relay_ids != nil and user.relay_ids contains webshop.relay_id %}
+
+    {% assign ticket_statuses = "opened escalated" | split: " " %}
+    {% assign tickets_query   = "tickets" | db_count: webshop_id: webshop._id, user_id: user._id, statuses: ticket_statuses %}
+
+    {% if tickets_query.results_count == nil or tickets_query.results_count == 0 %}    
+
+      {% assign error = l.errors.no_access %}
+
+    {% endif %}
+  {% endunless %}
+{% endif %}

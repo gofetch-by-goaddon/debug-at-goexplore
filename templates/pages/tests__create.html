@@ -1,46 +1,68 @@
 {% if account != nil and user.superuser %}
 
-  {% assign gofetch_shop_api_url = project.secrets.gofetch_shop_api_url %}
+  {% include "shared/webshops/check_user_action_access" %}
 
-  {% if gofetch_shop_api_url != nil and gofetch_shop_api_url != "" %}
+  {% if error != nil %}
 
-    {% assign path = params.url | replace: gofetch_shop_api_url, "" %}
+    {"status": "422", "error": "{{ error }}"}
 
-    {% capture shop_api_url %}{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
+  {% else %}
 
-    {% assign shop_api_url  = shop_api_url | replace: "{{ order_id }}", params.order_id %}
+    {% assign gofetch_shop_api_url = project.secrets.gofetch_shop_api_url %}
 
-    {% case params.method %}
-      {% when "get" %}
-        {% assign response = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
-      {% when "delete" %}
-        {% assign response = "delete_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
-      {% when "patch" %}
-        {% assign response = "patch_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token, body: params.body %}
-      {% when "post" %}
-        {% assign response = "post_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token, body: params.body %}
-    {% endcase %}
+    {% if gofetch_shop_api_url != nil and gofetch_shop_api_url != "" %}
 
-    {% if response.error != nil %}
+      {% assign path = params.url | replace: gofetch_shop_api_url, "" %}
 
-      {"status": "500", "error": "{{ response.error }}"}
+      {% capture shop_api_url %}{{ gofetch_shop_api_url }}{{ path }}{% endcapture %}
+
+      {% assign shop_api_url  = shop_api_url | replace: "{{ order_id }}", params.order_id %}
+
+      {% case params.method %}
+        {% when "get" %}
+
+          {% assign response = "get_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
+
+        {% when "delete" %}
+
+          {% assign response = "delete_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token %}
+
+        {% when "patch" %}
+
+          {% assign response = "patch_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token, body: params.body %}
+
+        {% when "post" %}
+
+          {% assign response = "post_shop_api" | webhook: url: shop_api_url, token: project.secrets.gofetch_shop_api_token, body: params.body %}
+
+      {% endcase %}
+
+      {% if response.error != nil %}
+
+        {"status": "500", "error": "{{ response.error }}"}
+
+      {% else %}
+
+        {% if response.body != nil %}
+
+          {% assign response_json = response.body | json %}
+
+        {% endif %}
+
+        {% if response_json == nil or response_json == "" %}
+
+          {% assign response_json = response.body %}
+
+        {% endif %}
+
+        {"status": "{{ response.code }}", "response_json": {{ response_json }}}
+
+      {% endif %}
 
     {% else %}
 
-      {% if response.body != nil %}
+      {"status": "{{ response.code }}", "error": "{{ l.no_gofetch_shop_api_url }}"}
 
-        {% assign response_json = response.body | json %}
-
-      {% endif %}
-
-      {% if response_json == nil or response_json == "" %}
-        {% assign response_json = response.body %}
-      {% endif %}
-
-      {"status": "{{ response.code }}", "response_json": {{ response_json }}}
-    {% endif %}
-
-  {% else %}
-    {"status": "{{ response.code }}", "error": "{{ l.no_gofetch_shop_api_url }}"}
+    {% endif %}  
   {% endif %}  
 {% endif %}
