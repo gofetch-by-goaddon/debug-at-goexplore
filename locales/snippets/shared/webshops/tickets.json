@@ -1,5 +1,8 @@
 {
   "en": {
+    "headlines": {
+      "tickets": "Tickets"
+    },
     "explainers": {
       "tickets": {
         "p1": "There has been registered",

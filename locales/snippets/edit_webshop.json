@@ -6,7 +6,6 @@
       "error": "Error, please",
       "config": "Change configuration",
       "reset": "Queue imports",
-      "tickets": "Tickets"
     },
     "buttons": {
       "submit": "Update",
@@ -33,12 +32,6 @@
           "inactive": "activate it"
         }
       },
-      "tickets": {
-        "p1": "There has been registered",
-        "ticket": "ticket",
-        "tickets": "tickets",
-        "p2": "for this webshop"
-      }
     },
     "placeholders": {
       "got_at_attr": "Select timestamp to reset..."
