@@ -200,7 +200,7 @@
     </div>
   {% endfor %}
 
-  <h5 class="mt-4"><b>{{ l.headlines.config }}</b></h5>
+  <h5 class="mt-4">{{ l.headlines.config }}</h5>
   <p>{{ l.explainers.config }}</p>
 
   {% assign encrypted_hash = webshop.config %}
@@ -217,7 +217,7 @@
 
   </form>
 
-  <h5 class="mt-4"><b>{{ l.headlines.reset }}</b></h5>
+  <h5 class="mt-4">{{ l.headlines.reset }}</h5>
   <p>
     {{ l.explainers.reset.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ relay.name }} <i class="fas fa-external-link-alt"></i></a>. {{ l.explainers.reset.p2 }}.
   </p>
@@ -256,7 +256,7 @@
 
   {% if tickets.size > 0 %}
 
-    <h5 class="mt-3"><b>{{ l.headlines.tickets }}</b></h5>
+    <h5 class="mt-3">{{ l.headlines.tickets }}</h5>
     <p>
       {{ l.explainers.tickets.p1 }}
       {{ tickets.size }}
