@@ -179,6 +179,12 @@
   })
   </script>
 
+  <form class="update-webshop-form mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
+
+    <input type="submit" class="btn btn-outline-primary mt-3 btn-fullwidth" value="{{ l.buttons.submit }}">
+    <button class="btn btn-outline-primary mt-3 btn-fullwidth disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.submitting }}</button>
+  </form>
+
   {% if webshop.active %}
     {% assign webshop_status = "active" %}
   {% else %}
@@ -225,9 +231,7 @@
   {% assign encrypted_hash = webshop.config %}
   {% include "shared/decrypt_hash" %}
 
-  <form class="update-webshop-form mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
-    <input type="submit" class="btn btn-outline-primary mt-3 btn-fullwidth" value="{{ l.buttons.submit }}">.
-  </form>
+
 
   <h5 class="mt-4">{{ l.headlines.reset }}</h5>
   <p>
