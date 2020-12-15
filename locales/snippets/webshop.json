@@ -3,7 +3,8 @@
     "headlines": {
       "intro": "Test the Shop API for",
       "or": "or",
-      "return": "return"
+      "return": "return",
+      "error": "Error, please"
     },
     "resource_names": {
       "products": "Products",

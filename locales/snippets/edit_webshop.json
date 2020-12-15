@@ -3,6 +3,7 @@
     "headlines": {
       "intro": "Edit this webshop, or",
       "return": "return",
+      "error": "Error, please",
       "config": "Change configuration",
       "reset": "Queue imports",
       "tickets": "Tickets"

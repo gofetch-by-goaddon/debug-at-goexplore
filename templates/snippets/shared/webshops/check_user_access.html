@@ -1,0 +1,23 @@
+{% if user.superuser_level != 1 %}
+
+  {% unless user.relay_ids != nil and user.relay_ids contains webshop.relay_id %}
+
+    {% assign open_tickets = false %}
+
+    {% for ticket in tickets %}
+      {% if ticket.status == "open" or ticket.status == "escalated" %}
+        {% if ticket.superuser_id == user._id %}
+
+          {% assign open_tickets = true %}
+
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% unless open_tickets %}
+
+      {% assign error = l.errors.no_access %}
+
+    {% endunless %}
+  {% endunless %}
+{% endif %}

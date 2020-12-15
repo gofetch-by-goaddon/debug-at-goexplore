@@ -1,9 +1,5 @@
 {
   "en": {
-    "headlines": {
-      "error": "Error, please",
-      "return": "return"
-    },
     "errors": {
       "no_relay_id": "The webshop does not belong to a relay",
       "relay_not_found": "Unable to get data from the project API about relay",
