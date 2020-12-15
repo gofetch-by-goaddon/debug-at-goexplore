@@ -74,7 +74,7 @@
     "log_body": {
       "assigned": "Assigned to",
       "unassigned": "Ussigned",
-      "unassigned_and": "Unassigned and"
+      "and_unassigned": "and unassigned"
     },
     "flash": {
       "copied": "Copied"

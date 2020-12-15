@@ -413,15 +413,13 @@
                             {% elsif log_entry.status != nil %}
 
                               {% assign ticket_status = log_entry.status %}
+                              {% include "shared/ticket_status" %}
 
                               {% if ticket_status == "closed" %}
 
-                                {{ l.log_body.unassigned_and }}
+                                <span class="text-secondary">&#183; {{ l.log_body.and_unassigned }}</span>
 
                               {% endif %}
-
-                              {% include "shared/ticket_status" %}
-
                             {% endif %}
                           {% endif %}
                         </td>
