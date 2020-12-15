@@ -25,10 +25,11 @@
 
     {% else %}
 
-      {% assign now       = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-      {% assign document  = nil | new_hash %}
-      {% assign log_entry = nil | new_hash %}
-      {% assign log_entry = log_entry | push_to_hash: "time", now %}
+      {% assign redirect_to = nil %}
+      {% assign now         = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+      {% assign document    = nil | new_hash %}
+      {% assign log_entry   = nil | new_hash %}
+      {% assign log_entry   = log_entry | push_to_hash: "time", now %}
 
       {% if params.superuser_id != nil %}
 
@@ -58,6 +59,14 @@
           {% assign document = document | push_to_hash: "re_opened_at", nil %}
           {% assign document = document | push_to_hash: "escalated_at", nil %}
           {% assign document = document | push_to_hash: "de_escalated_at", nil %}
+          {% assign document = document | push_to_hash: "superuser_id", nil %}
+
+          {% if user.superuser_level != nil %}
+
+            {% assign redirect_to = "tickets__index" | path_for %}
+ 
+          {% endif %}
+
 
         {% elsif params.status == "de_escalated" %}
 
@@ -111,7 +120,15 @@
             $("textarea[name='message']").val("");
             $("#log_accordion .collapse").addClass("show");
           {% else %}
-            Turbolinks.visit(window.location);
+            {% if redirect_to != nil %}
+
+              Turbolinks.visit(redirect_to);
+
+            {% else %}
+
+              Turbolinks.visit(window.location);
+
+            {% endif %}
           {% endif %}
         {% endif %}
       {% endif %}
