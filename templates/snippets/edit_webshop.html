@@ -226,11 +226,6 @@
   {% include "shared/decrypt_hash" %}
 
   <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
-
-    <div class="json-container">
-      <textarea class="border" name="config">{{ decrypted_hash | json }}</textarea>
-    </div>
-
     <input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary bg-white" value="Submit">
   </form>
 
