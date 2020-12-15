@@ -122,7 +122,7 @@
           {% else %}
             {% if redirect_to != nil %}
 
-              Turbolinks.visit(redirect_to);
+              Turbolinks.visit("{{ redirect_to }}");
 
             {% else %}
 
