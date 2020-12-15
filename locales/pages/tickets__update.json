@@ -3,6 +3,7 @@
     "response_texts": {
       "no_access": "You don't have access to update this ticket",
       "superuser_id_updated": "You have re-assigned the ticket",
+      "superuser_id_unassigned": "You have un-assigned the ticket",
       "message_sent": "Message sent",
       "not_found": "The ticket was not found",
       "not_updated": "The ticket was not updated",

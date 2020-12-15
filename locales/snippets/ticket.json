@@ -60,7 +60,8 @@
     "assign": {
       "assign": "assign",
       "reassign": "re-assign",
-      "header": "Choose assignee"
+      "header": "Choose assignee",
+      "unassign": "Unassign"
     },
     "message": {
       "label": "Message",
