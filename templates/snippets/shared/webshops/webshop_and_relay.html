@@ -32,7 +32,11 @@
 
       {% else %}
 
-        {% assign relay = relay_response.body.document %}
+        {% assign relay         = relay_response.body.document %}
+        {% assign tickets_query = "tickets" | db_find: webshop_id: webshop._id %}
+        {% assign tickets       = tickets_query.results %}    
+
+        {% include "shared/webshops/check_user_access" %}
 
       {% endif %}
     {% endif %}

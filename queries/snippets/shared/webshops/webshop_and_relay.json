@@ -24,5 +24,19 @@
       "got_orders_open_since_3x_at": 1,
       "got_orders_open_since_4x_at": 1
     }
+  },
+  "tickets": {
+    "klass": "tickets",
+    "query": {
+      "webshop_id": "{{ webshop_id }}"
+    },
+    "projection": {
+      "_id": 1,
+      "status": 1,
+      "opened_at": 1,
+      "closed_at": 1,
+      "escalated_at": 1,
+      "superuser_id": 1
+    }
   }
 }
