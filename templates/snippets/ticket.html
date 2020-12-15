@@ -395,7 +395,7 @@
 
                       <tr>
                         <td>
-                          {% if log_entry[0] == "superuser_id" and log_entry[1] == nil %}
+                          {% if log_entry.first[0] == "superuser_id" and log_entry.first[1] == nil %}
                           
                             {{ l.log_body.unassigned }}
 
@@ -413,13 +413,9 @@
                             {% elsif log_entry.status != nil %}
 
                               {% assign ticket_status = log_entry.status %}
+
                               {% include "shared/ticket_status" %}
 
-                              {% if ticket_status == "closed" %}
-
-                                <span class="text-secondary">&#183; {{ l.log_body.and_unassigned }}</span>
-
-                              {% endif %}
                             {% endif %}
                           {% endif %}
                         </td>
