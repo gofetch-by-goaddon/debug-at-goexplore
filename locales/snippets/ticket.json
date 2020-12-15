@@ -22,10 +22,10 @@
       "ftp_password": "FTP password",
       "ssh_address": "SSH address",
       "ssh_password": "SSH password",
-      "opened_at": "Opened at",
-      "closed_at": "Closed at",
-      "escalated_at": "Escalated at",
-      "re_opened_at": "Re-opened at"
+      "opened_at": "Opened",
+      "closed_at": "Closed",
+      "escalated_at": "Escalated",
+      "re_opened_at": "Re-opened"
     },
     "informations": {
       "ago": "ago",
