@@ -72,7 +72,9 @@
       "header": "Activity log"
     },
     "log_body": {
-      "superuser_id": "Assigned to"
+      "assigned": "Assigned to",
+      "unassigned": "Ussigned",
+      "and_unassigned": "and unassigned"
     },
     "flash": {
       "copied": "Copied"

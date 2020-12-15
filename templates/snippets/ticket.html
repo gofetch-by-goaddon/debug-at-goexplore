@@ -395,19 +395,32 @@
 
                       <tr>
                         <td>
-                          {% if log_entry.superuser_id != nil %}
+                          {% if log_entry[0] == "superuser_id" and log_entry[1] == nil %}
+                          
+                            {{ l.log_body.unassigned }}
 
-                            {{ l.log_body.superuser_id }}
+                          {% else %}
+                            {% if log_entry.superuser_id != nil %}
 
-                            {% assign superuser_id = log_entry.superuser_id %}
+                              {{ l.log_body.assigned }}
 
-                            {% include "ticket/superuser_identifier" %}
+                              {% assign superuser_id = log_entry.superuser_id %}
 
-                            {{ identifier }}
+                              {% include "ticket/superuser_identifier" %}
 
-                          {% elsif log_entry.status != nil %}
-                            {% assign ticket_status = log_entry.status %}
-                            {% include "shared/ticket_status" %}
+                              {{ identifier }}
+
+                            {% elsif log_entry.status != nil %}
+
+                              {% assign ticket_status = log_entry.status %}
+                              {% include "shared/ticket_status" %}
+
+                              {% if ticket_status == "closed" %}
+
+                                {{ l.log_body.and_unassigned }}
+
+                              {% endif %}
+                            {% endif %}
                           {% endif %}
                         </td>
                         {% include "shared/tickets/log_entry_time_td" %}
