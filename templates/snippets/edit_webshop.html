@@ -49,8 +49,8 @@
 
   <script>
     submitRequest = function() {
-      $("form.update-webshop-form").off("submit");
-      $("form.update-webshop-form").on("submit", function(e) {
+      $("form#config_form").off("submit");
+      $("form#config_form").on("submit", function(e) {
 
         e.preventDefault();
 
@@ -225,7 +225,7 @@
   {% assign encrypted_hash = webshop.config %}
   {% include "shared/decrypt_hash" %}
 
-  <form class="update-webshop-form mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
+  <form class="update-webshop-form mb-4" id="config_form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
 
     <div class="json-container">
       <textarea class="border" name="config">{{ decrypted_hash | json }}</textarea>
