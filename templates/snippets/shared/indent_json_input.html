@@ -21,7 +21,7 @@
         editor.getSession().setValue(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
         console.log("Waiting...");
         console.log(text_area);
-        return text_area.closest("form").submit(function() {
+        return text_area.closest("form").on("submit", function(e) {
           console.log("Here it is:");
           console.log(text_area.val(editor.getSession().getValue()));
           return text_area.val(editor.getSession().getValue());
