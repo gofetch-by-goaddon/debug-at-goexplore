@@ -51,6 +51,7 @@
     submitRequest = function() {
       $(".update-webshop-form").off("submit");
       $(".update-webshop-form").on("submit", function(e) {
+
         e.preventDefault();
 
         var form_action             = $(this).attr("action");
@@ -59,7 +60,7 @@
         var form_submitting         = $(this).find("[data-type=submitting]");
         var request_data            = {};
 
-        var config_input            = $(this).find(":input[name=config]");
+        var config_input            = $(this).find(":textarea[name=config]");
         if (config_input.length > 0) {
           request_data["config"]      = JSON.parse(config_input.val());
         }
