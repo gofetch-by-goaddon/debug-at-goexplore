@@ -5,7 +5,8 @@
       "or": "or",
       "return": "return",
       "error": "Error, please",
-      "tickets": "Tickets",
+      "ticket": "ticket",
+      "tickets": "tickets",
       "open": "open"
     },
     "resource_names": {

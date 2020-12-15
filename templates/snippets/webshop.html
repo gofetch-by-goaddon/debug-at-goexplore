@@ -295,7 +295,14 @@
             <h5 class="mb-0">
               <button aria-controls="collapse_card_tickets" aria-expanded="false" class="btn btn-link collapsed" data-target="#collapse_card_tickets" data-toggle="collapse" type="button">
                 <div class="text-primary">
+
                   {{ tickets.size }}
+
+                  {% if ticket.size == open_ticket_count %}
+
+                    {{ l.headlines.open }}
+
+                  {% endif %}
 
                   {% if tickets.size == 1 %}
 
@@ -307,7 +314,7 @@
 
                   {% endif %}
 
-                  {% if tickets.size > 0 %}
+                  {% if tickets.size != open_ticket_count %}
 
                     &#183; {{ open_ticket_count }} {{ l.headlines.open }}
 
