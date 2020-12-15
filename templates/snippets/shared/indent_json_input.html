@@ -22,8 +22,7 @@
         console.log("Waiting...");
         console.log(text_area);
         return editor.getSession().on("change", function () {
-          console.log("Here it is:");
-          console.log(text_area.val(editor.getSession().getValue()));
+          console.log("Change");
           return text_area.val(editor.getSession().getValue());
         });
       }
