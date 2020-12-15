@@ -5,7 +5,7 @@
       "return": "return",
       "error": "Error, please",
       "config": "Change configuration",
-      "reset": "Queue imports",
+      "reset": "Queue imports"
     },
     "buttons": {
       "submit": "Update",
