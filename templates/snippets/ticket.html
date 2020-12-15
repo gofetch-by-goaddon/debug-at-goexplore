@@ -395,11 +395,17 @@
 
                       <tr>
                         <td>
-                          <p>{{log_entry.first[0]}}</p>
-                          <p>{{log_entry[0]}}</p>
-                          <p>{{log_entry.first[1]}}</p>
-                          <p>{{log_entry[1]}}</p>
-                          {% if log_entry.first[0] == "superuser_id" and log_entry.first[1] == nil %}
+                          {% assign unassigned = false %}
+
+                          {% for log_kv in log_entry %}
+                            {% if log_kv[0] == "superuser_id" and log_kv[1] == nil %}
+
+                              {% assign unassigned = true %}
+
+                            {% endif %}
+                          {% endif %}
+
+                          {% if unassigned %}
                           
                             {{ l.log_body.unassigned }}
 
