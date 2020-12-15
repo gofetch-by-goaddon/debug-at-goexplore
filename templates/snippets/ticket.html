@@ -397,7 +397,7 @@
 
                           {% elsif log_entry.status != nil %}
                             {% assign ticket_status = log_entry.status %}
-                            {% include "ticket/status" %}
+                            {% include "shared/ticket_status" %}
                           {% endif %}
                         </td>
                         {% include "shared/tickets/log_entry_time_td" %}
@@ -409,7 +409,7 @@
                 <tr>
                   <td>
                     {% assign ticket_status = "opened" %}
-                    {% include "ticket/status" %}
+                    {% include "shared/ticket_status" %}
                   </td>
                   {% assign log_entry = nil | new_hash %}
                   {% assign log_entry = log_entry | push_to_hash: "time", ticket.opened_at %}
