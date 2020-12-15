@@ -204,7 +204,7 @@
                     <div class="card-body">
                       <p><b>{{ l.headers.description }}</b></p>
                       <div class="markdown" data-markdown="{{ endpoint.description | url_encode }}"></div>
-                      <form class="shop-api-form" action="{{ 'tests__create' | path_for: format: 'json' }}" method="post" data-remote="true">
+                      <form class="shop-api-form" action="{{ 'tests__create' | path_for: format: 'json' }}" method="post">
                         
                         <p><b>{{ l.headers.params }}</b></p>
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
