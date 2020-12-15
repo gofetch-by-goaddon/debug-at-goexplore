@@ -24,7 +24,7 @@
       },
       "reset": {
         "p1": "Everytime Gofetch imports new data from this webshop, your database is updated with a timestamp that represents the time where it took place. Data is imported as frequent as your schedule allows for",
-        "p2": "If you reset a timestamp, the shop will be immediately queued for new data to be imported"
+        "p2": "If you reset a timestamp, the shop will be immediately queued for a new import"
       },
       "active": {
         "p1": "This webshop is",
