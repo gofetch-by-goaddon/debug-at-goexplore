@@ -277,27 +277,32 @@
 
   {% if tickets.size > 0 %}
 
-    <div class="accordion" id="tickets_accordion">
+    {% assign toggle_klass      = "" %}
+    {% assign open_ticket_count = 0 %}
+
+    {% for ticket in tickets %}
+      {% if ticket.status == "opened" or ticket.status == "escalated" %}
+
+        {% assign toggle_klass      = " show" %}
+        {% assign open_ticket_count = open_ticket_count | plus: 1 %}
+
+      {% endif %}
+    {% endfor %}
+
+    <div class="accordion mt-4" id="tickets_accordion">
        <div class="card border">
           <div class="card-header p-1" id="card_tickets">
             <h5 class="mb-0">
               <button aria-controls="collapse_card_tickets" aria-expanded="false" class="btn btn-link collapsed" data-target="#collapse_card_tickets" data-toggle="collapse" type="button">
                 <div class="text-primary">
                   {{ l.headlines.tickets }}
+                  {% if open_ticket_count > 0 %}
+                    &#183; {{ open_ticket_count }} {{ l.headlines.open_tickets }}
+                  {% endif %}
                 </div>
               </button>
             </h5>
           </div>
-
-          {% assign toggle_klass = "" %}
-
-          {% for ticket in tickets %}
-            {% if ticket.status == "opened" or ticket.status == "escalated" %}
-
-              {% assign toggle_klass = " show" %}
-
-            {% endif %}
-          {% endfor %}
 
           <div aria-labelledby="card_tickets" class="collapse{{ toggle_klass }}" data-parent="#tickets_accordion" id="collapse_card_tickets">
             <div class="card-body">
