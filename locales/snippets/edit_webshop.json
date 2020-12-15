@@ -5,7 +5,8 @@
       "return": "return",
       "error": "Error, please",
       "config": "Change configuration",
-      "reset": "Queue imports"
+      "reset": "Queue imports",
+      "tickets": "Tickets"
     },
     "buttons": {
       "submit": "Update",
@@ -31,6 +32,12 @@
           "active": "deactivate it",
           "inactive": "activate it"
         }
+      },
+      "tickets": {
+        "p1": "There has been registered",
+        "ticket": "ticket",
+        "tickets": "tickets",
+        "p2": "for this webshop"
       }
     },
     "placeholders": {

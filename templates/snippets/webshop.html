@@ -275,8 +275,40 @@
     </div>
   </div>
 
-  {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+  {% if tickets.size > 0 %}
 
-  {% include "shared/webshops/tickets" %}
+    <div class="accordion" id="tickets_accordion">
+       <div class="card border">
+          <div class="card-header p-1" id="card_tickets">
+            <h5 class="mb-0">
+              <button aria-controls="collapse_card_tickets" aria-expanded="false" class="btn btn-link collapsed" data-target="#collapse_card_tickets" data-toggle="collapse" type="button">
+                <div class="text-primary">
+                  {{ l.headlines.tickets }}
+                </div>
+              </button>
+            </h5>
+          </div>
 
+          {% assign toggle_klass = "" %}
+
+          {% for ticket in tickets %}
+            {% if ticket.status == "opened" or ticket.status == "escalated" %}
+
+              {% assign toggle_klass = " show" %}
+
+            {% endif %}
+          {% endfor %}
+
+          <div aria-labelledby="card_tickets" class="collapse{{ toggle_klass }}" data-parent="#tickets_accordion" id="collapse_card_tickets">
+            <div class="card-body">
+
+              {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+
+              {% include "shared/webshops/tickets" %}
+
+            </div>
+          </div>
+       </div>
+    </div>
+  {% endif %}
 {% endif %}

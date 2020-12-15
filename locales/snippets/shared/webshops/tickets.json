@@ -1,16 +1,5 @@
 {
   "en": {
-    "headlines": {
-      "tickets": "Tickets"
-    },
-    "explainers": {
-      "tickets": {
-        "p1": "There has been registered",
-        "ticket": "ticket",
-        "tickets": "tickets",
-        "p2": "for this webshop"
-      }
-    },
     "headers": {
       "opened_at": "Opened",
       "closed_at": "Closed",

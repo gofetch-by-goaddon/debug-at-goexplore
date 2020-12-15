@@ -4,7 +4,8 @@
       "intro": "Test the Shop API for",
       "or": "or",
       "return": "return",
-      "error": "Error, please"
+      "error": "Error, please",
+      "tickets": "Tickets"
     },
     "resource_names": {
       "products": "Products",
