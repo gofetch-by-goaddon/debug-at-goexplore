@@ -59,7 +59,7 @@
     },
     "assign": {
       "assign": "assign",
-      "reassign": "re-assign",
+      "reassign": "reassign",
       "header": "Choose assignee",
       "unassign": "Unassign"
     },
