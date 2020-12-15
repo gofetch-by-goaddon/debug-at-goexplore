@@ -23,7 +23,7 @@
         "p2": "the Shop API"
       },
       "reset": {
-        "p1": "Gofetch registers everytime a scheduled import takes place. Imports run as frequent as your schedule allows for",
+        "p1": "For every type of scheduled import, Gofetch updates your database with a timestamp that represents the time where it last took place. Imports run as frequent as your schedule allows for",
         "p2": "If you reset one of the registered timestamps, the shop will be immediately queued for the import that scheduled by this timestamp"
       },
       "active": {

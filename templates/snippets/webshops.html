@@ -24,7 +24,7 @@
                 {% assign identifiable_config_keys = 0 %}
                 {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
                   {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
-                    ,&nbsp;
+                    &#183;
                   {% endif %}
                   {% if webshop.config[identifiable_config_key] != nil and webshop.config[identifiable_config_key] != "" %}
                     {% assign identifiable_config_keys = identifiable_config_keys | plus: 1 %}
