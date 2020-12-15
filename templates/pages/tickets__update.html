@@ -48,13 +48,15 @@
 
       {% elsif params.status != nil %}
 
-        {% capture status_time %}{{ params.status }}_at{% endcapture %}
+        {% assign params_status = params.status %}
+
+        {% capture status_time %}{{ params_status }}_at{% endcapture %}
 
         {% assign document      = document | push_to_hash: status_time, now %}
-        {% assign log_entry     = log_entry | push_to_hash: "status", params.status %}
-        {% assign response_text = l.response_texts.status_changed %}
+        {% assign log_entry     = log_entry | push_to_hash: "status", params_status %}
+        {% assign response_text = l.response_texts.status_changed[params_status] %}
 
-        {% if params.status == "closed" %}
+        {% if params_status == "closed" %}
 
           {% assign document = document | push_to_hash: "re_opened_at", nil %}
           {% assign document = document | push_to_hash: "escalated_at", nil %}
@@ -68,19 +70,19 @@
           {% endif %}
 
 
-        {% elsif params.status == "de_escalated" %}
+        {% elsif params_status == "de_escalated" %}
 
           {% assign document = document | push_to_hash: "escalated_at", nil %}
 
         {% endif %}
 
-        {% if params.status == "re_opened" or params.status == "de_escalated" %}
+        {% if params_status == "re_opened" or params_status == "de_escalated" %}
 
           {% assign status = "opened" %}
 
         {% else %}    
 
-          {% assign status = params.status %}
+          {% assign status = params_status %}
 
         {% endif %}    
 
