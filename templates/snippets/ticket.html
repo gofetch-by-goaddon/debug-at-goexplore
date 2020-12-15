@@ -114,7 +114,7 @@
                 <b>{{ l.headers.webshop }}:</b>
               </td>
               <td>
-                <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ l.informations.edit_webshop }}</a> {{ l.informations.or }} <a href="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}">{{ l.informations.show_webshop }}</a>
+                <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ l.informations.edit_webshop }}</a> &#183; <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a> {{ l.informations.or }} <a href="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}">{{ l.informations.show_webshop }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
               </td>
             </tr>
           {% endif %}
