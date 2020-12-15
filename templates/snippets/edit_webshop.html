@@ -209,7 +209,7 @@
     </div>
   {% endfor %}
 
-  <h5 class="mt-4">{{ l.headlines.config }}</h5>
+  <h5 class="my-4">{{ l.headlines.config }}</h5>
   <p>
     {{ l.explainers.config.p1 }}
     <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.explainers.config.p2 }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: webshop._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
@@ -227,7 +227,7 @@
     <button class="btn btn-outline-primary mt-3 btn-fullwidth disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.submitting }}</button>
   </form>
 
-  <h5 class="mt-4">{{ l.headlines.reset }}</h5>
+  <h5 class="my-4">{{ l.headlines.reset }}</h5>
   <p>
     {{ l.explainers.reset.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ relay.name }} <i class="fas fa-external-link-alt"></i></a>. {{ l.explainers.reset.p2 }}.
   </p>
@@ -265,7 +265,7 @@
 
   {% if tickets.size > 0 %}
 
-    <h5 class="mt-3">{{ l.headlines.tickets }}</h5>
+    <h5 class="my-4">{{ l.headlines.tickets }}</h5>
     <p>
       {{ tickets.size }}
       {% if tickets.size == 1 %}
