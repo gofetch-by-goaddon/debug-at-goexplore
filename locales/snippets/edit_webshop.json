@@ -19,7 +19,7 @@
     },
     "explainers": {
       "config": {
-        "p1": "Below you can change the configuration of this webshop. The configuration can be tested in",
+        "p1": "Below you can change the configuration of this webshop. The configuration is applied in",
         "p2": "the Shop API"
       },
       "reset": {
