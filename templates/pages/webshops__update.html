@@ -60,7 +60,7 @@
       {% if webshops_update.matched_count != 1 %}
         {"status": "422", "error": "{{ l.response_texts.not_found }}"}
       {% elsif webshops_update.updated_count != 1 %}
-        {"status": "200", "message": "{{ l.response_texts.not_updated }}.."}
+        {"status": "200", "message": "{{ l.response_texts.not_updated }}"}
       {% else %}
         {"status": "200", "success": "{{ l.response_texts.updated }}"}
       {% endif %}
