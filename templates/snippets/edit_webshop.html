@@ -125,13 +125,13 @@
           }
         });
 
-        return false;
+        return;
       });
     };
 
     formatState = function(state) {
       if (state.element == undefined) {
-        return state.text
+        return state.text;
       } else {
         var title = state.element.attributes["data-title"].value;
         if (state.element.attributes["data-time"].value != "") {
