@@ -49,9 +49,10 @@
 
   <script>
     submitRequest = function() {
-      $(".update-webshop-form-2").off("submit");
-      $(".update-webshop-form-2").on("submit", function(e) {
+      $(".update-webshop-form").off("submit");
+      $(".update-webshop-form").on("submit", function(e) {
         e.preventDefault();
+        return;
         var form_action             = $(this).attr("action");
         var form_method             = $(this).attr("method");
         var form_submit             = $(this).find(":input[type=submit]");
