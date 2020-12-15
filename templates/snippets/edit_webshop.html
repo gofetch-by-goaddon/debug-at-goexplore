@@ -180,6 +180,14 @@
   </script>
 
   <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
+    <p>
+      {{ l.explainers.active.p1 }}
+      
+      {{ l.explainers.active.p2 }}<input type="hidden" name="active" value="a"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary bg-white" value="Submit...">.
+    </p>
+  </form>
+
+  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch" data-remote="true">
     <input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary bg-white" value="Submit">
   </form>
 
