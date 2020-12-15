@@ -52,7 +52,7 @@
       $(".update-webshop-form").off("submit");
       $(".update-webshop-form").on("submit", function(e) {
         e.preventDefault();
-        return;
+
         var form_action             = $(this).attr("action");
         var form_method             = $(this).attr("method");
         var form_submit             = $(this).find(":input[type=submit]");
@@ -75,10 +75,16 @@
           request_data["active"]      = active_input.val();
         }
 
-        form_submit.hide();
-        form_submitting.show();
         console.log("request_data:");
         console.log(request_data);
+
+        console.log("Now return");
+        return;
+        console.log("I did not return");
+
+        form_submit.hide();
+        form_submitting.show();
+
         $.ajax({
           url: form_action,
           type: form_method,
