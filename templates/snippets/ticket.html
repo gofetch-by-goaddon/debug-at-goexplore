@@ -261,7 +261,7 @@
 
                       <div class="dropdown-divider mb-1"></div>
                       <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                        <input type="hidden" name="superuser_id" value="none"><input type="submit" class="px-3 btn btn-link" value="{{ l.assign.unassign }}">
+                        <input type="hidden" name="superuser_id" value="none"><input type="submit" class="px-3 btn btn-link text-danger" value="{{ l.assign.unassign }}">
                       </form>
 
                     {% endif %}
