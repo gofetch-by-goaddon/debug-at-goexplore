@@ -8,6 +8,8 @@
     {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
+  {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+
   {% include "shared/indent_json_input" %}
 
   <style>
@@ -234,7 +236,6 @@
           <div class="form-group">
             <select name="got_at_attr" class="form-control input-select2 input-select2-got_at_attr" multiple>
               <option value="" label=" "></option>
-              {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
               {% for attribute in webshop %}
                 {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
                 {% if got_at == "got_at" %}
@@ -273,43 +274,6 @@
       {{ l.explainers.tickets.p2 }}.
     </p>
 
-    {% assign now         = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="border-bottom-0">{{ l.tickets.headers.opened_at }}</th>
-          <th class="border-bottom-0">{{ l.tickets.headers.closed_at }}</th>
-          <th class="border-bottom-0">{{ l.tickets.headers.status }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% assign sorted_tickets = tickets | sort: "opened_at" | reverse %}
-
-        {% for ticket in sorted_tickets %}
-          <tr>
-            <td>
-              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}"><span title="{{ ticket.opened_at | i18n_l: 'wday_date_hours_minutes' | capitalize }}">{{ ticket.opened_at | time_distance_in_words: now }} {{ l.tickets.body.ago }}</span></a>
-              &#183;
-              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-            </td>
-            <td>
-              {% if ticket.closed_at != nil %}
-                <span title="{{ ticket.closed_at | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-                  {{ ticket.closed_at | time_distance_in_words: now }} {{ l.tickets.body.ago }}
-                </span>
-              {% else %}
-                -
-              {% endif %}
-            </td>
-            <td class="text-right text-nowrap" width="1">
-              {% assign ticket_status = ticket.status %}
-              {% include "shared/ticket_status" %}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% endif %}
+    {% include "shared/webshops/tickets" %}
 
 {% endif %}
