@@ -3,6 +3,7 @@
   {% include "shared/webshop_and_relay" %}
 
   {% if error == nil %}
+
     {% assign tickets_query    = "tickets" | db_find: webshop_id: webshop._id %}
     {% assign tickets          = tickets_query.results %}    
 

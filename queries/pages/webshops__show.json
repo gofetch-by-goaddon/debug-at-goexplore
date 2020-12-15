@@ -1,0 +1,13 @@
+{
+  "tickets": {
+    "klass": "tickets",
+    "query": {
+      "webshop_id": "{{ webshop_id }}"
+    },
+    "projection": {
+      "_id": 1,
+      "status": 1,
+      "superuser_id": 1
+    }
+  }
+}
