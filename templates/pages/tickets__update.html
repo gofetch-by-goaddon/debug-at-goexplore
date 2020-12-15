@@ -61,7 +61,7 @@
           {% assign document = document | push_to_hash: "de_escalated_at", nil %}
           {% assign document = document | push_to_hash: "superuser_id", nil %}
 
-          {% if user.superuser_level != nil %}
+          {% if user.superuser_level != 1 %}
 
             {% assign redirect_to = "tickets__index" | path_for %}
  
