@@ -20,6 +20,7 @@
         editor.getSession().setMode("ace/mode/json");
         editor.getSession().setValue(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
         console.log("Waiting...");
+        console.log(text_area);
         return text_area.closest("form").submit(function() {
           console.log("Here it is:");
           console.log(text_area.val(editor.getSession().getValue()));
