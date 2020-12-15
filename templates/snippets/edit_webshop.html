@@ -201,7 +201,7 @@
         <p>
           {{ l.explainers.active.p1 }}
           <span class="text-{{ active_colour }}"><b>{{ l.explainers.active[status] }}</b></span>.
-          {{ l.explainers.active.p2 }}<input type="hidden" name="active" value="{{ active_option }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary bg-white" value="{{ l.explainers.active.active_options[status] }}">
+          {{ l.explainers.active.p2 }}<input type="hidden" name="active" value="{{ active_option }}"><input type="submit" class="submit-link d-inline border-0 py-0 pr-0 text-primary bg-white" value="{{ l.explainers.active.active_options[status] }}">.
         </p>
       </form>
     </div>
@@ -210,7 +210,7 @@
   <h5 class="mt-4">{{ l.headlines.config }}</h5>
   <p>
     {{ l.explainers.config.p1 }}
-    <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.explainers.config.p2 }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: webshop._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>.
+    <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.explainers.config.p2 }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: webshop._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
   </p>
 
   {% assign encrypted_hash = webshop.config %}
