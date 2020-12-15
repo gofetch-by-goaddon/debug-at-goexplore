@@ -49,8 +49,7 @@
 
   <script>
     submitRequest = function() {
-      $("form").off("submit");
-      $("form").on("submit", function(e) {
+      $("body").on("submit", "form.update-webshop-form", function(e) {
 
         e.preventDefault();
 
