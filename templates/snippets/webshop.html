@@ -136,6 +136,7 @@
         {% endif %}
         {{ webshop.config[identifiable_config_key] | decrypt }}
       {% endfor %}
+      ,&nbsp; <a href="{{ 'webshops__edit' | path_for: id: webshop._id }}" target="_blank"><i class="far fa-edit"></i></a>
     </samp>
   </p>
 
