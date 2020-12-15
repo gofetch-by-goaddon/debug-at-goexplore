@@ -5,7 +5,7 @@
     {% assign open_tickets = false %}
 
     {% for ticket in tickets %}
-      {% if ticket.status == "open" or ticket.status == "escalated" %}
+      {% if ticket.status == "opened" or ticket.status == "escalated" %}
         {% if ticket.superuser_id == user._id %}
 
           {% assign open_tickets = true %}
