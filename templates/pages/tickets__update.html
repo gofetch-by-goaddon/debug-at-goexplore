@@ -14,7 +14,9 @@
     {% if user.superuser_level != 1 %}
       {% if ticket.superuser_id != user._id %}
         {% unless user.relay_ids != nil and user.relay_ids contains ticket.relay_id %}
+
           {% assign error = "no_access" %}
+
         {% endunless %}
       {% endif %}
     {% endif %}

@@ -1,5 +1,7 @@
 {
   "en": {
-    "title": "Edit webshop"
+    "errors": {
+      "no_access": "Since you are not assigned to any tickets for this webshop you can not access it"
+    }
   }
 }
