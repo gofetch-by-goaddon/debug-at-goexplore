@@ -37,10 +37,9 @@
         }
       },
       "tickets": {
-        "p1": "There has been registered",
         "ticket": "ticket",
         "tickets": "tickets",
-        "p2": "for this webshop"
+        "p1": "has been registered for this webshop"
       }
     },
     "placeholders": {
