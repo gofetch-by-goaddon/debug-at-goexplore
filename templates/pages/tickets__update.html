@@ -21,7 +21,7 @@
 
     {% if error != nil %}
 
-      alertify.error("{{ l.response_texts[error] }}");
+      alertify.error("{{ ticket.superuser_id }} vs. {{ user._id }}");
 
     {% else %}
 
