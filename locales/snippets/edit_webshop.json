@@ -15,6 +15,9 @@
       "resetting": "Resetting...",
       "view_ticket": "view"
     },
+    "informations": {
+      "or": "or"
+    },
     "messages": {
       "internal_error": "Internal error"
     },

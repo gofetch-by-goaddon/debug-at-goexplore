@@ -307,7 +307,7 @@
               {% include "shared/ticket_status" %}
             </td>
             <td class="text-right text-nowrap" width="1">
-              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.view_ticket | capitalize }}</a> {{ l. }} <a href="{{ 'tickets__show' | path_for: id: ticket._id }}" target="_blank">{{ l.buttons.view_ticket }} <i class="fas fa-external-link-alt"></i></a>
+              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.view_ticket | capitalize }}</a> {{ l.informations.or }} <a href="{{ 'tickets__show' | path_for: id: ticket._id }}" target="_blank">{{ l.buttons.view_ticket }} <i class="fas fa-external-link-alt"></i></a>
             </td>
           </tr>
         {% endfor %}
