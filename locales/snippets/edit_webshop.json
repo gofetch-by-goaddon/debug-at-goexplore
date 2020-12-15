@@ -13,9 +13,7 @@
       "submitting": "Updating...",
       "reset": "Reset",
       "resetting": "Resetting...",
-      "opened": "Opened",
-      "closed": "Closed",
-      "escalated": "Escalated"
+      "view_ticket": "view"
     },
     "messages": {
       "internal_error": "Internal error"

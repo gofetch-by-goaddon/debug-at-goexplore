@@ -283,6 +283,7 @@
             <th class="border-bottom-0">{{ l.tickets.headers[field_name] }}</th>
           {% endfor %}
           <th class="border-bottom-0">{{ l.tickets.headers.status }}</th>
+          <th class="border-bottom-0"></th>
         </tr>
       </thead>
       <tbody>
@@ -303,7 +304,10 @@
             {% endfor %}
             <td class="text-right text-nowrap" width="1">
               {% assign ticket_status = ticket.status %}
-              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons[ticket_status] }}</a>
+              {% include "shared/ticket_status" %}
+            </td>
+            <td class="text-right text-nowrap" width="1">
+              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.view_ticket | capitalize }}</a> {{ l. }} <a href="{{ 'tickets__show' | path_for: id: ticket._id }}" target="_blank">{{ l.buttons.view_ticket }} <i class="fas fa-external-link-alt"></i></a>
             </td>
           </tr>
         {% endfor %}
