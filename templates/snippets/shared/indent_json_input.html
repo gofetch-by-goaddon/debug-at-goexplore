@@ -1,6 +1,7 @@
 <script>
   indentJsonInput = function() {
     $(".json-container").each(function() {
+      if ($(this).find(".ace_editor").length == 0) {
         var text_area           = $(this).find("textarea");
         var edit_area           = $("<div>", {
           "class": text_area.attr("class")
@@ -19,8 +20,10 @@
         editor.getSession().setMode("ace/mode/json");
         editor.getSession().setValue(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
         return text_area.closest("form").submit(function() {
+          console.log(text_area.val(editor.getSession().getValue()));
           return text_area.val(editor.getSession().getValue());
         });
+      }
     });
   };
 
