@@ -60,7 +60,7 @@
         var form_submitting         = $(this).find("[data-type=submitting]");
         var request_data            = {};
 
-        var config_input            = $(this).find(":textarea[name=config]");
+        var config_input            = $(this).find(":input[name=config]");
         if (config_input.length > 0) {
           request_data["config"]      = JSON.parse(config_input.val());
         }
