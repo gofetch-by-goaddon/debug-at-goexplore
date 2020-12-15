@@ -1,3 +1,15 @@
+<h5 class="mt-3">{{ l.headlines.tickets }}</h5>
+<p>
+  {{ l.explainers.tickets.p1 }}
+  {{ tickets.size }}
+  {% if tickets.size == 1 %}
+    {{ l.explainers.tickets.ticket }}
+  {% else %}
+    {{ l.explainers.tickets.tickets }}
+  {% endif %}
+  {{ l.explainers.tickets.p2 }}.
+</p>
+
 <table class="table">
   <thead>
     <tr>
