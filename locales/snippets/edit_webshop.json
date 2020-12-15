@@ -31,7 +31,7 @@
           "active": "deactivate it",
           "inactive": "activate it"
         }
-      },
+      }
     },
     "placeholders": {
       "got_at_attr": "Select timestamp to reset..."
