@@ -35,7 +35,6 @@
       "status": 1,
       "opened_at": 1,
       "closed_at": 1,
-      "escalated_at": 1,
       "superuser_id": 1
     }
   }

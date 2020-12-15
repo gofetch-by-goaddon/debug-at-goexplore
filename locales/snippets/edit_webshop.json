@@ -12,11 +12,7 @@
       "submit": "Update",
       "submitting": "Updating...",
       "reset": "Reset",
-      "resetting": "Resetting...",
-      "view_ticket": "view"
-    },
-    "informations": {
-      "or": "or"
+      "resetting": "Resetting..."
     },
     "messages": {
       "internal_error": "Internal error"
@@ -69,7 +65,6 @@
       "headers": {
         "opened_at": "Opened",
         "closed_at": "Closed",
-        "escalated_at": "Escalated",
         "status": "Status"
       },
       "body": {

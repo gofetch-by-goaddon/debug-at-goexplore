@@ -274,16 +274,13 @@
     </p>
 
     {% assign now         = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-    {% assign field_names = "opened_at closed_at escalated_at" | split: " " %}
 
     <table class="table">
       <thead>
         <tr>
-          {% for field_name in field_names %}
-            <th class="border-bottom-0">{{ l.tickets.headers[field_name] }}</th>
-          {% endfor %}
+          <th class="border-bottom-0">{{ l.tickets.headers.opened_at }}</th>
+          <th class="border-bottom-0">{{ l.tickets.headers.closed_at }}</th>
           <th class="border-bottom-0">{{ l.tickets.headers.status }}</th>
-          <th class="border-bottom-0"></th>
         </tr>
       </thead>
       <tbody>
@@ -291,23 +288,25 @@
 
         {% for ticket in sorted_tickets %}
           <tr>
-            {% for field_name in field_names %}
-              <td>
-                {% if ticket[field_name] != nil %}
-                  <span title="{{ ticket[field_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-                    {{ ticket[field_name] | time_distance_in_words: now }} {{ l.tickets.body.ago }}
-                  </span>
-                {% else %}
-                  -
-                {% endif %}
-              </td>
-            {% endfor %}
+            <td>
+              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">
+                <span title="{{ ticket.opened_at | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                  {{ ticket.opened_at | time_distance_in_words: now }} {{ l.tickets.body.ago }}
+                </span>
+              </a>
+            </td>
+            <td>
+              {% if ticket.closed_at != nil %}
+                <span title="{{ ticket.closed_at | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                  {{ ticket.closed_at | time_distance_in_words: now }} {{ l.tickets.body.ago }}
+                </span>
+              {% else %}
+                -
+              {% endif %}
+            </td>
             <td class="text-right text-nowrap" width="1">
               {% assign ticket_status = ticket.status %}
               {% include "shared/ticket_status" %}
-            </td>
-            <td class="text-right text-nowrap" width="1">
-              <a href="{{ 'tickets__show' | path_for: id: ticket._id }}">{{ l.buttons.view_ticket | capitalize }}</a> {{ l.informations.or }} <a href="{{ 'tickets__show' | path_for: id: ticket._id }}" target="_blank">{{ l.buttons.view_ticket }} <i class="fas fa-external-link-alt"></i></a>
             </td>
           </tr>
         {% endfor %}
