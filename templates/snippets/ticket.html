@@ -1,6 +1,6 @@
 {% if error != nil %}
   <h5 class="mb-4">
-    {{ l.headlines.error }} <a href="{{ 'tickets__index' | path_for: status: params.referer }}">{{ l.headlines.return }}<i class="fas fa-undo"></i></a>
+    {{ l.headlines.error }} <a href="{{ 'tickets__index' | path_for: status: params.referer }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
   <p>{{ error }}.</p>
 {% else %}

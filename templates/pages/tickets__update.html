@@ -9,93 +9,110 @@
 
   {% else %}
 
-    {% assign now       = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-    {% assign document  = nil | new_hash %}
-    {% assign log_entry = nil | new_hash %}
-    {% assign log_entry = log_entry | push_to_hash: "time", now %}
+    {% assign error = nil %}
 
-    {% if params.superuser_id != nil %}
-
-      {% assign document    = document | push_to_hash: "superuser_id", params.superuser_id %}
-      {% assign log_entry   = log_entry | push_to_hash: "superuser_id", params.superuser_id %}
-
-      {% assign response_text = l.response_texts.superuser_id_updated %}
-    
-    {% elsif params.message != nil and params.message != "" %}
-
-      {% assign message     = params.message | encrypt %}
-      {% assign log_entry   = log_entry | push_to_hash: "message", message %}
-      {% assign log_entry   = log_entry | push_to_hash: "author_id", user._id %}
-
-      {% assign response_text = l.response_texts.message_sent %}
-
-    {% elsif params.status != nil %}
-
-      {% capture status_time %}{{ params.status }}_at{% endcapture %}
-
-      {% assign document      = document | push_to_hash: status_time, now %}
-      {% assign log_entry     = log_entry | push_to_hash: "status", params.status %}
-      {% assign response_text = l.response_texts.status_changed %}
-
-      {% if params.status == "closed" %}
-
-        {% assign document = document | push_to_hash: "re_opened_at", nil %}
-        {% assign document = document | push_to_hash: "escalated_at", nil %}
-        {% assign document = document | push_to_hash: "de_escalated_at", nil %}
-
-      {% elsif params.status == "de_escalated" %}
-
-        {% assign document = document | push_to_hash: "escalated_at", nil %}
-
+    {% if user.superuser_level != 1 %}
+      {% if ticket.superuser_id != user._id %}
+        {% unless user.relay_ids != nil and user.relay_ids contains ticket.relay_id %}
+          {% assign error = l.response_texts.no_access %}
+        {% endunless %}
       {% endif %}
-
-      {% if params.status == "re_opened" or params.status == "de_escalated" %}
-
-        {% assign status = "opened" %}
-
-      {% else %}    
-
-        {% assign status = params.status %}
-
-      {% endif %}    
-
-      {% assign document = document | push_to_hash: "status", status %}
-
     {% endif %}
 
-    {% if document.size > 0 or log_entry.size > 1 %}
-      {% if ticket.log == nil %}
+    {% if error != nil %}
 
-        {% assign log = "" | split: " " %}
+      alertify.error("{{ error }}");
 
-      {% else %}
-
-        {% assign log = ticket.log %}
-
-      {% endif %}
-
-      {% assign log             = log | push_to_array: log_entry %}
-      {% assign document        = document | push_to_hash: "log", log %}
-      {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, document: document %}
-
-    {% endif %}
-
-    {% if tickets_update == nil %}
-      alertify.error("{{ l.response_texts.invalid_params }}");
     {% else %}
-      {% if tickets_update.matched_count != 1 %}
-        alertify.error("{{ l.response_texts.not_found }}");
-      {% elsif tickets_update.updated_count != 1 %}
-        alertify.message("{{ l.response_texts.not_updated }}");
-      {% else %}
-        alertify.success("{{ response_text }}");
-        {% if log_entry.message != nil %}
-          $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
-          addMarkdown();
-          $("textarea[name='message']").val("");
-          $("#log_accordion .collapse").addClass("show");
+
+      {% assign now       = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+      {% assign document  = nil | new_hash %}
+      {% assign log_entry = nil | new_hash %}
+      {% assign log_entry = log_entry | push_to_hash: "time", now %}
+
+      {% if params.superuser_id != nil %}
+
+        {% assign document    = document | push_to_hash: "superuser_id", params.superuser_id %}
+        {% assign log_entry   = log_entry | push_to_hash: "superuser_id", params.superuser_id %}
+
+        {% assign response_text = l.response_texts.superuser_id_updated %}
+      
+      {% elsif params.message != nil and params.message != "" %}
+
+        {% assign message     = params.message | encrypt %}
+        {% assign log_entry   = log_entry | push_to_hash: "message", message %}
+        {% assign log_entry   = log_entry | push_to_hash: "author_id", user._id %}
+
+        {% assign response_text = l.response_texts.message_sent %}
+
+      {% elsif params.status != nil %}
+
+        {% capture status_time %}{{ params.status }}_at{% endcapture %}
+
+        {% assign document      = document | push_to_hash: status_time, now %}
+        {% assign log_entry     = log_entry | push_to_hash: "status", params.status %}
+        {% assign response_text = l.response_texts.status_changed %}
+
+        {% if params.status == "closed" %}
+
+          {% assign document = document | push_to_hash: "re_opened_at", nil %}
+          {% assign document = document | push_to_hash: "escalated_at", nil %}
+          {% assign document = document | push_to_hash: "de_escalated_at", nil %}
+
+        {% elsif params.status == "de_escalated" %}
+
+          {% assign document = document | push_to_hash: "escalated_at", nil %}
+
+        {% endif %}
+
+        {% if params.status == "re_opened" or params.status == "de_escalated" %}
+
+          {% assign status = "opened" %}
+
+        {% else %}    
+
+          {% assign status = params.status %}
+
+        {% endif %}    
+
+        {% assign document = document | push_to_hash: "status", status %}
+
+      {% endif %}
+
+      {% if document.size > 0 or log_entry.size > 1 %}
+        {% if ticket.log == nil %}
+
+          {% assign log = "" | split: " " %}
+
         {% else %}
-          Turbolinks.visit(window.location);
+
+          {% assign log = ticket.log %}
+
+        {% endif %}
+
+        {% assign log             = log | push_to_array: log_entry %}
+        {% assign document        = document | push_to_hash: "log", log %}
+        {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, document: document %}
+
+      {% endif %}
+
+      {% if tickets_update == nil %}
+        alertify.error("{{ l.response_texts.invalid_params }}");
+      {% else %}
+        {% if tickets_update.matched_count != 1 %}
+          alertify.error("{{ l.response_texts.not_found }}");
+        {% elsif tickets_update.updated_count != 1 %}
+          alertify.message("{{ l.response_texts.not_updated }}");
+        {% else %}
+          alertify.success("{{ response_text }}");
+          {% if log_entry.message != nil %}
+            $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
+            addMarkdown();
+            $("textarea[name='message']").val("");
+            $("#log_accordion .collapse").addClass("show");
+          {% else %}
+            Turbolinks.visit(window.location);
+          {% endif %}
         {% endif %}
       {% endif %}
     {% endif %}
