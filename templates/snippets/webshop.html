@@ -132,11 +132,11 @@
       <i class="fas fa-terminal"></i>
       {% for identifiable_config_key in relay.identifiable_config_keys %}
         {% if identifiable_config_key != relay.identifiable_config_keys.first %}
-          ,&nbsp;
+          &#183;
         {% endif %}
         {{ webshop.config[identifiable_config_key] | decrypt }}
       {% endfor %}
-      ,&nbsp; <a href="{{ 'webshops__edit' | path_for: id: webshop._id }}" target="_blank"><i class="far fa-edit"></i></a>
+      &#183; <a href="{{ 'webshops__edit' | path_for: id: webshop._id }}" target="_blank"><i class="far fa-edit"></i></a>
     </samp>
   </p>
 
