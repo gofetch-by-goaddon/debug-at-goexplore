@@ -19,8 +19,6 @@
         editor.setTheme("ace/theme/tomorrow");
         editor.getSession().setMode("ace/mode/json");
         editor.getSession().setValue(JSON.stringify(JSON.parse(text_area.val()), undefined, '\t'));
-        console.log("Waiting...");
-        console.log(text_area);
         return editor.getSession().on("change", function () {
           console.log("Change");
           return text_area.val(editor.getSession().getValue());
