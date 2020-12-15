@@ -208,7 +208,10 @@
   {% endfor %}
 
   <h5 class="mt-4">{{ l.headlines.config }}</h5>
-  <p>{{ l.explainers.config }}</p>
+  <p>
+    {{ l.explainers.config.p1 }}
+    <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.explainers.config.p2 }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: webshop._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>.
+  </p>
 
   {% assign encrypted_hash = webshop.config %}
   {% include "shared/decrypt_hash" %}
