@@ -22,7 +22,7 @@
     },
     "statuses": {
       "success": "Success",
-      "error": "error",
+      "error": "Error",
       "in_progress": "In progress"
     }
   }

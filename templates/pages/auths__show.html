@@ -1,0 +1,7 @@
+{% if account != nil and user.superuser %}
+
+  {% include "shared/webshops/webshop_relay_ticket" %}
+  {% include "shared/webshops/check_user_access" %}
+  {% include "webshop" %}
+
+{% endif %}
