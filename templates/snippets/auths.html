@@ -19,6 +19,9 @@
       </tr>
     </thead>
     <tbody>
+
+      {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+
       {% for auth in auths %}
         {% assign relay_id = auth.relay_id %}
         <tr>
@@ -84,7 +87,7 @@
             </span>
           </td>
           <td class="text-right text-nowrap" width="1">
-            <a class="btn btn-outline-primary" href="{{ 'auths__show' | path_for: id: auth._id }}">{{ l.buttons.view }}</a>
+            <a class="btn btn-outline-primary" href="{{ 'auths__show' | path_for: id: auth._id }}">{{ l.buttons.show }}</a>
           </td>
         </tr>
       {% endfor %}
