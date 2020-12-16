@@ -14,7 +14,7 @@
       "webshop_config": 1,
       "error": 1,
       "log": 1,
-      "webshop": 1
+      "webshop_id": 1
     }
   },
   "webshops": {
