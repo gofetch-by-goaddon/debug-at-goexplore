@@ -5,7 +5,7 @@
   <p>{{ error }}.</p>
 {% else %}
   <h5 class="mb-4">
-    {{ l.headlines.intro }} {{ relay.name }}, {{ l.headlines.or }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
+    {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
   {% include "shared/indent_json_pre" %}
 
@@ -25,6 +25,14 @@
             <span class="text-secondary">&#183; {{ auth.status_description }}</span>
 
           {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td width="1" class="text-nowrap">
+          <b>{{ l.headers.relay_name }}:</b>
+        </td>
+        <td>
+          {{ relay.name }}
         </td>
       </tr>
       <tr>
