@@ -2,53 +2,9 @@
 
   {% assign webshops_query    = "webshops" | db_find: company_id: account._id %}
   {% assign webshops          = webshops_query.results %}
+  {% assign documents         = webshops %}
 
-  {% if webshops.size > 0 %}
-
-    {% assign relay_ids = "" %}
-
-    {% for webshop in webshops %}
-      {% if webshop.relay_id != nil %}
-        {% capture relay_ids %}{{ relay_ids }} {{ webshop.relay_id }}{% endcapture %}
-      {% endif %}
-    {% endfor %}
-
-    {% assign relay_ids = relay_ids | lstrip | split: " " %}
-
-    {% if relay_ids.size == 0 %}
-
-      {% assign error = l.no_relay_ids %}
-
-    {% else %}
-
-      {% assign relay_ids = relay_ids | join: "," %}
-
-      {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
-
-      {% if gofetch_project_api_token == nil %}
-
-        {% assign error = l.no_gofetch_project_api_token %}
-
-      {% else %}
-
-        {% assign relay_response = "relays" | webhook: relay_ids: relay_ids, gofetch_project_api_token: gofetch_project_api_token %}
-
-        {% if relay_response.error != nil %}
-
-          {% capture error %}{{ l.project_api_error }}: {{ relay_response.error }}{% endcapture %}
-
-        {% elsif relay_response.code != 200 %}
-
-          {% capture error %}{{ l.relays_not_found }} {{ relay_response.code }}{% endcapture %}
-
-        {% else %}
-
-          {% assign relays = relay_response.body.documents | to_hash: "_id" %}
-
-        {% endif %}
-      {% endif %}
-    {% endif %}
-  {% endif %}
-
+  {% include "shared/document_relays" %}
   {% include "webshops" %}
+
 {% endif %}

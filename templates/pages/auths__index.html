@@ -1,0 +1,10 @@
+{% if account != nil and user.superuser %}
+
+  {% assign auths_query    = "auths" | db_find %}
+  {% assign auths          = auths_query.results %}
+  {% assign documents      = auths %}
+
+  {% include "shared/document_relays" %}
+  {% include "auths" %}
+
+{% endif %}

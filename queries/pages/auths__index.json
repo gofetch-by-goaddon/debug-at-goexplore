@@ -1,0 +1,12 @@
+{
+  "auths": {
+    "klass": "auths",
+    "query": {},
+    "projection": {
+      "_id": 1,
+      "relay_id": 1,
+      "status": 1,
+      "webshop_config": 1
+    }
+  }
+}
