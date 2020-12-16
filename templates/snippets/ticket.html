@@ -5,15 +5,7 @@
   <p>{{ error }}.</p>
 {% else %}
 
-  <style>
-    .submit-link:hover {
-      text-decoration: underline;
-    }
-
-    .dropdown-link:focus, .submit-link:focus {
-      outline: none;
-    }
-  </style>
+  {% include "shared/link_styles" %}
 
   <script>
     function textAreaAdjust(element) {

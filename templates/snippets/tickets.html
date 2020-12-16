@@ -6,15 +6,7 @@
 
 {% else %}
 
-  <style>
-    .submit-link:hover {
-      text-decoration: underline;
-    }
-
-    .submit-link:focus {
-      outline: none;
-    }
-  </style>
+  {% include "shared/link_styles" %}
 
   {% assign now           = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
   {% assign tab_id        = "tickets_tab" %}
