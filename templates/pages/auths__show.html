@@ -1,5 +1,15 @@
 {% if account != nil and user.superuser %}
 
+  {% assign auths_query    = "auths" | db_find: _id: params.id, company_id: account._id %}
+  {% assign auth           = auths_query.results.first %}
 
+  {% if auth != nil %}
+
+    {% assign document = auth %}
+
+    {% include "shared/document_relay" %}
+    {% include "auth" %}
+
+  {% endif %}
 
 {% endif %}
