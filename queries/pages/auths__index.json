@@ -7,6 +7,9 @@
       "relay_id": 1,
       "status": 1,
       "webshop_config": 1
+    },
+    "sort": {
+      "_id": -1
     }
   }
 }

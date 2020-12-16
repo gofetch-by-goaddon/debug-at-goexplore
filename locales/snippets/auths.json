@@ -7,7 +7,8 @@
     "headers": {
       "config": "Identifier",
       "relay_name": "Ecommerce platform",
-      "status": "Status"
+      "status": "Status",
+      "created_at": "Submitted"
     },
     "buttons": {
       "show": "View"
@@ -16,7 +17,13 @@
       "no_relay": "NO ECOMMERCE PLATFORM"
     },
     "informations": {
-      "no_identifiable_config_keys": "None"
+      "no_identifiable_config_keys": "None",
+      "ago": "ago"
+    },
+    "statuses": {
+      "success": "Success",
+      "error": "error",
+      "in_progress": "In progress"
     }
   }
 }
