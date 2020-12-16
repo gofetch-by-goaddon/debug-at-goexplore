@@ -12,7 +12,7 @@
 
       {% if webshop != nil and webshop.company_id != account._id %}
 
-        {% assign companies_query = "companies" | db_find: _id: webshop.company_id %}
+        {% assign companies_query = "companies" | db_find: _id: auth.webshop_id %}
         {% assign company         = companies_query.results.first %}        
 
       {% endif %}
