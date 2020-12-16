@@ -57,7 +57,7 @@
               {% elsif company != nil %}
                 <form method="patch" action="/accounts/{{ company._id }}/switch" data-remote="true">
                   <input type="hidden" name="redirect" value="{{ 'webshops__show' | path_for: id: webshop._id }}">
-                  <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ company.website }}">
+                  <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ company.website }} <i class='fas fa-exchange-alt'></i>">
                 </form>
               {% else %}
                 {{ webshop._id }}/{{ webshop.company_id }}
