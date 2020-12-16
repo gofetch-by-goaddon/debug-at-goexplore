@@ -6,7 +6,8 @@
       </td>
       <td>
         {% assign ticket_status = ticket.status %}
-        {% include "shared/ticket_status" %}
+
+        {% include "shared/auths/status" %}
 
         {% if auth.status_description != nil and auth.status_description != "" %}
 
@@ -48,6 +49,5 @@
     {% endif %}
   </tbody>
 </table>
-{% include "shared/auths/status" %}
 
 {% include "shared/auth_result" %}
