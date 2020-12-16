@@ -1,0 +1,35 @@
+{% if document.relay_id == nil %}
+
+  {% assign error = l.errors.no_relay_id %}
+
+{% elsif project.secrets.gofetch_shop_api_url == nil %}
+
+  {% assign error = l.errors.no_gofetch_shop_api_url %}
+
+{% elsif project.secrets.gofetch_shop_api_token == nil %}
+
+  {% assign error = l.errors.no_gofetch_shop_api_token %}
+
+{% else %}
+
+  {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
+
+  {% if gofetch_project_api_token == nil %}
+
+    {% assign error = l.errors.no_gofetch_project_api_token %}
+
+  {% else %}
+
+    {% assign relay_response = "relay" | webhook: relay_id: document.relay_id, gofetch_project_api_token: gofetch_project_api_token %}
+
+    {% if relay_response.code != 200 %}
+
+      {% assign error = l.errors.relay_not_found %}
+
+    {% else %}
+
+      {% assign relay = relay_response.body.document %}
+
+    {% endif %}
+  {% endif %}
+{% endif %}
