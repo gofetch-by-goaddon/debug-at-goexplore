@@ -10,7 +10,7 @@
   {% if error == nil %}
 
     {% assign tickets_query = "tickets" | db_find: webshop_id: webshop._id %}
-    {% assign tickets       = tickets_query.results %}    
+    {% assign tickets       = tickets_query.results %}
 
     {% include "shared/webshops/check_user_access" %}
 

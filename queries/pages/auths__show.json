@@ -16,5 +16,25 @@
       "log": 1,
       "webshop": 1
     }
+  },
+  "webshops": {
+    "klass": "webshops",
+    "query": {
+      "_id": "{{ _id }}"
+    },
+    "projection": {
+      "_id": 1,
+      "company_id": 1
+    }
+  },
+  "companies": {
+    "klass": "companies",
+    "query": {
+      "_id": "{{ _id }}"
+    },
+    "projection": {
+      "_id": 1,
+      "website": 1
+    }
   }
 }

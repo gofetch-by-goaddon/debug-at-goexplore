@@ -1,1 +1,53 @@
+<table class="table mb-0">
+  <tbody>
+    <tr>
+      <td width="1" class="text-nowrap">
+        <b>{{ l.headers.status }}:</b>
+      </td>
+      <td>
+        {% assign ticket_status = ticket.status %}
+        {% include "shared/ticket_status" %}
+
+        {% if auth.status_description != nil and auth.status_description != "" %}
+
+          <span class="text-secondary">&#183; {{ auth.status_description }}</span>
+
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td width="1" class="text-nowrap">
+        <b>{{ l.headers.remote_ip }}:</b>
+      </td>
+      <td>
+        <pre>{{ auth.remote_ip | decrypt }}</pre>
+      </td>
+    </tr>
+    {% if auth.webshop_id != nil %}
+      <tr>
+        <td width="1" class="text-nowrap">
+          <b>{{ l.headers.webshop }}:</b>
+        </td>
+        <td>
+          {% if webshop == nil %}
+            {{ auth.webshop_id }}
+          {% else %}
+            {% if webshop.company_id == account._id %}
+              <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ account.website }}</a>
+            {% elsif company != nil %}
+              <form method="patch" action="/accounts/{{ company._id }}/switch" data-remote="true">
+                <input type="hidden" name="redirect" value="{{ 'webshops__show' | path_for: id: webshop._id }}">
+                <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ company.website }}">
+              </form>
+            {% else %}
+              {{ webshop._id }}/{{ webshop.company_id }}
+            {% endif %}
+          {% endif %}
+        </td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>
+{% include "shared/auths/status" %}
+
 {% include "shared/auth_result" %}

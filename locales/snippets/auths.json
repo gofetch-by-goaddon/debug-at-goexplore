@@ -19,11 +19,6 @@
     "informations": {
       "no_identifiable_config_keys": "None",
       "ago": "ago"
-    },
-    "statuses": {
-      "success": "Success",
-      "error": "Error",
-      "in_progress": "In progress"
     }
   }
 }
