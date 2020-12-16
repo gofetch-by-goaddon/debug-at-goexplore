@@ -45,8 +45,8 @@
 
     {% endfor %}
 
-    {% assign relay_ids   = relay_ids | lstrip | split: " " %}
-    {% assign company_ids = company_ids | lstrip | split: " " %}
+    {% assign relay_ids   = relay_ids | lstrip | split: " " | uniq %}
+    {% assign company_ids = company_ids | lstrip | split: " " | uniq %}
 
     {% if relay_ids.size > 0 %}
 
