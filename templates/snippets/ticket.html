@@ -196,7 +196,7 @@
                   {% assign action_number = action_number | plus: 1 %}
 
                   {% if action_count == 1 or action_number == action_count %}
-                    {% if superusers_count == 0 and ticket.superuser_id != nil %}
+                    {% if superusers_count == 0 and ticket.superuser_id == nil %}
 
                       {% assign append_string = "" %}
 
@@ -206,7 +206,7 @@
 
                     {% endif %}
                   {% elsif action_number == second_last_action_number %}
-                    {% if superusers_count == 0 and ticket.superuser_id != nil %}
+                    {% if superusers_count == 0 and ticket.superuser_id == nil %}
 
                       {% assign append_string = l.update_status.append_strings.or %}
 
