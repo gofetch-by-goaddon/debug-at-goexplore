@@ -196,7 +196,7 @@
                   {% assign action_number = action_number | plus: 1 %}
 
                   {% if action_count == 1 or action_number == action_count %}
-                    {% if superusers_count == 0 %}
+                    {% if superusers_count == 0 or ticket.superuser_id != nil %}
 
                       {% assign append_string = "" %}
 
