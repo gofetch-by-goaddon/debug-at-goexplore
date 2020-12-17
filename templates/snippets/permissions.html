@@ -74,7 +74,7 @@
       {% if superuser.superuser_level != 1 %}
 
         <b><label for="relays">{{ superuser.email }}</label></b>
-        <form class="update-ticket-relay-ids" action="{{ 'superusers__update' | path_for: id: superuser._id, format: 'json' }}" method="patch" data-remote="true">
+        <form class="update-ticket-relay-ids" action="{{ 'superusers__update' | path_for: id: superuser._id, format: 'js' }}" method="patch" data-remote="true">
           <table>
             <tr>
               <td width="100%">
