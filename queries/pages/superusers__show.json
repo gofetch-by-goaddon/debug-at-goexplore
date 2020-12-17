@@ -10,7 +10,8 @@
       "email": 1,
       "superuser": 1,
       "superuser_level": 1,
-      "ticket_relay_ids": 1
+      "ticket_relay_ids": 1,
+      "auth_relay_ids": 1
     }
   }
 }
