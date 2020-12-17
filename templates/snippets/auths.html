@@ -70,7 +70,7 @@
 
               {% if show_auth %}
 
-                <a class="btn btn-outline-primary" href="{{ 'auths__show' | path_for: id: auth._id, page: auths_query.page, per_page: auths_query.per_page }}">{{ l.buttons.show }}</a>
+                <a href="{{ 'auths__show' | path_for: id: auth._id, page: auths_query.page, per_page: auths_query.per_page }}">{{ l.buttons.show }}</a>
 
               {% endif %}
             </td>
