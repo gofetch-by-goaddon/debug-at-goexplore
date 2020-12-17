@@ -79,7 +79,7 @@
             <tr>
               <td width="100%">
                 <div class="form-group">
-                  <select name="relays" class="form-control input-select2-relays" multiple id="relays_{{ superuser._id }}">
+                  <select name="relays[]" class="form-control input-select2-relays" multiple id="relays_{{ superuser._id }}">
                     <option value="" label=" "></option>
 
                     {% if superuser.ticket_relay_ids != nil %}
@@ -89,7 +89,7 @@
                     {% endif %}
 
                     {% for relay in relays %}
-                      <option value="{{ relay[0] }}" selected>{{ relay[1].name }}</option>
+                      <option value="{{ relay[0] }}">{{ relay[1].name }}</option>
                     {% endfor %}
                   </select>
                 </div>
