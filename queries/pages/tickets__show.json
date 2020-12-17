@@ -20,7 +20,8 @@
     },
     "projection": {
       "_id": 1,
-      "email": 1
+      "email": 1,
+      "ticket_relay_ids": 1
     }
   }
 }
