@@ -9,9 +9,9 @@
   {% if user.webshop_relay_ids != nil and user.webshop_relay_ids contains webshop.relay_id %}
 
     {% assign error = nil %}
-
+    1
   {% else %}
-
+    2
     {% if user.ticket_relay_ids != nil and user.ticket_relay_ids contains webshop.relay_id %}
 
       {% assign ticket_statuses = "opened escalated" | split: " " %}
