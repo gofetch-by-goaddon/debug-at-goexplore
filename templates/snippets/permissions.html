@@ -67,8 +67,6 @@
       })
     </script>
 
-    <p>{{ relays }}</p>
-
     {% for superuser in superusers %}
 
       {% if superuser.superuser_level != 1 %}
@@ -80,12 +78,12 @@
 
             {% if superuser.ticket_relay_ids != nil %}
               {% for ticket_relay_id in superuser.ticket_relay_ids %}
-                <option value="{{ relays[ticket_relay_id]._id }}" selected>{{ relays[ticket_relay_id].name }}</option>
+                <option value="{{ relays[ticket_relay_id][0] }}" selected>{{ relays[ticket_relay_id][1].name }}</option>
               {% endfor %}
             {% endif %}
 
             {% for relay in relays %}
-              <option value="{{ relay._id }}">{{ relay.name }}</option>
+              <option value="{{ relay[0] }}">{{ relay[1].name }}</option>
               }
             {% endfor %}
           </select>
