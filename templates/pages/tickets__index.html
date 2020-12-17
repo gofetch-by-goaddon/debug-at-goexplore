@@ -18,8 +18,15 @@
 
   {% else %}
 
-    {% assign tickets_query = "superuser_tickets" | db_find: user_id: user._id, statuses: query_statuses, page: params.page, per_page: params.per_page %}
+    {% if status == "opened" and user.ticket_relay_ids != nil and user.ticket_relay_ids.size > 0 %}
 
+      {% assign tickets_query = "relay_tickets" | db_find: relay_ids: user.ticket_relay_ids, statuses: query_statuses, page: params.page, per_page: params.per_page %}
+
+    {% else %}
+
+      {% assign tickets_query = "superuser_tickets" | db_find: user_id: user._id, statuses: query_statuses, page: params.page, per_page: params.per_page %}
+
+    {% endif %}
   {% endif %}
 
   {% assign tickets = tickets_query.results %}
