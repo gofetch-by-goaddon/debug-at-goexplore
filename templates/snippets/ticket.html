@@ -135,16 +135,38 @@
             </td>
             <td>
 
-              {% assign action_count  = 0 %}
-              {% assign action_number = 0 %}
+              {% assign action_count      = 0 %}
+              {% assign action_number     = 0 %}
+              {% assign superusers_count  = 0 %}
+
+              {% for superuser in superusers %}
+
+                {% include "ticket/superuser_assignable" %}
+
+                {% if assignable %}
+
+                  {% assign superusers_count = superusers_count | plus: 1 %}
+
+                {% endif %}
+              {% endfor %}
 
               {% if ticket.superuser_id != user._id %}
 
                 {% assign action_count  = action_count | plus: 1 %}
                 {% assign action_number = action_number | plus: 1 %}
 
+                {% if ticket.superuser_id == nil and superusers_count == 0 and ticket.status == "closed" %}
+
+                  {% assign claim_append = l.update_status.append_strings.or %}
+
+                {% else %}
+
+                  {% assign claim_append = "," %}
+
+                {% endif %}
+
                 <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                  <input type="hidden" name="superuser_id" value="{{ user._id }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ l.update_status.links.claim }}">,
+                  <input type="hidden" name="superuser_id" value="{{ user._id }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ l.update_status.links.claim }}">{{ claim_append }}
                 </form>
 
               {% endif %}
@@ -172,19 +194,6 @@
               {% for status in statuses %}
                 {% if ticket.status != status %}
                   {% assign action_count = action_count | plus: 1 %}
-                {% endif %}
-              {% endfor %}
-
-              {% assign superusers_count = 0 %}
-
-              {% for superuser in superusers %}
-
-                {% include "ticket/superuser_assignable" %}
-
-                {% if assignable %}
-
-                  {% assign superusers_count = superusers_count | plus: 1 %}
-
                 {% endif %}
               {% endfor %}
 
