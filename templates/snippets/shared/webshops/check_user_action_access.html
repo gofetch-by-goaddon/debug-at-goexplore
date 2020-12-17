@@ -6,7 +6,7 @@
 
 {% else %}
 
-  {% assign webshops_query  = "webshops" | db_count: _id: params.id %}
+  {% assign webshops_query  = "webshops" | db_find: _id: params.id %}
   {% assign webshop         = webshops.first %}
   webshop: {{ webshop }}
   {% if webshop != nil %}
