@@ -1,7 +1,7 @@
 {
-	"en": {
+  "en": {
     "success": "Success",
     "error": "Error",
     "no_gofetch_shop_api_url": "Please add a gofetch_shop_api_url to your Goexplore secrets."
-	}
+  }
 }
