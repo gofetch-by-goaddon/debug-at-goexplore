@@ -23,7 +23,8 @@
       {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
 
       {% for auth in auths %}
-        {% assign relay_id = auth.relay_id %}
+        {% assign created_at  = auth._id | _id_to_datetime %}
+        {% assign relay_id    = auth.relay_id %}
         <tr>
           <td>
             {% if relays[relay_id] != nil %}
@@ -56,9 +57,6 @@
             {% endif %}
           </td>
           <td>
-
-            {% assign created_at = auth._id | _id_to_datetime %}
-
             <span title="{{ created_at | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
               {{ created_at | time_distance_in_words: now }} {{ l.informations.ago }}
             </span>
@@ -67,7 +65,14 @@
             {% include "shared/auths/status" %}
           </td>
           <td class="text-right text-nowrap" width="1">
-            <a class="btn btn-outline-primary" href="{{ 'auths__show' | path_for: id: auth._id }}">{{ l.buttons.show }}</a>
+
+            {% include "shared/auths/show_auth" %}
+
+            {% if show_auth %}
+
+              <a class="btn btn-outline-primary" href="{{ 'auths__show' | path_for: id: auth._id }}">{{ l.buttons.show }}</a>
+
+            {% endif %}
           </td>
         </tr>
       {% endfor %}

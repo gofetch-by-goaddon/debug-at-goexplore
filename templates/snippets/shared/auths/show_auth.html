@@ -1,0 +1,14 @@
+{% assign show_auth = true %}
+
+{% if user.superuser_level != 1 %}
+  {% unless user.relay_ids != nil and user.relay_ids contains auth.relay_id %}
+
+    {% assign days_ago = created_at | days_between_dates: now %}
+
+    {% if days_ago > 7 %}
+
+      {% assign show_auth = false %}
+
+    {% endif %}
+  {% endunless %}
+{% endif %}
