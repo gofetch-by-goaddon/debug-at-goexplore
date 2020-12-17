@@ -1,0 +1,16 @@
+{
+  "en": {
+    "headlines": {
+      "intro": "Manage superuser",
+      "or": "or",
+      "error": "Error, please",
+      "return": "return"
+    },
+    "placeholders": {
+      "relays": " Select ecommerce platforms..."
+    },
+    "buttons": {
+      "update": "Update"
+    }
+  }
+}

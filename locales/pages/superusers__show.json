@@ -1,5 +1,7 @@
 {
   "en": {
+    "no_superuser": "This superuser does not exist",
+    "superuser_level_1": "This superuser has level 1 access, and can not be managed",
     "project_api_error": "Project API error",
     "relays_not_found": "Unable to get data about relays. The Project API responsed with code",
     "no_gofetch_project_api_token": "No gofetch_project_api_token",

@@ -1,107 +1,33 @@
-<h5 class="mb-4">
-  {% if user.superuser_level == 1 %}
+{% if user.superuser_level == 1 %}
 
-    {{ l.headlines.superuser_level_1 }}
+  <h5 class="mb-4">{{ l.headlines.superuser_level_1 }}</h5>
 
-  {% else %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="border-bottom-0">{{ l.headers.email }}</th>
+        <th class="border-bottom-0"></th>
+      </tr>
+    </thead>
+    <tbody>
 
-    {{ l.headlines.superuser }}
-
-  {% endif %}
-</h5>
-
-{% if error != nil %}
-
-  <p class="text-danger">{{ error }}.</p>
+      {% for superuser in superusers %}
+        {% if superuser.superuser_level != 1 %}
+          <tr>
+            <td>
+              {{ superuser.email }}
+            </td>
+            <td>
+              <a class="btn btn-outline-primary" href="{{ 'superusers__show' | path_for: id: superuser._id }}">{{ l.buttons.show }}</a>
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
 
 {% else %}
 
-  {% if user.superuser_level != 1 %}
+  <h5 class="mb-4">{{ l.headlines.superuser }}</h5>
 
-    {{ user.ticket_relay_ids }}
-
-  {% else %}
-
-    <style>
-      .select2-selection--single, .select2-search__field {
-        outline: none;
-      }
-
-      .select2-selection__choice {
-        background-color: #e9ecef !important;
-      }
-
-      .select2-container--default.select2-container--focus .select2-selection--multiple {
-        border: solid #007bff 1px;
-      }
-    </style>
-
-    <script>
-      selectRelays  = function() {
-        $(".input-select2-relays").select2({
-          placeholder: "{{ l.placeholders.relays }}",
-          multiple: true,
-          allowClear: false,
-          sorter: function(data) {
-            return data.sort(function(a, b) {
-              a = a.text.toLowerCase();
-              b = b.text.toLowerCase();
-              if (a > b) {
-                return 1;
-              } else if (a < b) {
-                return -1;
-              }
-              return 0;
-            });
-          }
-        });
-        
-        $(".input-select2-relays").on("select2:select", function(e) {
-          var id      = e.params.data.id;
-          var option  = $(e.target).children("[value='" + id + "']");
-          option.detach();
-          $(e.target).append(option).change();
-        });
-      };
-
-      $(document).on('turbolinks:load', function() {
-        selectRelays();
-      })
-    </script>
-
-    {% for superuser in superusers %}
-
-      {% if superuser.superuser_level != 1 %}
-
-        <b><label for="relays">{{ superuser.email }}</label></b>
-        <form class="update-ticket-relay-ids" action="{{ 'superusers__update' | path_for: id: superuser._id, format: 'js' }}" method="patch" data-remote="true">
-          <table>
-            <tr>
-              <td width="100%">
-                <div class="form-group">
-                  <select name="relays[]" class="form-control input-select2-relays" multiple id="relays_{{ superuser._id }}">
-                    <option value="" label=" "></option>
-
-                    {% if superuser.ticket_relay_ids != nil %}
-                      {% for ticket_relay_id in superuser.ticket_relay_ids %}
-                        <option value="{{ relays[ticket_relay_id][0] }}" selected>{{ relays[ticket_relay_id][1].name }}</option>
-                      {% endfor %}
-                    {% endif %}
-
-                    {% for relay in relays %}
-                      <option value="{{ relay[0] }}">{{ relay[1].name }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </td>
-              <td style="vertical-align: top;">
-                <input type="submit" class="btn btn-outline-primary ml-1" value="{{ l.buttons.update }}">
-                <button class="btn btn-outline-primary ml-1 disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.updating }}</button>
-              </td>
-            </tr>
-          </table>
-        </form>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
 {% endif %}

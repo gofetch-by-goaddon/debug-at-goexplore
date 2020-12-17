@@ -9,7 +9,8 @@
       "action": "index"
     },
     {
-      "controller": "permissions"
+      "controller": "superusers",
+      "action": "show"
     }
   ]
 }
