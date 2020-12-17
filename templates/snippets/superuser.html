@@ -68,7 +68,6 @@
           <td width="100%">
             <div class="form-group">
               <select name="{{ permission_type }}[]" class="form-control input-select2-permissions" multiple id="{{ permission_type }}">
-                <option value="" label=" "></option>
 
                 {% if superuser[permission_type] != nil %}
                   {% for relay_id in superuser[permission_type] %}
