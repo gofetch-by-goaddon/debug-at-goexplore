@@ -1,7 +1,7 @@
 {
   "en": {
     "errors": {
-      "no_access": "Since you are not assigned to any tickets for this webshop you can not access it"
+      "no_access": "Since you are not assigned to any open or escalated tickets for this webshop you can not access it"
     }
   }
 }
