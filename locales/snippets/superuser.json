@@ -16,11 +16,12 @@
         "p1": "Regular users don't have access to anything on this website. Superusers without upgraded access can be granted limited access to specific ecommerce platforms."
       },
       "webshop_relay_ids": {
-        "p1": "Choose which ecommerce platforms this user can access."
+        "p1": "Choose which ecommerce platforms this user can access.",
+        "p2": "Superusers will be able to view and update webshops of the ecommerce platform, but only while are assigned to open or escalated tickets related to the webshop."
       },
       "ticket_relay_ids": {
         "p1": "Choose which ecommerce platform tickets this user can be assigned.",
-        "p2": "With permission to an ecommerce platform superusers can access all open and escalated tickets relating to the ecommerce platform, even the tickets they are not assigned to. They also have access to any closed ticket they are assigned to. Closing a ticket automatically unassigns the assignee, but a superuser with upgraded access can re-assign the closed ticket."
+        "p2": "Superusers will be able to access all open and escalated tickets relating to the ecommerce platform, even the tickets they are not assigned to. They also have access to any closed ticket they are assigned to. Closing a ticket automatically unassigns the assignee, but a superuser with upgraded access can re-assign the closed ticket."
       },
       "auth_relay_ids": {
         "p1": "Choose which ecommerce platform auths this user can access."
