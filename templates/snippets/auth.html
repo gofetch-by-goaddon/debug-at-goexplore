@@ -52,7 +52,7 @@
           <b>{{ l.headers.remote_ip }}:</b>
         </td>
         <td>
-          <pre>{{ auth.remote_ip | decrypt }}</pre>
+          {{ auth.remote_ip | decrypt }}
         </td>
       </tr>
       {% if auth.webshop_id != nil %}
