@@ -1,10 +1,28 @@
 {% if account != nil and user.superuser %}
 
-  {% assign auths_query    = "auths" | db_find: page: params.page, per_page: params.per_page %}
-  {% assign auths          = auths_query.results %}
-  {% assign documents      = auths %}
+  {% if user.superuser_level == 1 %}
 
-  {% include "shared/document_relays" %}
+    {% assign auths_query = "superuser_level_1_auths" | db_find: page: params.page, per_page: params.per_page %}
+
+  {% elsif user.auth_relay_ids != nil and user.auth_relay_ids.size > 0 %}
+
+    {% assign auths_query = "superuser_auths" | db_find: page: params.page, per_page: params.per_page, relay_ids: user.auth_relay_ids %}
+
+  {% endif %}
+
+  {% if auths_query == nil %}
+
+    {% assign error          = l.errors.no_access %}
+
+  {% else %}
+
+    {% assign auths          = auths_query.results %}
+    {% assign documents      = auths %}
+
+    {% include "shared/document_relays" %}
+
+  {% endif %}
+
   {% include "auths" %}
 
 {% endif %}
