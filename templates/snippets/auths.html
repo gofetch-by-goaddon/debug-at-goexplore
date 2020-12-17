@@ -78,10 +78,11 @@
       {% endfor %}
     </tbody>
   </table>
-  {% assign page        = auths_query.page %}
-  {% assign per_page    = auths_query.per_page %}
-  {% assign pages_count = auths_query.pages_count %}
-  {% assign klass       = "auths" %}
+  {% assign page          = auths_query.page %}
+  {% assign per_page      = auths_query.per_page %}
+  {% assign pages_count   = auths_query.pages_count %}
+  {% assign params_status = nil %}
+  {% assign klass         = "auths" %}
 
   {% include "shared/pagination" %}
 {% endif %}
