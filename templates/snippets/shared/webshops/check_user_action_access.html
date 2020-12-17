@@ -21,7 +21,7 @@
         {% assign ticket_statuses = "opened escalated" | split: " " %}
         {% assign tickets_query   = "tickets" | db_count: webshop_id: webshop._id, user_id: user._id, statuses: ticket_statuses %}
 
-        {% if tickets_query.results_count == nil or tickets_query.results_count == 0 %}    
+        {% if tickets_query.results_count != nil and tickets_query.results_count > 0 %}    
 
           {% assign error = nil %}
 
