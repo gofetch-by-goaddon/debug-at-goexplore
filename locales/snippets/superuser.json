@@ -13,7 +13,7 @@
     },
     "explainers": {
       "intro": {
-        "p1": "Superuser without level 1 access don't have access to anything on this website. By adjusting their permission levels you can provide them with limited access to specific ecommerce platforms."
+        "p1": "Regular users don't have access to anything on this website. Superusers without level 1 access can be granted limited access to specific ecommerce platforms."
       },
       "webshop_relay_ids": {
         "p1": "Choose which ecommerce platforms this user can access."
