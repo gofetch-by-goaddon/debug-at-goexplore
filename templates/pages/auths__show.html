@@ -5,7 +5,8 @@
 
   {% if auth != nil %}
 
-    {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+    {% assign now         = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+    {% assign created_at  = auth._id | _id_to_datetime %}
 
     {% include "shared/auths/show_auth" %}
 
