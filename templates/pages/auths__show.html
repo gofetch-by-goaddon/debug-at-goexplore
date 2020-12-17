@@ -5,6 +5,8 @@
 
   {% if auth != nil %}
 
+    {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+
     {% include "shared/auths/show_auth" %}
 
     {% unless show_auth %}
