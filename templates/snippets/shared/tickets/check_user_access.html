@@ -1,0 +1,16 @@
+{% if user.superuser_level != 1 %}
+  {% if ticket.superuser_id != user._id %}
+    {% if ticket.status != "opened" and ticket.status != "escalated" %}
+
+      {% assign error = l.no_access %}
+
+    {% else %}
+
+      {% unless user.ticket_relay_ids != nil and user.ticket_relay_ids contains ticket.relay_id %}
+
+        {% assign error = l.no_access %}
+
+      {% endunless %}
+    {% endif %}
+  {% endif %}
+{% endif %}
