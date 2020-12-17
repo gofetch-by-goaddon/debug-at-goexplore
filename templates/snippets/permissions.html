@@ -67,6 +67,11 @@
       })
     </script>
 
+    {% for relay in relays %}
+      <p>{{ relay._id }}: {{ relay.name }}</p>
+      }
+    {% endfor %}
+
     {% for superuser in superusers %}
 
       {% if superuser.superuser_level != 1 %}
@@ -84,6 +89,7 @@
 
             {% for relay in relays %}
               <option value="{{ relay._id }}">{{ relay.name }}</option>
+              }
             {% endfor %}
           </select>
         </div>
