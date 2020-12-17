@@ -65,7 +65,7 @@
               {{ l.informations.unknown_webshop }} <span class="text-secondary border rounded border-secondary px-1">{{ auth.webshop_id }}</span>
             {% else %}
               {% if webshop.company_id == account._id %}
-                <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ account.website }}</a>
+                <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.links.show_webshop }}</a>
               {% elsif company != nil %}
                 <form method="patch" action="/accounts/{{ company._id }}/switch" data-remote="true">
                   <input type="hidden" name="redirect" value="{{ 'webshops__show' | path_for: id: webshop._id }}">
