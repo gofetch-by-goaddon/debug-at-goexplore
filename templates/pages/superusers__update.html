@@ -18,7 +18,7 @@
 
     {% assign document          = nil | new_hash %}
     {% assign document          = document | push_to_hash: permission_type, relay_ids %}
-    {% assign superusers_update = "update_superuser" | db_update_one: app_id: project.app_id _id: params.id, document: document %}
+    {% assign superusers_update = "update_superuser" | db_update_one: app_id: project.app_id, _id: params.id, document: document %}
 
     {% if superusers_update == nil %}
       alertify.error("{{ l.response_texts.invalid_params }}");
