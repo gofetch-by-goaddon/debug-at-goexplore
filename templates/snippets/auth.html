@@ -1,11 +1,11 @@
 {% if error != nil %}
   <h5 class="mb-4">
-    {{ l.headlines.error }} <a href="{{ 'webshops__index' | path_for: page: params.page, per_page: params.per_page }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
+    {{ l.headlines.error }} <a href="{{ 'auths__index' | path_for: page: params.page, per_page: params.per_page }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
   <p>{{ error }}.</p>
 {% else %}
   <h5 class="mb-4">
-    {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for: page: params.page, per_page: params.per_page }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
+    {{ l.headlines.intro }} <a href="{{ 'auths__index' | path_for: page: params.page, per_page: params.per_page }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
   {% include "shared/indent_json_pre" %}
