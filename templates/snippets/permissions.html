@@ -70,24 +70,35 @@
 
       {% if superuser.superuser_level != 1 %}
 
-        <div class="form-group">
-          <b><label for="relays">{{ superuser.email }}</label></b>
-          <select name="relays" class="form-control input-select2-relays" multiple id="relays_{{ superuser._id }}">
-            <option value="" label=" "></option>
+        <b><label for="relays">{{ superuser.email }}</label></b>
+        <form class="update-ticket-relay-ids" action="{{ 'superusers__update' | path_for: id: superuser._id, format: 'json' }}" method="patch">
+          <table>
+            <tr>
+              <td width="100%">
+                <div class="form-group">
+                  <select name="relays" class="form-control input-select2-relays" multiple id="relays_{{ superuser._id }}">
+                    <option value="" label=" "></option>
 
-            {% if superuser.ticket_relay_ids != nil %}
-              {% for ticket_relay_id in superuser.ticket_relay_ids %}
-                <option value="{{ relays[ticket_relay_id][0] }}" selected>{{ relays[ticket_relay_id][1].name }}</option>
-              {% endfor %}
-            {% endif %}
+                    {% if superuser.ticket_relay_ids != nil %}
+                      {% for ticket_relay_id in superuser.ticket_relay_ids %}
+                        <option value="{{ relays[ticket_relay_id][0] }}" selected>{{ relays[ticket_relay_id][1].name }}</option>
+                      {% endfor %}
+                    {% endif %}
 
-            {% for relay in relays %}
-              <option value="{{ relay[0] }}">{{ relay[1].name }}</option>
-              }
-            {% endfor %}
-          </select>
-        </div>
-
+                    {% for relay in relays %}
+                      <option value="{{ relay[0] }}">{{ relay[1].name }}</option>
+                      }
+                    {% endfor %}
+                  </select>
+                </div>
+              </td>
+              <td style="vertical-align: top;">
+                <input type="submit" class="btn btn-outline-primary ml-1" value="{{ l.buttons.update }}">
+                <button class="btn btn-outline-primary ml-1 disabled" data-type="submitting" disabled="" style="display: none;">{{ l.buttons.updating }}</button>
+              </td>
+            </tr>
+          </table>
+        </form>
       {% endif %}
     {% endfor %}
   {% endif %}

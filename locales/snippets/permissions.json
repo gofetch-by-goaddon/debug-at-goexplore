@@ -6,6 +6,10 @@
     },
     "placeholders": {
       "relays": " Select ecommerce platforms..."
+    },
+    "buttons": {
+      "update": "Update",
+      "updating": "Updating..."
     }
   }
 }
