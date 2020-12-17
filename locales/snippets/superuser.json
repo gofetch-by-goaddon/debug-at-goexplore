@@ -1,8 +1,8 @@
 {
   "en": {
     "headlines": {
-      "intro": "Manage superuser",
-      "or": "or",
+      "intro": "Manage",
+      "or": "permissions, or",
       "error": "Error, please",
       "return": "return"
     },
