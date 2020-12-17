@@ -18,7 +18,7 @@
 
   {% if user.superuser_level != 1 %}
 
-    {% user.ticket_relay_ids %}
+    {{ user.ticket_relay_ids }}
 
   {% else %}
 
