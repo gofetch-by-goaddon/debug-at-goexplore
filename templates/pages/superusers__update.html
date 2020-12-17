@@ -14,20 +14,23 @@
 
       {% assign relay_ids = "" | split: " " %}
 
-  {% endif %}
-
-  {% assign document          = nil | new_hash %}
-  {% assign superusers_update = "update_superuser" | db_update_one: app_id: project.app_id _id: params.id, document: document %}
-
-  {% if superusers_update == nil %}
-    alertify.error("{{ l.response_texts.invalid_params }}");
-  {% else %}
-    {% if superusers_update.matched_count != 1 %}
-      alertify.error("{{ l.response_texts.not_found }}");
-    {% elsif superusers_update.updated_count != 1 %}
-      alertify.message("{{ l.response_texts.not_updated }}");
-    {% else %}
-      alertify.success("{{ l.response_texts.updated }}");
     {% endif %}
+
+    {% assign document          = nil | new_hash %}
+    {% assign document          = document | push_to_hash: permission_type, relay_ids %}
+    {% assign superusers_update = "update_superuser" | db_update_one: app_id: project.app_id _id: params.id, document: document %}
+
+    {% if superusers_update == nil %}
+      alertify.error("{{ l.response_texts.invalid_params }}");
+    {% else %}
+      {% if superusers_update.matched_count != 1 %}
+        alertify.error("{{ l.response_texts.not_found }}");
+      {% elsif superusers_update.updated_count != 1 %}
+        alertify.message("{{ l.response_texts.not_updated }}");
+      {% else %}
+        alertify.success("{{ l.response_texts.updated }}");
+      {% endif %}
+    {% endif %}
+
   {% endif %}
 {% endif %}
