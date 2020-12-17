@@ -58,6 +58,10 @@
     })
   </script>
 
+  <p>
+    {{ l.explainers.intro }}
+  </p>
+
   {% assign permission_types = "ticket_relay_ids auth_relay_ids" | split: " " %}
 
   {% for permission_type in permission_types %}
