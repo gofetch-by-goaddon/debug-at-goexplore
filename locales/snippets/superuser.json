@@ -22,7 +22,7 @@
       "ticket_relay_ids": {
         "p1": "Choose which ecommerce platform tickets this user can be assigned.",
         "p2": "Superusers will be able to access all open and escalated tickets relating to the ecommerce platform, even the tickets they are not assigned to. They also have access to any closed ticket they are assigned to. Closing a ticket automatically unassigns the assignee, but a superuser with upgraded access can re-assign the closed ticket.",
-        "p3": "They can also view and update the webshop that relates to the ticket, but only while the ticket is open or escalated."
+        "p3": "They can also view, update and the the Shop API for the webshop that ticket belongs to, but only while the ticket is open or escalated."
       },
       "auth_relay_ids": {
         "p1": "Choose which ecommerce platform auths this user can access."
