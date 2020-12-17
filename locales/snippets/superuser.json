@@ -25,7 +25,8 @@
         "p3": "They can also view, update and use the Shop API for the webshop that ticket belongs to, but only while the ticket is open or escalated."
       },
       "auth_relay_ids": {
-        "p1": "Choose which ecommerce platform auths this user can access."
+        "p1": "Choose which ecommerce platform auths this user can access.",
+        "p2": "Superusers will have access to all auths submitted during the last 7 days."
       }
     },
     "placeholders": {
