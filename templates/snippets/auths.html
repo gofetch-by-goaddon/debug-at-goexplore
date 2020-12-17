@@ -7,83 +7,84 @@
   <h5 class="mb-4">{{ l.headlines.auths }}</h5>
   {% if error != nil %}
     <p class="text-danger">{{ error }}.</p>
-  {% endif %}
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="border-bottom-0">{{ l.headers.config }}</th>
-        <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
-        <th class="border-bottom-0">{{ l.headers.created_at }}</th>
-        <th class="border-bottom-0">{{ l.headers.status }}</th>
-        <th class="border-bottom-0"></th>
-      </tr>
-    </thead>
-    <tbody>
-
-      {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-
-      {% for auth in auths %}
-        {% assign created_at  = auth._id | _id_to_datetime %}
-        {% assign relay_id    = auth.relay_id %}
+  {% else %}
+    <table class="table">
+      <thead>
         <tr>
-          <td>
-            {% if relays[relay_id] != nil %}
-              <samp>
-                {% assign identifiable_config_keys = 0 %}
-                {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
-                  {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
-                    &#183;
-                  {% endif %}
-                  {% if auth.webshop_config[identifiable_config_key] != nil and auth.webshop_config[identifiable_config_key] != "" %}
-                    {% assign identifiable_config_keys = identifiable_config_keys | plus: 1 %}
-                    {{ auth.webshop_config[identifiable_config_key] | decrypt }}
-                  {% endif %}
-                {% endfor %}
-
-                <span class="text-secondary">
-                  {% if identifiable_config_keys == 0 %}
-                    {{ l.informations.no_identifiable_config_keys }}
-                  {% endif %}
-                </span>
-              </samp>
-            {% endif %}
-
-          </td>
-          <td>
-            {% if relays[relay_id] == nil %}
-              <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
-            {% else %}
-              {{ relays[relay_id].name }}
-            {% endif %}
-          </td>
-          <td>
-            <span title="{{ created_at | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-              {{ created_at | time_distance_in_words: now }} {{ l.informations.ago }}
-            </span>
-          </td>
-          <td>
-            {% include "shared/auths/status" %}
-          </td>
-          <td class="text-right text-nowrap" width="1">
-
-            {% include "shared/auths/show_auth" %}
-
-            {% if show_auth %}
-
-              <a class="btn btn-outline-primary" href="{{ 'auths__show' | path_for: id: auth._id, page: auths_query.page, per_page: auths_query.per_page }}">{{ l.buttons.show }}</a>
-
-            {% endif %}
-          </td>
+          <th class="border-bottom-0">{{ l.headers.config }}</th>
+          <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
+          <th class="border-bottom-0">{{ l.headers.created_at }}</th>
+          <th class="border-bottom-0">{{ l.headers.status }}</th>
+          <th class="border-bottom-0"></th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
 
-  {% assign page          = auths_query.page %}
-  {% assign per_page      = auths_query.per_page %}
-  {% assign pages_count   = auths_query.pages_count %}
-  {% assign params_status = nil %}
-  {% assign klass         = "auths" %}
+        {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
 
-  {% include "shared/pagination" %}
+        {% for auth in auths %}
+          {% assign created_at  = auth._id | _id_to_datetime %}
+          {% assign relay_id    = auth.relay_id %}
+          <tr>
+            <td>
+              {% if relays[relay_id] != nil %}
+                <samp>
+                  {% assign identifiable_config_keys = 0 %}
+                  {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
+                    {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
+                      &#183;
+                    {% endif %}
+                    {% if auth.webshop_config[identifiable_config_key] != nil and auth.webshop_config[identifiable_config_key] != "" %}
+                      {% assign identifiable_config_keys = identifiable_config_keys | plus: 1 %}
+                      {{ auth.webshop_config[identifiable_config_key] | decrypt }}
+                    {% endif %}
+                  {% endfor %}
+
+                  <span class="text-secondary">
+                    {% if identifiable_config_keys == 0 %}
+                      {{ l.informations.no_identifiable_config_keys }}
+                    {% endif %}
+                  </span>
+                </samp>
+              {% endif %}
+
+            </td>
+            <td>
+              {% if relays[relay_id] == nil %}
+                <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
+              {% else %}
+                {{ relays[relay_id].name }}
+              {% endif %}
+            </td>
+            <td>
+              <span title="{{ created_at | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                {{ created_at | time_distance_in_words: now }} {{ l.informations.ago }}
+              </span>
+            </td>
+            <td>
+              {% include "shared/auths/status" %}
+            </td>
+            <td class="text-right text-nowrap" width="1">
+
+              {% include "shared/auths/show_auth" %}
+
+              {% if show_auth %}
+
+                <a class="btn btn-outline-primary" href="{{ 'auths__show' | path_for: id: auth._id, page: auths_query.page, per_page: auths_query.per_page }}">{{ l.buttons.show }}</a>
+
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% assign page          = auths_query.page %}
+    {% assign per_page      = auths_query.per_page %}
+    {% assign pages_count   = auths_query.pages_count %}
+    {% assign params_status = nil %}
+    {% assign klass         = "auths" %}
+
+    {% include "shared/pagination" %}
+  {% endif %}
 {% endif %}
