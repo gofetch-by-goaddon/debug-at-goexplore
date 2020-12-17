@@ -6,21 +6,26 @@
 
 {% else %}
 
-  {% if user.webshop_relay_ids != nil and user.webshop_relay_ids contains webshop.relay_id %}
+  {% assign webshops_query  = "webshops" | db_count: _id: params.id %}
+  {% assign webshop         = webshops.first %}
 
-    {% assign error = nil %}
-    1
-  {% else %}
-    2
-    {% if user.ticket_relay_ids != nil and user.ticket_relay_ids contains webshop.relay_id %}
+  {% if webshop != nil %}
+    {% if user.webshop_relay_ids != nil and user.webshop_relay_ids contains webshop.relay_id %}
 
-      {% assign ticket_statuses = "opened escalated" | split: " " %}
-      {% assign tickets_query   = "tickets" | db_count: webshop_id: webshop._id, user_id: user._id, statuses: ticket_statuses %}
+      {% assign error = nil %}
 
-      {% if tickets_query.results_count == nil or tickets_query.results_count == 0 %}    
+    {% else %}
 
-        {% assign error = nil %}
+      {% if user.ticket_relay_ids != nil and user.ticket_relay_ids contains webshop.relay_id %}
 
+        {% assign ticket_statuses = "opened escalated" | split: " " %}
+        {% assign tickets_query   = "tickets" | db_count: webshop_id: webshop._id, user_id: user._id, statuses: ticket_statuses %}
+
+        {% if tickets_query.results_count == nil or tickets_query.results_count == 0 %}    
+
+          {% assign error = nil %}
+
+        {% endif %}
       {% endif %}
     {% endif %}
   {% endif %}
