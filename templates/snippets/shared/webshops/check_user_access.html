@@ -1,23 +1,35 @@
-{% if user.superuser_level != 1 %}
+{% assign error = l.errors.no_access %}
 
-  {% unless user.relay_ids != nil and user.relay_ids contains webshop.relay_id %}
+{% if user.superuser_level == 1 %}
 
-    {% assign open_tickets = false %}
+  {% assign error = nil %}
 
-    {% for ticket in tickets %}
-      {% if ticket.status == "opened" or ticket.status == "escalated" %}
-        {% if ticket.superuser_id == user._id %}
+{% else %}
 
-          {% assign open_tickets = true %}
+  {% if user.webshop_relay_ids != nil and user.webshop_relay_ids contains webshop.relay_id %}
 
+    {% assign error = nil %}
+
+  {% else %}
+
+    {% if user.ticket_relay_ids != nil and user.ticket_relay_ids contains webshop.relay_id %}
+
+      {% assign open_tickets = false %}
+
+      {% for ticket in tickets %}
+        {% if ticket.status == "opened" or ticket.status == "escalated" %}
+          {% if ticket.superuser_id == user._id %}
+
+            {% assign open_tickets = true %}
+
+          {% endif %}
         {% endif %}
+      {% endfor %}
+
+      {% if open_tickets %}
+
+        {% assign error = nil %}
+
       {% endif %}
-    {% endfor %}
-
-    {% unless open_tickets %}
-
-      {% assign error = l.errors.no_access %}
-
-    {% endunless %}
-  {% endunless %}
+    {% endif %}
 {% endif %}
