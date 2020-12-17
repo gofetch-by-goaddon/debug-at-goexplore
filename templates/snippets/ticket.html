@@ -8,6 +8,14 @@
   {% include "shared/link_styles" %}
 
   <script>
+    markdownSupportFees = function() {
+      if ($("#markdown_confirm").length > 0) {
+        var converter = new showdown.Converter({});
+        var markdown  = decodeURIComponent($("#markdown_confirm").data("markdown").toString().replaceAll("+", " "));
+        $("#markdown_confirm").attr("data-confirm", converter.makeHtml(markdown));
+      }
+    };
+
     function textAreaAdjust(element) {
       element.style.height = "1px";
       element.style.height = (25 + element.scrollHeight) + "px";
@@ -30,6 +38,11 @@
         placeholder.style.display = "none";
       }, 1000);
     }
+
+    $(document).on('turbolinks:load', function() {
+      markdownSupportFees();
+    })
+
   </script>
 
   {% include "shared/indent_json_pre" %}
@@ -239,7 +252,7 @@
                   {% if status == "escalated" and relay.support_fees != nil %}
 
                     <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                      <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ link_text }}" data-title="Please confirm" data-confirm="{{ relay.support_fees }}" data-commit="OK, escalate!" data-cancel="Cancel" data-commit-class="btn btn-outline-primary" data-cancel-class="text-primary">{{ append_string }}
+                      <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" id="markdown_confirm" value="{{ link_text }}" data-title="Please confirm" data-confirm="{{ relay.support_fees }}" data-markdown="{{ relay.support_fees | url_encode }}" data-commit="OK, escalate!" data-cancel="Cancel" data-commit-class="btn btn-outline-primary" data-cancel-class="text-primary">{{ append_string }}
                     </form>
 
                   {% else %}
