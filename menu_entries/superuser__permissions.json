@@ -1,0 +1,15 @@
+{
+  "title": {
+    "en": "Permissions"
+  },
+  "index": 0,
+  "paths": [
+    {
+      "controller": "permissions",
+      "action": "index"
+    },
+    {
+      "controller": "permissions"
+    }
+  ]
+}
