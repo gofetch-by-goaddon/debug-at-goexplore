@@ -5,7 +5,7 @@
   {% assign error = nil %}
 
 {% else %}
-  {{ user.webshop_relay_ids }}
+
   {% if user.webshop_relay_ids != nil and user.webshop_relay_ids contains webshop.relay_id %}
 
     {% assign error = nil %}
