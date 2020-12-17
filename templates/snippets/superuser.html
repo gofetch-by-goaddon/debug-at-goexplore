@@ -62,6 +62,13 @@
 
   {% for permission_type in permission_types %}
 
+    <p>
+      <b>{{ l.headers[permission_type] }}</b>
+    </p>
+    <p>
+      {{ l.explainers[permission_type] }}
+    </p>
+
     <form action="{{ 'superusers__update' | path_for: id: superuser._id, format: 'js' }}" method="patch" data-remote="true">
       <table>
         <tr>

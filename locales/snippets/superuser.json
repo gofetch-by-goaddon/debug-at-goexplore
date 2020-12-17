@@ -6,6 +6,14 @@
       "error": "Error, please",
       "return": "return"
     },
+    "headers": {
+      "ticket_relay_ids": "Ticket permissions",
+      "auth_relay_ids": "Auth permissions"
+    },
+    "explainers": {
+      "ticket_relay_ids": "Choose which ecommerce platforms this user can be assigned tickets for",
+      "auth_relay_ids": "Choose which ecommerce platforms this user can review auths for"
+    },
     "placeholders": {
       "select": " Select ecommerce platforms..."
     },
