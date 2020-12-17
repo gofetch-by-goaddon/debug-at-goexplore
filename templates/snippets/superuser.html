@@ -58,13 +58,17 @@
     })
   </script>
 
-  <p>{{ l.explainers.intro.p1 }}</p>
+  <p class="mb-3">
+    {{ l.explainers.intro.p1 }}
+  </p>
 
   {% assign permission_types = "webshop_relay_ids ticket_relay_ids auth_relay_ids" | split: " " %}
 
   {% for permission_type in permission_types %}
 
-    <h6 class="mt-4">{{ l.headers[permission_type] }}</h6>
+    <p class="mt-4">
+      <b>{{ l.headers[permission_type] }}</b>
+    </p>
     {% for p in l.explainers[permission_type] %}
       <p>
         {{ p[1] }}
