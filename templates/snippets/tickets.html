@@ -116,4 +116,11 @@
       {% endif %}
     </div>
   </div>
+
+  {% assign page        = tickets_query.page %}
+  {% assign per_page    = tickets_query.per_page %}
+  {% assign pages_count = tickets_query.pages_count %}
+  {% assign klass       = "tickets" %}
+
+  {% include "shared/pagination" %}
 {% endif %}

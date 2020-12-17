@@ -14,11 +14,11 @@
 
   {% if user.superuser_level == 1 %}
 
-    {% assign tickets_query = "superuser_level_1_tickets" | db_find: statuses: query_statuses %}
+    {% assign tickets_query = "superuser_level_1_tickets" | db_find: statuses: query_statuses, page: params.page, per_page: params.per_page %}
 
   {% else %}
 
-    {% assign tickets_query = "superuser_tickets" | db_find: user_id: user._id, statuses: query_statuses %}
+    {% assign tickets_query = "superuser_tickets" | db_find: user_id: user._id, statuses: query_statuses, page: params.page, per_page: params.per_page %}
 
   {% endif %}
 
