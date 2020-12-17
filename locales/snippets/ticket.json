@@ -45,6 +45,13 @@
         "or": " or "
       }
     },
+    "confirm_escalate": {
+      "confirm_intro": "Support for this ecommerce platform is provided by **",
+      "confirm_outro": "**. Their current support fees are described below:",
+      "title": "Please confirm",
+      "commit": "OK, escalate!",
+      "cancel": "Cancel"
+    },
     "assign": {
       "assign": "assign",
       "reassign": "reassign",

@@ -249,10 +249,10 @@
                     {% assign link_text = l.update_status.links[status] %}
                   {% endif %}
 
-                  {% if status == "escalated" and relay.support_fees != nil %}
+                  {% if status == "escalated" %}
 
                     <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                      <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" id="markdown_confirm" value="{{ link_text }}" data-title="Please confirm" data-confirm="{{ relay.support_fees }}" data-markdown="{{ relay.support_fees | url_encode }}" data-commit="OK, escalate!" data-cancel="Cancel" data-commit-class="btn btn-outline-primary" data-cancel-class="text-primary">{{ append_string }}
+                      <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" id="markdown_confirm" value="{{ link_text }}" data-title="{{ l.confirm_escalate.title }}" data-confirm="" data-markdown="{{ l.confirm_escalate.confirm_intro }}{{ relay.author }}{{ l.confirm_escalate.confirm_outro }}\n\n{{ relay.support_fees | url_encode }}" data-commit="{{ l.confirm_escalate.commit }}" data-cancel="{{ l.confirm_escalate.cancel }}" data-commit-class="btn btn-outline-primary" data-cancel-class="text-primary">{{ append_string }}
                     </form>
 
                   {% else %}
