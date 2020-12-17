@@ -4,7 +4,7 @@
       "unknown_permission_type": "Unknown permission type",
       "invalid_params": "Invalid params",
       "not_found": "The user was not found",
-      "updated_count": "The user was not updated",
+      "not_updated": "The user was not updated",
       "updated": "The user was updated"
     }
   }
