@@ -1,0 +1,14 @@
+{
+  "superusers": {
+    "klass": "users",
+    "query": {
+      "app_id": "{{ app_id }}",
+      "superuser": true
+    },
+    "projection": {
+      "_id": 1,
+      "email": 1,
+      "ticket_relay_ids": 1
+    }
+  }
+}

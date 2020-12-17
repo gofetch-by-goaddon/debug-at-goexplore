@@ -1,12 +1,12 @@
 {% if auths.size == 0 %}
   <h5 class="mb-4">{{ l.headlines.no_auths }}</h5>
   {% if error != nil %}
-    <p><span class="badge badge-danger">{{ error }}</span></p>
+    <p class="text-danger">{{ error }}.</p>
   {% endif %}
 {% else %}
   <h5 class="mb-4">{{ l.headlines.auths }}</h5>
   {% if error != nil %}
-    <p><span class="badge badge-danger">{{ error }}</span></p>
+    <p class="text-danger">{{ error }}.</p>
   {% endif %}
   <table class="table">
     <thead>

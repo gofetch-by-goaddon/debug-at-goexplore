@@ -1,7 +1,11 @@
 {
   "en": {
     "headlines": {
-      "permissions": "Superuser permissions"
+      "superuser_level_1": "Manage superuser permissions",
+      "superuser": "Your permissions"
+    },
+    "placeholders": {
+      "relays": "Select ecommerce platforms..."
     }
   }
 }
