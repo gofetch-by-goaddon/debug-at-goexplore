@@ -1,6 +1,6 @@
 {% if account != nil and user.superuser %}
 
-  {% assign auths_query    = "auths" | db_find %}
+  {% assign auths_query    = "auths" | db_find: page: params.page, per_page: params.per_page %}
   {% assign auths          = auths_query.results %}
   {% assign documents      = auths %}
 
