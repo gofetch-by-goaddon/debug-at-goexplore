@@ -7,7 +7,7 @@
       "return": "return"
     },
     "placeholders": {
-      "relays": " Select ecommerce platforms..."
+      "select": " Select ecommerce platforms..."
     },
     "buttons": {
       "update": "Update"

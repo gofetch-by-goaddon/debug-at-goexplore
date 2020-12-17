@@ -2,8 +2,8 @@
 
   <h5 class="mb-4">
     {{ l.headlines.error }} <a href="{{ 'permissions__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
-    <p class="text-danger">{{ error }}.</p>
   </h5>
+  <p class="text-danger">{{ error }}.</p>
 
 {% else %}
 
@@ -27,8 +27,8 @@
 
   <script>
     selectRelays  = function() {
-      $(".input-select2-relays").select2({
-        placeholder: "{{ l.placeholders.relays }}",
+      $(".input-select2-permissions").select2({
+        placeholder: "{{ l.placeholders.select }}",
         multiple: true,
         allowClear: false,
         sorter: function(data) {
@@ -45,7 +45,7 @@
         }
       });
       
-      $(".input-select2-relays").on("select2:select", function(e) {
+      $(".input-select2-permissions").on("select2:select", function(e) {
         var id      = e.params.data.id;
         var option  = $(e.target).children("[value='" + id + "']");
         option.detach();
@@ -58,31 +58,35 @@
     })
   </script>
 
-  <b><label for="relays">{{ superuser.email }}</label></b>
-  <form class="update-ticket-relay-ids" action="{{ 'superusers__update' | path_for: id: superuser._id, format: 'js' }}" method="patch" data-remote="true">
-    <table>
-      <tr>
-        <td width="100%">
-          <div class="form-group">
-            <select name="relays[]" class="form-control input-select2-relays" multiple id="relays_{{ superuser._id }}">
-              <option value="" label=" "></option>
+  {% assign permission_types = "ticket_relay_ids auth_relay_ids" | split: " " %}
 
-              {% if superuser.ticket_relay_ids != nil %}
-                {% for ticket_relay_id in superuser.ticket_relay_ids %}
-                  <option value="{{ relays[ticket_relay_id][0] }}" selected>{{ relays[ticket_relay_id][1].name }}</option>
+  {% for permission_type in permission_types %}
+
+    <form action="{{ 'superusers__update' | path_for: id: superuser._id, format: 'js' }}" method="patch" data-remote="true">
+      <table>
+        <tr>
+          <td width="100%">
+            <div class="form-group">
+              <select name="{{ permission_type }}[]" class="form-control input-select2-permissions" multiple id="{{ permission_type }}">
+                <option value="" label=" "></option>
+
+                {% if superuser[permission_type] != nil %}
+                  {% for relay_id in superuser[permission_type] %}
+                    <option value="{{ relays[relay_id][0] }}" selected>{{ relays[relay_id][1].name }}</option>
+                  {% endfor %}
+                {% endif %}
+
+                {% for relay in relays %}
+                  <option value="{{ relay[0] }}">{{ relay[1].name }}</option>
                 {% endfor %}
-              {% endif %}
-
-              {% for relay in relays %}
-                <option value="{{ relay[0] }}">{{ relay[1].name }}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </td>
-        <td style="vertical-align: top;">
-          <input type="submit" class="btn btn-outline-primary ml-1" value="{{ l.buttons.update }}">
-        </td>
-      </tr>
-    </table>
-  </form>
+              </select>
+            </div>
+          </td>
+          <td style="vertical-align: top;">
+            <input type="submit" class="btn btn-outline-primary ml-1" value="{{ l.buttons.update }}">
+          </td>
+        </tr>
+      </table>
+    </form>
+  {% endfor %}
 {% endif %}
