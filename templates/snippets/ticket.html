@@ -176,6 +176,7 @@
               {% endfor %}
 
               {% assign superusers_count = 0 %}
+
               {% for superuser in superusers %}
 
                 {% include "ticket/superuser_assignable" %}
@@ -186,7 +187,7 @@
 
                 {% endif %}
               {% endfor %}
-
+              <p>superusers_count: {{superusers_count}}</p>
               {% assign second_last_action_number = action_count | minus: 1 %}
 
               {% for status in statuses %}
