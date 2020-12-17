@@ -78,7 +78,7 @@
 
                 {% if superuser[permission_type] != nil %}
                   {% for relay_id in superuser[permission_type] %}
-                    <option value="{{ relays[relay_id][0] }}" selected>{{ relays[relay_id][1].name }}</option>
+                    <option value="{{ relay_id }}" selected>{{ relays[relay_id].name }}</option>
                   {% endfor %}
                 {% endif %}
 
