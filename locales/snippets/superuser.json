@@ -20,7 +20,7 @@
       },
       "ticket_relay_ids": {
         "p1": "Choose which ecommerce platform tickets this user can be assigned.",
-        "p2": "With permission to an ecommerce platform the superuser can access all open and escalated tickets relating to it, even the tickets they are not assigned to. They also have access to any closed ticket they are assigned to. Closing a ticket automatically unassigns the assignee, but a superuser with level 1 access can re-assign the ticket."
+        "p2": "With permission to an ecommerce platform the superuser can access all open and escalated tickets relating to the ecommerce platform, even the tickets they are not assigned to. They also have access to any closed ticket they are assigned to. Closing a ticket automatically unassigns the assignee, but a superuser with level 1 access can re-assign the ticket."
       },
       "auth_relay_ids": {
         "p1": "Choose which ecommerce platform auths this user can access."
