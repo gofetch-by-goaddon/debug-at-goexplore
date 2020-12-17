@@ -47,7 +47,7 @@
     },
     "confirm_escalate": {
       "confirm_intro": "Support for this ecommerce platform is provided by **",
-      "confirm_outro": "**. Their current support fees are described below:",
+      "confirm_outro": "**. Their current support fees are described below:\n\n",
       "title": "Please confirm",
       "commit": "OK, escalate!",
       "cancel": "Cancel"
