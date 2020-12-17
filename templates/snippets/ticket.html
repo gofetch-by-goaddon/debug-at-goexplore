@@ -177,15 +177,13 @@
 
               {% assign superusers_count = 0 %}
               {% for superuser in superusers %}
-                {% if superuser._id != user._id and superuser._id != ticket.superuser_id %}
 
-                  {% assign has_relay_id = superuser.ticket_relay_ids != nil and superuser.ticket_relay_ids contains ticket.relay_id %}
+                {% include "ticket/superuser_assignable" %}
 
-                  {% if superuser.superuser_level == 1 or has_relay_id %}
+                {% if assignable %}
 
-                    {% assign superusers_count = superusers_count | plus: 1 %}
+                  {% assign superusers_count = superusers_count | plus: 1 %}
 
-                  {% endif %}
                 {% endif %}
               {% endfor %}
 
@@ -246,16 +244,17 @@
                   <div class="dropdown-menu" aria-labelledby="assign_ticket">
                     <h6 class="dropdown-header px-3">{{ l.assign.header }}</h6>
                     <div class="dropdown-divider mb-1"></div>
+
                     {% for superuser in superusers %}
-                      {% if superuser._id != user._id and superuser._id != ticket.superuser_id %}
 
-                        {% assign has_relay_id = superuser.ticket_relay_ids != nil and superuser.ticket_relay_ids contains ticket.relay_id %}
+                      {% include "ticket/superuser_assignable" %}
 
-                        {% if superuser.superuser_level == 1 or has_relay_id %}
-                          <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
-                            <input type="hidden" name="superuser_id" value="{{ superuser._id }}"><input type="submit" class="px-3 btn btn-link" value="{{ superuser.email }}">
-                          </form>
-                        {% endif %}
+                      {% if assignable %}
+
+                        <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                          <input type="hidden" name="superuser_id" value="{{ superuser._id }}"><input type="submit" class="px-3 btn btn-link" value="{{ superuser.email }}">
+                        </form>
+
                       {% endif %}
                     {% endfor %}
 

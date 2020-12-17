@@ -1,0 +1,13 @@
+{% assign assignable = false %}
+
+{% if superuser._id != user._id and superuser._id != ticket.superuser_id %}
+  {% if superuser.superuser_level == 1 %}
+
+    {% assign assignable = true %}
+
+  {% elsif superuser.ticket_relay_ids != nil and superuser.ticket_relay_ids contains ticket.relay_id %}
+
+    {% assign assignable = true %}
+
+  {% endif %}
+{% endif %}
