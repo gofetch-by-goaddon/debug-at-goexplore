@@ -59,7 +59,7 @@
   </script>
 
   <p>
-    {{ l.explainers.intro }}
+    {{ l.explainers.intro.p1 }}
   </p>
 
   {% assign permission_types = "webshop_relay_ids ticket_relay_ids auth_relay_ids" | split: " " %}
@@ -69,9 +69,11 @@
     <p class="mt-4">
       <b>{{ l.headers[permission_type] }}</b>
     </p>
-    <p>
-      {{ l.explainers[permission_type] }}.
-    </p>
+    {% for p in l.explainers[permission_type] %}
+      <p>
+        {{ p[1] }}
+      </p>
+    {% endfor %}
 
     <form action="{{ 'superusers__update' | path_for: id: superuser._id, format: 'js' }}" method="patch" data-remote="true">
       <table>

@@ -12,10 +12,19 @@
       "auth_relay_ids": "Auth permissions"
     },
     "explainers": {
-      "intro": "Superuser without level 1 access don't have access to anything on this website. By adjusting their permission levels you can provide them with limited access to specific ecommerce platforms.",
-      "webshop_relay_ids": "Choose which ecommerce platforms this user can access",
-      "ticket_relay_ids": "Choose which ecommerce platform tickets this user can be assigned",
-      "auth_relay_ids": "Choose which ecommerce platform auths this user can access"
+      "intro": {
+        "p1": "Superuser without level 1 access don't have access to anything on this website. By adjusting their permission levels you can provide them with limited access to specific ecommerce platforms."
+      },
+      "webshop_relay_ids": {
+        "p1": "Choose which ecommerce platforms this user can access."
+      },
+      "ticket_relay_ids": {
+        "p1": "Choose which ecommerce platform tickets this user can be assigned.",
+        "p2": "With permission to an ecommerce platform you can access all open and escalated tickets relating to it, even the tickets you are not assigned to. You also have access to closed tickets if you are assigned to them. Closing a ticket automatically unassigns the assignee, but a superuser with level 1 access can re-assign the ticket."
+      },
+      "auth_relay_ids": {
+        "p1": "Choose which ecommerce platform auths this user can access."
+      }
     },
     "placeholders": {
       "select": " Select ecommerce platforms..."
