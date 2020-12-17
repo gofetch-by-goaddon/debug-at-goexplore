@@ -8,7 +8,7 @@
 
   {% assign webshops_query  = "webshops" | db_count: _id: params.id %}
   {% assign webshop         = webshops.first %}
-
+  {{ webshop }}
   {% if webshop != nil %}
     {% if user.webshop_relay_ids != nil and user.webshop_relay_ids contains webshop.relay_id %}
 
