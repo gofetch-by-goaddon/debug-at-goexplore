@@ -11,9 +11,9 @@
 
       {% assign permitted_relay_ids = superuser.closed_ticket_relay_ids %}
 
-    {% elsif superuser.closed_ticket_relay_ids != nil and superuser.closed_ticket_relay_ids.size > 0 %}
+    {% elsif superuser.ticket_relay_ids != nil and superuser.ticket_relay_ids.size > 0 %}
 
-      {% assign permitted_relay_ids = superuser.closed_ticket_relay_ids %}
+      {% assign permitted_relay_ids = superuser.ticket_relay_ids %}
 
     {% endif %}
 
