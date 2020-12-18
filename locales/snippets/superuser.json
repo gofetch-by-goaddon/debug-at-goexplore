@@ -8,8 +8,8 @@
     },
     "headers": {
       "webshop_relay_ids": "Webshop permissions",
-      "ticket_relay_ids": "Ticket permissions",
-      "closed_ticket_relay_ids": "Closed ticket permissions",
+      "ticket_relay_ids": "Limited ticket permissions",
+      "closed_ticket_relay_ids": "Full ticket permissions",
       "auth_relay_ids": "Auth permissions"
     },
     "explainers": {
@@ -21,14 +21,14 @@
         "p2": "Users will be able to view, update and use the Shop API for any webshop that belongs to the ecommerce platform."
       },
       "ticket_relay_ids": {
-        "p1": "Choose which ecommerce platform tickets this user can have limited access to.",
+        "p1": "Choose which open ecommerce platform tickets this user can have limited access to.",
         "p2": "Users will be able to access all open and escalated tickets relating to the ecommerce platform, even the tickets they are not assigned to. They also have access to any closed ticket they are assigned to. Closing a ticket automatically unassigns the assignee, but a superuser with upgraded access can re-assign the closed ticket.",
         "p3": "They can also view, update and use the Shop API for the webshop that ticket belongs to, but only while the ticket is open or escalated."
       },
       "closed_ticket_relay_ids": {
         "p1": "Choose which ecommerce platform tickets this user can have full access to.",
-        "p2": "Users will have access to all ticket, even closed tickets and tickets they are not assigned to. You should not combine this with the limited ticket access, and if any ecommerce platforms are selected here, any limited ticket access will be ignored.",
-        "p3": "Similar to the limited ticket action, they can only a webshop if they are assigned to an open ticket that belongs to it."
+        "p2": "Users will have access to all tickets, even closed tickets and tickets they are not assigned to. You can not combine this with the limited ticket access, and if any ecommerce platforms are selected here, any limited ticket access will be ignored.",
+        "p3": "Similar to the limited ticket action, users can only access a webshop if they are assigned to an open ticket that belongs to it."
       },
       "auth_relay_ids": {
         "p1": "Choose which ecommerce platform auths this user can access.",
