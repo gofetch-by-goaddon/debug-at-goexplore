@@ -119,6 +119,9 @@
         {% else %}
           alertify.success("{{ response_text }}");
           {% if log_entry.message != nil %}
+
+            {% assign send_result = "message" | send_email: to: "example@example.com", display_name: "New message", foo: "bar" %}
+
             $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
             addMarkdown();
             $("textarea[name='message']").val("");

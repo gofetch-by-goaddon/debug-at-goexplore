@@ -22,7 +22,8 @@
       "_id": 1,
       "superuser_level": 1,
       "email": 1,
-      "ticket_relay_ids": 1
+      "ticket_relay_ids": 1,
+      "closed_ticket_relay_ids": 1
     }
   }
 }

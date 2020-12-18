@@ -12,6 +12,7 @@
       "superuser_level": 1,
       "webshop_relay_ids": 1,
       "ticket_relay_ids": 1,
+      "closed_ticket_relay_ids": 1,
       "auth_relay_ids": 1
     }
   }

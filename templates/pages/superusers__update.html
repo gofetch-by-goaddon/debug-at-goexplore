@@ -1,6 +1,6 @@
 {% if account != nil and user.superuser and user.superuser_level == 1 %}
 
-  {% assign permission_types  = "webshop_relay_ids ticket_relay_ids auth_relay_ids" | split: " " %}
+  {% assign permission_types  = "webshop_relay_ids ticket_relay_ids closed_ticket_relay_ids auth_relay_ids" | split: " " %}
   {% assign permission_type   = params.permission_type %}
   {% unless permission_types contains permission_type  %}
 

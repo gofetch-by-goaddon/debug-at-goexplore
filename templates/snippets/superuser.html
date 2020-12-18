@@ -62,7 +62,7 @@
     {{ l.explainers.intro.p1 }}
   </p>
 
-  {% assign permission_types = "webshop_relay_ids ticket_relay_ids auth_relay_ids" | split: " " %}
+  {% assign permission_types = "webshop_relay_ids ticket_relay_ids closed_ticket_relay_ids auth_relay_ids" | split: " " %}
 
   {% for permission_type in permission_types %}
 
