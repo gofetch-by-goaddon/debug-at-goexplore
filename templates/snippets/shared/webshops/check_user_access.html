@@ -27,6 +27,7 @@
       {% assign open_tickets = false %}
 
       {% for ticket in tickets %}
+        ticket: {{ ticket }}
         {% if ticket.status == "opened" or ticket.status == "escalated" %}
           {% if ticket.superuser_id == user._id %}
 
