@@ -42,10 +42,21 @@
       
       {% elsif params.message != nil and params.message != "" %}
 
-        {% assign message     = params.message | encrypt %}
-        {% assign log_entry   = log_entry | push_to_hash: "message", message %}
-        {% assign log_entry   = log_entry | push_to_hash: "author_id", user._id %}
+        {% if params.recipients == nil %}
 
+          {% assign recipients = "" | split: " " %}
+
+        {% else %}
+
+          {% assign recipients = params.recipients %}
+
+        {% endif %}
+
+        {% assign log_entry     = log_entry | push_to_hash: "recipients", recipients %}
+        {% assign message       = params.message | encrypt %}
+        {% assign log_entry     = log_entry | push_to_hash: "message", message %}
+        {% assign log_entry     = log_entry | push_to_hash: "author_type", "superuser" %}
+        {% assign log_entry     = log_entry | push_to_hash: "author_id", user._id %}
         {% assign response_text = l.response_texts.message_sent %}
 
       {% elsif params.status != nil %}

@@ -55,15 +55,15 @@
 
     formatState = function(state) {
       if (state.element === undefined) {
-        return state.id;
-      } else if (state.id === "{{ ticket.mail_address | decrypt }}") {
-        var text = state.id.concat(' &#183; <b>{{ l.recipients.merchant }}</b>');
+        return state.text;
+      } else if (state.attributes["data-recipient"] === "{{ ticket.mail_address | decrypt }}") {
+        var text = state.attributes["data-recipient"].concat(' &#183; <b>{{ l.recipients.merchant }}</b>');
         return jQuery.parseHTML(text);
-      } else if (state.id === "support") {
+      } else if (state.attributes["data-recipient"] === "support") {
         var text = "{{ relay.author }}".concat(' &#183; <b>{{ relay.name }} {{ l.recipients.support }}</b>');
         return jQuery.parseHTML(text);
       } else {
-        return state.id;
+        return state.attributes["data-recipient"];
       }
     };
 
@@ -441,11 +441,11 @@
       <b><label for="recipients">{{ l.recipients.label }}:</label></b>
       <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
 
-        <option value="{{ ticket.mail_address | decrypt }}"></option>
+        <option data-recipient="{{ ticket.mail_address | decrypt }}" value="{{ ticket.mail_address | decrypt }}"></option>
 
         {% if ticket.status == "escalated" %}
 
-          <option value="support"></option>
+          <option data-recipient="support" value="support"></option>
 
         {% endif %}
 
@@ -455,7 +455,7 @@
 
           {% if assignable %}
 
-            <option value="{{ superuser.email }}"></option>
+            <option data-recipient="{{ superuser.email }}" value="{{ superuser._id }}"></option>
 
           {% endif %}
         {% endfor %}
