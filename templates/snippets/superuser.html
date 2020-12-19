@@ -30,7 +30,7 @@
       $(".input-select2-permissions").select2({
         placeholder: "{{ l.placeholders.select }}",
         multiple: true,
-        allowClear: false,
+        allowClear: true,
         sorter: function(data) {
           return data.sort(function(a, b) {
             a = a.text.toLowerCase();
