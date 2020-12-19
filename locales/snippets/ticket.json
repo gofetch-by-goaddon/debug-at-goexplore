@@ -61,7 +61,8 @@
     "recipients": {
       "label": "Recipients",
       "placeholder": " Select recipients...",
-      "client": "client"
+      "client": "client",
+      "support": "support"
     },
     "message": {
       "label": "Message",
