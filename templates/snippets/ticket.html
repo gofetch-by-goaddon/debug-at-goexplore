@@ -54,13 +54,14 @@
     }
 
     formatState = function(state) {
+      console.log(state);
       if (state.element === undefined) {
-        return state.text;
-      } else if (state.text === "{{ ticket.mail_address | decrypt }}") {
-        var text = state.text.concat(' &#183; <b>{{ l.recipients.client }}</b>');
+        return state.value;
+      } else if (state.value === "{{ ticket.mail_address | decrypt }}") {
+        var text = state.value.concat(' &#183; <b>{{ l.recipients.client }}</b>');
         return jQuery.parseHTML(text);
       } else {
-        return state.text;
+        return state.value;
       }
     };
 
@@ -438,7 +439,13 @@
       <b><label for="recipients">{{ l.recipients.label }}:</label></b>
       <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
 
-        <option value="{{ ticket.mail_address | decrypt }}">{{ ticket.mail_address | decrypt }}</option>
+        <option value="{{ ticket.mail_address | decrypt }}"></option>
+
+        {% if ticket.status == "escalated" %}
+
+          <option value="support"></option>
+
+        {% endif %}
 
         {% for superuser in superusers %}
 
@@ -446,7 +453,7 @@
 
           {% if assignable %}
 
-            <option value="{{ superuser.email }}">{{ superuser.email }}</option>
+            <option value="{{ superuser.email }}"></option>
 
           {% endif %}
         {% endfor %}
