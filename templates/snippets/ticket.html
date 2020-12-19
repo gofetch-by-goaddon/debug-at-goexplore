@@ -41,7 +41,7 @@
 
     selectRecipients  = function() {
       $(".input-select2-recipients").select2({
-        placeholder: "{{ l.placeholders.select }}",
+        placeholder: "{{ l.recipients.placeholder }}",
         multiple: true,
         allowClear: false,
         tags: true,
@@ -408,6 +408,7 @@
 
   <form class="my-4" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
     <div class="form-group">
+      <p><b>{{ l.recipients.label }}:</b></p>
       <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
 
         {% if false %}

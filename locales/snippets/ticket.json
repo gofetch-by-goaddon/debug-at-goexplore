@@ -58,6 +58,10 @@
       "header": "Choose assignee",
       "unassign": "Unassign"
     },
+    "recipients": {
+      "label": "Recipients",
+      "placeholder": " Select recipients..."
+    },
     "message": {
       "label": "Message",
       "placeholder": "Write internal message with markdown such as `code` and [links](https://example.com)...",
