@@ -427,8 +427,7 @@
         <option value="{{ ticket.mail_address | decrypt }}">{{ ticket.mail_address | decrypt }}</option>
 
         {% for superuser in superusers %}
-            <option value="{{ superuser.email }}">{{ superuser.email }}</option>
-          {% endunless %}
+          <option value="{{ superuser.email }}">{{ superuser.email }}</option>
         {% endfor %}
       </select>
     </div>
