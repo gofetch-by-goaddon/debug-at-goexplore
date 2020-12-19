@@ -54,14 +54,13 @@
     }
 
     formatState = function(state) {
-      console.log(state);
       if (state.element === undefined) {
-        return state.value;
-      } else if (state.value === "{{ ticket.mail_address | decrypt }}") {
-        var text = state.value.concat(' &#183; <b>{{ l.recipients.client }}</b>');
+        return state.id;
+      } else if (state.id === "{{ ticket.mail_address | decrypt }}") {
+        var text = state.id.concat(' &#183; <b>{{ l.recipients.client }}</b>');
         return jQuery.parseHTML(text);
       } else {
-        return state.value;
+        return state.id;
       }
     };
 
