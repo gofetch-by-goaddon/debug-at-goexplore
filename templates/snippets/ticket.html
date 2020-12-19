@@ -387,7 +387,7 @@
                 </td>
                 <td class="{{ bottom_border_klass }}">
                   <span title="{{ ticket[status_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-                    {{ ticket[status_name] | time_distance_in_words: now }} {{ l.informations.ago }}
+                    {{ ticket[status_name] | time_distance_in_words: now | capitalize }} {{ l.informations.ago }}
                   </span>
                 </td>
               </tr>
