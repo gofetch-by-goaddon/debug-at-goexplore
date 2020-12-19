@@ -429,6 +429,8 @@
       </select>
     </div>
 
+    <p><b>{{ l.message.label }}:</b></p>
+
     <textarea name="message" placeholder="{{ l.message.placeholder }}" class="form-control rounded-0 border-bottom-0" rows="2" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
     <input type="submit" class="btn btn-outline-primary rounded-0 btn-fullwidth" value="{{ l.message.submit }}">
   </form>
