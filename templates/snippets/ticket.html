@@ -57,7 +57,7 @@
       if (state.element === undefined) {
         return state.id;
       } else if (state.id === "{{ ticket.mail_address | decrypt }}") {
-        var text = state.id.concat(' &#183; <b>{{ l.recipients.client }}</b>');
+        var text = state.id.concat(' &#183; <b>{{ l.recipients.merchant }}</b>');
         return jQuery.parseHTML(text);
       } else if (state.id === "support") {
         var text = "{{ relay.author }}".concat(' &#183; <b>{{ relay.name }} {{ l.recipients.support }}</b>');
