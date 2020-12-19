@@ -408,7 +408,7 @@
 
   <form class="my-4" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
     <div class="form-group">
-      <p><b>{{ l.recipients.label }}:</b></p>
+      <b><label for="recipients">{{ l.recipients.label }}:</label></b>
       <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
 
         {% if false %}
@@ -429,9 +429,10 @@
       </select>
     </div>
 
-    <p><b>{{ l.message.label }}:</b></p>
-
-    <textarea name="message" placeholder="{{ l.message.placeholder }}" class="form-control rounded-0 border-bottom-0" rows="2" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
+    <div class="form-group">
+      <b><label for="message">{{ l.message.label }}:</label></b>
+      <textarea name="message" placeholder="{{ l.message.placeholder }}" class="form-control rounded-0 border-bottom-0" rows="2" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
+    </div>
     <input type="submit" class="btn btn-outline-primary rounded-0 btn-fullwidth" value="{{ l.message.submit }}">
   </form>
 
