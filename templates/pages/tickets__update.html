@@ -122,7 +122,7 @@
             $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
             addMarkdown();
             $("textarea[name='message']").val("");
-            $("input-select2-recipients").val(null).trigger("change");
+            $(".input-select2-recipients").val(null).trigger("change");
             $("#log_accordion .collapse").addClass("show");
           {% else %}
             {% if redirect_to != nil %}
