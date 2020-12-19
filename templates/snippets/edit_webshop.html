@@ -239,7 +239,7 @@
                   {% assign attribute_name = attribute[0] %}
                   {% if attribute[1] != nil %}
                     {% assign time = attribute[1] | date: '%Y-%m-%d %H:%M:%S' | parse_time %}
-                    {% capture time_text %}{{ time | time_distance_in_words: now }} {{ l.input.ago }}{% endcapture %}
+                    {% capture time_text %}{{ time | time_distance_in_words: now | capitalize }} {{ l.input.ago }}{% endcapture %}
                   {% else %}
                     {% assign time_text = nil %}
                   {% endif %}
