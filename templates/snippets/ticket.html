@@ -39,10 +39,6 @@
       }, 1000);
     }
 
-    $(document).on('turbolinks:load', function() {
-      markdownSupportFees();
-    })
-
     selectRecipients  = function() {
       $(".input-select2-recipients").select2({
         placeholder: "{{ l.placeholders.select }}",
@@ -72,6 +68,7 @@
     };
 
     $(document).on('turbolinks:load', function() {
+      markdownSupportFees();
       selectRecipients();
     })
 
@@ -411,7 +408,7 @@
 
   <form class="my-4" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
     <div class="form-group">
-      <select name="recipients" class="form-control input-select2-recipients" multiple id="recipients">
+      <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
 
         {% if false %}
           {% for superuser in superusers %}
