@@ -60,7 +60,7 @@
     },
     "recipients": {
       "label": "Recipients",
-      "placeholder": " Select or type an email address. Recipients will get access to all messages...",
+      "placeholder": " Select or type in email addresses. Recipients will get access to all messages...",
       "client": "client",
       "support": "support"
     },
