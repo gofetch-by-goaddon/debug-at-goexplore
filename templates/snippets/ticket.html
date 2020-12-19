@@ -73,20 +73,6 @@
       }
     };
 
-    formatState = function(state) {
-      if (state.element === undefined) {
-        return state.text;
-      } else if (state.attributes["data-recipient"] === "{{ ticket.mail_address | decrypt }}") {
-        var text = state.attributes["data-recipient"].concat(' &#183; <b>{{ l.recipients.merchant }}</b>');
-        return jQuery.parseHTML(text);
-      } else if (state.attributes["data-recipient"] === "support") {
-        var text = "{{ relay.author }}".concat(' &#183; <b>{{ relay.name }} {{ l.recipients.support }}</b>');
-        return jQuery.parseHTML(text);
-      } else {
-        return state.attributes["data-recipient"];
-      }
-    };
-
     selectRecipients  = function() {
       $(".input-select2-recipients").select2({
         placeholder: "{{ l.recipients.placeholder }}",
