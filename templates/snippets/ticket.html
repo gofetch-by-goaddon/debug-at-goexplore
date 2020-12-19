@@ -7,6 +7,20 @@
 
   {% include "shared/link_styles" %}
 
+  <style>
+    .select2-selection--single, .select2-search__field {
+      outline: none;
+    }
+
+    .select2-selection__choice {
+      background-color: #e9ecef !important;
+    }
+
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+      border: solid #007bff 1px;
+    }
+  </style>
+
   <script>
     markdownSupportFees = function() {
       if ($("#markdown_confirm").length > 0) {
@@ -43,7 +57,7 @@
       if (state.element === undefined) {
         return state.text;
       } else if (state.text === "{{ ticket.mail_address | decrypt }}") {
-        var text = state.text.concat(' &#183; <span class=text-primary>{{ l.recipients.client }}</span>');
+        var text = state.text.concat(' <span class=text-primary>&#183; {{ l.recipients.client }}</span>');
         return jQuery.parseHTML(text);
       } else {
         return state.text;
