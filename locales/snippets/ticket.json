@@ -62,8 +62,7 @@
       "label": "Recipients",
       "placeholder": " Select recipients from the list or type in email addresses...",
       "merchant": "merchant",
-      "support": "support",
-      "explainer": "If you choose the merchant, they will receive an email with all messages exchange between them and you.\nIf you choose other superusers they will receive an email notification, but without any messages."
+      "support": "support"
     },
     "message": {
       "label": "Message",
