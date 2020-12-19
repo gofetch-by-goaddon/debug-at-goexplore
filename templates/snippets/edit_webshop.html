@@ -122,7 +122,7 @@
       } else {
         var title = state.element.attributes["data-title"].value;
         if (state.element.attributes["data-time"].value != "") {
-          var title = title.concat(' <span class=text-secondary><small>' + state.element.attributes["data-time"].value + '</small></span>');
+          var title = title.concat(' &#183; <small>' + state.element.attributes["data-time"].value + '</small>');
         }
         return jQuery.parseHTML(title);
       }
