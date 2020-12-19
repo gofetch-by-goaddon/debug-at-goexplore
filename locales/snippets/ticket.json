@@ -60,7 +60,8 @@
     },
     "recipients": {
       "label": "Recipients",
-      "placeholder": " Select recipients..."
+      "placeholder": " Select recipients...",
+      "client": "client"
     },
     "message": {
       "label": "Message",

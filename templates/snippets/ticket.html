@@ -39,6 +39,17 @@
       }, 1000);
     }
 
+    formatState = function(state) {
+      if (state.element === undefined) {
+        return state.text;
+      } else if (state.text === {{ ticket.mail_address | decrypt }}) {
+        var text = state.text.concat(' <span class=text-secondary><small>{{ l.recipients.client }}</small></span>');
+        return jQuery.parseHTML(title);
+      } else {
+        return state.text;
+      }
+    };
+
     selectRecipients  = function() {
       $(".input-select2-recipients").select2({
         placeholder: "{{ l.recipients.placeholder }}",
@@ -56,7 +67,9 @@
             }
             return 0;
           });
-        }
+        },
+        templateResult: formatState,
+        templateSelection: formatState
       });
       
       $(".input-select2-recipients").on("select2:select", function(e) {
@@ -411,19 +424,10 @@
       <b><label for="recipients">{{ l.recipients.label }}:</label></b>
       <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
 
-        {% if false %}
-          {% for superuser in superusers %}
-
-            <option value="{{ relay_id }}" selected>{{ superuser.email }}</option>
-
-          {% endfor %}
-        {% endif %}
+        <option value="{{ ticket.mail_address | decrypt }}">{{ ticket.mail_address | decrypt }}</option>
 
         {% for superuser in superusers %}
-          {% unless false %}
-
             <option value="{{ superuser.email }}">{{ superuser.email }}</option>
-
           {% endunless %}
         {% endfor %}
       </select>
