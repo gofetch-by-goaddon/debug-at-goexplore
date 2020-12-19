@@ -43,7 +43,7 @@
       if (state.element === undefined) {
         return state.text;
       } else if (state.text === "{{ ticket.mail_address | decrypt }}") {
-        var text = state.text.concat(' <span class=text-secondary><small>{{ l.recipients.client }}</small></span>');
+        var text = state.text.concat(' &#183; <span class=text-primary>{{ l.recipients.client }}</span>');
         return jQuery.parseHTML(text);
       } else {
         return state.text;
