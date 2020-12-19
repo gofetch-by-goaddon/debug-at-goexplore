@@ -43,6 +43,38 @@
       markdownSupportFees();
     })
 
+    selectRecipients  = function() {
+      $(".input-select2-recipients").select2({
+        placeholder: "{{ l.placeholders.select }}",
+        multiple: true,
+        allowClear: false,
+        tags: true,
+        sorter: function(data) {
+          return data.sort(function(a, b) {
+            a = a.text.toLowerCase();
+            b = b.text.toLowerCase();
+            if (a > b) {
+              return 1;
+            } else if (a < b) {
+              return -1;
+            }
+            return 0;
+          });
+        }
+      });
+      
+      $(".input-select2-recipients").on("select2:select", function(e) {
+        var id      = e.params.data.id;
+        var option  = $(e.target).children("[value='" + id + "']");
+        option.detach();
+        $(e.target).append(option).change();
+      });
+    };
+
+    $(document).on('turbolinks:load', function() {
+      selectRecipients();
+    })
+
   </script>
 
   {% include "shared/indent_json_pre" %}
@@ -378,6 +410,27 @@
   {% endif %}
 
   <form class="my-4" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+    <div class="form-group">
+      <select name="recipients" class="form-control input-select2-recipients" multiple id="recipients">
+
+        {% if false %}
+          {% for superuser in superusers %}
+
+            <option value="{{ relay_id }}" selected>{{ superuser.email }}</option>
+
+          {% endfor %}
+        {% endif %}
+
+        {% for superuser in superusers %}
+          {% unless false %}
+
+            <option value="{{ superuser.email }}">{{ superuser.email }}</option>
+
+          {% endunless %}
+        {% endfor %}
+      </select>
+    </div>
+
     <textarea name="message" placeholder="{{ l.message.placeholder }}" class="form-control rounded-0 border-bottom-0" rows="2" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
     <input type="submit" class="btn btn-outline-primary rounded-0 btn-fullwidth" value="{{ l.message.submit }}">
   </form>
