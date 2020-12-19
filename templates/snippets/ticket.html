@@ -59,7 +59,7 @@
       } else if (state.id === "{{ ticket.mail_address | decrypt }}") {
         var text = state.id.concat(' &#183; <b>{{ l.recipients.client }}</b>');
         return jQuery.parseHTML(text);
-      } else if state.id === "support" {
+      } else if (state.id === "support") {
         return "{{ relay.name }} {{ l.recipients.support }}";
       } else {
         return state.id;
