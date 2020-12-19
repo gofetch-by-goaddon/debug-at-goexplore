@@ -44,7 +44,7 @@
         return state.text;
       } else if (state.text === "{{ ticket.mail_address | decrypt }}") {
         var text = state.text.concat(' <span class=text-secondary><small>{{ l.recipients.client }}</small></span>');
-        return jQuery.parseHTML(title);
+        return jQuery.parseHTML(text);
       } else {
         return state.text;
       }
