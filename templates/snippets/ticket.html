@@ -60,7 +60,8 @@
         var text = state.id.concat(' &#183; <b>{{ l.recipients.client }}</b>');
         return jQuery.parseHTML(text);
       } else if (state.id === "support") {
-        return "{{ relay.name }} {{ l.recipients.support }}";
+        var text = "{{ relay.author }}".concat(' &#183; <b>{{ relay.name }} {{ l.recipients.support }}</b>');
+        return jQuery.parseHTML(text);
       } else {
         return state.id;
       }
