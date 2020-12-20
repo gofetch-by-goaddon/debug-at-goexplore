@@ -44,7 +44,7 @@
           {% assign relay = relay_response.body.document %}
 
           {% assign superusers_query = "superusers" | db_find: app_id: project.app_id %}
-          {% assign superusers       = superusers_query.results %}
+          {% assign superusers       = superusers_query.results | to_hash: "_id" %}
 
         {% endif %}
       {% endif %}

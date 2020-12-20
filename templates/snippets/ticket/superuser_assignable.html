@@ -1,19 +1,19 @@
 {% assign assignable = false %}
 
-{% if superuser._id != user._id and superuser._id != ticket.superuser_id %}
-  {% if superuser.superuser_level == 1 %}
+{% if superuser[0] != user._id and superuser[0] != ticket.superuser_id %}
+  {% if superuser[1].superuser_level == 1 %}
 
     {% assign assignable = true %}
 
   {% else %}
 
-    {% if superuser.closed_ticket_relay_ids != nil and superuser.closed_ticket_relay_ids.size > 0 %}
+    {% if superuser[1].closed_ticket_relay_ids != nil and superuser[1].closed_ticket_relay_ids.size > 0 %}
 
-      {% assign permitted_relay_ids = superuser.closed_ticket_relay_ids %}
+      {% assign permitted_relay_ids = superuser[1].closed_ticket_relay_ids %}
 
-    {% elsif superuser.ticket_relay_ids != nil and superuser.ticket_relay_ids.size > 0 %}
+    {% elsif superuser[1].ticket_relay_ids != nil and superuser[1].ticket_relay_ids.size > 0 %}
 
-      {% assign permitted_relay_ids = superuser.ticket_relay_ids %}
+      {% assign permitted_relay_ids = superuser[1].ticket_relay_ids %}
 
     {% endif %}
 
