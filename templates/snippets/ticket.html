@@ -461,7 +461,7 @@
 
           {% if assignable %}
 
-            <option data-recipient="{{ superuser.email }}" value="{{ superuser._id }}"></option>
+            <option data-recipient="{{ superuser[1].email }}" value="{{ superuser[0] }}"></option>
 
           {% endif %}
         {% endfor %}
