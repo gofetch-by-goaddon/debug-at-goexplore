@@ -77,7 +77,7 @@
       $(".input-select2-recipients").select2({
         placeholder: "{{ l.recipients.placeholder }}",
         multiple: true,
-        allowClear: true,
+        allowClear: false,
         tags: true,
         sorter: function(data) {
           return data.sort(function(a, b) {
