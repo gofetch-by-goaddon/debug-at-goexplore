@@ -17,7 +17,8 @@
                 {{ recipient }}
               {% endif %}
             {% elsif recipient.size == 24 %}
-              {{ superusers[recipient] }}
+              {{ superusers[recipient].email }}
+              {{ superusers }}
             {% endif %}
           </span>
         {% endfor %}
