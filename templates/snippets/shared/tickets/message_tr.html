@@ -1,16 +1,28 @@
-<tr><td><div class="mb-0 markdown" data-markdown="{{ log_entry.message | decrypt | url_encode }}"></div><p><span class="border rounded px-1">{{ identifier }}</span>{% if log_entry.recipients.size > 0 %} <i class="fas fa-arrow-right"></i> {% for recipient in log_entry.recipients %}
-  <span class="border rounded px-1">
-    {% if recipient == "support" %}
-      {{ recipient }}
-    {% elsif recipient contains "@" %}
-      {% assign ticket_mail_address = ticket.mail_address | decrypt %}
-      {% if recipient == ticket_mail_address %}
-        {{ recipient }} &#183; <b>{{ l.recipients.merchant }}</b>
-      {% else %}
-        {{ recipient }}
+<tr>
+  <td>
+    <div class="mb-0 markdown" data-markdown="{{ log_entry.message | decrypt | url_encode }}"></div>
+    <p>
+      <span class="border rounded px-1">{{ identifier }}</span>
+      {% if log_entry.recipients.size > 0 %}
+        <i class="fas fa-arrow-right"></i>
+        {% for recipient in log_entry.recipients %}
+          <span class="border rounded px-1">
+            {% if recipient == "support" %}
+              {{ recipient }}
+            {% elsif recipient contains "@" %}
+              {% assign ticket_mail_address = ticket.mail_address | decrypt %}
+              {% if recipient == ticket_mail_address %}
+                {{ recipient }} &#183; <b>{{ l.recipients.merchant }}</b>
+              {% else %}
+                {{ recipient }}
+              {% endif %}
+            {% elsif recipient.size == 24 %}
+              {{ superusers[recipient] }}
+            {% endif %}
+          </span>
+        {% endfor %}
       {% endif %}
-    {% elsif recipient.size == 24 %}
-      {{ superusers[recipient] }}
-    {% endif %}
-  </span>
-{% endfor %}{% endif %}</p></td>{% include "shared/tickets/log_entry_time_td" %}</tr>
+    </p>
+  </td>
+{% include "shared/tickets/log_entry_time_td" %}
+</tr>

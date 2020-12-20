@@ -17,7 +17,7 @@
 
     {% else %}
 
-      {% assign superusers_query  = "superusers" | db_find: company_id: account._id, _id: params.id %}
+      {% assign superusers_query  = "superusers" | db_find: app_id: project.app_id %}
       {% assign superusers        = superusers.results | to_hash: "_id" %}
       {% assign redirect_to       = nil %}
       {% assign now               = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
