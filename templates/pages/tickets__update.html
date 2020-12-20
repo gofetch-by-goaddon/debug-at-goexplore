@@ -17,11 +17,13 @@
 
     {% else %}
 
-      {% assign redirect_to = nil %}
-      {% assign now         = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-      {% assign document    = nil | new_hash %}
-      {% assign log_entry   = nil | new_hash %}
-      {% assign log_entry   = log_entry | push_to_hash: "time", now %}
+      {% assign superusers_query  = "superusers" | db_find: company_id: account._id, _id: params.id %}
+      {% assign superusers        = superusers.results | to_hash: "_id" %}
+      {% assign redirect_to       = nil %}
+      {% assign now               = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+      {% assign document          = nil | new_hash %}
+      {% assign log_entry         = nil | new_hash %}
+      {% assign log_entry         = log_entry | push_to_hash: "time", now %}
 
       {% if params.superuser_id != nil %}
 

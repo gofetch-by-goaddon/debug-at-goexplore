@@ -12,6 +12,17 @@
       "log": 1
     }
   },
+  "superusers": {
+    "klass": "users",
+    "query": {
+      "app_id": "{{ app_id }}",
+      "superuser": true
+    },
+    "projection": {
+      "_id": 1,
+      "email": 1
+    }
+  },
   "update_ticket": {
     "klass": "tickets",
     "query": {
