@@ -151,7 +151,7 @@
 
               {% elsif recipient.size == 24 and superusers[recipient].email != nil %}
 
-                {% assign ticket_path = "tickets__show" | path_for: id: ticket._id | url_encode %}
+                {% assign ticket_path = "tickets__show" | path_for: id: ticket._id %}
 
                 {% capture project_url %}{{ session.protocol }}{{ session.url }}{{ "switch_account__index" | path_for: ticket_path: ticket_path, account_id: account._id }}{% endcapture %}
 
