@@ -1,5 +1,9 @@
 {
   "en": {
-    "subject": "You have received a new message regarding ticket"
+    "subject": "You have received a new message regarding ticket",
+    "history": {
+      "p1": "Please note that you can not respond directly to this email. To send us a message, please",
+      "p2": "view your ticket online"
+    }
   }
 }
