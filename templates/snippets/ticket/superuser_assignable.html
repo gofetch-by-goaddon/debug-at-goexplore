@@ -1,5 +1,5 @@
 {% assign assignable = false %}
-<p>{{ superuser }}</p>
+<p>superuser: {{ superuser }}</p>
 {% if superuser[0] != user._id %}
   {% if superuser[1].superuser_level == 1 %}
 
