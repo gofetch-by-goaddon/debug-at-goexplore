@@ -133,12 +133,33 @@
           alertify.success("{{ response_text }}");
           {% if log_entry.message != nil %}
 
+            {% for recipient in log_entry.recipients %}
+
+              {% if recipient contains "@" %}
+                {% assign mail_address = recipient %}
+              {% elsif recipient.size == 24 %}
+                {% assign mail_address = superusers[recipient].email %}
+              {% else %}
+                {% assign mail_address = nil %}
+              {% endif %}
+
+              {% if mail_address != nil %}
+
+                {% assign send_result = "new_message" | send_email: to: mail_address, display_name: "My company", foo: "bar" %}
+
+              {% endif %}
+
+            {% endfor %}
+
             $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
 
             addMarkdown();
             fillRelayAuthorName();
 
-            $("textarea[name='message']").val("");
+            var message_input = $("#message_form textarea[name='message']");
+
+            message_input.val("");
+            message_input.attr("data-sending", "");
             $(".input-select2-recipients").val(null).trigger("change");
             $("#log_accordion .collapse").addClass("show");
           {% else %}
