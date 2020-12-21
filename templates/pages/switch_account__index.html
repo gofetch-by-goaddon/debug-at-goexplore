@@ -2,8 +2,6 @@
 
   {% if params.account_id != nil %}
 
-    <!-- Seems the script doesn't go away... -->
-
     {% if params.account_id == account._id %}
 
       <a id="visit_ticket_link" href="{{ params.ticket_path }}"></a>
@@ -12,6 +10,7 @@
 
         visitTicket = function() {
           if ($("a#visit_ticket_link").length == 1) {
+            console.log("Click");
             $("a#visit_ticket_link").click();
           }
         };
