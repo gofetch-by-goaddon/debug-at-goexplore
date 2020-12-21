@@ -145,7 +145,7 @@
 
               {% if mail_address != nil %}
 
-                {% assign send_result = "new_message" | send_email: to: mail_address, display_name: "My company", foo: "bar" %}
+                {% assign send_result = "new_message" | send_email: to: mail_address, display_name: project.secrets.email_display_name, message: params.markdown_message %}
 
               {% endif %}
 
@@ -161,6 +161,7 @@
             message_input.val("");
             message_input.attr("data-sending", "");
             $(".input-select2-recipients").val(null).trigger("change");
+            var message_input = $("#message_form input[name='markdown_message']").remove();
             $("#log_accordion .collapse").addClass("show");
           {% else %}
             {% if redirect_to != nil %}
