@@ -1,6 +1,6 @@
 {% assign assignable = false %}
 
-{% if superuser[0] != user._id and superuser[0] != ticket.superuser_id %}
+{% if superuser[0] != user._id %}
   {% if superuser[1].superuser_level == 1 %}
 
     {% assign assignable = true %}
