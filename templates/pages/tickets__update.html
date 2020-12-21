@@ -133,8 +133,6 @@
           alertify.success("{{ response_text }}");
           {% if log_entry.message != nil %}
 
-            {% assign email_id = "" | uuid_new %}
-
             $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
 
             addMarkdown();
@@ -143,7 +141,6 @@
             $("textarea[name='message']").val("");
             $(".input-select2-recipients").val(null).trigger("change");
             $("#log_accordion .collapse").addClass("show");
-            sendMessage("{{ email_id }}");
           {% else %}
             {% if redirect_to != nil %}
 
