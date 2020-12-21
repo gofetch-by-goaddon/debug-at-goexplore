@@ -155,7 +155,7 @@
 
                 {% capture project_url %}{{ session.protocol }}{{ session.url }}{{ "switch_account__index" | path_for: ticket_path: ticket_path, account_id: account._id }}{% endcapture %}
 
-                {% assign send_result = "superuser_message" | send_email: to: superusers[recipient].email, website: account.website, ticket_id: ticket._id, ticket_url: ticket_url %}
+                {% assign send_result = "superuser_message" | send_email: to: superusers[recipient].email, website: account.website, ticket_id: ticket._id, project_url: project_url %}
 
               {% endif %}
 
