@@ -15,10 +15,14 @@
 
       {% assign permitted_relay_ids = superuser[1].ticket_relay_ids %}
 
+    {% else %}
+
+      {% assign permitted_relay_ids = nil %}
+
     {% endif %}
 
     {% if permitted_relay_ids != nil and permitted_relay_ids contains ticket.relay_id %}
-      <p>superuser {{ superuser[1].email }}: {{ permitted_relay_ids }}</p>
+
       {% assign assignable = true %}
 
     {% endif %}
