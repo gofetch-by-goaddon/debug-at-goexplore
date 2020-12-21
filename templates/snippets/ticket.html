@@ -94,7 +94,7 @@
         templateResult: formatState,
         templateSelection: formatState
       });
-      
+
       $(".input-select2-recipients").on("select2:select", function(e) {
         var id      = e.params.data.id;
         var option  = $(e.target).children("[value='" + id + "']");
@@ -112,12 +112,27 @@
     };
 
     sendMessage = function(email_id) {
+
+    };
+
+    applyMessage = function() {
+      $("#message_form").on("ajax:before", function(event) {
+        message = $(this).find(":input[name='message']");
+        console.log("message:");
+        console.log(message);
+        return;
+      }).on("ajax:success", function(event, data, status, xhr) {
+        return;
+      }).on("ajax:error", function(event, xhr, status, error) {
+        return;
+      });
     };
 
     $(document).on('turbolinks:load', function() {
       markdownSupportFees();
       selectRecipients();
       fillRelayAuthorName();
+      applyMessage();
     })
 
   </script>
@@ -454,7 +469,7 @@
 
   {% endif %}
 
-  <form class="my-4" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+  <form class="my-4" id="message_form" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
     <div class="form-group">
       <b><label for="recipients">{{ l.recipients.label }}:</label></b>
       <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
