@@ -134,6 +134,7 @@
           {% if log_entry.message != nil %}
             $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
             addMarkdown();
+            fillRelayAuthorName();
             $("textarea[name='message']").val("");
             $(".input-select2-recipients").val(null).trigger("change");
             $("#log_accordion .collapse").addClass("show");

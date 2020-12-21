@@ -8,7 +8,7 @@
         {% for recipient in log_entry.recipients %}
           <span class="border rounded px-1 mr-1">
             {% if recipient == "support" %}
-              {{ recipient }}
+              <span class="support-name">{{ recipient }}</span>
             {% elsif recipient contains "@" %}
               {% assign ticket_mail_address = ticket.mail_address | decrypt %}
               {% if recipient == ticket_mail_address %}

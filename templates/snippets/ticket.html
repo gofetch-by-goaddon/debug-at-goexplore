@@ -61,10 +61,10 @@
         var recipient = state.element.attributes["data-recipient"].value;
 
         if (recipient === "{{ ticket.mail_address | decrypt }}") {
-          var text = recipient.concat(' &#183; <b>{{ l.recipients.merchant }}</b>');
+          var text = recipient.concat(" &#183; <b>{{ l.recipients.merchant }}</b>");
           return jQuery.parseHTML(text);
         } else if (recipient === "support") {
-          var text = "{{ relay.author }}".concat(' &#183; <b>{{ relay.name }} {{ l.recipients.support }}</b>');
+          var text = relayAuthorName();
           return jQuery.parseHTML(text);
         } else {
           return recipient;
@@ -73,7 +73,7 @@
       }
     };
 
-    selectRecipients  = function() {
+    selectRecipients = function() {
       $(".input-select2-recipients").select2({
         placeholder: "{{ l.recipients.placeholder }}",
         multiple: true,
@@ -103,9 +103,18 @@
       });
     };
 
+    relayAuthorName = function() {
+      return "{{ relay.author }} &#183; <b>{{ relay.name }} {{ l.recipients.support }}</b>"
+    };
+
+    fillRelayAuthorName = function() {
+      $(".support-name").html(relayAuthorName);
+    };
+
     $(document).on('turbolinks:load', function() {
       markdownSupportFees();
       selectRecipients();
+      fillSupportName();
     })
 
   </script>
