@@ -153,16 +153,6 @@
 
             $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
 
-            addMarkdown();
-            fillRelayAuthorName();
-
-            var message_input = $("#message_form textarea[name='message']");
-
-            message_input.val("");
-            message_input.attr("data-sending", "");
-            $(".input-select2-recipients").val(null).trigger("change");
-            var message_input = $("#message_form input[name='markdown_message']").remove();
-            $("#log_accordion .collapse").addClass("show");
           {% else %}
             {% if redirect_to != nil %}
 

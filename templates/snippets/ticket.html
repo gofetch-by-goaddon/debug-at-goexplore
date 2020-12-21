@@ -113,14 +113,24 @@
 
     applyMessage = function() {
       $("#message_form").on("ajax:before", function(event) {
-        var message_input = $(this).find(":input[name='message']");
-        var converter     = new showdown.Converter({});
-        $("<input>").attr({
+        var message_input           = $(this).find(":input[name='message']");
+        var converter               = new showdown.Converter({});
+        var rendered_message_input  = $("<input>").attr({
           type: "hidden",
-          name: "markdown_message",
+          name: "rendered_message",
           value: converter.makeHtml(message_input.val())
-        }).appendTo($(this));
+        });
+        rendered_message_input.appendTo($(this));
         return;
+      }).on("ajax:success", function(event, data, status, xhr) {
+        addMarkdown();
+        fillRelayAuthorName();
+        message_input.val("");
+        $(".input-select2-recipients").val(null).trigger("change");
+        rendered_message_input.remove();
+        $("#log_accordion .collapse").addClass("show");
+      }).on("ajax:error", function(event, xhr, status, error) {
+        rendered_message_input.remove();
       })
     };
 
