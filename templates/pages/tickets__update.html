@@ -143,7 +143,7 @@
             $("textarea[name='message']").val("");
             $(".input-select2-recipients").val(null).trigger("change");
             $("#log_accordion .collapse").addClass("show");
-            sendMessage(email_id);
+            sendMessage("{{ email_id }}");
           {% else %}
             {% if redirect_to != nil %}
 
