@@ -1,0 +1,39 @@
+{% if account != nil and user.superuser %}
+
+  {% if params.account_id != nil %}
+
+    {% if params.account_id == account._id %}
+
+      <script>
+
+        visitTicket = function() {
+          Turbolinks.visit("{{ params.ticket_path }}");
+        };
+
+        $(document).on('turbolinks:load', function() {
+          visitTicket();
+        })
+
+      </script>
+
+    {% else %}
+
+      <form method="patch" id="switch_account_form" action="/en/accounts/{{ params.account_id }}/switch" data-remote="true">
+        <input type="hidden" name="redirect" value="{{ params.ticket_path }}">
+      </form>
+
+      <script>
+
+        switchAccount = function() {
+          $("form#switch_account_form").submit();
+        };
+
+        $(document).on('turbolinks:load', function() {
+          switchAccount();
+        })
+
+      </script>
+
+    {% endif %}
+  {% endif %}
+{% endif %}
