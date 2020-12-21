@@ -119,7 +119,7 @@
       $("#message_form").on("ajax:before", function(event) {
         message = $(this).find(":input[name='message']");
         console.log("message:");
-        console.log(message);
+        console.log(message.val());
         return;
       }).on("ajax:success", function(event, data, status, xhr) {
         return;
