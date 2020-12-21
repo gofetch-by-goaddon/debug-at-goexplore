@@ -113,6 +113,8 @@
 
     applyMessage = function() {
       $("#message_form").on("ajax:before", function(event) {
+        var message   = $(this).find(":input[name='message']");
+        var converter = new showdown.Converter({});
         return;
       })
     };
