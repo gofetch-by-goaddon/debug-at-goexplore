@@ -2,9 +2,9 @@
 
 {% for superuser in superusers %}
 
-  {% if superuser._id == superuser_id %}
+  {% if superuser[0] == superuser_id %}
 
-    {% assign identifier = superuser.email %}
+    {% assign identifier = superuser[1].email %}
 
   {% endif %}
 
