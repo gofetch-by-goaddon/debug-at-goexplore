@@ -10,7 +10,6 @@
             {% if recipient == "support" %}
               <span class="support-name">{{ recipient }}</span>
             {% elsif recipient contains "@" %}
-              <span class="text-primary">{{ recipient }} vs. {{ ticket.mail_address | decrypt }}</span>
               {% assign ticket_mail_address = ticket.mail_address | decrypt %}
               {% if recipient == ticket_mail_address %}
                 {{ recipient }} &#183; <b>{{ l.recipients.merchant }}</b>
