@@ -1,5 +1,5 @@
 {% assign assignable = false %}
-<p>superuser: {{ superuser }}</p>
+
 {% if superuser[0] != user._id %}
   {% if superuser[1].superuser_level == 1 %}
 
@@ -18,6 +18,7 @@
     {% endif %}
 
     {% if permitted_relay_ids != nil and permitted_relay_ids contains ticket.relay_id %}
+      <p>superuser: {{ superuser }}</p>
       {% assign assignable = true %}
 
     {% endif %}
