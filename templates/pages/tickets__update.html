@@ -136,14 +136,6 @@
             {% for recipient in log_entry.recipients %}
 
               {% if recipient contains "@" %}
-                {% assign mail_address = recipient %}
-              {% elsif recipient.size == 24 %}
-                {% assign mail_address = superusers[recipient].email %}
-              {% else %}
-                {% assign mail_address = nil %}
-              {% endif %}
-
-              {% if mail_address != nil %}
 
                 {% if project.secrets.gofetch_ticket_url != nil %}
 
@@ -155,7 +147,13 @@
 
                 {% endif %}
 
-                {% assign send_result = "new_message" | send_email: to: mail_address, message: params.rendered_message, ticket_id: ticket._id, ticket_url: ticket_url %}
+                {% assign send_result = "merchant_message" | send_email: to: recipient, message: params.rendered_message, ticket_id: ticket._id, ticket_url: ticket_url %}
+
+              {% elsif recipient.size == 24 and superusers[recipient].email != nil %}
+
+                {% capture ticket_url %}{{ session.protocol }}{{ session.url }}{{ "tickets__show" | path_for: id: ticket._id }}{% endcapture %}
+
+                {% assign send_result = "superuser_message" | send_email: to: superusers[recipient].email, website: account.website, ticket_id: ticket._id, ticket_url: ticket_url %}
 
               {% endif %}
 
