@@ -4,13 +4,13 @@
 
     {% if params.account_id == account._id %}
 
-      <a id="visit_ticket_link" href="{{ params.ticket_path }}">s</a>
+      <a id="visit_ticket_link" href="{{ params.ticket_path }}"></a>
 
       <script>
 
         visitTicket = function() {
           if ($("a#visit_ticket_link").length == 1) {
-            $("a#visit_ticket_link").click();
+            $("a#visit_ticket_link")[0].click();
           }
         };
 
