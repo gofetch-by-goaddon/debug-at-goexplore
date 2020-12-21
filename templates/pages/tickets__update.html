@@ -145,7 +145,7 @@
 
               {% if mail_address != nil %}
 
-                {% assign send_result = "new_message" | send_email: to: mail_address, display_name: project.secrets.email_display_name, message: params.rendered_message, ticket_id: ticket._id %}
+                {% assign send_result = "new_message" | send_email: to: mail_address, message: params.rendered_message, ticket_id: ticket._id %}
 
               {% endif %}
 
