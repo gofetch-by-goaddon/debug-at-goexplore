@@ -117,11 +117,7 @@
         var converter = new showdown.Converter({});
         message.attr("data-sending-message", converter.makeHtml(message));
         return;
-      }).on("ajax:success", function(event, data, status, xhr) {
-        return;
-      }).on("ajax:error", function(event, xhr, status, error) {
-        return;
-      });
+      })
     };
 
     $(document).on('turbolinks:load', function() {
