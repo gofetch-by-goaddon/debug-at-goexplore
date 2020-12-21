@@ -1,24 +1,12 @@
 <tr>
   <td>
     <p>
-      <span class="border rounded px-1">{{ identifier }}</span>
+      {% assign participant = identifier %}
+      {% include "shared/tickets/message_participant" %}
       {% if log_entry.recipients.size > 0 %}
         <i class="fas fa-arrow-right"></i>
-        {% for recipient in log_entry.recipients %}
-          <span class="border rounded px-1 mr-1">
-            {% if recipient == "support" %}
-              <span class="support-name">{{ recipient }}</span>
-            {% elsif recipient contains "@" %}
-              {% assign ticket_mail_address = ticket.mail_address | decrypt %}
-              {% if recipient == ticket_mail_address %}
-                {{ recipient }} &#183; <b>{{ l.recipients.merchant }}</b>
-              {% else %}
-                {{ recipient }}
-              {% endif %}
-            {% elsif recipient.size == 24 %}
-              {{ superusers[recipient].email }}
-            {% endif %}
-          </span>
+        {% for participant in log_entry.recipients %}
+          {% include "shared/tickets/message_participant" %}
         {% endfor %}
       {% endif %}
     </p>

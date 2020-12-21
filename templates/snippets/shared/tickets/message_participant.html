@@ -1,0 +1,14 @@
+<span class="border rounded px-1 mr-1">
+  {% if participant == "support" %}
+    <span class="support-name">{{ participant }}</span>
+  {% elsif participant contains "@" %}
+    {% assign ticket_mail_address = ticket.mail_address | decrypt %}
+    {% if participant == ticket_mail_address %}
+      {{ participant }} &#183; <b>{{ l.recipients.merchant }}</b>
+    {% else %}
+      {{ participant }}
+    {% endif %}
+  {% elsif participant.size == 24 %}
+    {{ superusers[participant].email }}
+  {% endif %}
+</span>
