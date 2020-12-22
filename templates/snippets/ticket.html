@@ -63,7 +63,7 @@
         if (recipient === "{{ ticket.mail_address | decrypt }}") {
           var text = recipient.concat(" &#183; <b>{{ l.recipients.merchant }}</b>");
           return jQuery.parseHTML(text);
-        } else if (recipient === "support") {
+        } else if (recipient === "relay") {
           var text = relayAuthorName();
           return jQuery.parseHTML(text);
         } else {
@@ -484,7 +484,7 @@
 
         {% if ticket.status == "escalated" %}
 
-          <option data-recipient="support" value="support"></option>
+          <option data-recipient="relay" value="relay"></option>
 
         {% endif %}
 
@@ -538,7 +538,7 @@
 
                     {% if log_entry.message != nil %}
 
-                      {% if log_entry.author_id == "support" %}
+                      {% if log_entry.author_id == "relay" %}
 
                         {% assign identifier = l.log.body.gofetch %}
 
