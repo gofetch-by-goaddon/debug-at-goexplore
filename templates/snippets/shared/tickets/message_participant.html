@@ -1,6 +1,6 @@
 <span class="border rounded text-nowrap px-1 mr-1">
   {% if participant == "relay" %}
-    <span class="support-name">{{ participant }}</span>
+    <span class="relay-name">{{ participant }}</span>
   {% elsif participant contains "@" %}
     {% assign ticket_mail_address = ticket.mail_address | decrypt %}
     {% if participant == ticket_mail_address %}
