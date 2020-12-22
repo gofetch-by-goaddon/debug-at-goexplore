@@ -54,7 +54,7 @@
     }
 
     formatState = function(state) {
-      if (state.element === undefined) {
+      if (state.element === undefined || state.element.attributes["data-recipient"] === undefined) {
         return state.text;
       } else {
 
