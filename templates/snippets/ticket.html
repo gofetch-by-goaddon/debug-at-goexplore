@@ -477,7 +477,7 @@
 
   <form class="my-4" id="message_form" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
     <div class="form-group">
-      <b><label for="recipients">{{ l.recipients.label }}:</label></b>
+      <b><label for="recipients">{{ l.recipients.label }}:</label></b><br>
       <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
 
         <option data-recipient="{{ ticket.mail_address | decrypt }}" value="{{ ticket.mail_address | decrypt }}"></option>
