@@ -589,6 +589,7 @@
                             {% endif %}
                           {% endif %}
                         </td>
+                        {% assign td_klass = "" %}
                         {% include "shared/tickets/log_entry_time_td" %}
                       </tr>
                     {% endif %}
@@ -602,6 +603,7 @@
                   </td>
                   {% assign log_entry = nil | new_hash %}
                   {% assign log_entry = log_entry | push_to_hash: "time", ticket.opened_at %}
+                  {% assign td_klass = "" %}
                   {% include "shared/tickets/log_entry_time_td" %}
                 </tr>
 

@@ -1,5 +1,6 @@
+{% assign td_klass = " border-bottom-0 padding-bottom-0 margin-bottom-0" %}
 <tr>
-  <td>
+  <td class="{{ td_klass }}">
     <p>
       {% assign participant = identifier %}
       {% include "shared/tickets/message_participant" %}
@@ -14,7 +15,7 @@
   {% include "shared/tickets/log_entry_time_td" %}
 </tr>
 <tr>
-  <td colspan="2">
+  <td colspan="2" class="padding-top-0 margin-top-0">>
     <div class="mb-0 markdown" data-markdown="{{ log_entry.message | decrypt | url_encode }}"></div>
   </td>
 </tr>
