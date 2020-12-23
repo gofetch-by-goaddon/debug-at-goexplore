@@ -520,7 +520,7 @@
           </h5>
         </div>
 
-        {% if ticket.log != nil %}
+        {% if ticket.log != nil and ticket.log.size > 0 %}
           {% assign toggle_klass = " show" %}
         {% else %}
           {% assign toggle_klass = "" %}
