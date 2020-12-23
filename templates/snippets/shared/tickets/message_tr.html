@@ -10,7 +10,9 @@
         {% endfor %}
       {% endif %}
     </p>
-    <div class="mb-0 markdown" data-markdown="{{ log_entry.message | decrypt | url_encode }}"></div>
   </td>
-{% include "shared/tickets/log_entry_time_td" %}
+  {% include "shared/tickets/log_entry_time_td" %}
+</tr>
+<tr>
+  <div class="mb-0 markdown" data-markdown="{{ log_entry.message | decrypt | url_encode }}"></div>
 </tr>
