@@ -17,6 +17,9 @@
       "status": 1,
       "opened_at": 1,
       "closed_at": 1
+    },
+    "sort": {
+      "_id": -1
     }
   },
   "superuser_tickets": {
@@ -38,6 +41,9 @@
       "status": 1,
       "opened_at": 1,
       "closed_at": 1
+    },
+    "sort": {
+      "_id": -1
     }
   },
   "relay_tickets": {
@@ -69,6 +75,9 @@
     "projection": {
       "_id": 1,
       "website": 1
+    },
+    "sort": {
+      "_id": -1
     }
   }
 }
