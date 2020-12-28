@@ -3,6 +3,6 @@
     "ticket_updated": false
   },
   "container": {
-    "ticket_updated": "ticket_updated"
+    "ticket_updated__create": "ticket_updated"
   }
 }
