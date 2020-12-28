@@ -1,1 +1,8 @@
-{}
+{
+  "authenticate": {
+    "ticket_updated": false
+  },
+  "container": {
+    "ticket_updated": "ticket_updated"
+  }
+}
