@@ -6,7 +6,7 @@
     "scope_names": {
       "active": "Active",
       "inactive": "Inactive",
-      "erroring": "Erroring"
+      "erroring": "Erroring (active)"
     },
     "explainers": {
       "no_webshops": "No webshops exists"
