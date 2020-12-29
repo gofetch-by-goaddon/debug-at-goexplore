@@ -32,7 +32,7 @@
         "p3": "Similar to the limited ticket action, users can only access a webshop if they are assigned to an open ticket that belongs to it."
       },
       "notification_relay_ids": {
-        "p1": "Choose which ecommerce platform ticket updates this user should receive notification about.",
+        "p1": "Choose which ecommerce platform ticket updates this user should receive notifications about.",
         "p2": "When tickets are submitted or updated with a message from the merchant, a selection process will deterine which users should be notified.",
         "p3": "If a user is assigned to the ticket, this user is selected.",
         "p4": "If no users are assigned, all users who are registered through this form to receive ticket notifications related to the specific ecommerce platform are selected.",
