@@ -18,7 +18,7 @@
 
     {% when "erroring" %}
 
-      {% assign webshops_query = "erroring_webshops" | db_find, page: params.page, per_page: params.per_page %}
+      {% assign webshops_query = "erroring_webshops" | db_find: page: params.page, per_page: params.per_page %}
 
   {% endcase %}
 
