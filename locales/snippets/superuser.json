@@ -23,7 +23,7 @@
       },
       "ticket_relay_ids": {
         "p1": "Choose which open ecommerce platform tickets this user can have limited access to.",
-        "p2": "Users will be able to access all open and escalated tickets relating to the ecommerce platform, even the tickets they are not assigned to. They also have access to any closed ticket they are assigned to. Closing a ticket automatically unassigns the assignee, but a superuser with upgraded access can re-assign the closed ticket.",
+        "p2": "Users will be able to access all open and escalated tickets related to the specific ecommerce platform, even the tickets they are not assigned to. They also have access to any closed ticket they are assigned to. Closing a ticket automatically unassigns the assignee, but a superuser with upgraded access can re-assign the closed ticket.",
         "p3": "They can also view, update and use the Shop API for the webshop that ticket belongs to, but only while the ticket is open or escalated."
       },
       "closed_ticket_relay_ids": {
@@ -33,11 +33,11 @@
       },
       "notification_relay_ids": {
         "p1": "Choose which ecommerce platform ticket updates this user should receive notification about.",
-        "p2": "When tickets are submitted or updated with a message from the merchant, notification emails will be sent to relevant users.",
-        "p3": "If a user is assigned to the ticket, this user will receive a notification.",
-        "p4": "If no users are assigned, all users who are registered to receive ticket notifications through this form will get one.",
-        "p5": "If still no users are found, all users with access to tickets relating to the ecommerce platform will be notified. Which means that users with limited access will receive notifications about open tickets, and users with full access will receive notifications regardless the status of the ticket.",
-        "p6": "Finally, if still users have been found, all users with upgraded access level will be notified."
+        "p2": "When tickets are submitted or updated with a message from the merchant, a selection process will deterine which users should be notified.",
+        "p3": "If a user is assigned to the ticket, this user is selected.",
+        "p4": "If no users are assigned, all users who are registered through this form to receive ticket notifications related to the specific ecommerce platform are selected.",
+        "p5": "If still no users are found, all users with access to tickets related to the specific ecommerce platform will be selected. Which means that users with limited ticket access will be selected for open tickets, and users with full access will be selected regardless the status of the ticket.",
+        "p6": "Finally, if still users have been found, all users with upgraded access level are selected."
       },
       "auth_relay_ids": {
         "p1": "Choose which ecommerce platform auths this user can access.",
