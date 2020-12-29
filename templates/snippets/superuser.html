@@ -64,11 +64,11 @@
 
   {% if superuser.superuser_level == 1 %}
 
-    {% assign permission_types = "webshop_relay_ids ticket_relay_ids closed_ticket_relay_ids notification_relay_ids auth_relay_ids" | split: " " %}
+    {% assign permission_types = "notification_relay_ids" | split: " " %}
 
   {% else %}
 
-    {% assign permission_types = "notification_relay_ids" | split: " " %}
+    {% assign permission_types = "webshop_relay_ids ticket_relay_ids closed_ticket_relay_ids notification_relay_ids auth_relay_ids" | split: " " %}
 
   {% endif %}
 
