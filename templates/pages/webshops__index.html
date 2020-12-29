@@ -6,19 +6,19 @@
 
     {% when "company", nil %}
 
-      {% assign webshops_query = "company_webshops" | db_find: company_id: account._id %}
+      {% assign webshops_query = "company_webshops" | db_find: company_id: account._id, page: params.page, per_page: params.per_page %}
 
     {% when "active" %}
 
-      {% assign webshops_query = "active_webshops" | db_find: active: true %}
+      {% assign webshops_query = "active_webshops" | db_find: active: true, page: params.page, per_page: params.per_page %}
 
     {% when "inactive" %}
 
-      {% assign webshops_query = "active_webshops" | db_find: active: false %}
+      {% assign webshops_query = "active_webshops" | db_find: active: false, page: params.page, per_page: params.per_page %}
 
     {% when "erroring" %}
 
-      {% assign webshops_query = "erroring_webshops" | db_find %}
+      {% assign webshops_query = "erroring_webshops" | db_find, page: params.page, per_page: params.per_page %}
 
   {% endcase %}
 
