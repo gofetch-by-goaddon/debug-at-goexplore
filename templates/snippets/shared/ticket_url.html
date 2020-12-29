@@ -1,0 +1,9 @@
+{% if project.secrets.gofetch_ticket_url != nil %}
+
+  {% capture ticket_url %}{{ project.secrets.gofetch_ticket_url }}#action=tickets__show&ticket_id={{ ticket._id }}{% endcapture %}
+
+{% else %}
+
+  {% assign ticket_url = nil %}
+
+{% endif %}

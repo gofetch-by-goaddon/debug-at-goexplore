@@ -6,11 +6,71 @@
 
   {% assign events = "ticket_created ticket_updated" | split: " " %}
 
-  {% if events contains params.event %}
+  {% if events contains params.event and params.details.ticket_id != nil %}
 
-    {% assign superusers_query = "superusers" | db_find: app_id: project.app_id %}
-    {% assign superusers       = superusers_query.results %}
+    {% assign tickets_query = "tickets" | db_find: ticket_id: params.details.ticket_id %}
+    {% assign ticket       = tickets_query.results.first %}
 
+    {% if ticket != nil %}
+
+      {% assign superusers_query = "superusers" | db_find: app_id: project.app_id %}
+      {% assign superusers       = superusers_query.results | to_hash: "_id" %}
+
+      {% assign emails    = "" | split: " " %}
+      {% assign ticket_id           = ticket._id %}
+      {% assign assigned_superuser  = superusers[ticket_id] %}
+
+      {% if assigned_superuser != nil %}
+
+        {% assign emails = emails | push_to_array: assigned_superuser.email %}
+
+      {% else %}
+
+        {% for superuser in superusers %}
+
+          {% if superuser.notification_relay_ids != nil and superuser.notification_relay_ids contains ticket.relay_id %}
+
+            {% assign emails = emails | push_to_array: superuser.email %}
+
+          {% elsif superuser.superuser_level != 1 %}
+
+            {% if superuser.closed_ticket_relay_ids != nil and superuser.closed_ticket_relay_ids.size > 0 %}
+
+              {% assign permitted_relay_ids = superuser.closed_ticket_relay_ids %}
+
+            {% elsif superuser.ticket_relay_ids != nil and superuser.ticket_relay_ids.size > 0 %}
+
+              {% assign permitted_relay_ids = superuser.ticket_relay_ids %}
+
+            {% endif %}
+
+            {% if permitted_relay_ids != nil and permitted_relay_ids contains ticket.relay_id %}
+
+              {% assign emails = emails | push_to_array: superuser.email %}
+
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        {% if emails.size == 0 %}
+          {% for superuser in superusers %}
+            {% if superuser.superuser_level == 1 %}
+
+              {% assign emails = emails | push_to_array: superuser.email %}
+
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+
+      {% include "shared/ticket_url" %}
+
+      {% for email in emails %}
+
+        {% assign send_result = params.event | send_email: to: email, ticket_id: ticket._id, ticket_url: ticket_url %}
+
+      {% endfor %}
+    {% endif %}
   {% endif %}
 
   {"status": "204"}

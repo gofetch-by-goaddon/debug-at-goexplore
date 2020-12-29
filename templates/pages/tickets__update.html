@@ -137,15 +137,7 @@
 
               {% if recipient contains "@" %}
 
-                {% if project.secrets.gofetch_ticket_url != nil %}
-
-                  {% capture ticket_url %}{{ project.secrets.gofetch_ticket_url }}#action=tickets__show&ticket_id={{ ticket._id }}{% endcapture %}
-
-                {% else %}
-
-                  {% assign ticket_url = nil %}
-
-                {% endif %}
+                {% include "shared/ticket_url" %}
 
                 {% assign send_result = "merchant_message" | send_email: to: recipient, message: params.rendered_message, ticket_id: ticket._id, ticket_url: ticket_url %}
 
