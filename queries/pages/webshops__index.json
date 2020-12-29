@@ -1,5 +1,5 @@
 {
-  "webshops": {
+  "company_webshops": {
     "klass": "webshops",
     "query": {
       "company_id": "{{ company_id }}"
