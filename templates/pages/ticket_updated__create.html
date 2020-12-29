@@ -1,4 +1,4 @@
-{% if project.secrets.gofetch_webhook_token != headers.authorization %}
+{% if project.secrets.gofetch_webhook_token == nil or project.secrets.gofetch_webhook_token != headers.authorization %}
 
   {"status": "500", "error": "Can not authorize"}
 
@@ -16,9 +16,9 @@
       {% assign superusers_query = "superusers" | db_find: app_id: project.app_id %}
       {% assign superusers       = superusers_query.results | to_hash: "_id" %}
 
-      {% assign emails              = "" | split: " " %}
-      {% assign ticket_id           = ticket._id %}
-      {% assign assigned_superuser  = superusers[ticket_id] %}
+      {% assign emails                = "" | split: " " %}
+      {% assign assigned_superuser_id = ticket.superuser_id %}
+      {% assign assigned_superuser    = superusers[assigned_superuser_id] %}
 
       {% if assigned_superuser != nil %}
 
