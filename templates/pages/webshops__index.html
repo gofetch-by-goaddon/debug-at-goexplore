@@ -14,11 +14,11 @@
 
     {% when "inactive" %}
 
-      {% assign webshops_query = "active_webshops" | db_find: active: false %}
+      {% assign webshops_query = "inactive_webshops" | db_find: active: false %}
 
     {% when "erroring" %}
 
-      {% assign webshops_query = "erroring_webshops" | db_find: active: false %}
+      {% assign webshops_query = "erroring_webshops" | db_find %}
 
   {% endcase %}
 

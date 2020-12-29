@@ -32,6 +32,7 @@
   "erroring_webshops": {
     "klass": "webshops",
     "query": {
+      "active": true,
       "got_error_at": {"$ne": null}
     },
     "projection": {
