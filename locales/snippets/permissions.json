@@ -11,8 +11,7 @@
       "show": "Manage"
     },
     "superuser_levels": {
-      "upgraded": "Upgraded",
-      "downgraded": "Downgraded"
+      "downgraded": "downgraded access"
     }
   }
 }
