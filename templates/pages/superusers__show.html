@@ -14,35 +14,28 @@
       {% assign error = l.no_superuser %}
 
     {% else %}
-      {% if superuser.superuser_level == 1 %}
+      {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
 
-        {% assign error = l.superuser_level_1 %}
+      {% if gofetch_project_api_token == nil %}
+
+        {% assign error = l.no_gofetch_project_api_token %}
 
       {% else %}
 
-        {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
+        {% assign relay_response = "relays" | webhook: gofetch_project_api_token: gofetch_project_api_token %}
 
-        {% if gofetch_project_api_token == nil %}
+        {% if relay_response.error != nil %}
 
-          {% assign error = l.no_gofetch_project_api_token %}
+          {% capture error %}{{ l.project_api_error }}: {{ relay_response.error }}{% endcapture %}
+
+        {% elsif relay_response.code != 200 %}
+
+          {% capture error %}{{ l.relays_not_found }} {{ relay_response.code }}{% endcapture %}
 
         {% else %}
 
-          {% assign relay_response = "relays" | webhook: gofetch_project_api_token: gofetch_project_api_token %}
+          {% assign relays = relay_response.body.documents | to_hash: "_id" %}
 
-          {% if relay_response.error != nil %}
-
-            {% capture error %}{{ l.project_api_error }}: {{ relay_response.error }}{% endcapture %}
-
-          {% elsif relay_response.code != 200 %}
-
-            {% capture error %}{{ l.relays_not_found }} {{ relay_response.code }}{% endcapture %}
-
-          {% else %}
-
-            {% assign relays = relay_response.body.documents | to_hash: "_id" %}
-
-          {% endif %}
         {% endif %}
       {% endif %}
     {% endif %}
