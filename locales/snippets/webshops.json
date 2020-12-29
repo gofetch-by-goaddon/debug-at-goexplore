@@ -3,7 +3,7 @@
     "headlines": {
       "webshops": "Webshops"
     },
-    "scope_name": {
+    "scope_names": {
       "active": "Active",
       "inactive": "Inactive",
       "erroring": "Erroring"
