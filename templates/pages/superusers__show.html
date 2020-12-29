@@ -1,45 +1,48 @@
 {% if account != nil and user.superuser %}
 
-  {% if user.superuser_level == 1 %}
+  {% if user.superuser_level != 1 %}
+
+    {% assign error = l.no_access %}
+
+  {% else %}
 
     {% assign superusers_query  = "superusers" | db_find: app_id: project.app_id, _id: params.id %}
     {% assign superuser         = superusers_query.results.first %}
 
-  {% endif %}
+    {% if superuser == nil %}
 
-  {% if superuser == nil %}
-
-    {% assign error = l.no_superuser %}
-
-  {% else %}
-    {% if superuser.superuser_level == 1 %}
-
-      {% assign error = l.superuser_level_1 %}
+      {% assign error = l.no_superuser %}
 
     {% else %}
+      {% if superuser.superuser_level == 1 %}
 
-      {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
-
-      {% if gofetch_project_api_token == nil %}
-
-        {% assign error = l.no_gofetch_project_api_token %}
+        {% assign error = l.superuser_level_1 %}
 
       {% else %}
 
-        {% assign relay_response = "relays" | webhook: gofetch_project_api_token: gofetch_project_api_token %}
+        {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
 
-        {% if relay_response.error != nil %}
+        {% if gofetch_project_api_token == nil %}
 
-          {% capture error %}{{ l.project_api_error }}: {{ relay_response.error }}{% endcapture %}
-
-        {% elsif relay_response.code != 200 %}
-
-          {% capture error %}{{ l.relays_not_found }} {{ relay_response.code }}{% endcapture %}
+          {% assign error = l.no_gofetch_project_api_token %}
 
         {% else %}
 
-          {% assign relays = relay_response.body.documents | to_hash: "_id" %}
+          {% assign relay_response = "relays" | webhook: gofetch_project_api_token: gofetch_project_api_token %}
 
+          {% if relay_response.error != nil %}
+
+            {% capture error %}{{ l.project_api_error }}: {{ relay_response.error }}{% endcapture %}
+
+          {% elsif relay_response.code != 200 %}
+
+            {% capture error %}{{ l.relays_not_found }} {{ relay_response.code }}{% endcapture %}
+
+          {% else %}
+
+            {% assign relays = relay_response.body.documents | to_hash: "_id" %}
+
+          {% endif %}
         {% endif %}
       {% endif %}
     {% endif %}

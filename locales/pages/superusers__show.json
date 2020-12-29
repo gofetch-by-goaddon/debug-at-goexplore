@@ -1,5 +1,6 @@
 {
   "en": {
+    "no_access": "You can not manage other superusers",
     "no_superuser": "This superuser does not exist",
     "superuser_level_1": "This superuser has upgraded access, and can not be managed",
     "project_api_error": "Project API error",

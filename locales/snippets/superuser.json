@@ -30,6 +30,14 @@
         "p2": "Users will have access to all tickets, even closed tickets and tickets they are not assigned to. You can not combine this with the limited ticket access, and if any ecommerce platforms are selected here, any limited ticket access will be ignored.",
         "p3": "Similar to the limited ticket action, users can only access a webshop if they are assigned to an open ticket that belongs to it."
       },
+      "notification_relay_ids": {
+        "p1": "Choose which ecommerce platform ticket updates this user should receive notification about.",
+        "p2": "When tickets are submitted or updated with a message from the merchant, notification emails will be sent to relevant users.",
+        "p3": "If a user is assigned to the ticket, this user will receive a notification.",
+        "p4": "If no users are assigned, all users who are registered to receive notifications will get one.",
+        "p5": "If still no users are found, all users with access to tickets relating to the ecommerce platform will be notified. Which means that users with limited access will receive notifications about open tickets, and users with full access will receive notifications regardless the status of the ticket.",
+        "p6": "Finally, if still users have been found, all users with upgraded access level will be notified."
+      },
       "auth_relay_ids": {
         "p1": "Choose which ecommerce platform auths this user can access.",
         "p2": "Users will have access to all auths submitted during the last 7 days."

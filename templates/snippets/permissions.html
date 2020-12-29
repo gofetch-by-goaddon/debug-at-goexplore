@@ -12,16 +12,14 @@
     <tbody>
 
       {% for superuser in superusers %}
-        {% if superuser.superuser_level != 1 %}
-          <tr>
-            <td>
-              {{ superuser.email }}
-            </td>
-            <td class="text-right text-nowrap" width="1">
-              <a class="btn btn-outline-primary" href="{{ 'superusers__show' | path_for: id: superuser._id }}">{{ l.buttons.show }}</a>
-            </td>
-          </tr>
-        {% endif %}
+        <tr>
+          <td>
+            {{ superuser.email }}
+          </td>
+          <td class="text-right text-nowrap" width="1">
+            <a class="btn btn-outline-primary" href="{{ 'superusers__show' | path_for: id: superuser._id }}">{{ l.buttons.show }}</a>
+          </td>
+        </tr>
       {% endfor %}
     </tbody>
   </table>

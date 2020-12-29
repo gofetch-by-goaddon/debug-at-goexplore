@@ -1,1 +1,18 @@
-{"status": "204"}
+{% if project.secrets.gofetch_webhook_token != headers.authorization %}
+
+  {"status": "500", "error": "Can not authorize"}
+
+{% else %}
+
+  {% assign events = "ticket_created ticket_updated" | split: " " %}
+
+  {% if events contains params.event %}
+
+    {% assign superusers_query = "superusers" | db_find: app_id: project.app_id %}
+    {% assign superusers       = superusers_query.results %}
+
+  {% endif %}
+
+  {"status": "204"}
+
+{% endif %}
