@@ -9,7 +9,6 @@
   {% include "shared/link_styles" %}
 
   {% assign now           = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-  {% assign tab_id        = "tickets_tab" %}
   {% assign status_names  = "opened closed" | split: " " %}
 
   <div class="card mb-4">
@@ -22,7 +21,7 @@
             {% else %}
               {% assign active_bool = "" %}
             {% endif %}
-            <a class="nav-link{{ active_bool }}" href="{{ 'tickets__index' | path_for: status: status_name }}">
+            <a class="nav-link{{ active_bool }}" href="{{ 'tickets__index' | path_for: scope: status_name }}">
               {{ l.status_names[status_name] }}
             </a>
           </li>
@@ -67,7 +66,8 @@
                       <span class="text-danger"><b><i class="fas fa-minus-circle"></i> {{ l.informations.no_company }}</b></span>
                     {% else %}
                       <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                        <input type="hidden" name="redirect" value="{{ 'webshops__index' | path_for }}">
+                        <input type="hidden" name="redi
+                        t" value="{{ 'webshops__index' | path_for }}">
                         <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ companies[company_id].website }}">
                       </form>
                     {% endif %}
@@ -99,11 +99,11 @@
                 <td class="text-right text-nowrap" width="1">
                   {% assign ticket_status = ticket.status %}
                   {% if company_id == account._id %}
-                    <a href="{{ 'tickets__show' | path_for: id: ticket._id, page: tickets_query.page, per_page: tickets_query.per_page, status: status }}">{{ l.status_names[ticket_status] }}</a>
+                    <a href="{{ 'tickets__show' | path_for: id: ticket._id, page: tickets_query.page, per_page: tickets_query.per_page, scope: status }}">{{ l.status_names[ticket_status] }}</a>
                   {% else %}
                     {% if company_id != nil and companies[company_id] != nil %}
                       <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                        <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id, page: tickets_query.page, per_page: tickets_query.per_page, status: status }}">
+                        <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id, page: tickets_query.page, per_page: tickets_query.per_page, scope: status }}">
                         <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ l.status_names[ticket_status] }}">
                       </form>
                     {% endif %}
@@ -120,7 +120,7 @@
   {% assign page          = tickets_query.page %}
   {% assign per_page      = tickets_query.per_page %}
   {% assign pages_count   = tickets_query.pages_count %}
-  {% assign params_status = status %}
+  {% assign params_scope  = status %}
   {% assign klass         = "tickets" %}
 
   {% include "shared/pagination" %}

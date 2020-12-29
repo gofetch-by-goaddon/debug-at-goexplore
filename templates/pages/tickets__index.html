@@ -1,11 +1,11 @@
 {% if account != nil and user.superuser %}
 
-  {% if params.status == nil or params.status == "" or params.status == "opened" %}
+  {% if params.scope == nil or params.scope == "" or params.scope == "opened" %}
 
     {% assign status          = "opened" %}
     {% assign query_statuses  = "opened escalated" | split: " " %}
 
-  {% elsif params.status == "closed" %}
+  {% elsif params.scope == "closed" %}
 
     {% assign status          = "closed" %}
     {% assign query_statuses  = "closed" | split: " " %}

@@ -1,8 +1,15 @@
 {
   "en": {
     "headlines": {
-      "no_webshops": "No webshops exists",
       "webshops": "Webshops"
+    },
+    "scope_name": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "erroring": "Erroring"
+    },
+    "explainers": {
+      "no_webshops": "No webshops exists"
     },
     "headers": {
       "config": "Identifier",

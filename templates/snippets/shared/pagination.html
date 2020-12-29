@@ -9,7 +9,7 @@
       <button type="button" class="btn btn-outline-secondary disabled" style="{{ btn_style }}">{{ l.previous }}</button>
     {% else %}
       {% assign prev_page = page | minus: 1 %}
-      <a href="{{ pagination_path | path_for: page: prev_page, per_page: per_page, status: params_status}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ l.previous }}</a>
+      <a href="{{ pagination_path | path_for: page: prev_page, per_page: per_page, scope: params_scope}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ l.previous }}</a>
     {% endif %}
 
     {% assign page_minus_6      = page | minus: 6 %}
@@ -67,7 +67,7 @@
         {% if page_i != page_number and dots %}
           <button type="button" class="btn btn-outline-secondary disabled" style="{{ btn_style }}">...</button>
         {% else %}
-          <a href="{{ pagination_path | path_for: page: page_number, per_page: per_page, status: params_status}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ page_number | plus: 1 }}</a>
+          <a href="{{ pagination_path | path_for: page: page_number, per_page: per_page, scope: params_scope}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ page_number | plus: 1 }}</a>
         {% endif %}
 
       {% endif %}
@@ -77,7 +77,7 @@
       <button type="button" class="btn btn-outline-secondary disabled" style="{{ btn_style }}">{{ l.next }}</button>
     {% else %}
       {% assign next_page = page | plus: 1 %}
-      <a href="{{ pagination_path | path_for: page: next_page, per_page: per_page, status: params_status}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ l.next }}</a>
+      <a href="{{ pagination_path | path_for: page: next_page, per_page: per_page, scope: params_scope}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ l.next }}</a>
     {% endif %}
   </div>
 {% endif %}

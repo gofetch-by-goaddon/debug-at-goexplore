@@ -1,68 +1,104 @@
-{% if webshops.size == 0 %}
-  <h5 class="mb-4">{{ l.headlines.no_webshops }}</h5>
-  {% if error != nil %}
-    <p class="text-danger">{{ error }}.</p>
-  {% endif %}
+<h5 class="mb-4">{{ l.headlines.webshops }}</h5>
+
+{% if error != nil %}
+
+  <p class="text-danger">{{ error }}.</p>
+
 {% else %}
-  <h5 class="mb-4">{{ l.headlines.webshops }}</h5>
-  {% if error != nil %}
-    <p class="text-danger">{{ error }}.</p>
-  {% endif %}
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="border-bottom-0">{{ l.headers.config }}</th>
-        <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
-        <th class="border-bottom-0"></th>
-        <th class="border-bottom-0"></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for webshop in webshops %}
-        {% assign relay_id = webshop.relay_id %}
-        <tr>
-          <td>
-            {% if relays[relay_id] != nil %}
-              <samp>
-                {% assign identifiable_config_keys = 0 %}
-                {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
-                  {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
-                    &#183;
-                  {% endif %}
-                  {% if webshop.config[identifiable_config_key] != nil and webshop.config[identifiable_config_key] != "" %}
-                    {% assign identifiable_config_keys = identifiable_config_keys | plus: 1 %}
-                    {{ webshop.config[identifiable_config_key] | decrypt }}
-                  {% endif %}
-                {% endfor %}
 
-                <span class="text-secondary">
-                  {% if identifiable_config_keys == 0 %}
-                    {{ l.informations.no_identifiable_config_keys }}
-                  {% endif %}
-                </span>
-              </samp>
-            {% endif %}
+  {% assign scope_names = "company active inactive erroring" | split: " " %}
 
-            {% if webshop.active != true %}
-              <span class="badge badge-danger">{{ l.badges.inactive }}</span>
-            {% endif %}
-
-          </td>
-          <td>
-            {% if relays[relay_id] == nil %}
-              <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
+  <div class="card mb-4">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        {% for scope_name in scope_names %}
+          <li class="nav-item">
+            {% if scope_name == scope %}
+              {% assign active_bool = " active" %}
             {% else %}
-              {{ relays[relay_id].name }}
+              {% assign active_bool = "" %}
             {% endif %}
-          </td>
-          <td class="text-right text-nowrap" width="1">
-            <a class="btn btn-outline-primary" href="{{ 'webshops__edit' | path_for: id: webshop._id }}">{{ l.buttons.edit }}</a>
-          </td>
-          <td class="text-right text-nowrap" width="1">
-            <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.show }}</a>
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+            <a class="nav-link{{ active_bool }}" href="{{ 'webshops__index' | path_for: scope: scope_name }}">
+              {% if scope_name == "company" %}
+                {{ account.website }}
+              {% else %}
+                {{ l.scope_names[scope_name] }}
+              {% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="card-body">
+      {% if webshops.size == 0 %}
+        <p>{{ l.explainers.no_webshops }}</p>
+      {% else %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="border-bottom-0">{{ l.headers.config }}</th>
+              <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
+              <th class="border-bottom-0"></th>
+              <th class="border-bottom-0"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for webshop in webshops %}
+              {% assign relay_id = webshop.relay_id %}
+              <tr>
+                <td>
+                  {% if relays[relay_id] != nil %}
+                    <samp>
+                      {% assign identifiable_config_keys = 0 %}
+                      {% for identifiable_config_key in relays[relay_id].identifiable_config_keys %}
+                        {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
+                          &#183;
+                        {% endif %}
+                        {% if webshop.config[identifiable_config_key] != nil and webshop.config[identifiable_config_key] != "" %}
+                          {% assign identifiable_config_keys = identifiable_config_keys | plus: 1 %}
+                          {{ webshop.config[identifiable_config_key] | decrypt }}
+                        {% endif %}
+                      {% endfor %}
+
+                      <span class="text-secondary">
+                        {% if identifiable_config_keys == 0 %}
+                          {{ l.informations.no_identifiable_config_keys }}
+                        {% endif %}
+                      </span>
+                    </samp>
+                  {% endif %}
+
+                  {% if webshop.active != true %}
+                    <span class="badge badge-danger">{{ l.badges.inactive }}</span>
+                  {% endif %}
+
+                </td>
+                <td>
+                  {% if relays[relay_id] == nil %}
+                    <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
+                  {% else %}
+                    {{ relays[relay_id].name }}
+                  {% endif %}
+                </td>
+                <td class="text-right text-nowrap" width="1">
+                  <a class="btn btn-outline-primary" href="{{ 'webshops__edit' | path_for: id: webshop._id }}">{{ l.buttons.edit }}</a>
+                </td>
+                <td class="text-right text-nowrap" width="1">
+                  <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.show }}</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+    </div>
+  </div>
+
+  {% assign page            = webshops_query.page %}
+  {% assign per_page        = webshops_query.per_page %}
+  {% assign pages_count     = webshops_query.pages_count %}
+  {% assign params_scope    = scope %}
+  {% assign klass           = "webshops" %}
+
+  {% include "shared/pagination" %}
 {% endif %}
