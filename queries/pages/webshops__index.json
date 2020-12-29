@@ -8,7 +8,40 @@
       "_id": 1,
       "relay_id": 1,
       "active": 1,
-      "config": 1
+      "config": 1,
+      "got_started_at": 1,
+      "got_finished_at": 1,
+      "got_error_at": 1
+    }
+  },
+  "active_webshops": {
+    "klass": "webshops",
+    "query": {
+      "active": "{{ active }}"
+    },
+    "projection": {
+      "_id": 1,
+      "relay_id": 1,
+      "active": 1,
+      "config": 1,
+      "got_started_at": 1,
+      "got_finished_at": 1,
+      "got_error_at": 1
+    }
+  },
+  "erroring_webshops": {
+    "klass": "webshops",
+    "query": {
+      "got_error_at": {"$ne": null}
+    },
+    "projection": {
+      "_id": 1,
+      "relay_id": 1,
+      "active": 1,
+      "config": 1,
+      "got_started_at": 1,
+      "got_finished_at": 1,
+      "got_error_at": 1
     }
   }
 }

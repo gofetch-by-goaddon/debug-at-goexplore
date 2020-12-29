@@ -6,6 +6,18 @@
 
       {% assign webshops_query = "company_webshops" | db_find: company_id: account._id %}
 
+    {% when "active" %}
+
+      {% assign webshops_query = "active_webshops" | db_find: active: true %}
+
+    {% when "inactive" %}
+
+      {% assign webshops_query = "active_webshops" | db_find: active: false %}
+
+    {% when "erroring" %}
+
+      {% assign webshops_query = "erroring_webshops" | db_find: active: false %}
+
   {% endcase %}
 
   {% assign webshops  = webshops_query.results %}
