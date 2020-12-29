@@ -1,6 +1,8 @@
 {% if account != nil and user.superuser %}
 
-  {% case params.scope %}
+  {% assign scope = params.scope %}
+
+  {% case scope %}
 
     {% when "company", nil %}
 
