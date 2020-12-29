@@ -10,6 +10,7 @@
       "webshop_relay_ids": "Webshop permissions",
       "ticket_relay_ids": "Limited ticket permissions",
       "closed_ticket_relay_ids": "Full ticket permissions",
+      "notification_relay_ids": "Ticket notifications",
       "auth_relay_ids": "Auth permissions"
     },
     "explainers": {
