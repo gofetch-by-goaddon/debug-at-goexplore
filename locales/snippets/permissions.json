@@ -9,6 +9,10 @@
     },
     "buttons": {
       "show": "Manage"
+    },
+    "superuser_levels": {
+      "upgraded": "Upgraded",
+      "downgraded": "Downgraded"
     }
   }
 }

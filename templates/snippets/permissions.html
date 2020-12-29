@@ -15,6 +15,13 @@
         <tr>
           <td>
             {{ superuser.email }}
+            <span class="border rounded px-1 text-secondary border-secondary">
+              {% if superuser.superuser_level == 1 %}
+                {{ l.superuser_levels.upgraded }}
+              {% else %}
+                {{ l.superuser_levels.downgraded }}
+              {% endif %}
+            </span>
           </td>
           <td class="text-right text-nowrap" width="1">
             <a class="btn btn-outline-primary" href="{{ 'superusers__show' | path_for: id: superuser._id }}">{{ l.buttons.show }}</a>
