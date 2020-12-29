@@ -16,7 +16,7 @@
           <td>
             {{ superuser.email }}
             {% if superuser.superuser_level != 1 %}
-              <span class="border rounded px-1 text-secondary border-secondary">
+              <span class="badge badge-secondary">
                 {{ l.superuser_levels.downgraded }}
               </span>
             {% endif %}
