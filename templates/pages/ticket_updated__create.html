@@ -16,7 +16,7 @@
       {% assign superusers_query = "superusers" | db_find: app_id: project.app_id %}
       {% assign superusers       = superusers_query.results | to_hash: "_id" %}
 
-      {% assign emails    = "" | split: " " %}
+      {% assign emails              = "" | split: " " %}
       {% assign ticket_id           = ticket._id %}
       {% assign assigned_superuser  = superusers[ticket_id] %}
 
@@ -28,25 +28,25 @@
 
         {% for superuser in superusers %}
 
-          {% if superuser.notification_relay_ids != nil and superuser.notification_relay_ids contains ticket.relay_id %}
+          {% if superuser[1].notification_relay_ids != nil and superuser[1].notification_relay_ids contains ticket.relay_id %}
 
-            {% assign emails = emails | push_to_array: superuser.email %}
+            {% assign emails = emails | push_to_array: superuser[1].email %}
 
-          {% elsif superuser.superuser_level != 1 %}
+          {% elsif superuser[1].superuser_level != 1 %}
 
-            {% if superuser.closed_ticket_relay_ids != nil and superuser.closed_ticket_relay_ids.size > 0 %}
+            {% if superuser[1].closed_ticket_relay_ids != nil and superuser[1].closed_ticket_relay_ids.size > 0 %}
 
-              {% assign permitted_relay_ids = superuser.closed_ticket_relay_ids %}
+              {% assign permitted_relay_ids = superuser[1].closed_ticket_relay_ids %}
 
-            {% elsif superuser.ticket_relay_ids != nil and superuser.ticket_relay_ids.size > 0 %}
+            {% elsif superuser[1].ticket_relay_ids != nil and superuser[1].ticket_relay_ids.size > 0 %}
 
-              {% assign permitted_relay_ids = superuser.ticket_relay_ids %}
+              {% assign permitted_relay_ids = superuser[1].ticket_relay_ids %}
 
             {% endif %}
 
             {% if permitted_relay_ids != nil and permitted_relay_ids contains ticket.relay_id %}
 
-              {% assign emails = emails | push_to_array: superuser.email %}
+              {% assign emails = emails | push_to_array: superuser[1].email %}
 
             {% endif %}
           {% endif %}
@@ -54,9 +54,9 @@
 
         {% if emails.size == 0 %}
           {% for superuser in superusers %}
-            {% if superuser.superuser_level == 1 %}
+            {% if superuser[1].superuser_level == 1 %}
 
-              {% assign emails = emails | push_to_array: superuser.email %}
+              {% assign emails = emails | push_to_array: superuser[1].email %}
 
             {% endif %}
           {% endfor %}
@@ -73,6 +73,6 @@
     {% endif %}
   {% endif %}
 
-  {"status": "200", "superusers": "{{ superusers }}"}
+  {"status": "204"}
 
 {% endif %}
