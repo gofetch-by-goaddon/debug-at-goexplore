@@ -5,8 +5,8 @@
     },
     "scope_names": {
       "active": "Active",
-      "inactive": "Inactive",
-      "erroring": "Erroring (active)"
+      "erroring": "Erroring (active)",
+      "inactive": "Inactive"
     },
     "explainers": {
       "no_webshops": "No webshops exists"
