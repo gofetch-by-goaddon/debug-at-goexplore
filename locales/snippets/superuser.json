@@ -15,7 +15,7 @@
     },
     "explainers": {
       "intro": {
-        "p1": "Regular users don't have access to anything on this website. Superusers without upgraded access can be granted limited access to specific ecommerce platforms."
+        "p1": "Regular users don't have access to any admin capabilities on this website. Superusers without upgraded access can be granted limited access to specific ecommerce platforms. All superusers can be registered to receive email ticket notifications."
       },
       "webshop_relay_ids": {
         "p1": "Choose which ecommerce platforms this user can access.",

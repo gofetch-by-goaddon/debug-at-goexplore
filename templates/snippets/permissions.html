@@ -15,9 +15,9 @@
         <tr>
           <td>
             {{ superuser.email }}
-            {% if superuser.superuser_level != 1 %}
+            {% if superuser.superuser_level == 1 %}
               <span class="badge badge-secondary">
-                {{ l.superuser_levels.downgraded }}
+                {{ l.superuser_levels.upgraded }}
               </span>
             {% endif %}
           </td>
