@@ -26,6 +26,8 @@
 
       {% else %}
 
+        {% assign open_statuses  = "opened escalated" | split: " " %}
+
         {% for superuser in superusers %}
 
           {% if superuser[1].notification_relay_ids != nil and superuser[1].notification_relay_ids contains ticket.relay_id %}
@@ -38,7 +40,7 @@
 
               {% assign permitted_relay_ids = superuser[1].closed_ticket_relay_ids %}
 
-            {% elsif superuser[1].ticket_relay_ids != nil and superuser[1].ticket_relay_ids.size > 0 %}
+            {% elsif open_statuses contains ticket.status and superuser[1].ticket_relay_ids != nil and superuser[1].ticket_relay_ids.size > 0 %}
 
               {% assign permitted_relay_ids = superuser[1].ticket_relay_ids %}
 
