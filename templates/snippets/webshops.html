@@ -43,6 +43,7 @@
               <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
               <th class="border-bottom-0"></th>
               <th class="border-bottom-0"></th>
+              {% include "webshops/extra_ths" %}
             </tr>
           </thead>
           <tbody>
@@ -156,6 +157,7 @@
                       </form>
                     {% endif %}
                   </td>
+                  {% include "webshops/extra_tds" %}
                 {% endfor %}
               </tr>
             {% endfor %}

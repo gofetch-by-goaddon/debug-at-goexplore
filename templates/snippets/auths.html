@@ -16,6 +16,7 @@
           <th class="border-bottom-0">{{ l.headers.created_at }}</th>
           <th class="border-bottom-0">{{ l.headers.status }}</th>
           <th class="border-bottom-0"></th>
+          {% include "auths/extra_ths" %}
         </tr>
       </thead>
       <tbody>
@@ -74,6 +75,7 @@
 
               {% endif %}
             </td>
+            {% include "auths/extra_tds" %}
           </tr>
         {% endfor %}
       </tbody>
