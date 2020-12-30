@@ -37,7 +37,7 @@
         {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
         {% assign to  = now | date: "%s" %}
         <table class="table">
-          <thead class="d-none d-md-block">
+          <thead class="d-none d-md-inline">
             <tr>
               <th class="border-bottom-0"><span class="d-none d-md-block">{{ l.headers.config }}</span></th>
               <th class="border-bottom-0"><span class="d-none d-md-block">{{ l.headers.relay_name }}</span></th>
