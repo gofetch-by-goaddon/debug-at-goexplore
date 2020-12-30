@@ -9,11 +9,11 @@
 
     {% if seconds == 1 %}
 
-      {{ l.badges.second }}
+      {{ l.times.second }}
 
     {% else %}
 
-      {{ l.badges.seconds }}
+      {{ l.times.seconds }}
 
     {% endif %}
 
@@ -27,11 +27,11 @@
 
       {% if minutes == 1 %}
 
-        {{ l.badges.minute }}
+        {{ l.times.minute }}
 
       {% else %}
 
-        {{ l.badges.minutes }}
+        {{ l.times.minutes }}
 
       {% endif %}
 
@@ -43,5 +43,5 @@
 
   {% endif %}
 
-  {{ l.badges.ago }}{{ duration }}
+  {{ l.informations.ago }}{{ duration }}
 </span>

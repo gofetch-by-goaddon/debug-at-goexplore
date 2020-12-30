@@ -83,6 +83,7 @@
 
                     {% assign badge_time  = "got_error_at" %}
                     {% assign badge_style = "danger" %}
+                    {% include "webshops/badge_duration" %}
 
                   {% elsif webshop.got_started_at != nil %}
 
@@ -102,25 +103,7 @@
 
                       {% assign badge_time    = "got_finished_at" %}
                       {% assign badge_style   = "success" %}
-                      {% assign start         = webshop.got_started_at | date: "%s" %}
-                      {% assign end           = webshop.got_finished_at | date: "%s" %}
-                      {% assign duration_s    = end | minus: start %}
-
-                      {% if duration_s < 60 %}
-
-                        {% capture duration %} &#183; {{ l.times.in }} {{ duration_s }} {{ l.times.s }}{% endcapture %}
-
-                      {% elsif duration_s < 3600 %}
-
-                        {% assign duration_m = duration_s | divided_by: 60 %}
-                        {% capture duration %} &#183; {{ l.times.in }} {{ duration_m }} {{ l.times.m }}{% endcapture %}
-
-                      {% else %}
-
-                        {% assign duration_h = duration_s | divided_by: 216000 %}
-                        {% capture duration %} &#183; {{ l.times.in }} {{ duration_h }} {{ l.times.h }}{% endcapture %}
-
-                      {% endif %}
+                      {% include "webshops/badge_duration" %}
                     
                     {% endif %}
                   {% endif %}

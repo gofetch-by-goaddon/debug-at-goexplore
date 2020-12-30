@@ -3,11 +3,15 @@
     "badges": {
       "got_started_at": "started",
       "got_error_at": "errored",
-      "got_finished_at": "finished",
+      "got_finished_at": "finished"
+    },
+    "times": {
       "second": "second",
       "seconds": "seconds",
       "minute": "minute",
-      "minutes": "minutes",
+      "minutes": "minutes"
+    },
+    "informations": {
       "ago": "ago"
     }
   }

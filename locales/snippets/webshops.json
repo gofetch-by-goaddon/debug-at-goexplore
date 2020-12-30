@@ -24,12 +24,6 @@
       "inactive": "INACTIVE",
       "reset": "FIRST IMPORT"
     },
-    "times": {
-      "in": "in",
-      "s": "s",
-      "m": "m",
-      "h": "h"
-    },
     "informations": {
       "no_identifiable_config_keys": "None"
     }
