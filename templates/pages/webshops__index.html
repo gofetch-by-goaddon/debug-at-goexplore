@@ -16,7 +16,8 @@
     {% when "erroring" %}
 
       {% assign query           = query | push_to_hash: "active", true %}
-      {% assign got_error_at_q  = nil | new_hash: "$ne", nil %}
+      {% assign got_error_at_q  = nil | new_hash %}
+      {% assign got_error_at_q  = got_error_at_q | push_to_hash: "$ne", nil %}
       {% assign query           = query | push_to_hash: "got_error_at", got_error_at_q %}
 
     {% else %}
