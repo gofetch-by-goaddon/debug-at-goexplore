@@ -4,7 +4,17 @@
   {% assign minutes = to | minus: from | divided_by: 60 %}
   {% if minutes < 60 %}
 
-    {{ minutes }} {{ l.badges.minutes }}
+    {{ minutes }}
+
+    {% if minutes == 1 %}
+
+      {{ l.badges.minute }}
+
+    {% else %}
+
+      {{ l.badges.minutes }}
+
+    {% endif %}
 
   {% else %}
 
