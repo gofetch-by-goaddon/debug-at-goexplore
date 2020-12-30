@@ -138,7 +138,7 @@
                 </td>
                 <td class="text-right text-nowrap" width="1">
                   {% if webshop.company_id == account._id %}
-                    <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">
+                    <a href="{{ 'webshops__show' | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">
                       <div class="d-none d-md-block">
                         <div class="btn btn-outline-primary">{{ l.buttons.show }}</div>
                       </div>
