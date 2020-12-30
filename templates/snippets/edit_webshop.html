@@ -1,11 +1,11 @@
 {% if error != nil %}
   <h5 class="mb-4">
-    {{ l.headlines.error }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
+    {{ l.headlines.error }} <a href="{{ 'webshops__index' | path_for: page: params.page, per_page: params.per_page, scope: params.scope }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
   <p class="text-danger">{{ error }}.</p>
 {% else %}
   <h5 class="mb-4">
-    {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
+    {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for: page: params.page, per_page: params.per_page, scope: params.scope }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
   {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
