@@ -132,7 +132,12 @@
                   {% else %}
                     <form method="patch" action="/accounts/{{ webshop.company_id }}/switch" data-remote="true">
                       <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">
-                      <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.edit }}">
+                      <div class="d-none d-md-block">
+                        <input type="submit" value="{{ l.buttons.edit }}" class="btn btn-outline-primary">
+                      </div>
+                      <div class="d-md-none">
+                        <button type="submit" class="btn btn-link"><i class="text-primary fas fa-wrench"></i></button>
+                      </div>
                     </form>
                   {% endif %}
                 </td>
@@ -147,7 +152,12 @@
                   {% else %}
                     <form method="patch" action="/accounts/{{ webshop.company_id }}/switch" data-remote="true">
                       <input type="hidden" name="redirect" value="{{ 'webshops__show' | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">
-                      <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.show }}">
+                      <div class="d-none d-md-block">
+                        <input type="submit" value="{{ l.buttons.show }}" class="btn btn-outline-primary">
+                      </div>
+                      <div class="d-md-none">
+                        <button type="submit" class="btn btn-link"><i class="text-primary fas fa-code"></i></button>
+                      </div>
                     </form>
                   {% endif %}
                 </td>
