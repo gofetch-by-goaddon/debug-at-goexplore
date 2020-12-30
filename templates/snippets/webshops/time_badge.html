@@ -1,5 +1,14 @@
 <span class="border rounded px-1 text-{{ badge_style }} border-{{ badge_style }}">
   {{ l.badges[badge_time] }}
-  {{ webshop[badge_time] | time_distance_in_words: now }} {{ l.badges.ago }}
-  {{ webshop[badge_time] | minus: now }}
+  {% assign from    = webshop[badge_time] | date: "%s" %}
+  {% assign minutes = to | minus: from | divided_by: 60 %}
+  {% if minutes < 60 %}
+
+    {{ minutes }} {{ l.badges.minutes }}
+
+  {% else %}
+
+    {{ webshop[badge_time] | time_distance_in_words: now }} {{ l.badges.ago }}
+
+  {% endif %}
 </span>

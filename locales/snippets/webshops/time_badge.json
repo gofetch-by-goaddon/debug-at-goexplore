@@ -4,6 +4,7 @@
       "got_started_at": "started",
       "got_error_at": "errored",
       "got_finished_at": "finished",
+      "minutes": "minutes",
       "ago": "ago"
     }
   }
