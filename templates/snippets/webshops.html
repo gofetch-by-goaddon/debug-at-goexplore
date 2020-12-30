@@ -103,7 +103,7 @@
                   {% if webshop.company_id == account._id %}
                     <a class="btn btn-outline-primary" href="{{ 'webshops__edit' | path_for: id: webshop._id }}">{{ l.buttons.edit }}</a>
                   {% else %}
-                    <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                    <form method="patch" action="/accounts/{{ webshop.company_id }}/switch" data-remote="true">
                       <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: webshop._id }}">
                       <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.edit }}">
                     </form>
@@ -113,7 +113,7 @@
                   {% if webshop.company_id == account._id %}
                     <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.show }}</a>
                   {% else %}
-                    <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+                    <form method="patch" action="/accounts/{{ webshop.company_id }}/switch" data-remote="true">
                       <input type="hidden" name="redirect" value="{{ 'webshops__show' | path_for: id: webshop._id }}">
                       <input class="btn btn-outline-primary" type="submit" value="{{ l.buttons.show }}">
                     </form>
