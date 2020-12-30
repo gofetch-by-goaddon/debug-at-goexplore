@@ -123,7 +123,12 @@
                 </td>
                 <td class="text-right text-nowrap" width="1">
                   {% if webshop.company_id == account._id %}
-                    <a class="btn btn-outline-primary" href="{{ 'webshops__edit' | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">{{ l.buttons.edit }}</a>
+                    <a class="btn btn-outline-primary" href="{{ 'webshops__edit' | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">
+                      <div class="d-none d-md-block">
+                        <div class="btn btn-outline-primary">{{ l.buttons.edit }}</div>
+                      </div>
+                      <i class="fas fa-wrench d-md-none"></i>
+                    </a>
                   {% else %}
                     <form method="patch" action="/accounts/{{ webshop.company_id }}/switch" data-remote="true">
                       <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">
