@@ -1,24 +1,47 @@
 <span class="border rounded px-1 text-{{ badge_style }} border-{{ badge_style }}">
   {{ l.badges[badge_time] }}
   {% assign from    = webshop[badge_time] | date: "%s" %}
-  {% assign minutes = to | minus: from | divided_by: 60 %}
-  {% if minutes < 60 %}
+  {% assign seconds = to | minus: from %}
 
-    {{ minutes }}
+  {% if seconds < 60 %}
 
-    {% if minutes == 1 %}
+    {{ seconds }}
 
-      {{ l.badges.minute }}
+    {% if seconds == 1 %}
+
+      {{ l.badges.second }}
 
     {% else %}
 
-      {{ l.badges.minutes }}
+      {{ l.badges.seconds }}
+
+    {% endif %}
+
+  {% elsif seconds < 3600 %}
+
+    {% assign minutes = seconds | divided_by: 60 %}
+
+    {% if minutes < 60 %}
+
+      {{ minutes }}
+
+      {% if minutes == 1 %}
+
+        {{ l.badges.minute }}
+
+      {% else %}
+
+        {{ l.badges.minutes }}
+
+      {% endif %}
 
     {% endif %}
 
   {% else %}
 
-    {{ webshop[badge_time] | time_distance_in_words: now }} {{ l.badges.ago }}
+     {{ webshop[badge_time] | time_distance_in_words: now }}
 
   {% endif %}
+
+  {{ l.badges.ago }}
 </span>

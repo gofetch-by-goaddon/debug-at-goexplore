@@ -4,6 +4,8 @@
       "got_started_at": "started",
       "got_error_at": "errored",
       "got_finished_at": "finished",
+      "second": "second",
+      "seconds": "seconds",
       "minute": "minute",
       "minutes": "minutes",
       "ago": "ago"
