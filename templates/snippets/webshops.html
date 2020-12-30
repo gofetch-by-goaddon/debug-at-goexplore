@@ -88,7 +88,7 @@
 
                   {% elsif webshop.got_started_at != nil and webshop.got_started_at < webshop.got_finished_at %}
                   
-                    <span class="badge badge-success">{{ l.badges.finished_at | time_distance_in_words: now }} {{ webshop.got_finished_at }} {{ l.badges.ago }}</span>
+                    <span class="badge badge-success">{{ l.badges.finished_at }} {{ webshop.got_finished_at | time_distance_in_words: now }} {{ l.badges.ago }}</span>
 
                   {% endif %}
 
