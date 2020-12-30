@@ -1,50 +1,7 @@
 {
-  "company_webshops": {
+  "webshops": {
     "klass": "webshops",
-    "query": {
-      "company_id": "{{ company_id }}"
-    },
-    "pagination": {
-      "page": 0,
-      "per_page": 10
-    },
-    "projection": {
-      "_id": 1,
-      "relay_id": 1,
-      "active": 1,
-      "config": 1,
-      "got_started_at": 1,
-      "got_finished_at": 1,
-      "got_error_at": 1,
-      "company_id": 1
-    }
-  },
-  "active_webshops": {
-    "klass": "webshops",
-    "query": {
-      "active": "{{ active }}"
-    },
-    "pagination": {
-      "page": 0,
-      "per_page": 10
-    },
-    "projection": {
-      "_id": 1,
-      "relay_id": 1,
-      "active": 1,
-      "config": 1,
-      "got_started_at": 1,
-      "got_finished_at": 1,
-      "got_error_at": 1,
-      "company_id": 1
-    }
-  },
-  "erroring_webshops": {
-    "klass": "webshops",
-    "query": {
-      "active": true,
-      "got_error_at": {"$ne": null}
-    },
+    "query": "{{ query }}",
     "pagination": {
       "page": 0,
       "per_page": 10

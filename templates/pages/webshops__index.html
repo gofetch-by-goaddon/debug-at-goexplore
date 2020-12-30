@@ -1,31 +1,39 @@
 {% if account != nil and user.superuser %}
 
   {% assign scope = params.scope %}
+  {% assign query = nil | new_hash %}
 
-  {% case scope %}
-
-    {% when nil %}
-
-      {% assign webshops_query = "company_webshops" | db_find: company_id: account._id, page: params.page, per_page: params.per_page %}
+  {% case params.scope %}
 
     {% when "active" %}
 
-      {% assign webshops_query = "active_webshops" | db_find: active: true, page: params.page, per_page: params.per_page %}
+      {% assign query           = query | push_to_hash: "active", true %}
 
     {% when "inactive" %}
 
-      {% assign webshops_query = "active_webshops" | db_find: active: false, page: params.page, per_page: params.per_page %}
+      {% assign query           = query | push_to_hash: "active", false %}
 
     {% when "erroring" %}
 
-      {% assign webshops_query = "erroring_webshops" | db_find: page: params.page, per_page: params.per_page %}
+      {% assign query           = query | push_to_hash: "active", true %}
+      {% assign got_error_at_q  = nil | new_hash: "$ne", nil %}
+      {% assign query           = query | push_to_hash: "got_error_at", got_error_at_q %}
+
+    {% else %}
+
+      {% assign scope           = nil %}
+      {% assign query           = query | push_to_hash: "company_id", account._id %}
 
   {% endcase %}
 
-  {% assign webshops  = webshops_query.results %}
-  {% assign documents = webshops %}
+  {% if query.size > 0 %}
 
-  {% include "shared/document_relays" %}
-  {% include "webshops" %}
+    {% assign webshops_query    = "webshops" | db_find: query: query, page: params.page, per_page: params.per_page %}
+    {% assign webshops          = webshops_query.results %}
+    {% assign querys            = webshops %}
 
+    {% include "shared/query_relays" %}
+    {% include "webshops" %}
+
+  {% endif %}
 {% endif %}
