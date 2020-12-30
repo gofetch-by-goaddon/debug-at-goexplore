@@ -41,7 +41,9 @@
   {% endif %}
 
   {% assign query         = query | push_to_hash: "status", got_error_at_q %}
+  <p>{{ query }}</p>
   {% assign tickets_query = "tickets" | db_find: query: query, page: params.page, per_page: params.per_page %}
+  <p>{{ tickets_query }}</p>
   {% assign tickets       = tickets_query.results %}
 
   {% if tickets.size > 0 %}
