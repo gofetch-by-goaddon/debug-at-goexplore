@@ -4,7 +4,7 @@
 
   {% case scope %}
 
-    {% when "company", nil %}
+    {% when nil %}
 
       {% assign webshops_query = "company_webshops" | db_find: company_id: account._id, page: params.page, per_page: params.per_page %}
 

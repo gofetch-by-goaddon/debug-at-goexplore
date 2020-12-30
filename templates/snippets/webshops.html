@@ -6,7 +6,8 @@
 
 {% else %}
 
-  {% assign scope_names = "company active erroring inactive" | split: " " %}
+  {% assign scope_names = "inactive erroring active" | split: " " %}
+  {% assign scope_names = scope_names | push_to_array: nil | reverse %}
 
   <div class="card mb-4">
     <div class="card-header">
@@ -19,7 +20,7 @@
               {% assign active_bool = "" %}
             {% endif %}
             <a class="nav-link{{ active_bool }}" href="{{ 'webshops__index' | path_for: scope: scope_name }}">
-              {% if scope_name == "company" %}
+              {% if scope_name == nil %}
                 {{ account.website }}
               {% else %}
                 {{ l.scope_names[scope_name] }}
