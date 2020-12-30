@@ -29,6 +29,8 @@
     "query": {
       "_id": "{{ _id }}"
     },
-    "document": "{{ document }}"
+    "document": {
+      "$set": "{{ document }}"
+    }
   }
 }

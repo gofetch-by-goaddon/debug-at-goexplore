@@ -5,6 +5,8 @@
       "app_id": "{{ app_id }}",
       "_id": "{{ _id }}"
     },
-    "document": "{{ document }}"
+    "document": {
+      "$set": "{{ document }}"
+    }
   }
 }
