@@ -22,10 +22,10 @@
     "badges": {
       "no_relay": "NO ECOMMERCE PLATFORM",
       "inactive": "INACTIVE",
-      "first_in_progress": "FIRST IN PROGRESS",
-      "importing": "IN PROGRESS",
-      "erroring": "ERRORING",
-      "finished_at": "FINISHED",
+      "first_got_started_at": "STARTED (AFTER RESET)",
+      "got_started_at": "STARTED",
+      "got_error_at": "ERRORED",
+      "got_finished_at": "FINISHED",
       "ago": "AGO"
     },
     "informations": {
