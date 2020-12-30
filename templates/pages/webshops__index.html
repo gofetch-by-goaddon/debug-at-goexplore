@@ -1,38 +1,38 @@
 {% if account != nil and user.superuser %}
 
   {% assign scope = params.scope %}
-  {% assign hash  = nil | new_hash %}
+  {% assign query = nil | new_hash %}
 
   {% case params.scope %}
 
     {% when "active" %}
 
-      {% assign hash           = hash | push_to_hash: "active", true %}
+      {% assign query = query | push_to_hash: "active", true %}
 
     {% when "inactive" %}
 
-      {% assign hash           = hash | push_to_hash: "active", false %}
+      {% assign query = query | push_to_hash: "active", false %}
 
     {% when "erroring" %}
 
-      {% assign hash           = hash | push_to_hash: "active", true %}
-      {% assign got_error_at_q = nil | new_hash: "$ne", nil %}
-      {% assign hash           = hash | push_to_hash: "got_error_at", got_error_at_q %}
+      {% assign query           = query | push_to_hash: "active", true %}
+      {% assign got_error_at_q  = nil | new_hash: "$ne", nil %}
+      {% assign query           = query | push_to_hash: "got_error_at", got_error_at_q %}
 
     {% else %}
 
-      {% assign scope           = nil %}
-      {% assign hash           = hash | push_to_hash: "company_id", account._id %}
+      {% assign scope = nil %}
+      {% assign query = query | push_to_hash: "company_id", account._id %}
 
   {% endcase %}
 
-  {% if hash.size > 0 %}
+  {% if query.size > 0 %}
+    <p>{{ query }}</p>
+    {% assign webshops_query  = "webshops" | db_find: company_id: account._id, page: params.page, per_page: params.per_page %}
+    {% assign webshops        = webshops_query.results %}
+    {% assign documents       = webshops %}
 
-    {% assign webshops_hash    = "webshops" | db_find: hash: hash, page: params.page, per_page: params.per_page %}
-    {% assign webshops          = webshops_hash.results %}
-    {% assign hashs            = webshops %}
-
-    {% include "shared/hash_relays" %}
+    {% include "shared/document_relays" %}
     {% include "webshops" %}
 
   {% endif %}
