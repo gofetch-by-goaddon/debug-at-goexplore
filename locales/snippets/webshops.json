@@ -26,7 +26,7 @@
       "importing": "IN PROGRESS",
       "erroring": "ERRORING",
       "finished_at": "FINISHED",
-      "ago": "AGO",
+      "ago": "AGO"
     },
     "informations": {
       "no_identifiable_config_keys": "None"
