@@ -4,14 +4,18 @@
 
 {% else %}
 
-  {% assign events = "ticket_created ticket_updated" | split: " " %}
+  {% assign events = "ticket_created ticket_updated ticket_updated_by_support" | split: " " %}
 
   {% if events contains params.event and params.details.ticket_id != nil %}
 
     {% assign tickets_query = "tickets" | db_find: ticket_id: params.details.ticket_id %}
     {% assign ticket       = tickets_query.results.first %}
 
-    {% if ticket != nil %}
+    {% if ticket == nil %}
+
+      {"status": "422", "error": "Ticket not found"}
+
+    {% else %}
 
       {% assign superusers_query = "superusers" | db_find: app_id: project.app_id %}
       {% assign superusers       = superusers_query.results | to_hash: "_id" %}
@@ -73,8 +77,12 @@
 
       {% endfor %}
     {% endif %}
+
+    {"status": "204"}
+
+  {% else %}
+
+    {"status": "422", "error": "Unknown event"}
+
   {% endif %}
-
-  {"status": "204"}
-
 {% endif %}
