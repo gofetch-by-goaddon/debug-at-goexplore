@@ -93,7 +93,7 @@
 
                     {% elsif webshop.got_finished_at < webshop.got_started_at %}
 
-                      {% assign badge_time  = "got_error_at" %}
+                      {% assign badge_time  = "got_started_at" %}
                       {% assign badge_style = "primary" %}
 
                     {% elsif webshop.got_started_at < webshop.got_finished_at %}
