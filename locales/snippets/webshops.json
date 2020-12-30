@@ -25,6 +25,7 @@
       "reset": "FIRST IMPORT"
     },
     "times": {
+      "in": "in",
       "s": "s",
       "m": "m",
       "h": "h"

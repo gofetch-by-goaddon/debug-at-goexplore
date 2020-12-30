@@ -108,17 +108,17 @@
 
                       {% if duration_s < 60 %}
 
-                        {% capture duration %} ({{ duration_s }} {{ l.times.s }}){% endcapture %}
+                        {% capture duration %} &#183; {{ l.times.in }} {{ duration_s }} {{ l.times.s }}{% endcapture %}
 
                       {% elsif duration_s < 3600 %}
 
                         {% assign duration_m = duration_s | divided_by: 60 %}
-                        {% capture duration %} ({{ duration_m }} {{ l.times.m }}){% endcapture %}
+                        {% capture duration %} &#183; {{ l.times.in }} {{ duration_m }} {{ l.times.m }}{% endcapture %}
 
                       {% else %}
 
                         {% assign duration_h = duration_s | divided_by: 216000 %}
-                        {% capture duration %} ({{ duration_h }} {{ l.times.h }}){% endcapture %}
+                        {% capture duration %} &#183; {{ l.times.in }} {{ duration_h }} {{ l.times.h }}{% endcapture %}
 
                       {% endif %}
                     
