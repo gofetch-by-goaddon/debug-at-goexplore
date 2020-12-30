@@ -76,21 +76,21 @@
 
                   {% elsif webshop.got_error_at != nil %}
 
-                    <span class="badge badge-danger">{{ l.badges.got_error_at }} {{ webshop.got_error_at | time_distance_in_words: now | upcase }} {{ l.badges.ago }}</span>
+                    <span class="border rounded px-1 text-danger border-danger">{{ l.badges.got_error_at }} {{ webshop.got_error_at | time_distance_in_words: now | upcase }} {{ l.badges.ago }}</span>
 
                   {% elsif webshop.got_started_at != nil %}
 
                     {% if webshop.got_finished_at == nil %}
 
-                      <span class="badge badge-primary">{{ l.badges.first_got_started_at }} {{ webshop.got_started_at | time_distance_in_words: now | upcase }} {{ l.badges.ago }}</span>
+                      <span class="border rounded px-1 text-primary border-primary">{{ l.badges.first_got_started_at }} {{ webshop.got_started_at | time_distance_in_words: now | upcase }} {{ l.badges.ago }}</span>
 
                     {% elsif webshop.got_finished_at < webshop.got_started_at %}
 
-                      <span class="badge badge-primary">{{ l.badges.got_started_at }} {{ webshop.got_started_at | time_distance_in_words: now | upcase }} {{ l.badges.ago }}</span>
+                      <span class="border rounded px-1 text-primary border-primary">{{ l.badges.got_started_at }} {{ webshop.got_started_at | time_distance_in_words: now | upcase }} {{ l.badges.ago }}</span>
 
                     {% elsif webshop.got_started_at < webshop.got_finished_at %}
                     
-                      <span class="badge badge-success">{{ l.badges.got_finished_at }} {{ webshop.got_finished_at | time_distance_in_words: now | upcase }} {{ l.badges.ago }}</span>
+                      <span class="border rounded px-1 text-success border-success">{{ l.badges.got_finished_at }} {{ webshop.got_finished_at | time_distance_in_words: now | upcase }} {{ l.badges.ago }}</span>
 
                     {% endif %}
                   {% endif %}
