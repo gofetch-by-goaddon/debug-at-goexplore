@@ -100,7 +100,7 @@
                   {% endif %}
                 </td>
                 <td class="text-right text-nowrap" width="1">
-                  {% if company_id == account._id %}
+                  {% if webshop.company_id == account._id %}
                     <a class="btn btn-outline-primary" href="{{ 'webshops__edit' | path_for: id: webshop._id }}">{{ l.buttons.edit }}</a>
                   {% else %}
                     <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
@@ -110,7 +110,7 @@
                   {% endif %}
                 </td>
                 <td class="text-right text-nowrap" width="1">
-                  {% if company_id == account._id %}
+                  {% if webshop.company_id == account._id %}
                     <a class="btn btn-outline-primary" href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.buttons.show }}</a>
                   {% else %}
                     <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
