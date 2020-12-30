@@ -22,11 +22,11 @@
     "badges": {
       "no_relay": "NO ECOMMERCE PLATFORM",
       "inactive": "INACTIVE",
-      "first_got_started_at": "STARTED (AFTER RESET)",
-      "got_started_at": "STARTED",
-      "got_error_at": "ERRORED",
-      "got_finished_at": "FINISHED",
-      "ago": "AGO"
+      "first_got_started_at": "started (after reset)",
+      "got_started_at": "started",
+      "got_error_at": "errored",
+      "got_finished_at": "finished",
+      "ago": "ago"
     },
     "informations": {
       "no_identifiable_config_keys": "None"
