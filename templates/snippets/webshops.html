@@ -142,7 +142,7 @@
                         <div class="d-none d-md-block">
                           <div class="btn btn-outline-primary">{{ l.buttons[action] }}</div>
                         </div>
-                        <i class="fas fa-wrench d-md-none"></i>
+                        <i class="fas fa-{{ action_icon }} d-md-none"></i>
                       </a>
                     {% else %}
                       <form method="patch" action="/accounts/{{ webshop.company_id }}/switch" data-remote="true">
