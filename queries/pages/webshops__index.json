@@ -15,7 +15,8 @@
       "config": 1,
       "got_started_at": 1,
       "got_finished_at": 1,
-      "got_error_at": 1
+      "got_error_at": 1,
+      "company_id": 1
     }
   },
   "active_webshops": {
@@ -34,7 +35,8 @@
       "config": 1,
       "got_started_at": 1,
       "got_finished_at": 1,
-      "got_error_at": 1
+      "got_error_at": 1,
+      "company_id": 1
     }
   },
   "erroring_webshops": {
@@ -54,7 +56,8 @@
       "config": 1,
       "got_started_at": 1,
       "got_finished_at": 1,
-      "got_error_at": 1
+      "got_error_at": 1,
+      "company_id": 1
     }
   }
 }
