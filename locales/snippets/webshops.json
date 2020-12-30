@@ -21,7 +21,12 @@
     },
     "badges": {
       "no_relay": "NO ECOMMERCE PLATFORM",
-      "inactive": "INACTIVE"
+      "inactive": "INACTIVE",
+      "first_in_progress": "FIRST IN PROGRESS",
+      "importing": "IN PROGRESS",
+      "erroring": "ERRORING",
+      "finished_at": "FINISHED",
+      "ago": "AGO",
     },
     "informations": {
       "no_identifiable_config_keys": "None"

@@ -33,6 +33,7 @@
       {% if webshops.size == 0 %}
         <p>{{ l.explainers.no_webshops }}</p>
       {% else %}
+        {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
         <table class="table">
           <thead>
             <tr>
@@ -69,7 +70,25 @@
                   {% endif %}
 
                   {% if webshop.active != true %}
-                    <span class="badge badge-danger">{{ l.badges.inactive }}</span>
+
+                    <span class="badge badge-secondary">{{ l.badges.inactive }}</span>
+
+                  {% elsif webshop.got_error_at != nil %}
+
+                    <span class="badge badge-danger">{{ l.badges.erroring }}</span>
+
+                  {% elsif webshop.got_started_at != nil and webshop.got_finished_at == nil %}
+
+                    <span class="badge badge-primary">{{ l.badges.first_in_progress }}</span>
+
+                  {% elsif webshop.got_started_at != nil and webshop.got_finished_at < webshop.got_started_at %}
+
+                    <span class="badge badge-primary">{{ l.badges.in_progress }}</span>
+
+                  {% elsif webshop.got_started_at != nil and webshop.got_started_at < webshop.got_finished_at %}
+                  
+                    <span class="badge badge-success">{{ l.badges.finished_at | time_distance_in_words: now }} {{ webshop.got_finished_at }} {{ l.badges.ago }}</span>
+
                   {% endif %}
 
                 </td>

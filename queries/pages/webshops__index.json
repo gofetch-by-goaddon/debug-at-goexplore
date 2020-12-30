@@ -12,10 +12,7 @@
       "_id": 1,
       "relay_id": 1,
       "active": 1,
-      "config": 1,
-      "got_started_at": 1,
-      "got_finished_at": 1,
-      "got_error_at": 1
+      "config": 1
     }
   },
   "active_webshops": {
@@ -31,10 +28,7 @@
       "_id": 1,
       "relay_id": 1,
       "active": 1,
-      "config": 1,
-      "got_started_at": 1,
-      "got_finished_at": 1,
-      "got_error_at": 1
+      "config": 1
     }
   },
   "erroring_webshops": {
@@ -51,10 +45,7 @@
       "_id": 1,
       "relay_id": 1,
       "active": 1,
-      "config": 1,
-      "got_started_at": 1,
-      "got_finished_at": 1,
-      "got_error_at": 1
+      "config": 1
     }
   }
 }
