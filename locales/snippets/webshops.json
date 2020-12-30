@@ -22,11 +22,7 @@
     "badges": {
       "no_relay": "NO ECOMMERCE PLATFORM",
       "inactive": "INACTIVE",
-      "first_got_started_at": "started (after reset)",
-      "got_started_at": "started",
-      "got_error_at": "errored",
-      "got_finished_at": "finished",
-      "ago": "ago"
+      "reset": "FIRST IMPORT"
     },
     "informations": {
       "no_identifiable_config_keys": "None"

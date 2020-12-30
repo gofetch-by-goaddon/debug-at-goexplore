@@ -70,29 +70,44 @@
                     </samp>
                   {% endif %}
 
+                  {% assign badge_time  = nil %}
+                  {% assign badge_style = nil %}
+
                   {% if webshop.active != true %}
 
                     <span class="badge badge-secondary">{{ l.badges.inactive }}</span>
 
                   {% elsif webshop.got_error_at != nil %}
 
-                    <span class="border rounded px-1 text-danger border-danger">{{ l.badges.got_error_at }} {{ webshop.got_error_at | time_distance_in_words: now }} {{ l.badges.ago }}</span>
+                    {% assign badge_time  = "got_error_at" %}
+                    {% assign badge_style = "danger" %}
 
                   {% elsif webshop.got_started_at != nil %}
 
                     {% if webshop.got_finished_at == nil %}
 
-                      <span class="border rounded px-1 text-primary border-primary">{{ l.badges.first_got_started_at }} {{ webshop.got_started_at | time_distance_in_words: now }} {{ l.badges.ago }}</span>
+                      <span class="badge badge-primary">{{ l.badges.reset }}</span>
+
+                      {% assign badge_time  = "got_started_at" %}
+                      {% assign badge_style = "primary" %}
 
                     {% elsif webshop.got_finished_at < webshop.got_started_at %}
 
-                      <span class="border rounded px-1 text-primary border-primary">{{ l.badges.got_started_at }} {{ webshop.got_started_at | time_distance_in_words: now }} {{ l.badges.ago }}</span>
+                      {% assign badge_time  = "got_error_at" %}
+                      {% assign badge_style = "primary" %}
 
                     {% elsif webshop.got_started_at < webshop.got_finished_at %}
-                    
-                      <span class="border rounded px-1 text-success border-success">{{ l.badges.got_finished_at }} {{ webshop.got_finished_at | time_distance_in_words: now }} {{ l.badges.ago }}</span>
 
+                      {% assign badge_time  = "got_finished_at" %}
+                      {% assign badge_style = "success" %}
+                    
                     {% endif %}
+                  {% endif %}
+
+                  {% if badge_time != nil %}
+
+                    {% include "webshops/time_badge" %}
+
                   {% endif %}
                 </td>
                 <td>
