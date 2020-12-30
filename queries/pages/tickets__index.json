@@ -19,5 +19,18 @@
     "sort": {
       "_id": -1
     }
+  },
+  "companies": {
+    "klass": "companies",
+    "query": {
+      "_id": {"$in": "{{ company_ids }}"}
+    },
+    "projection": {
+      "_id": 1,
+      "website": 1
+    },
+    "sort": {
+      "_id": -1
+    }
   }
 }
