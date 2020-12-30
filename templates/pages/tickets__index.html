@@ -1,39 +1,48 @@
 {% if account != nil and user.superuser %}
 
-  {% if params.scope == nil or params.scope == "" or params.scope == "opened" %}
+  {% assign query = nil | new_hash %}
 
-    {% assign status          = "opened" %}
-    {% assign query_statuses  = "opened escalated" | split: " " %}
+  {% case params.scope %}
 
-  {% elsif params.scope == "closed" %}
+    {% when "closed" %}
 
-    {% assign status          = "closed" %}
-    {% assign query_statuses  = "closed" | split: " " %}
-
-  {% endif %}
-
-  {% if user.superuser_level == 1 %}
-
-    {% assign tickets_query = "superuser_level_1_tickets" | db_find: statuses: query_statuses, page: params.page, per_page: params.per_page %}
-
-  {% else %}
-
-    {% if user.closed_ticket_relay_ids != nil and user.closed_ticket_relay_ids.size > 0 %}
-
-      {% assign tickets_query = "relay_tickets" | db_find: relay_ids: user.closed_ticket_relay_ids, statuses: query_statuses, page: params.page, per_page: params.per_page %}
-
-    {% elsif status == "opened" and user.ticket_relay_ids != nil and user.ticket_relay_ids.size > 0 %}
-
-      {% assign tickets_query = "relay_tickets" | db_find: relay_ids: user.ticket_relay_ids, statuses: query_statuses, page: params.page, per_page: params.per_page %}
+      {% assign status          = "closed" %}
+      {% assign query_statuses  = "closed" | split: " " %}
 
     {% else %}
 
-      {% assign tickets_query = "superuser_tickets" | db_find: user_id: user._id, statuses: query_statuses, page: params.page, per_page: params.per_page %}
+      {% assign status          = "opened" %}
+      {% assign query_statuses  = "opened escalated" | split: " " %}
+
+  {% endcase %}
+
+  {% assign status_q  = nil | new_hash %}
+  {% assign status_q  = status_q | push_to_hash: "$in", query_statuses %}
+
+  {% if user.superuser_level != 1 %}
+
+    {% if user.closed_ticket_relay_ids != nil and user.closed_ticket_relay_ids.size > 0 %}
+
+      {% assign relay_q   = nil | new_hash %}
+      {% assign relay_q   = relay_q | push_to_hash: "$in", user.closed_ticket_relay_ids %}
+      {% assign query     = query | push_to_hash: "relay_id", relay_q %}
+
+    {% elsif status == "opened" and user.ticket_relay_ids != nil and user.ticket_relay_ids.size > 0 %}
+
+      {% assign relay_q   = nil | new_hash %}
+      {% assign relay_q   = relay_q | push_to_hash: "$in", user.ticket_relay_ids %}
+      {% assign query     = query | push_to_hash: "relay_id", relay_q %}
+
+    {% else %}
+
+      {% assign query     = query | push_to_hash: "superuser_id", user._id %}
 
     {% endif %}
   {% endif %}
 
-  {% assign tickets = tickets_query.results %}
+  {% assign query         = query | push_to_hash: "status", got_error_at_q %}
+  {% assign tickets_query = "tickets" | db_find: query: query, page: params.page, per_page: params.per_page %}
+  {% assign tickets       = tickets_query.results %}
 
   {% if tickets.size > 0 %}
 
