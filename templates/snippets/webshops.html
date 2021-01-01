@@ -6,6 +6,8 @@
 
 {% else %}
 
+  {% include "shared/extra_table_cols" %}
+
   {% assign scope_names = "inactive erroring active" | split: " " %}
   {% assign scope_names = scope_names | push_to_array: nil | reverse %}
 
@@ -43,7 +45,7 @@
               <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
               <th class="border-bottom-0"></th>
               <th class="border-bottom-0"></th>
-              {% include "webshops/extra_ths" %}
+              {% include "shared/extra_table_ths" %}
             </tr>
           </thead>
           <tbody>
