@@ -1,0 +1,20 @@
+{% if company_id == account._id %}
+  <a href="{{ link_path | path_for: id: ticket._id, page: tickets_query.page, per_page: tickets_query.per_page, scope: scope }}">
+    <div class="d-none d-md-block">
+      {{ link_name }}
+    </div>
+    <i class="{{ link_icon }} d-md-none"></i>
+  </a>
+{% else %}
+  {% if company_id != nil and companies[company_id] != nil %}
+    <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
+      <input type="hidden" name="redirect" value="{{ link_path | path_for: id: ticket._id, page: tickets_query.page, per_page: tickets_query.per_page, scope: scope }}">
+      <div class="d-none d-md-block">
+        <input type="submit" value="{{ link_name }}" class="submit-link d-inline border-0 p-0 text-primary bg-white">
+      </div>
+      <div class="d-md-none">
+        <button type="submit" class="btn btn-link px-0"><i class="text-primary {{ link_icon }}"></i></button>
+      </div>
+    </form>
+  {% endif %}
+{% endif %}

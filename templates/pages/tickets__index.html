@@ -6,12 +6,12 @@
 
     {% when "closed" %}
 
-      {% assign status          = "closed" %}
+      {% assign scope           = "closed" %}
       {% assign query_statuses  = "closed" | split: " " %}
 
     {% else %}
 
-      {% assign status          = "opened" %}
+      {% assign scope           = "opened" %}
       {% assign query_statuses  = "opened escalated" | split: " " %}
 
   {% endcase %}
@@ -27,7 +27,7 @@
       {% assign relay_q   = relay_q | push_to_hash: "$in", user.closed_ticket_relay_ids %}
       {% assign query     = query | push_to_hash: "relay_id", relay_q %}
 
-    {% elsif status == "opened" and user.ticket_relay_ids != nil and user.ticket_relay_ids.size > 0 %}
+    {% elsif scope == "opened" and user.ticket_relay_ids != nil and user.ticket_relay_ids.size > 0 %}
 
       {% assign relay_q   = nil | new_hash %}
       {% assign relay_q   = relay_q | push_to_hash: "$in", user.ticket_relay_ids %}

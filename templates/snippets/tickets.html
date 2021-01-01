@@ -7,6 +7,7 @@
 {% else %}
 
   {% include "shared/link_styles" %}
+  {% include "shared/extra_table_cols" %}
 
   {% assign now           = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
   {% assign status_names  = "opened closed" | split: " " %}
@@ -16,7 +17,7 @@
       <ul class="nav nav-tabs card-header-tabs">
         {% for status_name in status_names %}
           <li class="nav-item">
-            {% if status_name == status %}
+            {% if status_name == scope %}
               {% assign active_bool = " active" %}
             {% else %}
               {% assign active_bool = "" %}
@@ -41,11 +42,11 @@
               <th class="border-bottom-0">{{ l.headers.company_website }}</th>
               <th class="border-bottom-0">{{ l.headers.relay_name }}</th>
               <th class="border-bottom-0">
-                {% capture headline_name %}{{ status }}_at{% endcapture %}
+                {% capture headline_name %}{{ scope }}_at{% endcapture %}
                 {{ l.headers[headline_name] }}
               </th>
               <th class="border-bottom-0"></th>
-              {% include "tickets/extra_ths" %}
+              {% include "shared/extra_table_ths" %}
             </tr>
           </thead>
           <tbody>
@@ -55,7 +56,7 @@
             {% for ticket in sorted_tickets %}
               {% assign relay_id        = ticket.relay_id %}
               {% assign company_id      = ticket.company_id %}
-              {% capture status_time_name %}{{ status }}_at{% endcapture %}
+              {% capture status_time_name %}{{ scope }}_at{% endcapture %}
               <tr>
                 <td>
                   {% if company_id == account._id %}
@@ -99,18 +100,27 @@
                 </td>
                 <td class="text-right text-nowrap" width="1">
                   {% assign ticket_status = ticket.status %}
-                  {% if company_id == account._id %}
-                    <a href="{{ 'tickets__show' | path_for: id: ticket._id, page: tickets_query.page, per_page: tickets_query.per_page, scope: status }}">{{ l.status_names[ticket_status] }}</a>
-                  {% else %}
-                    {% if company_id != nil and companies[company_id] != nil %}
-                      <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                        <input type="hidden" name="redirect" value="{{ 'tickets__show' | path_for: id: ticket._id, page: tickets_query.page, per_page: tickets_query.per_page, scope: status }}">
-                        <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ l.status_names[ticket_status] }}">
-                      </form>
-                    {% endif %}
-                  {% endif %}
+                  {% assign link_path     = "tickets__show" %}
+                  {% assign link_name     = l.status_names[ticket_status] %}
+                  {% assign link_icon     = "fas fa-wrench" %}
+                  {% include "tickets/link" %}
                 </td>
-                {% include "tickets/extra_tds" %}
+                {% if table_cols != nil %}
+                  {% for table_col in table_cols %}
+
+                    {% assign table_td = table_col | split: ";" %}
+
+                    {% if table_td.size == 3 %}
+
+                      <td class="text-right text-nowrap" width="1">
+                        {% assign link_path = table_td[0] %}
+                        {% assign link_name = table_td[1] %}
+                        {% assign link_icon = table_td[2] %}
+                        {% include "tickets/link" %}
+                      </td>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
               </tr>
             {% endfor %}
           </tbody>
@@ -122,7 +132,7 @@
   {% assign page          = tickets_query.page %}
   {% assign per_page      = tickets_query.per_page %}
   {% assign pages_count   = tickets_query.pages_count %}
-  {% assign params_scope  = status %}
+  {% assign params_scope  = scope %}
   {% assign klass         = "tickets" %}
 
   {% include "shared/pagination" %}
