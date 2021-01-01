@@ -54,8 +54,8 @@
             {% assign sorted_tickets = tickets | sort: headline_name | reverse %}
 
             {% for ticket in sorted_tickets %}
-              {% assign relay_id        = ticket.relay_id %}
-              {% assign company_id      = ticket.company_id %}
+              {% assign relay_id    = ticket.relay_id %}
+              {% assign company_id  = ticket.company_id %}
               {% capture status_time_name %}{{ scope }}_at{% endcapture %}
               <tr>
                 <td>
@@ -98,29 +98,12 @@
                     {{ ticket[status_time_name] | time_distance_in_words: now | capitalize }} {{ l.informations.ago }}
                   </span>
                 </td>
-                <td class="text-right text-nowrap" width="1">
-                  {% assign ticket_status = ticket.status %}
-                  {% assign link_path     = "tickets__show" %}
-                  {% assign link_name     = l.status_names[ticket_status] %}
-                  {% assign link_icon     = "fas fa-wrench" %}
-                  {% include "tickets/link" %}
-                </td>
-                {% if table_cols != nil %}
-                  {% for table_col in table_cols %}
-
-                    {% assign table_td = table_col | split: ";" %}
-
-                    {% if table_td.size == 3 %}
-
-                      <td class="text-right text-nowrap" width="1">
-                        {% assign link_path = table_td[0] %}
-                        {% assign link_name = table_td[1] %}
-                        {% assign link_icon = table_td[2] %}
-                        {% include "tickets/link" %}
-                      </td>
-                    {% endif %}
-                  {% endfor %}
-                {% endif %}
+                {% assign ticket_status = ticket.status %}
+                {% assign link_path     = "tickets__show" %}
+                {% assign link_name     = l.status_names[ticket_status] %}
+                {% assign link_icon     = "fas fa-wrench" %}
+                {% include "shared/table_link" %}
+                {% include "shared/extra_table_links" %}
               </tr>
             {% endfor %}
           </tbody>

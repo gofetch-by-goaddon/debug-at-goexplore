@@ -48,7 +48,8 @@
           </thead>
           <tbody>
             {% for webshop in webshops %}
-              {% assign relay_id = webshop.relay_id %}
+              {% assign relay_id    = webshop.relay_id %}
+              {% assign company_id  = webshop.company_id %}
               <tr>
                 <td>
                   {% if relays[relay_id] != nil %}
@@ -122,43 +123,26 @@
                     {{ relays[relay_id].name }}
                   {% endif %}
                 </td>
-                {% assign actions = "edit show" | split: " " %}
-                {% for action in actions %}
+                {% assign links = "edit show" | split: " " %}
+                {% for link in links %}
 
-                  {% capture action_path %}webshops__{{ action }}{% endcapture %}
+                  {% capture link_path %}webshops__{{ link }}{% endcapture %}
 
-                  {% if action == "edit" %}
+                  {% if link == "edit" %}
 
-                    {% assign action_icon = "wrench" %}
+                    {% assign link_icon = "fas fa-wrench" %}
 
                   {% else %}
 
-                    {% assign action_icon = "code" %}
+                    {% assign link_icon = "fas fa-code" %}
 
                   {% endif %}
 
-                  <td class="text-right text-nowrap" width="1">
-                    {% if webshop.company_id == account._id %}
-                      <a href="{{ action_path | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">
-                        <div class="d-none d-md-block">
-                          <div class="btn btn-outline-primary">{{ l.buttons[action] }}</div>
-                        </div>
-                        <i class="fas fa-{{ action_icon }} d-md-none"></i>
-                      </a>
-                    {% else %}
-                      <form method="patch" action="/accounts/{{ webshop.company_id }}/switch" data-remote="true">
-                        <input type="hidden" name="redirect" value="{{ action_path | path_for: id: webshop._id, page: webshops_query.page, per_page: webshops_query.per_page, scope: scope }}">
-                        <div class="d-none d-md-block">
-                          <input type="submit" value="{{ l.buttons[action] }}" class="btn btn-outline-primary">
-                        </div>
-                        <div class="d-md-none">
-                          <button type="submit" class="btn btn-link px-0"><i class="text-primary fas fa-{{ action_icon }}"></i></button>
-                        </div>
-                      </form>
-                    {% endif %}
-                  </td>
-                  {% include "webshops/extra_tds" %}
+                  {% assign link_name     = l.buttons[link] %}
+
+                  {% include "shared/table_link" %}
                 {% endfor %}
+                {% include "shared/extra_table_links" %}
               </tr>
             {% endfor %}
           </tbody>
