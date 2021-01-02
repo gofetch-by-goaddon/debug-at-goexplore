@@ -73,21 +73,23 @@
             <td>
               {% include "shared/auths/status" %}
             </td>
-            <td class="text-right text-nowrap" width="1">
+            {% include "shared/auths/show_auth" %}
 
-              {% include "shared/auths/show_auth" %}
+            {% if show_auth %}
 
-              {% if show_auth %}
+              {% assign link_path     = "auths__show" %}
+              {% assign link_name     = l.buttons.show %}
+              {% assign link_icon     = "fas fa-wrench" %}
 
-                {% assign link_path     = "auths__show" %}
-                {% assign link_name     = l.buttons.show %}
-                {% assign link_icon     = "fas fa-wrench" %}
+            {% else %}
 
-                {% include "shared/table_link" %}
+              {% assign link_path     = nil %}
+              {% assign link_name     = nil %}
+              {% assign link_icon     = nil %}
 
-              {% endif %}
-            </td>
-            {% include "auths/extra_tds" %}
+            {% endif %}
+            {% include "shared/table_link" %}
+            {% include "shared/extra_table_links" %}
           </tr>
         {% endfor %}
       </tbody>
