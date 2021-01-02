@@ -40,9 +40,9 @@
     {% endif %}
   {% endif %}
 
-  {% assign query         = query | push_to_hash: "status", status_q %}
-  {% assign index_query   = "tickets" | db_find: query: query, page: params.page, per_page: params.per_page %}
-  {% assign documents     = index_query.results %}
+  {% assign query           = query | push_to_hash: "status", status_q %}
+  {% assign documents_query = "tickets" | db_find: query: query, page: params.page, per_page: params.per_page %}
+  {% assign documents       = documents_query.results %}
 
   {% if documents.size > 0 %}
 

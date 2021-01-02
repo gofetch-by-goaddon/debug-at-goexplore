@@ -1,7 +1,7 @@
 <td class="text-right text-nowrap" width="1">
   {% if link_path != nil %}
     {% if company_id == nil or company_id == account._id %}
-      <a href="{{ link_path | path_for: id: document._id, page: index_query.page, per_page: index_query.per_page, scope: scope }}">
+      <a href="{{ link_path | path_for: id: document._id, page: documents_query.page, per_page: documents_query.per_page, scope: scope }}">
         <div class="d-none d-md-block">
           {{ link_name }}
         </div>
@@ -9,7 +9,7 @@
       </a>
     {% else %}
       <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-        <input type="hidden" name="redirect" value="{{ link_path | path_for: id: document._id, page: index_query.page, per_page: index_query.per_page, scope: scope }}">
+        <input type="hidden" name="redirect" value="{{ link_path | path_for: id: document._id, page: documents_query.page, per_page: documents_query.per_page, scope: scope }}">
         <div class="d-none d-md-block">
           <input type="submit" value="{{ link_name }}" class="submit-link d-inline border-0 p-0 text-primary bg-white">
         </div>
