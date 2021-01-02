@@ -22,7 +22,7 @@
 
         {% unless open_statuses contains document.status %}
 
-          {% assign error = "WHAT?" %}
+          {% assign error = l.no_access %}
 
         {% endunless %}
 
