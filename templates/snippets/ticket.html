@@ -542,6 +542,10 @@
 
                         {% assign identifier = "relay" %}
 
+                      {% elsif log_entry.author_id == "merchant" %}
+
+                        {% assign identifier = document.mail_address | decrypt %}
+
                       {% else %}
 
                         {% assign superuser_id = log_entry.author_id %}
