@@ -60,7 +60,7 @@
 
         var recipient = state.element.attributes["data-recipient"].value;
 
-        if (recipient === "{{ ticket.mail_address | decrypt }}") {
+        if (recipient === "{{ document.mail_address | decrypt }}") {
           var text = recipient.concat(" &#183; <b>{{ l.recipients.merchant }}</b>");
           return jQuery.parseHTML(text);
         } else if (recipient === "relay") {
@@ -156,7 +156,7 @@
   {% assign form_field_names  = "mail_address phone admin_url admin_username admin_password ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}
 
   {% for form_field_name in form_field_names %}
-    {% if ticket[form_field_name] != nil and ticket[form_field_name] != "" %}
+    {% if document[form_field_name] != nil and document[form_field_name] != "" %}
       {% assign right_tr_count = right_tr_count | plus: 1 %}
     {% endif %}
   {% endfor %}
@@ -170,11 +170,11 @@
 
           {% for status_field_name in status_field_names %}
 
-            {% if ticket[status_field_name] != nil %}
+            {% if document[status_field_name] != nil %}
 
               {% assign status_field  = nil | new_hash %}
               {% assign status_field  = status_field | push_to_hash: "name", status_field_name %}
-              {% assign status_field  = status_field | push_to_hash: "value", ticket[status_field_name] %}
+              {% assign status_field  = status_field | push_to_hash: "value", document[status_field_name] %}
               {% assign timeline      = timeline | push_to_array: status_field %}
 
             {% endif %}
@@ -189,7 +189,7 @@
               <b>{{ l.headers.status }}:</b>
             </td>
             <td>
-              {% assign ticket_status = ticket.status %}
+              {% assign ticket_status = document.status %}
               {% include "shared/ticket_status" %}
             </td>
           </tr>
@@ -208,7 +208,7 @@
             </tr>
           {% endif %}
 
-          {% if ticket.webshop_id != nil %}
+          {% if document.webshop_id != nil %}
 
             {% assign left_tr_count = left_tr_count | plus: 1 %}
 
@@ -217,12 +217,12 @@
                 <b>{{ l.headers.webshop }}:</b>
               </td>
               <td>
-                <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ l.informations.edit_webshop }}</a> &#183; <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a> {{ l.informations.or }} <a href="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}">{{ l.informations.show_webshop }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: ticket.webshop_id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                <a href="{{ 'webshops__edit' | path_for: id: document.webshop_id }}">{{ l.informations.edit_webshop }}</a> &#183; <a href="{{ 'webshops__edit' | path_for: id: document.webshop_id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a> {{ l.informations.or }} <a href="{{ 'webshops__show' | path_for: id: document.webshop_id }}">{{ l.informations.show_webshop }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: document.webshop_id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
               </td>
             </tr>
           {% endif %}
 
-          {% if ticket.superuser_id != nil %}
+          {% if document.superuser_id != nil %}
 
             {% assign left_tr_count = left_tr_count | plus: 1 %}
 
@@ -231,7 +231,7 @@
                 <b>{{ l.headers.assignee }}:</b>
               </td>
               <td>
-                {% assign superuser_id = ticket.superuser_id %}
+                {% assign superuser_id = document.superuser_id %}
                 {% include "ticket/superuser_identifier" %}
                 {{ identifier }}
               </td>
@@ -261,12 +261,12 @@
                 {% endif %}
               {% endfor %}
 
-              {% if ticket.superuser_id != user._id %}
+              {% if document.superuser_id != user._id %}
 
                 {% assign action_count  = action_count | plus: 1 %}
                 {% assign action_number = action_number | plus: 1 %}
 
-                {% if ticket.superuser_id == nil and superusers_count == 0 and ticket.status == "closed" %}
+                {% if document.superuser_id == nil and superusers_count == 0 and document.status == "closed" %}
 
                   {% assign claim_append = l.update_status.append_strings.or %}
 
@@ -276,17 +276,17 @@
 
                 {% endif %}
 
-                <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                <form class="d-inline" action="{{ 'tickets__update' | path_for: id: document._id, format: 'js' }}" method="patch" data-remote="true">
                   <input type="hidden" name="superuser_id" value="{{ user._id }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ l.update_status.links.claim }}">{{ claim_append }}
                 </form>
 
               {% endif %}
 
-              {% if ticket.status == "closed" %}
+              {% if document.status == "closed" %}
 
                 {% assign statuses      = "re_opened" | split: " " %}
 
-              {% elsif ticket.status == "escalated" %}
+              {% elsif document.status == "escalated" %}
 
                 {% assign statuses      = "de_escalated closed" | split: " " %}
 
@@ -303,7 +303,7 @@
               {% endif %}
 
               {% for status in statuses %}
-                {% if ticket.status != status %}
+                {% if document.status != status %}
                   {% assign action_count = action_count | plus: 1 %}
                 {% endif %}
               {% endfor %}
@@ -311,12 +311,12 @@
               {% assign second_last_action_number = action_count | minus: 1 %}
 
               {% for status in statuses %}
-                {% if ticket.status != status %}
+                {% if document.status != status %}
 
                   {% assign action_number = action_number | plus: 1 %}
 
                   {% if action_count == 1 or action_number == action_count %}
-                    {% if superusers_count == 0 and ticket.superuser_id == nil %}
+                    {% if superusers_count == 0 and document.superuser_id == nil %}
 
                       {% assign append_string = "" %}
 
@@ -326,7 +326,7 @@
 
                     {% endif %}
                   {% elsif action_number == second_last_action_number %}
-                    {% if superusers_count == 0 and ticket.superuser_id == nil %}
+                    {% if superusers_count == 0 and document.superuser_id == nil %}
 
                       {% assign append_string = l.update_status.append_strings.or %}
 
@@ -349,13 +349,13 @@
 
                   {% if status == "escalated" %}
 
-                    <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                    <form class="d-inline" action="{{ 'tickets__update' | path_for: id: document._id, format: 'js' }}" method="patch" data-remote="true">
                       <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" id="markdown_confirm" value="{{ link_text }}" data-title="{{ l.confirm_escalate.title }}" data-confirm="" data-markdown="{{ l.confirm_escalate.confirm_intro | url_encode }}{{ relay.author | url_encode }}{{ l.confirm_escalate.confirm_outro | url_encode }}{{ relay.support_fees | url_encode }}" data-commit="{{ l.confirm_escalate.commit }}" data-cancel="{{ l.confirm_escalate.cancel }}" data-commit-class="btn btn-outline-primary" data-cancel-class="text-primary">{{ append_string }}
                     </form>
 
                   {% else %}
 
-                    <form class="d-inline" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                    <form class="d-inline" action="{{ 'tickets__update' | path_for: id: document._id, format: 'js' }}" method="patch" data-remote="true">
                       <input type="hidden" name="status" value="{{ status }}"><input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ link_text }}">{{ append_string }}
                     </form>
 
@@ -363,10 +363,10 @@
                 {% endif %}
               {% endfor %}
 
-              {% if superusers_count > 0 or ticket.superuser_id != nil %}
+              {% if superusers_count > 0 or document.superuser_id != nil %}
                 <div class="dropright d-inline">
                   <button class="dropdown-link d-inline border-0 py-0 px-0 text-primary bg-white dropdown-toggle" type="button" id="assign_ticket" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {% if ticket.superuser_id == nil %}
+                    {% if document.superuser_id == nil %}
                       {{ l.assign.assign }}
                     {% else %}
                       {{ l.assign.reassign }}
@@ -382,17 +382,17 @@
 
                       {% if assignable %}
 
-                        <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                        <form action="{{ 'tickets__update' | path_for: id: document._id, format: 'js' }}" method="patch" data-remote="true">
                           <input type="hidden" name="superuser_id" value="{{ superuser[0] }}"><input type="submit" class="px-3 btn btn-link" value="{{ superuser[1].email }}">
                         </form>
 
                       {% endif %}
                     {% endfor %}
 
-                    {% if ticket.superuser_id != nil %}
+                    {% if document.superuser_id != nil %}
 
                       <div class="dropdown-divider mb-1"></div>
-                      <form action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+                      <form action="{{ 'tickets__update' | path_for: id: document._id, format: 'js' }}" method="patch" data-remote="true">
                         <input type="hidden" name="superuser_id" value="none"><input type="submit" class="px-3 btn btn-link text-danger" value="{{ l.assign.unassign }}">
                       </form>
 
@@ -407,13 +407,13 @@
 
           {% for t in timeline %}
             {% assign status_name = t.name %}
-            {% if ticket[status_name] != nil and ticket[status_name] != "" %}
+            {% if document[status_name] != nil and document[status_name] != "" %}
 
               {% assign left_tr_count       = left_tr_count | plus: 1 %}
               {% assign bottom_border_klass = "" %}
 
               {% if t == timeline.last %}
-                {% if left_tr_count >= right_tr_count and ticket.comments != nil and ticket.comments != "" %}
+                {% if left_tr_count >= right_tr_count and document.comments != nil and document.comments != "" %}
 
                   {% assign bottom_border_klass = "border-bottom" %}
 
@@ -425,15 +425,15 @@
                   <b>{{ l.headers[status_name] }}:</b>
                 </td>
                 <td class="{{ bottom_border_klass }}">
-                  <span title="{{ ticket[status_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-                    {{ ticket[status_name] | time_distance_in_words: now | capitalize }} {{ l.informations.ago }}
+                  <span title="{{ document[status_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                    {{ document[status_name] | time_distance_in_words: now | capitalize }} {{ l.informations.ago }}
                   </span>
                 </td>
               </tr>
             {% endif %}
           {% endfor %}
 
-          {% if left_tr_count < right_tr_count and ticket.comments != nil and ticket.comments != "" %}
+          {% if left_tr_count < right_tr_count and document.comments != nil and document.comments != "" %}
             {% include "ticket/comments" %}
           {% endif %}
         </tbody>
@@ -444,14 +444,14 @@
       <table class="table mb-0">
         <tbody>
           {% for form_field_name in form_field_names %}
-            {% if ticket[form_field_name] != nil and ticket[form_field_name] != "" %}
+            {% if document[form_field_name] != nil and document[form_field_name] != "" %}
               <tr>
                 <td width="1" class="text-nowrap">
                   <b>{{ l.headers[form_field_name] }}:</b>
-                  <input type="text" value="{{ ticket[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}" style="display:none;">
+                  <input type="text" value="{{ document[form_field_name] | decrypt }}" data-copy="{{ form_field_name }}" style="display:none;">
                 </td>
                 <td>
-                  {{ ticket[form_field_name] | decrypt }}
+                  {{ document[form_field_name] | decrypt }}
                 </td>
                 <td width="1">
                   <i class="far fa-copy text-primary" data-copy-button="{{ form_field_name }}" style="cursor:pointer;" onclick="copyFormInput('{{ form_field_name }}')"></i>
@@ -465,7 +465,7 @@
     </div>
   </div>
 
-  {% if left_tr_count >= right_tr_count and ticket.comments != nil and ticket.comments != "" %}
+  {% if left_tr_count >= right_tr_count and document.comments != nil and document.comments != "" %}
 
     <table class="table mb-0">
       <tbody>
@@ -475,14 +475,14 @@
 
   {% endif %}
 
-  <form class="my-4" id="message_form" action="{{ 'tickets__update' | path_for: id: ticket._id, format: 'js' }}" method="patch" data-remote="true">
+  <form class="my-4" id="message_form" action="{{ 'tickets__update' | path_for: id: document._id, format: 'js' }}" method="patch" data-remote="true">
     <div class="form-group">
       <b><label for="recipients">{{ l.recipients.label }}:</label></b><br>
       <select name="recipients[]" class="form-control input-select2-recipients" multiple id="recipients">
 
-        <option data-recipient="{{ ticket.mail_address | decrypt }}" value="{{ ticket.mail_address | decrypt }}"></option>
+        <option data-recipient="{{ document.mail_address | decrypt }}" value="{{ document.mail_address | decrypt }}"></option>
 
-        {% if ticket.status == "escalated" %}
+        {% if document.status == "escalated" %}
 
           <option data-recipient="relay" value="relay"></option>
 
@@ -520,7 +520,7 @@
           </h5>
         </div>
 
-        {% if ticket.log != nil and ticket.log.size > 0 %}
+        {% if document.log != nil and document.log.size > 0 %}
           {% assign toggle_klass = " show" %}
         {% else %}
           {% assign toggle_klass = "" %}
@@ -531,8 +531,8 @@
             <table class="table" id="log_table">
               <tbody>
 
-                {% if ticket.log != nil %}
-                  {% assign log = ticket.log | reverse %}
+                {% if document.log != nil %}
+                  {% assign log = document.log | reverse %}
 
                   {% for log_entry in log %}
 
@@ -602,7 +602,7 @@
                     {% include "shared/ticket_status" %}
                   </td>
                   {% assign log_entry = nil | new_hash %}
-                  {% assign log_entry = log_entry | push_to_hash: "time", ticket.opened_at %}
+                  {% assign log_entry = log_entry | push_to_hash: "time", document.opened_at %}
                   {% assign td_klass = "" %}
                   {% include "shared/tickets/log_entry_time_td" %}
                 </tr>

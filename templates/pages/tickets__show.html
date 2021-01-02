@@ -1,10 +1,10 @@
 {% if account != nil and user.superuser %}
 
-  {% assign error         = nil %}
-  {% assign tickets_query = "tickets" | db_find: company_id: account._id, _id: params.id %}
-  {% assign ticket        = tickets_query.results.first %}
+  {% assign error           = nil %}
+  {% assign documents_query = "tickets" | db_find: company_id: account._id, _id: params.id %}
+  {% assign document        = documents_query.results.first %}
 
-  {% if ticket == nil %}
+  {% if document == nil %}
 
     {% assign error = l.no_ticket %}
 
@@ -12,14 +12,14 @@
 
     {% include "shared/tickets/check_user_access" %}
 
-    {% if error == nil and ticket.auth_id != nil %}
+    {% if error == nil and document.auth_id != nil %}
 
-      {% assign auths_query = "auths" | db_find: _id: ticket.auth_id %}
+      {% assign auths_query = "auths" | db_find: _id: document.auth_id %}
       {% assign auth        = auths_query.results.first %}
 
     {% endif %}
 
-    {% if error == nil and ticket.relay_id != nil %}
+    {% if error == nil and document.relay_id != nil %}
 
       {% assign gofetch_project_api_token = project.secrets.gofetch_project_api_token %}
 
@@ -29,7 +29,7 @@
 
       {% else %}
 
-        {% assign relay_response = "relay" | webhook: relay_id: ticket.relay_id, gofetch_project_api_token: gofetch_project_api_token %}
+        {% assign relay_response = "relay" | webhook: relay_id: document.relay_id, gofetch_project_api_token: gofetch_project_api_token %}
 
         {% if relay_response.error != nil %}
 
