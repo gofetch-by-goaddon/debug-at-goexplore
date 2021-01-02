@@ -1,5 +1,5 @@
 {% assign start         = document.got_started_at | date: "%s" %}
-{% assign end           = v[badge_time] | date: "%s" %}
+{% assign end           = document[badge_time] | date: "%s" %}
 {% assign duration_s    = end | minus: start %}
 
 {% capture duration %} &#183; {{ l.intros[badge_time] }} {% endcapture %}
