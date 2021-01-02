@@ -22,9 +22,9 @@
 
           {% include "shared/auths/status" %}
 
-          {% if auth.status_description != nil and auth.status_description != "" %}
+          {% if document.status_description != nil and document.status_description != "" %}
 
-            <span class="text-secondary">&#183; {{ auth.status_description }}</span>
+            <span class="text-secondary">&#183; {{ document.status_description }}</span>
 
           {% endif %}
         </td>
@@ -52,17 +52,17 @@
           <b>{{ l.headers.remote_ip }}:</b>
         </td>
         <td>
-          {{ auth.remote_ip | decrypt }}
+          {{ document.remote_ip | decrypt }}
         </td>
       </tr>
-      {% if auth.webshop_id != nil %}
+      {% if document.webshop_id != nil %}
         <tr>
           <td width="1" class="text-nowrap">
             <b>{{ l.headers.webshop }}:</b>
           </td>
           <td>
             {% if webshop == nil %}
-              {{ l.informations.unknown_webshop }} <span class="text-secondary border rounded border-secondary px-1">{{ auth.webshop_id }}</span>
+              {{ l.informations.unknown_webshop }} <span class="text-secondary border rounded border-secondary px-1">{{ document.webshop_id }}</span>
             {% else %}
               {% if webshop.company_id == account._id %}
                 <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.links.show_webshop }}</a>

@@ -11,7 +11,7 @@
 
       {% assign auth_error = "" | split: " " %}
 
-      {% for auth_e in auth.error %}
+      {% for auth_e in document.error %}
 
         {% assign encrypted_hash = auth_e %}
         {% include "shared/decrypt_hash" %}
