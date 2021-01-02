@@ -1,14 +1,14 @@
 {% if email_ids != nil and email_ids[participant] != nil %}
 
-  {% assign data_participant = email_ids[participant] %}
+  {% assign participant_id = email_ids[participant] %}
 
 {% else %}
 
-  {% assign data_participant = participant %}
+  {% assign participant_id = participant %}
 
 {% endif %}
 
-<span class="border rounded text-nowrap px-1 mr-1" data-participant="{{ data_participant }}">
+<span class="border rounded text-nowrap px-1 mr-1" data-participant-id="{{ participant_id }}">
   {% if participant contains "@" %}
     {% assign ticket_mail_address = document.mail_address | decrypt %}
     {% if participant == ticket_mail_address %}
