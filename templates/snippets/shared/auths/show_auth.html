@@ -6,7 +6,7 @@
 
 {% else %}
 
-  {% if user.auth_relay_ids != nil and user.auth_relay_ids contains auth.relay_id %}
+  {% if user.auth_relay_ids != nil and user.auth_relay_ids contains document.relay_id %}
 
     {% assign days_ago = created_at | days_between_dates: now %}
 
