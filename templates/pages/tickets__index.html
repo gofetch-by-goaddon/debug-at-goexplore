@@ -41,8 +41,8 @@
   {% endif %}
 
   {% assign query         = query | push_to_hash: "status", status_q %}
-  {% assign tickets_query = "tickets" | db_find: query: query, page: params.page, per_page: params.per_page %}
-  {% assign tickets       = tickets_query.results %}
+  {% assign index_query   = "tickets" | db_find: query: query, page: params.page, per_page: params.per_page %}
+  {% assign tickets       = index_query.results %}
 
   {% if tickets.size > 0 %}
 

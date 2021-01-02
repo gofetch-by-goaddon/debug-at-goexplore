@@ -4,10 +4,17 @@
     <p class="text-danger">{{ error }}.</p>
   {% endif %}
 {% else %}
+
+  {% include "shared/extra_table_cols" %}
+
   <h5 class="mb-4">{{ l.headlines.auths }}</h5>
+
   {% if error != nil %}
+
     <p class="text-danger">{{ error }}.</p>
+
   {% else %}
+
     <table class="table">
       <thead>
         <tr>
@@ -16,16 +23,17 @@
           <th class="border-bottom-0">{{ l.headers.created_at }}</th>
           <th class="border-bottom-0">{{ l.headers.status }}</th>
           <th class="border-bottom-0"></th>
-          {% include "auths/extra_ths" %}
+          {% include "shared/extra_table_ths" %}
         </tr>
       </thead>
       <tbody>
 
         {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
 
-        {% for auth in auths %}
-          {% assign created_at  = auth._id | _id_to_datetime %}
-          {% assign relay_id    = auth.relay_id %}
+        {% for document in auths %}
+          {% assign created_at  = document._id | _id_to_datetime %}
+          {% assign relay_id    = document.relay_id %}
+          {% assign company_id  = nil %}
           <tr>
             <td>
               {% if relays[relay_id] != nil %}
@@ -35,9 +43,9 @@
                     {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
                       &#183;
                     {% endif %}
-                    {% if auth.webshop_config[identifiable_config_key] != nil and auth.webshop_config[identifiable_config_key] != "" %}
+                    {% if document.webshop_config[identifiable_config_key] != nil and document.webshop_config[identifiable_config_key] != "" %}
                       {% assign identifiable_config_keys = identifiable_config_keys | plus: 1 %}
-                      {{ auth.webshop_config[identifiable_config_key] | decrypt }}
+                      {{ document.webshop_config[identifiable_config_key] | decrypt }}
                     {% endif %}
                   {% endfor %}
 
@@ -71,7 +79,11 @@
 
               {% if show_auth %}
 
-                <a href="{{ 'auths__show' | path_for: id: auth._id, page: auths_query.page, per_page: auths_query.per_page }}">{{ l.buttons.show }}</a>
+                {% assign link_path     = "auths__show" %}
+                {% assign link_name     = l.buttons.show %}
+                {% assign link_icon     = "fas fa-wrench" %}
+
+                {% include "shared/table_link" %}
 
               {% endif %}
             </td>
@@ -80,12 +92,6 @@
         {% endfor %}
       </tbody>
     </table>
-
-    {% assign page          = auths_query.page %}
-    {% assign per_page      = auths_query.per_page %}
-    {% assign pages_count   = auths_query.pages_count %}
-    {% assign params_status = nil %}
-    {% assign klass         = "auths" %}
 
     {% include "shared/pagination" %}
   {% endif %}

@@ -29,9 +29,9 @@
 
   {% if query.size > 0 %}
 
-    {% assign webshops_query  = "webshops" | db_find: query: query, page: params.page, per_page: params.per_page %}
-    {% assign webshops        = webshops_query.results %}
-    {% assign documents       = webshops %}
+    {% assign index_query   = "webshops" | db_find: query: query, page: params.page, per_page: params.per_page %}
+    {% assign webshops      = index_query.results %}
+    {% assign documents     = webshops %}
 
     {% include "shared/document_relays" %}
     {% include "webshops" %}

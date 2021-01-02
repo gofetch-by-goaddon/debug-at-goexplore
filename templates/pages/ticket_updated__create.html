@@ -9,7 +9,7 @@
   {% if events contains params.event and params.details.ticket_id != nil %}
 
     {% assign tickets_query = "tickets" | db_find: ticket_id: params.details.ticket_id %}
-    {% assign ticket       = tickets_query.results.first %}
+    {% assign ticket        = tickets_query.results.first %}
 
     {% if ticket == nil %}
 

@@ -1,4 +1,4 @@
-{% capture page_name %}table_cols_{{ session.controller }}__{{ session.action }}{% endcapture %}
+{% capture page_name %}table_cols_{{ session.page }}{% endcapture %}
 
 {% if project.secrets[page_name] != nil %}
 

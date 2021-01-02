@@ -54,8 +54,8 @@
             {% assign sorted_tickets = tickets | sort: headline_name | reverse %}
 
             {% for ticket in sorted_tickets %}
-              {% assign relay_id    = ticket.relay_id %}
-              {% assign company_id  = ticket.company_id %}
+              {% assign relay_id    = document.relay_id %}
+              {% assign company_id  = document.company_id %}
               {% capture status_time_name %}{{ scope }}_at{% endcapture %}
               <tr>
                 <td>
@@ -79,14 +79,14 @@
                   {% if relays[relay_id] == nil %}
                     <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
                   {% else %}
-                    {% if ticket.webshop_id == nil or companies[company_id] == nil %}
+                    {% if document.webshop_id == nil or companies[company_id] == nil %}
                       {{ relays[relay_id].name }}
                     {% else %}
                       {% if company_id == account._id %}
-                        <a href="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">{{ relays[relay_id].name }}</a>
+                        <a href="{{ 'webshops__edit' | path_for: id: document.webshop_id }}">{{ relays[relay_id].name }}</a>
                       {% else %}
                         <form method="patch" action="/accounts/{{ company_id }}/switch" data-remote="true">
-                          <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: ticket.webshop_id }}">
+                          <input type="hidden" name="redirect" value="{{ 'webshops__edit' | path_for: id: document.webshop_id }}">
                           <input class="submit-link d-inline border-0 p-0 text-primary bg-white" type="submit" value="{{ relays[relay_id].name }}">
                         </form>
                       {% endif %}
@@ -94,11 +94,11 @@
                   {% endif %}
                 </td>
                 <td>
-                  <span title="{{ ticket[status_time_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
-                    {{ ticket[status_time_name] | time_distance_in_words: now | capitalize }} {{ l.informations.ago }}
+                  <span title="{{ document[status_time_name] | i18n_l: 'wday_date_hours_minutes' | capitalize }}">
+                    {{ document[status_time_name] | time_distance_in_words: now | capitalize }} {{ l.informations.ago }}
                   </span>
                 </td>
-                {% assign ticket_status = ticket.status %}
+                {% assign ticket_status = document.status %}
                 {% assign link_path     = "tickets__show" %}
                 {% assign link_name     = l.status_names[ticket_status] %}
                 {% assign link_icon     = "fas fa-wrench" %}
@@ -111,12 +111,6 @@
       {% endif %}
     </div>
   </div>
-
-  {% assign page          = tickets_query.page %}
-  {% assign per_page      = tickets_query.per_page %}
-  {% assign pages_count   = tickets_query.pages_count %}
-  {% assign params_scope  = scope %}
-  {% assign klass         = "tickets" %}
 
   {% include "shared/pagination" %}
 {% endif %}

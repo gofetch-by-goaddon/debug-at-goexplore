@@ -6,6 +6,7 @@
 
 {% else %}
 
+  {% assign link_query = webshops_query %}
   {% include "shared/extra_table_cols" %}
 
   {% assign scope_names = "inactive erroring active" | split: " " %}
@@ -49,9 +50,9 @@
             </tr>
           </thead>
           <tbody>
-            {% for webshop in webshops %}
-              {% assign relay_id    = webshop.relay_id %}
-              {% assign company_id  = webshop.company_id %}
+            {% for document in webshops %}
+              {% assign relay_id    = document.relay_id %}
+              {% assign company_id  = document.company_id %}
               <tr>
                 <td>
                   {% if relays[relay_id] != nil %}
@@ -61,9 +62,9 @@
                         {% if identifiable_config_key != relays[relay_id].identifiable_config_keys.first %}
                           &#183;
                         {% endif %}
-                        {% if webshop.config[identifiable_config_key] != nil and webshop.config[identifiable_config_key] != "" %}
+                        {% if document.config[identifiable_config_key] != nil and document.config[identifiable_config_key] != "" %}
                           {% assign identifiable_config_keys = identifiable_config_keys | plus: 1 %}
-                          {{ webshop.config[identifiable_config_key] | decrypt }}
+                          {{ document.config[identifiable_config_key] | decrypt }}
                         {% endif %}
                       {% endfor %}
 
@@ -79,31 +80,31 @@
                   {% assign badge_style = nil %}
                   {% assign duration    = nil %}
 
-                  {% if webshop.active != true %}
+                  {% if document.active != true %}
 
                     <span class="badge badge-secondary">{{ l.badges.inactive }}</span>
 
-                  {% elsif webshop.got_error_at != nil %}
+                  {% elsif document.got_error_at != nil %}
 
                     {% assign badge_time  = "got_error_at" %}
                     {% assign badge_style = "danger" %}
                     {% include "webshops/badge_duration" %}
 
-                  {% elsif webshop.got_started_at != nil %}
+                  {% elsif document.got_started_at != nil %}
 
-                    {% if webshop.got_finished_at == nil %}
+                    {% if document.got_finished_at == nil %}
 
                       <span class="badge badge-primary">{{ l.badges.reset }}</span>
 
                       {% assign badge_time    = "got_started_at" %}
                       {% assign badge_style   = "primary" %}
 
-                    {% elsif webshop.got_finished_at < webshop.got_started_at %}
+                    {% elsif document.got_finished_at < document.got_started_at %}
 
                       {% assign badge_time    = "got_started_at" %}
                       {% assign badge_style   = "primary" %}
 
-                    {% elsif webshop.got_started_at < webshop.got_finished_at %}
+                    {% elsif document.got_started_at < document.got_finished_at %}
 
                       {% assign badge_time    = "got_finished_at" %}
                       {% assign badge_style   = "success" %}
@@ -152,12 +153,6 @@
       {% endif %}
     </div>
   </div>
-
-  {% assign page            = webshops_query.page %}
-  {% assign per_page        = webshops_query.per_page %}
-  {% assign pages_count     = webshops_query.pages_count %}
-  {% assign params_scope    = scope %}
-  {% assign klass           = "webshops" %}
 
   {% include "shared/pagination" %}
 {% endif %}
