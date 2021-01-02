@@ -1,6 +1,6 @@
 <span class="border rounded text-nowrap px-1 text-{{ badge_style }} border-{{ badge_style }}">
   <span class="d-none d-lg-inline">{{ l.badges[badge_time] }}</span>
-  {% assign from    = webshop[badge_time] | date: "%s" %}
+  {% assign from    = document[badge_time] | date: "%s" %}
   {% assign seconds = to | minus: from %}
 
   {% if seconds < 60 %}
@@ -39,7 +39,7 @@
 
   {% else %}
 
-     {{ webshop[badge_time] | time_distance_in_words: now }}
+     {{ document[badge_time] | time_distance_in_words: now }}
 
   {% endif %}
 

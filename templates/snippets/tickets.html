@@ -51,9 +51,9 @@
           </thead>
           <tbody>
 
-            {% assign sorted_tickets = tickets | sort: headline_name | reverse %}
+            {% assign documents = tickets | sort: headline_name | reverse %}
 
-            {% for ticket in sorted_tickets %}
+            {% for document in documents %}
               {% assign relay_id    = document.relay_id %}
               {% assign company_id  = document.company_id %}
               {% capture status_time_name %}{{ scope }}_at{% endcapture %}
