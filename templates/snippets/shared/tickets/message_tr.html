@@ -3,7 +3,6 @@
   <td class="{{ td_klass }}">
     <p>
       {% assign participant = identifier %}
-      <p>{{ participant }}</p>
       {% include "shared/tickets/message_participant" %}
       {% if log_entry.recipients.size > 0 %}
         <i class="fas fa-arrow-right"></i>
