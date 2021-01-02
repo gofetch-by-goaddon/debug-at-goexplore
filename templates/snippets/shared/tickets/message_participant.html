@@ -1,18 +1,10 @@
-{% if email_ids != nil %}
+{% if email_ids != nil and email_ids[participant] != nil %}
 
-  {% if email_ids[participant] != nil %}
-
-    {% assign data_participant = email_ids[participant] %}
-
-  {% else %}
-
-    {% assign data_participant = participant %}
-
-  {% endif %}
+  {% assign data_participant = email_ids[participant] %}
 
 {% else %}
 
-  {% assign data_participant = nil %}
+  {% assign data_participant = participant %}
 
 {% endif %}
 
