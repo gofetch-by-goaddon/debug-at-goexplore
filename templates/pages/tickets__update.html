@@ -21,7 +21,7 @@
       {% assign superusers        = superusers_query.results | to_hash: "_id" %}
       {% assign redirect_to       = nil %}
       {% assign now               = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-      {% assign attributes          = nil | new_hash %}
+      {% assign attributes        = nil | new_hash %}
       {% assign log_entry         = nil | new_hash %}
       {% assign log_entry         = log_entry | push_to_hash: "time", now %}
 
@@ -39,7 +39,7 @@
 
         {% endif %}
 
-        {% assign attributes    = attributes | push_to_hash: "superuser_id", superuser_id %}
+        {% assign attributes  = attributes | push_to_hash: "superuser_id", superuser_id %}
         {% assign log_entry   = log_entry | push_to_hash: "superuser_id", superuser_id %}
 
       {% elsif params.message != nil and params.message != "" %}
@@ -67,7 +67,7 @@
 
         {% capture status_time %}{{ params_status }}_at{% endcapture %}
 
-        {% assign attributes      = attributes | push_to_hash: status_time, now %}
+        {% assign attributes    = attributes | push_to_hash: status_time, now %}
         {% assign log_entry     = log_entry | push_to_hash: "status", params_status %}
         {% assign response_text = l.response_texts.status_changed[params_status] %}
 
@@ -118,7 +118,7 @@
 
         {% assign log             = log | push_to_array: log_entry %}
         {% assign attributes      = attributes | push_to_hash: "log", log %}
-        {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, tocument: attributes %}
+        {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, document: attributes %}
 
       {% endif %}
 
