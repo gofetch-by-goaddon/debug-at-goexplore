@@ -1,8 +1,7 @@
-{{ auth }}
 {% assign auth_field_names = "webshop_config setup_config error log" | split: " " %}
 
 {% for auth_field_name in auth_field_names %}
-  {% if document[auth_field_name] != nil %}
+  {% if auth[auth_field_name] != nil %}
     <h5 class="my-4">
       {{ l.auth_headlines[auth_field_name] }}
     </h5>
@@ -12,7 +11,7 @@
 
       {% assign auth_error = "" | split: " " %}
 
-      {% for auth_e in document.error %}
+      {% for auth_e in auth.error %}
 
         {% assign encrypted_hash = auth_e %}
         {% include "shared/decrypt_hash" %}
@@ -25,7 +24,7 @@
 
     {% else %}
 
-      {% assign encrypted_hash = document[auth_field_name] %}
+      {% assign encrypted_hash = auth[auth_field_name] %}
 
       {% include "shared/decrypt_hash" %}
 
