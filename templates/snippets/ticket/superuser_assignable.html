@@ -21,7 +21,7 @@
 
     {% endif %}
 
-    {% if permitted_relay_ids != nil and permitted_relay_ids contains ticket.relay_id %}
+    {% if permitted_relay_ids != nil and permitted_relay_ids contains document.relay_id %}
 
       {% assign assignable = true %}
 

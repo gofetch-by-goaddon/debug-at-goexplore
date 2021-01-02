@@ -1,9 +1,9 @@
 {% if account != nil and user.superuser %}
 
-  {% assign tickets_query = "tickets" | db_find: company_id: account._id, _id: params.id %}
-  {% assign ticket        = tickets_query.results.first %}
+  {% assign documents_query = "tickets" | db_find: company_id: account._id, _id: params.id %}
+  {% assign document        = documents_query.results.first %}
 
-  {% if ticket == nil %}
+  {% if document == nil %}
 
     alertify.error("{{ l.response_texts.not_found }}");
 
@@ -21,7 +21,7 @@
       {% assign superusers        = superusers_query.results | to_hash: "_id" %}
       {% assign redirect_to       = nil %}
       {% assign now               = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-      {% assign document          = nil | new_hash %}
+      {% assign attributes          = nil | new_hash %}
       {% assign log_entry         = nil | new_hash %}
       {% assign log_entry         = log_entry | push_to_hash: "time", now %}
 
@@ -39,7 +39,7 @@
 
         {% endif %}
 
-        {% assign document    = document | push_to_hash: "superuser_id", superuser_id %}
+        {% assign attributes    = attributes | push_to_hash: "superuser_id", superuser_id %}
         {% assign log_entry   = log_entry | push_to_hash: "superuser_id", superuser_id %}
 
       {% elsif params.message != nil and params.message != "" %}
@@ -67,16 +67,16 @@
 
         {% capture status_time %}{{ params_status }}_at{% endcapture %}
 
-        {% assign document      = document | push_to_hash: status_time, now %}
+        {% assign attributes      = attributes | push_to_hash: status_time, now %}
         {% assign log_entry     = log_entry | push_to_hash: "status", params_status %}
         {% assign response_text = l.response_texts.status_changed[params_status] %}
 
         {% if params_status == "closed" %}
 
-          {% assign document = document | push_to_hash: "re_opened_at", nil %}
-          {% assign document = document | push_to_hash: "escalated_at", nil %}
-          {% assign document = document | push_to_hash: "de_escalated_at", nil %}
-          {% assign document = document | push_to_hash: "superuser_id", nil %}
+          {% assign attributes = attributes | push_to_hash: "re_opened_at", nil %}
+          {% assign attributes = attributes | push_to_hash: "escalated_at", nil %}
+          {% assign attributes = attributes | push_to_hash: "de_escalated_at", nil %}
+          {% assign attributes = attributes | push_to_hash: "superuser_id", nil %}
 
           {% if user.superuser_level != 1 %}
 
@@ -87,7 +87,7 @@
 
         {% elsif params_status == "de_escalated" %}
 
-          {% assign document = document | push_to_hash: "escalated_at", nil %}
+          {% assign attributes = attributes | push_to_hash: "escalated_at", nil %}
 
         {% endif %}
 
@@ -101,24 +101,24 @@
 
         {% endif %}    
 
-        {% assign document = document | push_to_hash: "status", status %}
+        {% assign attributes = attributes | push_to_hash: "status", status %}
 
       {% endif %}
 
-      {% if document.size > 0 or log_entry.size > 1 %}
-        {% if ticket.log == nil %}
+      {% if attributes.size > 0 or log_entry.size > 1 %}
+        {% if document.log == nil %}
 
           {% assign log = "" | split: " " %}
 
         {% else %}
 
-          {% assign log = ticket.log %}
+          {% assign log = document.log %}
 
         {% endif %}
 
         {% assign log             = log | push_to_array: log_entry %}
-        {% assign document        = document | push_to_hash: "log", log %}
-        {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, document: document %}
+        {% assign attributes      = attributes | push_to_hash: "log", log %}
+        {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, tocument: attributes %}
 
       {% endif %}
 
@@ -139,13 +139,13 @@
 
                 {% include "shared/ticket_url" %}
 
-                {% assign send_result = "merchant_message" | send_email: to: recipient, message: params.rendered_message, ticket_id: ticket._id, ticket_url: ticket_url %}
+                {% assign send_result = "merchant_message" | send_email: to: recipient, message: params.rendered_message, ticket_id: document._id, ticket_url: ticket_url %}
 
               {% elsif recipient.size == 24 and superusers[recipient].email != nil %}
 
-                {% capture ticket_url %}{{ session.protocol }}{{ session.url }}{{ "tickets__show" | path_for: id: ticket._id }}{% endcapture %}
+                {% capture ticket_url %}{{ session.protocol }}{{ session.url }}{{ "tickets__show" | path_for: id: document._id }}{% endcapture %}
 
-                {% assign send_result = "superuser_message" | send_email: to: superusers[recipient].email, ticket_id: ticket._id, ticket_url: ticket_url %}
+                {% assign send_result = "superuser_message" | send_email: to: superusers[recipient].email, ticket_id: document._id, ticket_url: ticket_url %}
 
               {% endif %}
 
