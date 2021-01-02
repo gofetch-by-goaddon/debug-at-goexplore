@@ -23,7 +23,6 @@
       {% assign now               = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
       {% assign attributes        = nil | new_hash %}
       {% assign log_entry         = nil | new_hash %}
-      {% assign log_entry         = log_entry | push_to_hash: "time", now %}
 
       {% if params.superuser_id != nil %}
 
@@ -104,7 +103,7 @@
 
       {% endif %}
 
-      {% if attributes.size > 0 or log_entry.size > 1 %}
+      {% if attributes.size > 0 or log_entry.size > 0 %}
         {% if document.log == nil %}
 
           {% assign log = "" | split: " " %}
@@ -115,6 +114,9 @@
 
         {% endif %}
 
+        {% assign log_entry_id    = nil | uuid_new %}
+        {% assign log_entry       = log_entry | push_to_hash: "id", log_entry_id %}
+        {% assign log_entry       = log_entry | push_to_hash: "created_at", now %}
         {% assign log             = log | push_to_array: log_entry %}
         {% assign attributes      = attributes | push_to_hash: "log", log %}
         {% assign tickets_update  = "update_ticket" | db_update_one: _id: params.id, document: attributes %}
@@ -132,23 +134,53 @@
           alertify.success("{{ response_text }}");
           {% if log_entry.message != nil %}
 
+            {% assign job_data                  = nil | new_hash %}
+            {% assign external_mail_addresses   = "" | split: " " %}
+            {% assign superuser_mail_addresses  = "" | split: " " %}
+
             {% for recipient in log_entry.recipients %}
 
               {% if recipient contains "@" %}
 
-                {% include "shared/ticket_url" %}
-
-                {% assign send_result = "merchant_message" | send_email: to: recipient, message: params.rendered_message, ticket_id: document._id, ticket_url: ticket_url %}
+                {% assign external_mail_addresses  = external_mail_addresses | push_to_array: recipient %}
 
               {% elsif recipient.size == 24 and superusers[recipient].email != nil %}
 
-                {% capture ticket_url %}{{ session.protocol }}{{ session.url }}{{ "tickets__show" | path_for: id: document._id }}{% endcapture %}
+                {% assign superuser_mail_addresses = superuser_mail_addresses | push_to_array: superusers[recipient].email %}
 
-                {% assign send_result = "superuser_message" | send_email: to: superusers[recipient].email, ticket_id: document._id, ticket_url: ticket_url %}
+              {% endif %}
+            {% endfor %}
+
+
+            {% if external_mail_addresses.size > 0 or superuser_mail_addresses.size > 0 %}
+
+              {% assign job_data = job_data | push_to_hash: "ticket_id", document._id %}
+              {% assign job_data = job_data | push_to_hash: "external_mail_addresses", external_mail_addresses %}
+              {% assign job_data = job_data | push_to_hash: "superuser_mail_addresses", superuser_mail_addresses %}
+
+              {% if superuser_mail_addresses.size > 0 %}
+
+                {% capture superuser_ticket_url %}{{ session.protocol }}{{ session.url }}{{ "tickets__show" | path_for: id: document._id }}{% endcapture %}
+
+                {% assign job_data = job_data | push_to_hash: "superuser_ticket_url", superuser_ticket_url %}
 
               {% endif %}
 
-            {% endfor %}
+              {% if external_mail_addresses.size > 0 %}
+
+                {% include "shared/ticket_url" %}
+
+                {% assign job_data          = job_data | push_to_hash: "external_ticket_url", ticket_url %}
+                {% assign job_data          = job_data | push_to_hash: "message", params.rendered_message %}
+                {% assign job_data          = job_data | push_to_hash: "log_entry_id", log_entry_id %}
+
+              {% endif %}
+            
+              {% assign job = "send_ticket_emails" | create_job: data: job_data %}
+
+              checkEmailJob("{{ job.job_id }}");
+
+            {% endif %}
 
             $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
 

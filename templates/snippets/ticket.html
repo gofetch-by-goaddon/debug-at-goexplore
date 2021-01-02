@@ -22,6 +22,10 @@
   </style>
 
   <script>
+    checkEmailJob = function(job_id) {
+      console.log(job_id);
+    };
+
     markdownSupportFees = function() {
       if ($("#markdown_confirm").length > 0) {
         var converter = new showdown.Converter({});
