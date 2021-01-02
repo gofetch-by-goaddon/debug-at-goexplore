@@ -10,6 +10,7 @@
       "mail_address": 1,
       "superuser_id": 1,
       "relay_id": 1,
+      "status": 1,
       "log": 1
     }
   },

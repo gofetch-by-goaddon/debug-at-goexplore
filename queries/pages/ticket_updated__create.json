@@ -6,7 +6,6 @@
     },
     "projection": {
       "_id": 1,
-      "status": 1,
       "superuser_id": 1,
       "relay_id": 1
     }
