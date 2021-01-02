@@ -66,7 +66,7 @@
         {% if page_i != page_number and dots %}
           <button type="button" class="btn btn-outline-secondary disabled" style="{{ btn_style }}">...</button>
         {% else %}
-          <a href="{{ pagination_path | path_for: page: page_number, per_page: index_query.per_page, scope: scope}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ page_number | plus: 1 }}</a>
+          <a href="{{ session.page | path_for: page: page_number, per_page: index_query.per_page, scope: scope}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ page_number | plus: 1 }}</a>
         {% endif %}
 
       {% endif %}
@@ -76,7 +76,7 @@
       <button type="button" class="btn btn-outline-secondary disabled" style="{{ btn_style }}">{{ l.next }}</button>
     {% else %}
       {% assign next_page = index_query.page | plus: 1 %}
-      <a href="{{ pagination_path | path_for: page: next_page, per_page: index_query.per_page, scope: scope}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ l.next }}</a>
+      <a href="{{ session.page | path_for: page: next_page, per_page: index_query.per_page, scope: scope}}" class="btn btn-outline-primary" style="{{ btn_style }}">{{ l.next }}</a>
     {% endif %}
   </div>
 {% endif %}
