@@ -2,7 +2,7 @@
   {% if participant == "relay" %}
     <span class="relay-name">{{ participant }}</span>
   {% elsif participant contains "@" %}
-    {% assign ticket_mail_address = ticket.mail_address | decrypt %}
+    {% assign ticket_mail_address = document.mail_address | decrypt %}
     {% if participant == ticket_mail_address %}
       {{ participant }} &#183; <b>{{ l.recipients.merchant }}</b>
     {% else %}
