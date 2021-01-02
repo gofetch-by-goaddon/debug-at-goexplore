@@ -1,7 +1,5 @@
-<span class="border rounded text-nowrap px-1 mr-1">
-  {% if participant == "relay" %}
-    <span class="relay-name">{{ participant }}</span>
-  {% elsif participant contains "@" %}
+<span class="border rounded text-nowrap px-1 mr-1" data-participant="{{ participant }}">
+  {% if participant contains "@" %}
     {% assign ticket_mail_address = document.mail_address | decrypt %}
     {% if participant == ticket_mail_address %}
       {{ participant }} &#183; <b>{{ l.recipients.merchant }}</b>

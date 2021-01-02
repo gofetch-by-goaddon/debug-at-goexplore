@@ -1,7 +1,7 @@
 {% assign td_klass = " pb-0 mb-0" %}
 <tr>
   <td class="{{ td_klass }}">
-    <p>
+    <p data-log-entry-id="{{ log_entry.id }}">
       {% assign participant = identifier %}
       {% include "shared/tickets/message_participant" %}
       {% if log_entry.recipients.size > 0 %}
