@@ -31,7 +31,7 @@
     </div>
     <div class="card-body">
 
-      {% if tickets.size == 0 %}
+      {% if documents.size == 0 %}
 
         <p>{{ l.explainers.no_tickets }}</p>
 
@@ -51,7 +51,7 @@
           </thead>
           <tbody>
 
-            {% assign documents = tickets | sort: headline_name | reverse %}
+            {% assign documents = documents | sort: headline_name | reverse %}
 
             {% for document in documents %}
               {% assign relay_id    = document.relay_id %}

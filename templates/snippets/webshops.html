@@ -6,7 +6,6 @@
 
 {% else %}
 
-  {% assign link_query = webshops_query %}
   {% include "shared/extra_table_cols" %}
 
   {% assign scope_names = "inactive erroring active" | split: " " %}
@@ -34,7 +33,7 @@
       </ul>
     </div>
     <div class="card-body">
-      {% if webshops.size == 0 %}
+      {% if documents.size == 0 %}
         <p>{{ l.explainers.no_webshops }}</p>
       {% else %}
         {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
@@ -50,7 +49,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for document in webshops %}
+            {% for document in documents %}
               {% assign relay_id    = document.relay_id %}
               {% assign company_id  = document.company_id %}
               <tr>
@@ -141,7 +140,7 @@
 
                   {% endif %}
 
-                  {% assign link_name     = l.buttons[link] %}
+                  {% assign link_name = l.buttons[link] %}
 
                   {% include "shared/table_link" %}
                 {% endfor %}

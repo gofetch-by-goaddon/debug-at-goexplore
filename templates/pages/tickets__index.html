@@ -42,24 +42,24 @@
 
   {% assign query         = query | push_to_hash: "status", status_q %}
   {% assign index_query   = "tickets" | db_find: query: query, page: params.page, per_page: params.per_page %}
-  {% assign tickets       = index_query.results %}
+  {% assign documents     = index_query.results %}
 
-  {% if tickets.size > 0 %}
+  {% if documents.size > 0 %}
 
     {% assign relay_ids   = "" %}
     {% assign company_ids = "" %}
 
-    {% for ticket in tickets %}
+    {% for document in documents %}
 
-      {% if ticket.relay_id != nil %}
+      {% if document.relay_id != nil %}
 
-        {% capture relay_ids %}{{ relay_ids }} {{ ticket.relay_id }}{% endcapture %}
+        {% capture relay_ids %}{{ relay_ids }} {{ document.relay_id }}{% endcapture %}
 
       {% endif %}
 
-      {% if ticket.company_id != nil %}
+      {% if document.company_id != nil %}
 
-        {% capture company_ids %}{{ company_ids }} {{ ticket.company_id }}{% endcapture %}
+        {% capture company_ids %}{{ company_ids }} {{ document.company_id }}{% endcapture %}
 
       {% endif %}
 

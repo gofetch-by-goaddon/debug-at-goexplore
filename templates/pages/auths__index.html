@@ -12,12 +12,11 @@
 
   {% if index_query == nil %}
 
-    {% assign error          = l.errors.no_access %}
+    {% assign error = l.errors.no_access %}
 
   {% else %}
 
-    {% assign auths          = index_query.results %}
-    {% assign documents      = auths %}
+    {% assign documents = index_query.results %}
 
     {% include "shared/document_relays" %}
 

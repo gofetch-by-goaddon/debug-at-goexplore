@@ -166,7 +166,7 @@
   })
   </script>
 
-  {% if webshop.active %}
+  {% if document.active %}
     {% assign webshop_status = "active" %}
   {% else %}
     {% assign webshop_status = "inactive" %}
@@ -193,7 +193,7 @@
     {% endif %}
 
     <div class="toggle-active" data-active="{{ data_active }}" style="{{ style }}">
-      <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch">
+      <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: document._id, format: 'json' }}" method="patch">
         <p>
           {{ l.explainers.active.p1 }}
           <span class="text-{{ active_colour }}"><b>{{ l.explainers.active[status] }}</b></span>.
@@ -206,13 +206,13 @@
   <h5 class="my-4">{{ l.headlines.config }}</h5>
   <p>
     {{ l.explainers.config.p1 }}
-    <a href="{{ 'webshops__show' | path_for: id: webshop._id }}">{{ l.explainers.config.p2 }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: webshop._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+    <a href="{{ 'webshops__show' | path_for: id: document._id }}">{{ l.explainers.config.p2 }}</a> &#183; <a href="{{ 'webshops__show' | path_for: id: document._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
   </p>
 
-  {% assign encrypted_hash = webshop.config %}
+  {% assign encrypted_hash = document.config %}
   {% include "shared/decrypt_hash" %}
 
-  <form class="update-webshop-form mb-4" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch">
+  <form class="update-webshop-form mb-4" action="{{ 'webshops__update' | path_for: id: document._id, format: 'json' }}" method="patch">
 
     <div class="json-container">
       <textarea class="border" name="config">{{ decrypted_hash | json }}</textarea>
@@ -226,7 +226,7 @@
     {{ l.explainers.reset.p1 }} <a href="https://goaddon.com/en/addons/5b9ff6463ab42f43522b30cf/manage#page=integrations&query=%7B%22filter%22%3A%22{{ relay.name | downcase }}%22%7D" target="_blank">{{ relay.name }} <i class="fas fa-external-link-alt"></i></a>. {{ l.explainers.reset.p2 }}.
   </p>
 
-  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: webshop._id, format: 'json' }}" method="patch">
+  <form class="update-webshop-form" action="{{ 'webshops__update' | path_for: id: document._id, format: 'json' }}" method="patch">
     <table>
       <tr>
         <td width="100%">

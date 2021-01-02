@@ -1,15 +1,13 @@
-{% assign webshops_query    = "webshops" | db_find: _id: params.id, company_id: account._id %}
-{% assign webshop           = webshops_query.results.first %}
+{% assign documents_query = "webshops" | db_find: _id: params.id, company_id: account._id %}
+{% assign document        = documents_query.results.first %}
 
-{% if webshop != nil %}
-
-  {% assign document = webshop %}
+{% if document != nil %}
 
   {% include "shared/document_relay" %}
 
   {% if error == nil %}
 
-    {% assign tickets_query = "tickets" | db_find: webshop_id: webshop._id %}
+    {% assign tickets_query = "tickets" | db_find: webshop_id: document._id %}
     {% assign tickets       = tickets_query.results %}
 
     {% include "shared/webshops/check_user_access" %}

@@ -1,12 +1,12 @@
 {% if account != nil and user.superuser %}
 
-  {% assign auths_query    = "auths" | db_find: _id: params.id, company_id: account._id %}
-  {% assign auth           = auths_query.results.first %}
+  {% assign documents_query   = "auths" | db_find: _id: params.id, company_id: account._id %}
+  {% assign document          = documents_query.results.first %}
 
-  {% if auth != nil %}
+  {% if document != nil %}
 
     {% assign now         = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
-    {% assign created_at  = auth._id | _id_to_datetime %}
+    {% assign created_at  = document._id | _id_to_datetime %}
 
     {% include "shared/auths/show_auth" %}
 
@@ -16,9 +16,9 @@
 
     {% else %}
 
-      {% if auth.webshop_id != nil %}
+      {% if document.webshop_id != nil %}
 
-        {% assign webshops_query  = "webshops" | db_find: _id: auth.webshop_id %}
+        {% assign webshops_query  = "webshops" | db_find: _id: document.webshop_id %}
         {% assign webshop         = webshops_query.results.first %}
 
         {% if webshop != nil and webshop.company_id != account._id %}
@@ -29,8 +29,6 @@
         {% endif %}
 
       {% endif %}
-
-      {% assign document = auth %}
 
       {% include "shared/document_relay" %}
 

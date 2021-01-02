@@ -134,9 +134,9 @@
         {% if identifiable_config_key != relay.identifiable_config_keys.first %}
           &#183;
         {% endif %}
-        {{ webshop.config[identifiable_config_key] | decrypt }}
+        {{ document.config[identifiable_config_key] | decrypt }}
       {% endfor %}
-      &#183; <a href="{{ 'webshops__edit' | path_for: id: webshop._id }}">{{ l.informations.edit }} <i class="far fa-edit"></i></a>
+      &#183; <a href="{{ 'webshops__edit' | path_for: id: document._id }}">{{ l.informations.edit }} <i class="far fa-edit"></i></a>
     </samp>
   </p>
 
@@ -230,7 +230,7 @@
                         {% if endpoint.params != nil and endpoint.params.size > 0 %}
                           {% for param in endpoint.params %}
                             {% if param.key == "webshop_id" %}
-                              <input type="hidden" name="webshop_id" data-type="param" value="{{ webshop._id }}">
+                              <input type="hidden" name="webshop_id" data-type="param" value="{{ document._id }}">
                             {% else %}
                               <div class="markdown" data-markdown="{{ param.description | url_encode }}" for="{{ param.key }}">{{ param.description }}</div>
                               <div class="input-group mb-4">

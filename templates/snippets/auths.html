@@ -1,4 +1,4 @@
-{% if auths.size == 0 %}
+{% if documents.size == 0 %}
   <h5 class="mb-4">{{ l.headlines.no_auths }}</h5>
   {% if error != nil %}
     <p class="text-danger">{{ error }}.</p>
@@ -30,7 +30,7 @@
 
         {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
 
-        {% for document in auths %}
+        {% for document in documents %}
           {% assign created_at  = document._id | _id_to_datetime %}
           {% assign relay_id    = document.relay_id %}
           {% assign company_id  = nil %}
