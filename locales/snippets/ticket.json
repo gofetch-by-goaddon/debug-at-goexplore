@@ -80,7 +80,8 @@
       "copied": "Copied"
     },
     "mail_job": {
-      "erred": "Could not send email. Hover the red question mark to see details."
+      "erred": "Could not send email. Hover the red question mark for details.",
+      "unresolved": "Can not check if email was send."
     }
   }
 }

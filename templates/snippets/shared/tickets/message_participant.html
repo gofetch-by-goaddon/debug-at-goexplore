@@ -1,14 +1,16 @@
 {% if job_ids != nil and job_ids[participant] != nil %}
 
-  {% assign job_id = job_ids[participant] %}
+  {% assign job_id          = job_ids[participant] %}
+  {% assign container_klass = " text-secondary" %}
 
 {% else %}
 
-  {% assign job_id = nil %}
+  {% assign job_id          = nil %}
+  {% assign container_klass = "" %}
 
 {% endif %}
 
-<span class="border rounded text-nowrap px-1 mr-1" data-job-container="{{ job_id }}" data-participant="{{ participant }}">
+<span class="border rounded text-nowrap px-1 mr-1{{ container_klass }}" data-job-container="{{ job_id }}" data-participant="{{ participant }}">
   {% if participant contains "@" %}
 
     {% assign ticket_mail_address = document.mail_address | decrypt %}
