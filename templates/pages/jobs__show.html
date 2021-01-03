@@ -10,7 +10,7 @@
 
     {% else %}
 
-      {"status": "200", "job_status": "{{ job.status }}"}
+      {"status": "200", "job_status": "{{ job.status }}", "job": "{{ job }}"}
 
     {% endif %}
 
