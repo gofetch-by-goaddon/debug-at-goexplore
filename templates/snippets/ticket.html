@@ -28,13 +28,13 @@
 
     checkEmailJob = function(log_entry_id, job_id, attempts_left = 3) {
       return setTimeout((function() {
+        var log_entry = $("[data-log-entry-id=" + log_entry_id + "]");
         return $.ajax({
           type: "get",
           dataType: "json",
           url: jobUrl().replace("id_placeholder", job_id),
           success: function(data, status, xhr) {
             if (data !== null) {
-              var log_entry = $("[data-log-entry-id=" + log_entry_id + "]");
               if (data.job_status === "pending" || data.job_status === "in_progress") {
                 if (attempts_left <= 0) {
                   return alertify.error("{{ l.mail_job.unresolved }}");
@@ -50,13 +50,14 @@
               }
             }
           },
-          error: function(xhr, textStatus, errorThrown) {
-            console.log("xhr:");
-            console.log(xhr);
-            console.log("textStatus:");
-            console.log(textStatus);
-            console.log("errorThrown:");
-            console.log(errorThrown);
+          error: function(data, status, code) {
+            if (data !== null && data.responseJSON !== null) {
+              log_entry.find($("[data-job-container=" + job_id + "]")).addClass("text-danger border-danger");
+              log_entry.find($("[data-job-error=" + job_id + "]")).attr("title", data.responseJSON.error_message).show();
+              return alertify.error("{{ l.mail_job.unexpected_error }}");
+            } else {
+              return alertify.error("{{ l.mail_job.internal_error }}" + ": " + code);
+            }
           }
         });
       }), 2000);
