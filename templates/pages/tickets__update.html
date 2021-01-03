@@ -57,7 +57,7 @@
         {% assign message       = params.message | encrypt %}
         {% assign log_entry     = log_entry | push_to_hash: "message", message %}
         {% assign log_entry     = log_entry | push_to_hash: "author_id", user._id %}
-        {% assign response_text = l.response_texts.message_sent %}
+        {% assign response_text = l.response_texts.message_saved %}
 
       {% elsif params.status != nil %}
 
