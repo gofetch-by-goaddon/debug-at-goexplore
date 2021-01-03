@@ -2,6 +2,13 @@
 
   {% assign job = params.id | get_job %}
 
-  {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}}
+  {% if job.error != nil %}
 
+    {"status": "422", "error": "{{ job.error }}"}
+
+  {% else %}
+
+    {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}}
+
+  {% endif %}
 {% endif %}
