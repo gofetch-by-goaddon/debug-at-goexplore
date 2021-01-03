@@ -10,13 +10,28 @@
 
 <span class="border rounded text-nowrap px-1 mr-1" data-participant-id="{{ participant_id }}">
   {% if participant contains "@" %}
+
     {% assign ticket_mail_address = document.mail_address | decrypt %}
+
     {% if participant == ticket_mail_address %}
+
       {{ participant }} &#183; <b>{{ l.recipients.merchant }}</b>
+
     {% else %}
+
       {{ participant }}
+
     {% endif %}
+
   {% elsif participant.size == 24 %}
+
     {{ superusers[participant].email }}
+
+  {% endif %}
+
+  {% if email_ids != nil and email_ids[participant] != nil %}
+
+    <i class="far fa-question-circle" data-question-mark-id="{{ participant_id }}" style="display: none;"></i>
+
   {% endif %}
 </span>

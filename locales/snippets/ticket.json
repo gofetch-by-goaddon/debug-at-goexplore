@@ -80,7 +80,10 @@
       "copied": "Copied"
     },
     "mail_job": {
-      "erred": "Could not send email to"
+      "erred": {
+        "intro": "Could not send email to",
+        "outro": "Hover the red question mark to see details"
+      }
     }
   }
 }
