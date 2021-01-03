@@ -69,11 +69,11 @@
         {% endif %}
       {% endif %}
 
-      {% include "shared/ticket_url" %}
+      {% include "shared/superuser_ticket_url" %}
 
       {% for email in emails %}
 
-        {% assign send_result = params.event | send_email: to: email, ticket_id: document._id, ticket_url: ticket_url %}
+        {% assign send_result = params.event | send_email: to: email, ticket_id: document._id, ticket_url: superuser_ticket_url %}
 
       {% endfor %}
     {% endif %}
