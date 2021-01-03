@@ -26,7 +26,7 @@
       return "{{ 'jobs__show' | path_for: id: 'id_placeholder' }}.json";
     };
 
-    checkEmailJob = function(log_entry_id, mail_address, email_id, attempt = 0) {
+    checkEmailJob = function(log_entry_id, email_id, mail_address, attempt = 0) {
       if (attempt > 3) {
         return alertify.error("Giving up");
       } else {
