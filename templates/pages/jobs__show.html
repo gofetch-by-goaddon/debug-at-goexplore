@@ -8,7 +8,17 @@
 
   {% else %}
 
-    {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}}
+    {% if user.superuser_level == 1 %}
+
+      {% assign data = {{ job.data | json }} %}
+
+    {% else %}
+
+      {% assign data = nil %}
+
+    {% endif %}
+
+    {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ data }}}
 
   {% endif %}
 {% endif %}
