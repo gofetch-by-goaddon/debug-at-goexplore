@@ -34,12 +34,12 @@
           return $.ajax({
             type: "get",
             dataType: "json",
-            url: jobUrl().replace("id_placeholder", job_id),
+            url: jobUrl().replace("id_placeholder", email_id),
             success: function(data, status, xhr) {
               if (data !== null) {
                 console.log(data);
                 if (data.job_status === null || data.job_status === "in_progress") {
-                  return checkEmailJob(job_id, attempt + 1);
+                  return checkEmailJob(email_id, attempt + 1);
                 } else if (data.job_status === "erred") {
                   return alertify.error("Job failed");
                 } else if (data.job_status === "finished") {
