@@ -81,7 +81,6 @@
     },
     "mail_job": {
       "erred": "Could not send email. Hover the red question mark to see details"
-      }
     }
   }
 }
