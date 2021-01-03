@@ -10,15 +10,12 @@
 
     {% if user.superuser_level == 1 %}
 
-      {% assign data = {{ job.data | json }} %}
+      {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}}
 
     {% else %}
 
-      {% assign data = nil %}
+      {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}"}
 
     {% endif %}
-
-    {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ data }}}
-
   {% endif %}
 {% endif %}
