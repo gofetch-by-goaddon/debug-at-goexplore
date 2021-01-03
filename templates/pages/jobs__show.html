@@ -4,11 +4,11 @@
 
   {% if job.error != nil %}
 
-    {"status": "422", "error": "{{ job.error }}"}
+    {"status": "422", "error": "{{ job.error }}", "job": "{{ job }}"}
 
   {% else %}
 
-    {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}}
+    {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}, "job": "{{ job }}"}
 
   {% endif %}
 {% endif %}
