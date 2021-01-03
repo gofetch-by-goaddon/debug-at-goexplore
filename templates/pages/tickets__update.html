@@ -150,7 +150,7 @@
               {% elsif recipient.size == 24 and superusers[recipient].email != nil %}
 
                 {% assign send_result = "superuser_message" | send_email: to: superusers[recipient].email, ticket_id: document._id, ticket_url: superuser_ticket_url %}
-                {% assign email_ids   = email_ids | push_to_hash: superusers[recipient].email, send_result.job_id %}
+                {% assign email_ids   = email_ids | push_to_hash: recipient, send_result.job_id %}
 
               {% endif %}
 
