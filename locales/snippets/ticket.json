@@ -82,8 +82,7 @@
     "mail_job": {
       "erred": "Could not send email. Hover the red question mark for details.",
       "unresolved": "Can not check if email was send.",
-      "unexpected_error": "Unexpected error. Hover the red question mark for details.",
-      "internal_error": "Internal error:"
+      "unexpected_error": "Unexpected error. Hover the red question mark for details."
     }
   }
 }

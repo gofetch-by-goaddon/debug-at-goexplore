@@ -51,14 +51,12 @@
             }
           },
           error: function(data, status, code) {
-            console.log(data);
+            log_entry.find($("[data-job-container=" + job_id + "]")).addClass("text-danger border-danger");
             if (data !== undefined && data.responseJSON !== undefined) {
-              console.log("here");
-              log_entry.find($("[data-job-container=" + job_id + "]")).addClass("text-danger border-danger");
               log_entry.find($("[data-job-error=" + job_id + "]")).attr("title", data.responseJSON.error_message).show();
               return alertify.error("{{ l.mail_job.unexpected_error }}");
             } else {
-              return alertify.error("{{ l.mail_job.internal_error }}" + " " + code);
+              return alertify.error(code);
             }
           }
         });
