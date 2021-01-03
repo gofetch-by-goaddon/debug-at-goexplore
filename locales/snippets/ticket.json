@@ -78,6 +78,9 @@
     },
     "flash": {
       "copied": "Copied"
+    },
+    "mail_job": {
+      "erred": "Could not send email to"
     }
   }
 }

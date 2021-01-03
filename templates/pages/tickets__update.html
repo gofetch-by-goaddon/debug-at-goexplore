@@ -160,7 +160,7 @@
 
             {% for email_id in email_ids %}
 
-              checkEmailJob("{{ log_entry_id }}", "{{ email_id[1] }}");
+              checkEmailJob("{{ log_entry_id }}", "{{ email_id[1] }}", "{{ email_id[0] }}");
 
             {% endfor %}
 
