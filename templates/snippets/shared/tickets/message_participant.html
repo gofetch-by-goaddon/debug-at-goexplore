@@ -8,7 +8,7 @@
 
 {% endif %}
 
-<span class="border rounded text-nowrap px-1 mr-1" data-job-container="{{ job_id }}">
+<span class="border rounded text-nowrap px-1 mr-1" data-job-container="{{ job_id }}" data-participant="{{ participant }}">
   {% if participant contains "@" %}
 
     {% assign ticket_mail_address = document.mail_address | decrypt %}
