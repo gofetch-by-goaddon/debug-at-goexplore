@@ -46,8 +46,7 @@
                 log_entry.find($("[data-job-error=" + job_id + "]")).attr("title", data.data.error_message).show();
                 return alertify.error("{{ l.mail_job.erred }}");
               } else if (data.job_status === "finished") {
-                log_entry.find($("[data-job-container=" + job_id + "]")).removeClass("text-secondary");
-                return log_entry.find($("[data-job-pending=" + job_id + "]")).remove();
+                return log_entry.find($("[data-job-container=" + job_id + "]")).removeClass("text-secondary");
               }
             }
           }
