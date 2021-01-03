@@ -34,7 +34,7 @@
           dataType: "json",
           url: jobUrl().replace("id_placeholder", job_id),
           success: function(data, status, xhr) {
-            if (data !== null) {
+            if (data !== undefined) {
               if (data.job_status === "pending" || data.job_status === "in_progress") {
                 if (attempts_left <= 0) {
                   return alertify.error("{{ l.mail_job.unresolved }}");
@@ -43,7 +43,9 @@
                 }
               } else if (data.job_status === "erred") {
                 log_entry.find($("[data-job-container=" + job_id + "]")).addClass("text-danger border-danger");
-                log_entry.find($("[data-job-error=" + job_id + "]")).attr("title", data.data.error_message).show();
+                if (data.data !== undefined) {
+                  log_entry.find($("[data-job-error=" + job_id + "]")).attr("title", data.data.error_message).show();
+                }
                 return alertify.error("{{ l.mail_job.erred }}");
               } else if (data.job_status === "finished") {
                 return log_entry.find($("[data-job-container=" + job_id + "]")).removeClass("text-secondary");
