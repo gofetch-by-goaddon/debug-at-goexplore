@@ -6,11 +6,11 @@ test{% if account != nil and user.superuser %}
 
     {% if job.data != nil and job.data.error_message != nil %}
 
-      {"status": "422", "job_status": "{{ job.status }}", "error_message": "{{ job.data.error_message }}"}
+      {"status": "200", "job_status": "{{ job.status }}", "error_message": "{{ job.data.error_message }}"}
 
     {% else %}
 
-      {"status": "422", "job_status": "{{ job.status }}"}
+      {"status": "200", "job_status": "{{ job.status }}"}
 
     {% endif %}
 
