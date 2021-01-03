@@ -2,7 +2,11 @@
 
   {% assign job = params.id | get_job %}
 
-  {% if job.error != nil %}
+  {% if job == nil %}
+
+    {"status": "422", "error": "Internal error"}
+
+  {% elsif job.error != nil %}
 
     {"status": "422", "error": "{{ job.error }}"}
 
