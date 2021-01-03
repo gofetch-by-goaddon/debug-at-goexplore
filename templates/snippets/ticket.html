@@ -49,6 +49,14 @@
                 return log_entry.find($("[data-job-container=" + job_id + "]")).removeClass("text-secondary");
               }
             }
+          },
+          error: function(xhr, textStatus, errorThrown) {
+            console.log("xhr:");
+            console.log(xhr);
+            console.log("textStatus:");
+            console.log(textStatus);
+            console.log("errorThrown:");
+            console.log(errorThrown);
           }
         });
       }), 2000);
