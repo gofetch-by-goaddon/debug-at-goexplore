@@ -52,7 +52,7 @@
           },
           error: function(data, status, code) {
             console.log(data);
-            if (data !== null && data !== undefined && data.responseJSON !== null) {
+            if (data !== null && data !== undefined && data.responseJSON !== null && data.responseJSON !== undefined) {
               console.log("here");
               log_entry.find($("[data-job-container=" + job_id + "]")).addClass("text-danger border-danger");
               log_entry.find($("[data-job-error=" + job_id + "]")).attr("title", data.responseJSON.error_message).show();
