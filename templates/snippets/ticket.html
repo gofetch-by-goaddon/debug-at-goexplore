@@ -41,8 +41,8 @@
                 if (data.job_status === "pending" || data.job_status === "in_progress") {
                   return checkEmailJob(log_entry_id, email_id, mail_address, attempt + 1);
                 } else if (data.job_status === "erred") {
-                  $("[data-log-entry-id=" + log_entry_id + "]").find($("[data-participant-id=" + email_id + "]")).addClass("text-danger border-danger");
-                  $("[data-log-entry-id=" + log_entry_id + "]").find($("[data-question-mark-id=" + email_id + "]")).attr("title", data.error_message).show();
+                  $("[data-log-entry-id=" + log_entry_id + "]").find($("[data-participant-id=" + email_id + "]")).addClass("text-danger border-danger").attr("title", "error");
+                  $("[data-log-entry-id=" + log_entry_id + "]").find($("[data-question-mark-id=" + email_id + "]")).show();
                   return alertify.error("{{ l.mail_job.erred.intro }}" + " " + mail_address + ". " + "{{ l.mail_job.erred.outro }}" + ".");
                 } else if (data.job_status === "finished") {
                   return alertify.success("Job succeeded");
