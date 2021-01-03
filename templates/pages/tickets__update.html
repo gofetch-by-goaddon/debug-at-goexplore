@@ -158,6 +158,12 @@
 
             $("#log_table tbody tr:first").before('{% assign identifier = user.email %}{% include "shared/tickets/message_tr" %}');
 
+            {% for email_id in email_ids %}
+
+              checkEmailJob("{{ log_entry_id }}", "{{ email_id[1] }}");
+
+            {% endfor %}
+
           {% else %}
             {% if redirect_to != nil %}
 

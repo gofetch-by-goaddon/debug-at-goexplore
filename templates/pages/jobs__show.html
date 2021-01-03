@@ -1,5 +1,7 @@
 {% if account != nil and user.superuser %}
 
-  
+  {% assign job = params.id | get_job %}
+
+  {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}}
 
 {% endif %}
