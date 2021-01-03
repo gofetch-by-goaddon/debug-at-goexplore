@@ -51,7 +51,7 @@
             }
           },
           error: function(data, status, code) {
-            if (data !== null && data.responseJSON !== null) {
+            if (data !== null && data !== undefined && data.responseJSON !== null) {
               log_entry.find($("[data-job-container=" + job_id + "]")).addClass("text-danger border-danger");
               log_entry.find($("[data-job-error=" + job_id + "]")).attr("title", data.responseJSON.error_message).show();
               return alertify.error("{{ l.mail_job.unexpected_error }}");
