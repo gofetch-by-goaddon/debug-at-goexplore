@@ -42,8 +42,9 @@
                   return checkEmailJob(log_entry_id, job_id, attempts_left - 1);
                 }
               } else if (data.job_status === "erred") {
-                $("[data-log-entry-id=" + log_entry_id + "]").find($("[data-participant-id=" + job_id + "]")).addClass("text-danger border-danger");
-                $("[data-log-entry-id=" + log_entry_id + "]").find($("[data-question-mark-id=" + job_id + "]")).attr("title", data.data.error_message).show();
+                var log_entry = $("[data-log-entry-id=" + log_entry_id + "]");
+                log_entry.find($("[data-job-container=" + job_id + "]")).addClass("text-danger border-danger");
+                log_entry.find($("[data-job-error=" + job_id + "]")).attr("title", data.data.error_message).show();
                 return alertify.error("{{ l.mail_job.erred }}");
               } else if (data.job_status === "finished") {
                 return alertify.success("Job succeeded");

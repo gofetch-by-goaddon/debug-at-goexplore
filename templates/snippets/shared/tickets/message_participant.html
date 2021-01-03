@@ -1,14 +1,14 @@
-{% if email_ids != nil and email_ids[participant] != nil %}
+{% if job_ids != nil and job_ids[participant] != nil %}
 
-  {% assign participant_id = email_ids[participant] %}
+  {% assign job_id = job_ids[participant] %}
 
 {% else %}
 
-  {% assign participant_id = participant %}
+  {% assign job_id = nil %}
 
 {% endif %}
 
-<span class="border rounded text-nowrap px-1 mr-1" data-participant-id="{{ participant_id }}">
+<span class="border rounded text-nowrap px-1 mr-1" data-job-container="{{ job_id }}">
   {% if participant contains "@" %}
 
     {% assign ticket_mail_address = document.mail_address | decrypt %}
@@ -29,9 +29,9 @@
 
   {% endif %}
 
-  {% if email_ids != nil and email_ids[participant] != nil %}
+  {% if job_id != nil %}
 
-    <i class="far fa-question-circle" data-question-mark-id="{{ participant_id }}" style="display: none;"></i>
+    <i class="far fa-question-circle" data-job-error="{{ job_id }}" style="display: none;"></i>
 
   {% endif %}
 </span>
