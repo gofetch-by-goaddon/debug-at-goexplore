@@ -11,6 +11,7 @@
       "superuser_id": 1,
       "relay_id": 1,
       "status": 1,
+      "token": 1,
       "log": 1
     }
   },
