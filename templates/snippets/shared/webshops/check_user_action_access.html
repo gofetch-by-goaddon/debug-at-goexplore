@@ -8,7 +8,8 @@
 
   {% assign documents_query = "webshops" | db_find: _id: params.id %}
   {% assign document        = documents_query.results.first %}
-
+  --- user: {{ user }} ---
+  --- document: {{ document }} ---
   {% if document != nil %}
     {% if user.webshop_relay_ids != nil and user.webshop_relay_ids contains document.relay_id %}
 
