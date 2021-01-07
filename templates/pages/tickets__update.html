@@ -114,7 +114,7 @@
 
         {% endif %}
 
-        {% assign log_entry_id    = nil | uuid_new %}
+        {% assign log_entry_id    = nil | new_uuid %}
         {% assign log_entry       = log_entry | push_to_hash: "id", log_entry_id %}
         {% assign log_entry       = log_entry | push_to_hash: "created_at", now %}
         {% assign log             = log | push_to_array: log_entry %}
