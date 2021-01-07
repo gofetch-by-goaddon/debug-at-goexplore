@@ -208,6 +208,7 @@
                         
                         <p><b>{{ l.headers.params }}</b></p>
                         <input type="hidden" name="url" value="{{ endpoint.url }}">
+                        <input type="hidden" name="webshop_id" value="{{ document._id }}">
                         <input type="hidden" name="method" value="{{ endpoint.method }}">
 
                         {% assign url_parts = endpoint.url | split: " " %}
