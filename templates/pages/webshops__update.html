@@ -1,5 +1,6 @@
 {% if account != nil and user.superuser %}
 
+  {% assign document_id = params.id %}
   {% include "shared/webshops/check_user_action_access" %}
 
   {% if error != nil %}
