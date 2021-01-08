@@ -233,7 +233,7 @@
           <div class="form-group">
             <select name="got_at_attr" class="form-control input-select2 input-select2-got_at_attr" multiple>
               <option value="" label=" "></option>
-              {% for attribute in webshop %}
+              {% for attribute in document %}
                 {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
                 {% if got_at == "got_at" %}
                   {% assign attribute_name = attribute[0] %}
