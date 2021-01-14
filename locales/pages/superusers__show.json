@@ -1,5 +1,6 @@
 {
   "en": {
+    "title": "Superuser permissions",
     "no_access": "You can not manage other superusers",
     "no_superuser": "This superuser does not exist",
     "project_api_error": "Project API error",

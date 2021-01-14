@@ -2,9 +2,11 @@
   {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
 </h5>
 
+<div data-job-id="{{ params.id }}"></div>
+
 <script>
   checkJob = function() {
-    if ("{{ session.controller }}" === "destroy_webshop_jobs" && "{{ session.action }}" == "show") {
+    if ($("[data-job-id={{ params.id }}]").length === 1) {
       return setTimeout((function() {
         return $.ajax({
           type: "get",
