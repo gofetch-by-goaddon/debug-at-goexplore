@@ -6,6 +6,7 @@
 
 <script>
   checkJob = function(job_id) {
+    console.log(job_id);
     if ($("[data-job-id={{ job_id }}]").length === 1) {
       return setTimeout((function() {
         return $.ajax({
