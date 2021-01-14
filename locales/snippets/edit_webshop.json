@@ -6,7 +6,8 @@
       "error": "Error, please",
       "config": "Change configuration",
       "reset": "Queue imports",
-      "tickets": "Tickets"
+      "tickets": "Tickets",
+      "danger_zone": "Danger zone"
     },
     "buttons": {
       "submit": "Update",
@@ -63,5 +64,13 @@
       "got_orders_open_since_3x_at": "Got orders that were open last time we checked (time interval 3)",
       "got_orders_open_since_4x_at": "Got orders that were open last time we checked (time interval 4)"
     }
+  },
+  "destroy": {
+    "intro": "You can",
+    "button": "destroy this webshop",
+    "title": "Are you sure?",
+    "confirm": "This can not be undone!",
+    "commit": "OK, destroy this webshop!",
+    "cancel": "Cancel"
   }
 }

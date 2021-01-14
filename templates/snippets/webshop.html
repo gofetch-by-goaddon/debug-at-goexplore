@@ -148,7 +148,7 @@
     {% endif %}
     {% capture resource_names %}{{ resource_names }}{{ path[0] }}{% endcapture %}
   {% endfor %}
-  
+
   {% assign resource_names  = resource_names | split: " " | sort %}
   {% assign tab_id          = "debug_tab" %}
 
