@@ -1,7 +1,11 @@
 {% assign documents_query = "webshops" | db_find: _id: params.id, company_id: account._id %}
 {% assign document        = documents_query.results.first %}
 
-{% if document != nil %}
+{% if document == nil %}
+
+  {% assign error = l.no_webshop %}
+
+{% else %}
 
   {% include "shared/document_relay" %}
 
