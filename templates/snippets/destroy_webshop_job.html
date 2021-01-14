@@ -4,6 +4,17 @@
 
 <div data-job-id="{{ params.id }}"></div>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th class="border-bottom-0"></th>
+      <th class="border-bottom-0 text-right" width="1">{{ l.headers.destroyed_count }}</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
 <script>
   checkJob = function(job_id) {
     if ($("[data-job-id=" + job_id + "]").length === 1) {

@@ -6,6 +6,9 @@
     },
     "statuses": {
       "erred": "The job errred."
+    },
+    "headers": {
+      "destroyed_count": "Destroyed"
     }
   }
 }
