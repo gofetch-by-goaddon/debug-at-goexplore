@@ -15,7 +15,7 @@
           success: function(data, status, xhr) {
             if (data !== undefined) {
               if (data.job_status === "pending" || data.job_status === "in_progress") {
-                return checkJob();
+                return checkJob(job_id);
               } else if (data.job_status === "erred") {
                 return alertify.error("{{ l.statuses.erred }}");
               } else if (data.job_status === "finished") {
