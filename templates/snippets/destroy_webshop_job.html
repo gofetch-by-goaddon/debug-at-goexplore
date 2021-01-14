@@ -4,31 +4,33 @@
 
 <script>
   checkJob = function() {
-    return setTimeout((function() {
-      return $.ajax({
-        type: "get",
-        dataType: "json",
-        url: "{{ 'jobs__show' | path_for: id: params.id, format: 'json' }}",
-        success: function(data, status, xhr) {
-          if (data !== undefined) {
-            if (data.job_status === "pending" || data.job_status === "in_progress") {
-              return checkJob();
-            } else if (data.job_status === "erred") {
-              return alertify.error("{{ l.statuses.erred }}");
-            } else if (data.job_status === "finished") {
-              return alertify.message("OK");
+    if ("{{ session.controller }}" === "destroy_webshop_jobs" && "{{ session.action }}" == "show") {
+      return setTimeout((function() {
+        return $.ajax({
+          type: "get",
+          dataType: "json",
+          url: "{{ 'jobs__show' | path_for: id: params.id, format: 'json' }}",
+          success: function(data, status, xhr) {
+            if (data !== undefined) {
+              if (data.job_status === "pending" || data.job_status === "in_progress") {
+                return checkJob();
+              } else if (data.job_status === "erred") {
+                return alertify.error("{{ l.statuses.erred }}");
+              } else if (data.job_status === "finished") {
+                return alertify.message("OK");
+              }
+            }
+          },
+          error: function(data, status, code) {
+            if (data !== undefined && data.responseJSON !== undefined) {
+              return alertify.error(data.responseJSON.error_message);
+            } else {
+              return alertify.error(code);
             }
           }
-        },
-        error: function(data, status, code) {
-          if (data !== undefined && data.responseJSON !== undefined) {
-            return alertify.error(data.responseJSON.error_message);
-          } else {
-            return alertify.error(code);
-          }
-        }
-      });
-    }), 2000);
+        });
+      }), 2000);
+    }
   };
 
   $(document).on('turbolinks:load', function() {
