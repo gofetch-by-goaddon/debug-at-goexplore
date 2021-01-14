@@ -4,7 +4,7 @@
 
 <div data-job-id="{{ params.id }}"></div>
 
-<table class="table">
+<table class="table job-table" style="display: none;">
   <thead>
     <tr>
       <th class="border-bottom-0"></th>
@@ -12,6 +12,15 @@
     </tr>
   </thead>
   <tbody>
+    {% assign klasses = "customers orders order_lines shipments variants products categories countries delivery_methods payment_methods stock_messages statuses webshops" | split: " " %}
+    {% for klass in klasses %}
+      <tr>
+        <td>{{ l.klasses[klass] }}</td>
+        <td class="text-right" width="1">
+          <span data-klass="{{ klass }}">-</span>
+        </td>
+      </tr>
+    {% endfor %}
   </tbody>
 </table>
 
@@ -33,7 +42,10 @@
                 if (data.data.error !== undefined) {
                   return alertify.error(data.data.error);
                 } else {
-                  return alertify.success(data.data);
+                  for (var key in data.data) {
+                    $("[data-klass=" + key + "]").html(data.data[key]);
+                  } 
+                  return $(".job-table").show();
                 }
               }
             }
