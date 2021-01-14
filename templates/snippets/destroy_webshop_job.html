@@ -4,6 +4,8 @@
 
 <div data-job-id="{{ params.id }}"></div>
 
+<p class="pending-explainer">{{ l.explainers.pending }}</p>
+
 <table class="table job-table" style="display: none;">
   <thead>
     <tr>
@@ -44,7 +46,8 @@
                 } else {
                   for (var key in data.data) {
                     $("[data-klass=" + key + "]").html(data.data[key]);
-                  } 
+                  }
+                  $(".pending-explainer").remove();
                   return $(".job-table").show();
                 }
               }

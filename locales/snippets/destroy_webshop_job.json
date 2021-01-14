@@ -4,6 +4,9 @@
       "intro": "View status of this job, or",
       "return": "return"
     },
+    "explainers": {
+      "pending": "Please wait..."
+    },
     "statuses": {
       "erred": "The job errred."
     },
