@@ -19,8 +19,8 @@
               } else if (data.job_status === "erred") {
                 return alertify.error("{{ l.statuses.erred }}");
               } else if (data.job_status === "finished") {
-                if (data.data.error_message !== undefined) {
-                  return alertify.error(data.data.error_message);
+                if (data.data.error !== undefined) {
+                  return alertify.error(data.data.error);
                 } else {
                   return alertify.success(data);
                 }
@@ -29,7 +29,7 @@
           },
           error: function(data, status, code) {
             if (data !== undefined && data.responseJSON !== undefined) {
-              return alertify.error(data.responseJSON.error_message);
+              return alertify.error(data.responseJSON.error);
             } else {
               return alertify.error(code);
             }
