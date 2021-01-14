@@ -19,8 +19,8 @@
               } else if (data.job_status === "erred") {
                 return alertify.error("{{ l.statuses.erred }}");
               } else if (data.job_status === "finished") {
-                if (data.error_message !== undefined) {
-                  return alertify.error(data.error_message);
+                if (data.data.error_message !== undefined) {
+                  return alertify.error(data.data.error_message);
                 } else {
                   return alertify.success(data);
                 }
