@@ -1,10 +1,10 @@
 {% if params.webshop_id == nil %}
 
-  {"error": "No webshop_id"}
+  {"error": "{{ l.no_webshop_id }}"}
 
 {% elsif params.company_id == nil %}
 
-  {"error": "No company_id"}
+  {"error": "{{ l.no_webshop_id }}"}
 
 {% else %}
 
@@ -12,7 +12,7 @@
 
   {% if webshops.results_count != 1 %}
 
-    {"error": "No webshop"}
+    {"error": "{{ l.no_webshop }}"}
 
   {% else %}
 
