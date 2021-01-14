@@ -48,6 +48,12 @@
       "webshop_id": "{{ webshop_id }}"
     }
   },
+  "destroy_countries": {
+    "klass": "countries",
+    "query": {
+      "webshop_id": "{{ webshop_id }}"
+    }
+  },
   "destroy_delivery_methods": {
     "klass": "delivery_methods",
     "query": {
