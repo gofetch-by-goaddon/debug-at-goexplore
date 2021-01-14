@@ -9,7 +9,7 @@
 
   {% else %}
 
-    {% assign job = "destroy_webshop" | create_job: company_id: account._id, webshop_id: document._id %}
+    {% assign job = "destroy_webshop" | create_job: company_id: account._id, webshop_id: document_id %}
 
     {% if job.job_id == nil %}
 
