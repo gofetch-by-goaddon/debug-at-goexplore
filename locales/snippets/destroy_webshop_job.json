@@ -1,0 +1,11 @@
+{
+  "en": {
+    "headlines": {
+      "intro": "View status of this job, or",
+      "return": "return"
+    },
+    "statuses": {
+      "erred": "The job errred."
+    }
+  }
+}
