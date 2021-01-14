@@ -16,13 +16,13 @@
 
   {% else %}
 
-    {% if user.superuser_level == 1 %}
+    {% if job.name != "destroy_webshop" and user.superuser_level != 1 %}
 
-      {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}}
+      {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}"}
 
     {% else %}
 
-      {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}"}
+      {"status": "200", "job_status": "{{ job.status }}", "name": "{{ job.name }}", "data": {{ job.data | json }}}
 
     {% endif %}
   {% endif %}
