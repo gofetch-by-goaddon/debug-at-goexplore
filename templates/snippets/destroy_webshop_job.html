@@ -22,7 +22,7 @@
                 if (data.data.error !== undefined) {
                   return alertify.error(data.data.error);
                 } else {
-                  return alertify.success(data);
+                  return alertify.success(data.data);
                 }
               }
             }
