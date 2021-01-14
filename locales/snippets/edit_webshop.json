@@ -70,7 +70,8 @@
       "title": "Are you sure?",
       "confirm": "This can not be undone!",
       "commit": "OK, destroy this webshop!",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "outro": "This action will also destroy all associated customers, orders, order lines, shipments, variants, products, categories, countries, delivery methods, payment methods, stock messages and statuses from your database."
     }
   }
 }
