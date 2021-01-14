@@ -2,7 +2,7 @@
   "webshops": {
     "klass": "webshops",
     "query": {
-      "_id": "{{ webshop_id }}",
+      "webshop_id": "{{ webshop_id }}",
       "company_id": "{{ company_id }}"
     }
   },

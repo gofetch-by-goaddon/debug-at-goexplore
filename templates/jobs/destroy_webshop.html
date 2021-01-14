@@ -1,18 +1,18 @@
 {% if params.webshop_id == nil %}
 
-  {"error_message": "No webshop_id"}
+  {"error": "No webshop_id"}
 
 {% elsif params.company_id == nil %}
 
-  {"error_message": "No company_id"}
+  {"error": "No company_id"}
 
 {% else %}
 
-  {% assign webshops = "webshops" | db_count: _id: params.webshop_id, company_id: params.company_id %}
+  {% assign webshops = "webshops" | db_count: webshop_id: params.webshop_id, company_id: params.company_id %}
 
   {% if webshops.results_count != 1 %}
 
-    {"error_message": "No webshop_id"}
+    {"error": "No webshop"}
 
   {% else %}
 
