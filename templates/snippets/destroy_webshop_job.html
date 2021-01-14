@@ -30,4 +30,8 @@
       });
     }), 2000);
   };
+
+  $(document).on('turbolinks:load', function() {
+    checkJob();
+  })
 </script>
