@@ -277,6 +277,6 @@
   <h5 class="my-4">{{ l.headlines.danger_zone }}</h5>
 
   <form class="d-inline" action="{{ 'webshops__destroy' | path_for: id: document._id, format: 'js' }}" method="delete" data-remote="true">
-    {{ l.destroy.intro }}<input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white text-danger" value="{{ l.destroy.button }}" data-title="{{ l.destroy.title }}" data-confirm="{{ l.destroy.confirm }}" data-commit="{{ l.destroy.commit }}" data-cancel="{{ l.destroy.cancel }}" data-commit-class="btn btn-outline-danger" data-cancel-class="text-primary">.
+    {{ l.destroy.intro }} <input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white text-danger" value="{{ l.destroy.button }}" data-title="{{ l.destroy.title }}" data-confirm="{{ l.destroy.confirm }}" data-commit="{{ l.destroy.commit }}" data-cancel="{{ l.destroy.cancel }}" data-commit-class="btn btn-outline-danger" data-cancel-class="text-primary">.
   </form>
 {% endif %}
