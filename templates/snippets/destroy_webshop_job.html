@@ -5,8 +5,8 @@
 <div data-job-id="{{ params.id }}"></div>
 
 <script>
-  checkJob = function() {
-    if ($("[data-job-id={{ params.id }}]").length === 1) {
+  checkJob = function(job_id) {
+    if ($("[data-job-id={{ job_id }}]").length === 1) {
       return setTimeout((function() {
         return $.ajax({
           type: "get",
@@ -40,6 +40,6 @@
   };
 
   $(document).on('turbolinks:load', function() {
-    checkJob();
+    checkJob("{{ params.id }}");
   })
 </script>
