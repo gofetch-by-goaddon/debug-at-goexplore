@@ -5,7 +5,8 @@
       "return": "return"
     },
     "explainers": {
-      "pending": "Please wait..."
+      "pending": "Please wait...",
+      "finished": "The job has finished. The result is as follows:"
     },
     "statuses": {
       "erred": "The job errred."

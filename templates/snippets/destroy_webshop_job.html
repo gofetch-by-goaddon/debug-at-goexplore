@@ -6,25 +6,30 @@
 
 <p class="pending-explainer">{{ l.explainers.pending }}</p>
 
-<table class="table job-table" style="display: none;">
-  <thead>
-    <tr>
-      <th class="border-0"></th>
-      <th class="border-0 text-right" width="1">{{ l.headers.destroyed_count }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% assign klasses = "customers orders order_lines shipments variants products categories countries delivery_methods payment_methods stock_messages statuses webshops" | split: " " %}
-    {% for klass in klasses %}
+<div class="job-result" style="display: none;">
+
+  <p>{{ l.explainers.finished }}</p>
+
+  <table class="table">
+    <thead>
       <tr>
-        <td>{{ l.klasses[klass] }}</td>
-        <td class="text-right" width="1">
-          <span data-klass="{{ klass }}">-</span>
-        </td>
+        <th class="border-0"></th>
+        <th class="border-0 text-right" width="1">{{ l.headers.destroyed_count }}</th>
       </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {% assign klasses = "customers orders order_lines shipments variants products categories countries delivery_methods payment_methods stock_messages statuses webshops" | split: " " %}
+      {% for klass in klasses %}
+        <tr>
+          <td>{{ l.klasses[klass] }}</td>
+          <td class="text-right" width="1">
+            <span data-klass="{{ klass }}">-</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 <script>
   checkJob = function(job_id) {
@@ -48,7 +53,7 @@
                     $("[data-klass=" + key + "]").html(data.data[key]);
                   }
                   $(".pending-explainer").remove();
-                  return $(".job-table").show();
+                  return $(".job-result").show();
                 }
               }
             }
