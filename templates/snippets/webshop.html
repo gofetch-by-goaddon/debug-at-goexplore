@@ -137,7 +137,8 @@
         {% endif %}
         {{ document.config[identifiable_config_key] | decrypt }}
       {% endfor %}
-      &#183; <a href="{{ 'webshops__edit' | path_for: id: document._id }}">{{ l.informations.edit }} <i class="far fa-edit"></i></a>
+      &#183; <a href="{{ 'webshops__edit' | path_for: id: document._id }}">{{ l.informations.edit }}</a>
+      &#183; <a href="{{ 'webshops__edit' | path_for: id: document._id }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
     </samp>
   </p>
 
