@@ -151,19 +151,12 @@
         templateSelection: formatState
       });
       
-      $(".input-got-at").on("select2:select", function(e) {
-        var id, option;
-        id = e.params.data.id;
-        option = $(e.target).children("[value='" + id + "']");
-        option.detach();
-        return $(e.target).append(option).change();
-      });
     };
 
-  $(document).on('turbolinks:load', function() {
-    submitRequest();
-    select2GotAt();
-  })
+    $(document).on('turbolinks:load', function() {
+      submitRequest();
+      select2GotAt();
+    })
   </script>
 
   {% if document.active %}
