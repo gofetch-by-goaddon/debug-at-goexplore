@@ -150,7 +150,6 @@
         templateResult: formatState,
         templateSelection: formatState
       });
-      
     };
 
     $(document).on('turbolinks:load', function() {
@@ -224,7 +223,7 @@
       <tr>
         <td width="100%">
           <div class="form-group">
-            <select name="got_at_attr" class="form-control input-select2 input-select2-got_at_attr" multiple>
+            <select name="got_at_attr" class="form-control input-select2 input-select2-got_at_attr">
               <option value="" label=" "></option>
               {% for attribute in document %}
                 {% capture got_at %}{{ attribute[0] | slice: 0, 3 }}{{ attribute[0] | slice: -3, 3 }}{% endcapture %}
