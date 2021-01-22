@@ -41,7 +41,7 @@
       "edit": "edit"
     },
     "comments": {
-      "only_push_once_intro": "IMPORTANT!",
+      "only_push_once_intro": "NB!",
       "only_push_once_message": "Make sure only to submit your request once. Be patient if the page does not respond immediately."
     }
   }
