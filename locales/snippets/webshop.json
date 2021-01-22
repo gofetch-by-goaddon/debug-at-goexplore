@@ -42,7 +42,7 @@
     },
     "comments": {
       "only_push_once_intro": "IMPORTANT!",
-      "only_push_once_message": "Be very carefull only to submit your request once. Please be patient if the page does not respond immediately."
+      "only_push_once_message": "Make sure only to submit your request once. Be patient if the page does not respond immediately."
     }
   }
 }
