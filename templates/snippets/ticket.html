@@ -193,7 +193,7 @@
     {{ l.headlines.intro }} <a href="{{ 'tickets__index' | path_for: page: params.page, per_page: params.per_page, scope: params.scope }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
-  {% assign now               = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+  {% assign now               = "now" | in_time_zone %}
   {% assign left_tr_count     = 0 %}
   {% assign right_tr_count    = 0 %}
   {% assign form_field_names  = "mail_address phone admin_url admin_username admin_password ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}

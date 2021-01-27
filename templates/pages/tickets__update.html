@@ -20,7 +20,7 @@
       {% assign superusers_query  = "superusers" | db_find: app_id: project.app_id %}
       {% assign superusers        = superusers_query.results | to_hash: "_id" %}
       {% assign redirect_to       = nil %}
-      {% assign now               = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+      {% assign now               = "now" | in_time_zone %}
       {% assign attributes        = nil | new_hash %}
       {% assign log_entry         = nil | new_hash %}
 

@@ -36,7 +36,7 @@
       {% if documents.size == 0 %}
         <p>{{ l.explainers.no_webshops }}</p>
       {% else %}
-        {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+        {% assign now = "now" | in_time_zone %}
         {% assign to  = now | date: "%s" %}
         <table class="table">
           <thead>

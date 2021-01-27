@@ -9,7 +9,7 @@
   {% include "shared/link_styles" %}
   {% include "shared/extra_table_cols" %}
 
-  {% assign now           = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+  {% assign now           = "now" | in_time_zone %}
   {% assign status_names  = "opened closed" | split: " " %}
 
   <div class="card mb-4">

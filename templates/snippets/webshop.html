@@ -335,7 +335,7 @@
           <div aria-labelledby="card_tickets" class="collapse{{ toggle_klass }}" data-parent="#tickets_accordion" id="collapse_card_tickets">
             <div class="card-body">
 
-              {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+              {% assign now = "now" | in_time_zone %}
 
               {% include "shared/webshops/tickets" %}
 

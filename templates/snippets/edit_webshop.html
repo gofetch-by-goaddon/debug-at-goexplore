@@ -8,7 +8,7 @@
     {{ l.headlines.intro }} <a href="{{ 'webshops__index' | path_for: page: params.page, per_page: params.per_page, scope: params.scope }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
-  {% assign now = "now" | date: "%Y-%m-%d %H:%M:%S" | parse_time %}
+  {% assign now = "now" | in_time_zone %}
 
   {% include "shared/indent_json_input" %}
 
@@ -234,12 +234,12 @@
                 {% if got_at == "got_at" %}
                   {% assign attribute_name = attribute[0] %}
                   {% if attribute[1] != nil %}
-                    {% assign time = attribute[1] | date: '%Y-%m-%d %H:%M:%S' | parse_time %}
+                    {% assign time = attribute[1] | in_time_zone %}
                     {% capture time_text %}{{ time | time_distance_in_words: now | capitalize }} {{ l.input.ago }}{% endcapture %}
                   {% else %}
                     {% assign time_text = nil %}
                   {% endif %}
-                  <option value="{{ attribute_name }}" data-title="{{ l.attributes[attribute_name] }}" data-time="{{ time_text }}"></option>
+                  <option value="{{ attribute_name }}" data-title="{{ l.attributes[attribute_name] }}" data-time="{{ time_text }}">{{ l.attributes[attribute_name] }}</option>
                 {% endif %}
               {% endfor %}
             </select>
