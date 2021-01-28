@@ -243,7 +243,7 @@
                                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ l.param_dropdowns.iso_8601_date.button }}</button>
                                     <div class="dropdown-menu">
                                       {% assign units   = "hours days" | split: " " %}
-                                      {% assign numbers = "2 3 12" | split: " " %}
+                                      {% assign numbers = "2 12" | split: " " %}
 
                                       {% for unit in units %}
                                         {% if unit == "days" %}
@@ -254,7 +254,7 @@
 
                                         {% for number in numbers %}
 
-                                          <a class="dropdown-item" href="#">{{ number }}{{ l.param_dropdowns.iso_8601_date[unit] }} {{ l.param_dropdowns.iso_8601_date.ago }}</a>
+                                          <a class="dropdown-item" href="#">{{ number }} {{ l.param_dropdowns.iso_8601_date[unit] }} {{ l.param_dropdowns.iso_8601_date.ago }}</a>
 
                                         {% endfor %}
                                       {% endfor %}
