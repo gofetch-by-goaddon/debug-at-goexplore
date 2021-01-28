@@ -97,9 +97,9 @@
                   }
                   var danger_zone = $("#danger_zone");
                   if (request_data["active"] === "true") {
-                    danger_zone.hide();
+                    danger_zone.slideUp();
                   } else {
-                    danger_zone.show();
+                    danger_zone.slideDown();
                   }
                 });
               }
