@@ -48,6 +48,7 @@
       "iso_8601_date": {
         "button": "Suggestions",
         "hours": "hours",
+        "days": "days",
         "ago": "ago"
       }
     }
