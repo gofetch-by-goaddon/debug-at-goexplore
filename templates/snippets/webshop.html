@@ -129,7 +129,7 @@
       $(".date-item").click(function() {
         var hours = $(this).data("hours");
         var date  = new Date(new Date().getTime() - (hours * 60 * 60 * 1000));
-        console.log(date);
+        $(this).prevAll('input').val(date);
       });
     };
 
