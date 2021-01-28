@@ -246,6 +246,9 @@
                                       {% assign numbers = "2 10" | split: " " %}
 
                                       {% for unit in units %}
+                                        {% if unit == "days" %}
+                                          <div role="separator" class="dropdown-divider"></div>
+                                        {% endif %}
                                         {% for number in numbers %}
 
                                           <a class="dropdown-item" href="#">{{ number }} {{ l.param_dropdowns.iso_8601_date[unit] }} {{ l.param_dropdowns.iso_8601_date.ago }}</a>
