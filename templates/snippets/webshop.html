@@ -124,6 +124,15 @@
       });
     };
 
+    insertDateParam = function() {
+      $(".date-item").off("click");
+      $(".date-item").click(function() {
+        var hours = $(this).data("hours");
+        var date  = new Date(new Date().getTime() - (hours * 60 * 60 * 1000));
+        console.log(date);
+      });
+    }
+
     $(document).on('turbolinks:load', function() {
       submitRequest();
     })
@@ -242,18 +251,26 @@
                                   <div class="input-group-append dropleft">
                                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ l.param_dropdowns.iso_8601_date.button }}</button>
                                     <div class="dropdown-menu">
-                                      {% assign units   = "hours days" | split: " " %}
-                                      {% assign numbers = "2 10" | split: " " %}
+                                      {% assign numbers = "2 12" | split: " " %}
 
-                                      {% for unit in units %}
                                         {% if unit == "days" %}
                                           <div role="separator" class="dropdown-divider"></div>
                                         {% endif %}
-                                        {% for number in numbers %}
 
-                                          <a class="dropdown-item" href="#">{{ number }} {{ l.param_dropdowns.iso_8601_date[unit] }} {{ l.param_dropdowns.iso_8601_date.ago }}</a>
+                                      {% for number in numbers %}
 
-                                        {% endfor %}
+                                        <a class="dropdown-item date-item" data-hours="{{ number }}" href="javascript:void(0)">{{ number }} {{ l.param_dropdowns.iso_8601_date.hours }} {{ l.param_dropdowns.iso_8601_date.ago }}</a>
+
+                                      {% endfor %}
+
+                                      <div role="separator" class="dropdown-divider"></div>
+
+                                      {% assign numbers = "2 14" | split: " " %}
+
+                                      {% for number in numbers %}
+
+                                        <a class="dropdown-item date-item" data-hours="{{ number | times: 24 }}" href="javascript:void(0)">{{ number }} {{ l.param_dropdowns.iso_8601_date.days }} {{ l.param_dropdowns.iso_8601_date.ago }}</a>
+
                                       {% endfor %}
                                     </div>
                                   </div>
