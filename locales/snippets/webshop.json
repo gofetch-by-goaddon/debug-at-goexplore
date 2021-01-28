@@ -43,6 +43,13 @@
     "comments": {
       "only_push_once_intro": "NB!",
       "only_push_once_message": "Make sure only to submit your request once. Be patient if the page does not respond immediately."
+    },
+    "param_dropdowns": {
+      "iso_8601_date": {
+        "button": "Suggestions",
+        "hours": "hours",
+        "ago": "ago"
+      }
     }
   }
 }

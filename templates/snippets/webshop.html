@@ -238,6 +238,29 @@
                               <div class="markdown" data-markdown="{{ param.description | url_encode }}" for="{{ param.key }}">{{ param.description }}</div>
                               <div class="input-group mb-4">
                                 <input class="form-control" type="text" name="{{ param.key }}" data-type="param" placeholder="{{ l.placeholders.default_1 }} {{ param.key }} {{ l.placeholders.default_2 }}">
+                                {% if param.description contains "ISO 8601" %}
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ l.param_dropdowns.iso_8601_date.button }}</button>
+                                    <div class="dropdown-menu">
+                                      {% assign units   = "hours days" %}
+                                      {% assign numbers = "2 3 12" | split: " " %}
+
+                                      {% for unit in units %}
+                                        {% if unit == "days" %}
+
+                                          <div role="separator" class="dropdown-divider"></div>
+
+                                        {% endif %}
+
+                                        {% for number in numbers %}
+
+                                          <a class="dropdown-item" href="#">{{ number }}{{ l.param_dropdowns.iso_8601_date[unit] }} {{ l.param_dropdowns.iso_8601_date.ago }}</a>
+
+                                        {% endfor %}
+                                      {% endfor %}
+                                    </div>
+                                  </div>
+                                {% endif %}
                               </div>
                             {% endif %}
                           {% endfor %}
