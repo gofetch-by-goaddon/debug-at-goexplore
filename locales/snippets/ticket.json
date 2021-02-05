@@ -60,7 +60,7 @@
     },
     "recipients": {
       "label": "Recipients",
-      "placeholder": " Select recipients from the list or type in email addresses...",
+      "placeholder": "Select recipients from the list or type in email addresses...",
       "merchant": "merchant",
       "relay": "support"
     },
