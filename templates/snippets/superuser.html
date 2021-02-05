@@ -11,7 +11,7 @@
     {{ l.headlines.intro }} {{ superuser.email }} {{ l.headlines.or }} <a href="{{ 'permissions__index' | path_for }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
-  {% include "select_multiple_style" %}
+  {% include "shared/select_multiple_style" %}
 
   <script>
     selectRelays  = function() {
