@@ -45,7 +45,7 @@
       }
     },
     "placeholders": {
-      "select": " Select ecommerce platforms..."
+      "select": "Select ecommerce platforms..."
     },
     "buttons": {
       "update": "Update"
