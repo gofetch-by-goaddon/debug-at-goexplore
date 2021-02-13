@@ -16,21 +16,18 @@
 
   {% endcase %}
 
-  {% assign status_q  = nil | new_hash %}
-  {% assign status_q  = status_q | push_to_hash: "$in", query_statuses %}
+  {% assign status_q  = nil | new_hash | push_to_hash: "$in", query_statuses %}
 
   {% if user.superuser_level != 1 %}
 
     {% if user.closed_ticket_relay_ids != nil and user.closed_ticket_relay_ids.size > 0 %}
 
-      {% assign relay_q   = nil | new_hash %}
-      {% assign relay_q   = relay_q | push_to_hash: "$in", user.closed_ticket_relay_ids %}
+      {% assign relay_q   = nil | new_hash | push_to_hash: "$in", user.closed_ticket_relay_ids %}
       {% assign query     = query | push_to_hash: "relay_id", relay_q %}
 
     {% elsif scope == "opened" and user.ticket_relay_ids != nil and user.ticket_relay_ids.size > 0 %}
 
-      {% assign relay_q   = nil | new_hash %}
-      {% assign relay_q   = relay_q | push_to_hash: "$in", user.ticket_relay_ids %}
+      {% assign relay_q   = nil | new_hash | push_to_hash: "$in", user.ticket_relay_ids %}
       {% assign query     = query | push_to_hash: "relay_id", relay_q %}
 
     {% else %}

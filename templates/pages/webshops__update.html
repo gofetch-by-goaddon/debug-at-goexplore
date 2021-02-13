@@ -37,8 +37,7 @@
 
       {% if got_at == "got_at" %}
 
-        {% assign document = nil | new_hash %}
-        {% assign document = document | push_to_hash: params.got_at_attr, nil %}
+        {% assign document = nil | new_hash | push_to_hash: params.got_at_attr, nil %}
 
         {% assign webshops_update = "reset_got_at_attr" | db_update_one: company_id: account._id, _id: params.id, document: document %}
 

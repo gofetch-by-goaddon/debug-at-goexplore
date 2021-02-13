@@ -203,9 +203,7 @@
 
             {% if document[status_field_name] != nil %}
 
-              {% assign status_field  = nil | new_hash %}
-              {% assign status_field  = status_field | push_to_hash: "name", status_field_name %}
-              {% assign status_field  = status_field | push_to_hash: "value", document[status_field_name] %}
+              {% assign status_field  = nil | new_hash: name: status_field_name, value: document[status_field_name] %}
               {% assign timeline      = timeline | push_to_array: status_field %}
 
             {% endif %}
@@ -636,8 +634,7 @@
                     {% assign ticket_status = "opened" %}
                     {% include "shared/ticket_status" %}
                   </td>
-                  {% assign log_entry = nil | new_hash %}
-                  {% assign log_entry = log_entry | push_to_hash: "created_at", document.opened_at %}
+                  {% assign log_entry = nil | new_hash: created_at: document.opened_at %}
                   {% assign td_klass = "" %}
                   {% include "shared/tickets/log_entry_time_td" %}
                 </tr>
