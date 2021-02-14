@@ -37,6 +37,10 @@
           "inactive": "activate it"
         }
       },
+      "new_ticket": {
+        "p1": "You can",
+        "p2": "create a ticket"
+      },
       "tickets": {
         "ticket": "ticket",
         "tickets": "tickets",
