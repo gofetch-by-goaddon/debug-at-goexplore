@@ -341,63 +341,62 @@
 
   {% if tickets.size > 0 %}
 
-    {% assign toggle_klass      = "" %}
-    {% assign open_ticket_count = 0 %}
+  {% assign toggle_klass      = "" %}
+  {% assign open_ticket_count = 0 %}
 
-    {% for ticket in tickets %}
-      {% if ticket.status == "opened" or ticket.status == "escalated" %}
+  {% for ticket in tickets %}
+    {% if ticket.status == "opened" or ticket.status == "escalated" %}
 
-        {% assign toggle_klass      = " show" %}
-        {% assign open_ticket_count = open_ticket_count | plus: 1 %}
+      {% assign toggle_klass      = " show" %}
+      {% assign open_ticket_count = open_ticket_count | plus: 1 %}
 
-      {% endif %}
-    {% endfor %}
+    {% endif %}
+  {% endfor %}
 
-    <div class="accordion mt-4" id="tickets_accordion">
-       <div class="card border">
-          <div class="card-header p-1" id="card_tickets">
-            <h5 class="mb-0">
-              <button aria-controls="collapse_card_tickets" aria-expanded="false" class="btn btn-link collapsed" data-target="#collapse_card_tickets" data-toggle="collapse" type="button">
-                <div class="text-primary">
+  <div class="accordion mt-4" id="tickets_accordion">
+     <div class="card border">
+        <div class="card-header p-1" id="card_tickets">
+          <h5 class="mb-0">
+            <button aria-controls="collapse_card_tickets" aria-expanded="false" class="btn btn-link collapsed" data-target="#collapse_card_tickets" data-toggle="collapse" type="button">
+              <div class="text-primary">
 
-                  {{ tickets.size }}
+                {{ tickets.size }}
 
-                  {% if tickets.size == open_ticket_count %}
+                {% if tickets.size == open_ticket_count %}
 
-                    {{ l.headlines.open }}
+                  {{ l.headlines.open }}
 
-                  {% endif %}
+                {% endif %}
 
-                  {% if tickets.size == 1 %}
+                {% if tickets.size == 1 %}
 
-                    {{ l.headlines.ticket }}
+                  {{ l.headlines.ticket }}
 
-                  {% else %}
+                {% else %}
 
-                    {{ l.headlines.tickets }}
+                  {{ l.headlines.tickets }}
 
-                  {% endif %}
+                {% endif %}
 
-                  {% if tickets.size != open_ticket_count %}
+                {% if tickets.size != open_ticket_count %}
 
-                    &#183; {{ open_ticket_count }} {{ l.headlines.open }}
+                  &#183; {{ open_ticket_count }} {{ l.headlines.open }}
 
-                  {% endif %}
-                </div>
-              </button>
-            </h5>
+                {% endif %}
+              </div>
+            </button>
+          </h5>
+        </div>
+
+        <div aria-labelledby="card_tickets" class="collapse{{ toggle_klass }}" data-parent="#tickets_accordion" id="collapse_card_tickets">
+          <div class="card-body">
+
+            {% assign now = "now" | in_time_zone %}
+
+            {% include "shared/webshops/tickets" %}
+
           </div>
-
-          <div aria-labelledby="card_tickets" class="collapse{{ toggle_klass }}" data-parent="#tickets_accordion" id="collapse_card_tickets">
-            <div class="card-body">
-
-              {% assign now = "now" | in_time_zone %}
-
-              {% include "shared/webshops/tickets" %}
-
-            </div>
-          </div>
-       </div>
-    </div>
-  {% endif %}
+        </div>
+     </div>
+  </div>
 {% endif %}
