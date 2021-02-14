@@ -265,7 +265,7 @@
 
   <h5 class="my-4">{{ l.headlines.tickets }}</h5>
   <p>
-    {{ l.explainers.new_ticket.p1 }} <a href="{{ 'tickets__new' | path_for: webshop_id: document._id }}">l.explainers.new_ticket.p2</a>.
+    {{ l.explainers.new_ticket.p1 }} <a href="{{ 'tickets__new' | path_for: webshop_id: document._id }}">{{ l.explainers.new_ticket.p2 }}</a>.
     {{ tickets.size }}
     {% if tickets.size == 1 %}
       {{ l.explainers.tickets.ticket }}
