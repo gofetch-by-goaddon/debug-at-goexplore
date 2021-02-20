@@ -13,6 +13,7 @@
       "comments": "Write a comment with markdown such as `code` and [links](https://example.com)..."
     },
     "buttons": {
+      "extra_fields": "Show more",
       "create": "Submit"
     }
   }

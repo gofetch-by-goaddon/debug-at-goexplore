@@ -12,9 +12,35 @@
 
   <form action="{{ 'tickets__create' | path_for: format: 'js' }}" method="post" data-remote="true">
     <div class="form-group">
+
+      {% assign field_names = "mail_address phone admin_url admin_username admin_password" | split " " %}
+
+      {% for field_name in field_names %}
+
+        {% include "new_ticket/input" %}
+
+      {% endfor %}
+
       <b><label for="comments">{{ l.labels.comments }}:</label></b>
-      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" rows="5" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
+      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" rows="2" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
     </div>
+
+    <a href="#extra_fields" aria-controls="explainers" aria-expanded="false" data-toggle="collapse">
+      {{ l.buttons.extra_fields }} <i class="fas fa-caret-down"></i>
+      <div id="extra_fields" class="collapse">
+        <div class="card card-body pb-0">
+
+          {% assign field_names = "ftp_host ftp_username ftp_password ssh_address ssh_password" | split " " %}
+
+          {% for field_name in field_names %}
+
+            {% include "new_ticket/input" %}
+
+          {% endfor %}
+        </div>
+      </div>
+    </a>
+
     <input type="hidden" name="{{ klass_name }}" value="{{ klass_id }}">
     <input class="btn btn-outline-primary btn-fullwidth" type="submit" value="{{ l.buttons.create }}">
   </form>
