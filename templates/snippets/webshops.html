@@ -93,7 +93,7 @@
 
                     {% if document.got_finished_at == nil %}
 
-                      <span class="badge badge-primary">{{ l.badges.reset }}</span>
+                      <span class="border rounded text-nowrap px-1 text-light border-primary bg-primary">{{ l.badges.reset }}</span>
 
                       {% assign badge_time    = "got_started_at" %}
                       {% assign badge_style   = "primary" %}
@@ -120,7 +120,7 @@
                 </td>
                 <td>
                   {% if relays[relay_id] == nil %}
-                    <span class="badge badge-danger">{{ l.badges.no_relay }}</span>
+                    <span class="border rounded text-nowrap px-1 text-light border-danger bg-danger">{{ l.badges.no_relay }}</span>
                   {% else %}
                     {{ relays[relay_id].name }}
                   {% endif %}

@@ -20,9 +20,9 @@
       "edit": "Edit"
     },
     "badges": {
-      "no_relay": "NO ECOMMERCE PLATFORM",
-      "inactive": "INACTIVE",
-      "reset": "FIRST IMPORT"
+      "no_relay": "no ecommerce platform",
+      "inactive": "inactive",
+      "reset": "first import"
     },
     "informations": {
       "no_identifiable_config_keys": "None"
