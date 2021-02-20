@@ -9,6 +9,8 @@
 
   {% include "shared/select_multiple_style" %}
 
+  {% include "shared/textarea_adjust" %}
+
   <script>
     jobUrl = function() {
       return "{{ 'jobs__show' | path_for: id: 'id_placeholder', format: 'json' }}";

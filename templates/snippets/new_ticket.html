@@ -8,10 +8,12 @@
     {{ l.headlines.intro }} <a href="{{ return_path | path_for: id: klass_id }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
+  {% include "shared/textarea_adjust" %}
+
   <form action="{{ 'tickets__create' | path_for: format: 'js' }}" method="post" data-remote="true">
     <div class="form-group">
       <b><label for="comments">{{ l.labels.comments }}:</label></b>
-      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" rows="8" style="overflow:hidden;resize:none;"></textarea>
+      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" rows="5" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
     </div>
     <input type="hidden" name="{{ klass_name }}" value="{{ klass_id }}">
     <input class="btn btn-outline-primary btn-fullwidth" type="submit" value="{{ l.buttons.create }}">
