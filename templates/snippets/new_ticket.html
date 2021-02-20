@@ -19,4 +19,12 @@
   <h5 class="mb-4">
     {{ l.headlines.intro }} <a href="{{ return_path | path_for: id: return_id }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
+
+  <form action="{{ 'tickets__create' | path_for: format: 'js' }}" method="post" data-remote="true">
+    <div class="form-group">
+      <label for="comments">{{ l.labels.comments }}</label>
+      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" required></textarea>
+    </div>
+    <input class="btn btn-outline-primary btn-fullwidth" type="submit" value="{{ l.buttons.create }}">
+  </form>
 {% endif %}

@@ -4,6 +4,15 @@
       "error": "Error, please",
       "intro": "Create a new ticket, or",
       "return": "return"
+    },
+    "labels": {
+      "comments": "Comments"
+    },
+    "placeholders": {
+      "comments": "Describe the problem. Feel free to use markdown..."
+    },
+    "buttons": {
+      "submit": "Create"
     }
   }
 }
