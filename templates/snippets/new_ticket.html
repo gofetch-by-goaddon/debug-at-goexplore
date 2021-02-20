@@ -22,7 +22,7 @@
 
   <form action="{{ 'tickets__create' | path_for: format: 'js' }}" method="post" data-remote="true">
     <div class="form-group">
-      <label for="comments">{{ l.labels.comments }}</label>
+      <b><label for="comments">{{ l.labels.comments }}</label></b>
       <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" required></textarea>
     </div>
     <input class="btn btn-outline-primary btn-fullwidth" type="submit" value="{{ l.buttons.create }}">
