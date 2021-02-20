@@ -1,9 +1,15 @@
 {% if params.webshop_id != nil %}
+
   {% assign return_path = "webshops__edit" %}
   {% assign return_id   = params.webshop_id %}
+
 {% elsif params.auth_id != nil %}
+
   {% assign return_path = "auths__show" %}
   {% assign return_id   = params.auth_id %}
+
+{% endif %}
+
 {% if error != nil %}
   <h5 class="mb-4">
     {{ l.headlines.error }} <a href="{{ return_path | path_for: id: return_id }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
