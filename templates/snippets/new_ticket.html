@@ -1,30 +1,19 @@
-{% if params.webshop_id != nil %}
-
-  {% assign return_path = "webshops__edit" %}
-  {% assign return_id   = params.webshop_id %}
-
-{% elsif params.auth_id != nil %}
-
-  {% assign return_path = "auths__show" %}
-  {% assign return_id   = params.auth_id %}
-
-{% endif %}
-
 {% if error != nil %}
   <h5 class="mb-4">
-    {{ l.headlines.error }} <a href="{{ return_path | path_for: id: return_id }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
+    {{ l.headlines.error }} <a href="{{ return_path | path_for: id: klass_id }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
   <p class="text-danger">{{ error }}.</p>
 {% else %}
   <h5 class="mb-4">
-    {{ l.headlines.intro }} <a href="{{ return_path | path_for: id: return_id }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
+    {{ l.headlines.intro }} <a href="{{ return_path | path_for: id: klass_id }}">{{ l.headlines.return }} <i class="fas fa-undo"></i></a>
   </h5>
 
   <form action="{{ 'tickets__create' | path_for: format: 'js' }}" method="post" data-remote="true">
     <div class="form-group">
       <b><label for="comments">{{ l.labels.comments }}</label></b>
-      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" required></textarea>
+      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}"></textarea>
     </div>
+    <input type="hidden" name="{{ klass_name }}" value="{{ klass_id }}">
     <input class="btn btn-outline-primary btn-fullwidth" type="submit" value="{{ l.buttons.create }}">
   </form>
 {% endif %}
