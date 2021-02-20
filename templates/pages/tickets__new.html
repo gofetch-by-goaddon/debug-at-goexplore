@@ -22,13 +22,13 @@
 
   {% else %}
 
-    {% assign error = l.no_klass %}
+    {% assign error = l.errors.no_klass %}
 
   {% endif %}
 
   {% if error == nil and document == nil %}
 
-    {% assign error = l.no_document[klass] %}
+    {% assign error = l.errors.no_document[klass] %}
 
   {% endif %}
 
