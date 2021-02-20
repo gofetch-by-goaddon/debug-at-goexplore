@@ -8,7 +8,7 @@
     {% assign klass_id        = params.webshop_id %}
 
     {% assign webshops_query  = "webshops" | db_find: _id: klass_id %}
-    {% assign document        = auths_query.results.first %}
+    {% assign document        = webshops_query.results.first %}
 
   {% elsif params.auth_id != nil %}
 
