@@ -13,7 +13,7 @@
   <form action="{{ 'tickets__create' | path_for: format: 'js' }}" method="post" data-remote="true">
     <div class="form-group">
 
-      {% assign field_names = "mail_address phone admin_url admin_username admin_password" | split " " %}
+      {% assign field_names = "mail_address phone admin_url admin_username admin_password" | split: " " %}
 
       {% for field_name in field_names %}
 
@@ -30,7 +30,7 @@
       <div id="extra_fields" class="collapse">
         <div class="card card-body pb-0">
 
-          {% assign field_names = "ftp_host ftp_username ftp_password ssh_address ssh_password" | split " " %}
+          {% assign field_names = "ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}
 
           {% for field_name in field_names %}
 
