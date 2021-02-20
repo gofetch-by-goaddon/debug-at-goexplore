@@ -10,8 +10,8 @@
 
   <form action="{{ 'tickets__create' | path_for: format: 'js' }}" method="post" data-remote="true">
     <div class="form-group">
-      <b><label for="comments">{{ l.labels.comments }}</label></b>
-      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}"></textarea>
+      <b><label for="comments">{{ l.labels.comments }}:</label></b>
+      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" rows="8" style="overflow:hidden;resize:none;"></textarea>
     </div>
     <input type="hidden" name="{{ klass_name }}" value="{{ klass_id }}">
     <input class="btn btn-outline-primary btn-fullwidth" type="submit" value="{{ l.buttons.create }}">

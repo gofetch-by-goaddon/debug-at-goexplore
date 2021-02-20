@@ -9,7 +9,7 @@
       "comments": "Comments"
     },
     "placeholders": {
-      "comments": "Describe the problem. Feel free to use markdown..."
+      "comments": "Write a comment with markdown such as `code` and [links](https://example.com)..."
     },
     "buttons": {
       "create": "Submit"
