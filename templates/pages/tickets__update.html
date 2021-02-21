@@ -1,6 +1,6 @@
 {% if account != nil and user.superuser %}
 
-  {% assign documents_query = "tickets" | db_find: company_id: account._id, _id: params.id %}
+  {% assign documents_query = "tickets" | db_find: _id: params.id %}
   {% assign document        = documents_query.results.first %}
 
   {% if document == nil %}
