@@ -20,7 +20,7 @@
   {% endfor %}
 
   {% assign ticket_insertion  = "create_ticket" | db_insert_one: document: document %}
-
+  console.log({{ ticket_insertion | json }});
   {% if ticket_insertion.created_count == 1 %}
 
     Turbolinks.visit("{{ 'tickets__show' | path_for: id: ticket_insertion._id }}");
