@@ -6,7 +6,8 @@
     },
     "projection": {
       "_id": 1,
-      "relay_id": 1
+      "relay_id": 1,
+      "company_id": 1
     }
   },
   "auths": {

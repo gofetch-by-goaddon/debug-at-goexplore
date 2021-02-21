@@ -2,6 +2,7 @@
   "en": {
     "title": "Ticket",
     "no_ticket": "No ticket",
+    "wrong_company": "The ticket does not belong to this account",
     "project_api_error": "Project API error",
     "relay_not_found": "Unable to get data about the relay. The Project API responsed with code",
     "no_gofetch_project_api_token": "No gofetch_project_api_token",
