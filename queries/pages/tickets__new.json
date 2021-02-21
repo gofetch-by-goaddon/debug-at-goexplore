@@ -5,7 +5,8 @@
       "_id": "{{ _id }}"
     },
     "projection": {
-      "_id": 1
+      "_id": 1,
+      "relay_id": 1
     }
   },
   "auths": {
@@ -14,7 +15,8 @@
       "_id": "{{ _id }}"
     },
     "projection": {
-      "_id": 1
+      "_id": 1,
+      "relay_id": 1
     }
   }
 }
