@@ -5,6 +5,9 @@
       "intro": "Create a new ticket, or",
       "return": "return"
     },
+    "explainers": {
+      "p1": "The input fields below are optional."
+    },
     "labels": {
       "comments": "Comments"
     },

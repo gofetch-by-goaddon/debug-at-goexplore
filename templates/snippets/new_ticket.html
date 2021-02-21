@@ -10,6 +10,8 @@
 
   {% include "shared/textarea_adjust" %}
 
+  <p>{{ l.explainers.p1 }}</p>
+
   <form action="{{ 'tickets__create' | path_for: format: 'js' }}" method="post" data-remote="true">
     <div class="form-group">
 
