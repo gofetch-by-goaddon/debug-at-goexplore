@@ -1,6 +1,6 @@
 {% if account != nil and user.superuser %}
 
-  {% assign token       = nil | new_uuid %}
+  {% assign token       = nil | new_uuid | encrypt %}
   {% assign log         = "" | split: " " %}
   {% assign now         = "now" | in_time_zone %}
   {% assign document    = nil | new_hash: status: "opened" %}
@@ -8,7 +8,8 @@
   {% assign document    = document | push_to_hash: "log", log %}
   {% assign document    = document | push_to_hash: "opened_at", now %}
   {% assign encrypt     = "mail_address phone admin_url admin_username admin_password comments ftp_host ftp_username ftp_password ssh_address ssh_password" | split: " " %}
-  {% assign field_names = "webshop_id auth_id relay_id" | concat: encrypt %}
+  {% assign field_names = "webshop_id auth_id relay_id" | split: " " %}
+  {% assign field_names = field_names | concat: encrypt %}
 
   {% for field_name in field_names %}
     {% if params[field_name] != nil and params[field_name] != "" %}
