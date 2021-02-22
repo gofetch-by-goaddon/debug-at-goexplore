@@ -31,18 +31,25 @@
           {% assign superuser_id  = nil %}
           {% assign response_text = l.response_texts.superuser_id_unassigned %}
 
-        {% else %}
-
-          {% include "shared/superuser_ticket_url" %}
+        {% elsif superuser_id.size == 24 %}
 
           {% assign superuser_id  = params.superuser_id %}
           {% assign response_text = l.response_texts.superuser_id_updated %}
-          {% assign send_result   = "ticket_assigned" | send_email: to: superusers[superuser_id].email, ticket_id: document._id, ticket_url: superuser_ticket_url %}
+
+          {% if superuser_id != user._id and superusers[superuser_id].email != nil %}
+
+            {% include "shared/superuser_ticket_url" %}
+
+            {% assign send_result   = "ticket_assigned" | send_email: to: superusers[superuser_id].email, ticket_id: document._id, ticket_url: superuser_ticket_url %}
 
         {% endif %}
 
-        {% assign attributes  = attributes | push_to_hash: "superuser_id", superuser_id %}
-        {% assign log_entry   = log_entry | push_to_hash: "superuser_id", superuser_id %}
+        {% if superuser_id != nil %}
+
+          {% assign attributes  = attributes | push_to_hash: "superuser_id", superuser_id %}
+          {% assign log_entry   = log_entry | push_to_hash: "superuser_id", superuser_id %}
+
+        {% endif %}
 
       {% elsif params.message != nil and params.message != "" %}
 
