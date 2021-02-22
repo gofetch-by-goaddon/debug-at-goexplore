@@ -16,6 +16,9 @@
 
     {% else %}
 
+      {% assign tickets_query = "tickets" | db_find: auth_id: document._id %}
+      {% assign tickets       = tickets_query.results %}
+
       {% if document.webshop_id != nil %}
 
         {% assign webshops_query  = "webshops" | db_find: _id: document.webshop_id %}

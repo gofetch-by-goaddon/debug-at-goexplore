@@ -8,7 +8,7 @@
     },
     "auth_explainers": {
       "webshop_config": "This configuration was applied",
-      "setup_config": "This setup configuration was applied",
+      "setup_config": "This data was collected",
       "error": "This error occurred",
       "log": "This was logged"
     }

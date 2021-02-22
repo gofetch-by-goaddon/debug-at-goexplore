@@ -17,6 +17,19 @@
       "webshop_id": 1
     }
   },
+  "tickets": {
+    "klass": "tickets",
+    "query": {
+      "auth_id": "{{ auth_id }}"
+    },
+    "projection": {
+      "_id": 1,
+      "status": 1,
+      "opened_at": 1,
+      "closed_at": 1,
+      "superuser_id": 1
+    }
+  },
   "webshops": {
     "klass": "webshops",
     "query": {
