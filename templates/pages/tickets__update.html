@@ -37,7 +37,7 @@
 
           {% assign superuser_id  = params.superuser_id %}
           {% assign response_text = l.response_texts.superuser_id_updated %}
-          {% assign send_result   = "superuser_assigned" | send_email: to: superusers[superuser_id].email, ticket_id: document._id, ticket_url: superuser_ticket_url %}
+          {% assign send_result   = "ticket_assigned" | send_email: to: superusers[superuser_id].email, ticket_id: document._id, ticket_url: superuser_ticket_url %}
 
         {% endif %}
 
