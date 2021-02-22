@@ -31,7 +31,7 @@
           {% assign superuser_id  = nil %}
           {% assign response_text = l.response_texts.superuser_id_unassigned %}
 
-        {% elsif superuser_id.size == 24 %}
+        {% elsif params.superuser_id.size == 24 %}
 
           {% assign superuser_id  = params.superuser_id %}
           {% assign response_text = l.response_texts.superuser_id_updated %}
