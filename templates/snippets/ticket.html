@@ -638,7 +638,7 @@
 
                     {{ l.log_body.by }} 
 
-                    {% assign superuser_id = log_entry.superuser_id %}
+                    {% assign superuser_id = document.author_id %}
 
                     {% include "ticket/superuser_identifier" %}
 
