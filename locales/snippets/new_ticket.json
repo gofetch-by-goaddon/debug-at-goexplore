@@ -6,7 +6,7 @@
       "return": "return"
     },
     "explainers": {
-      "p1": "All input fields below are optional, but if you add the contact details of the merchant you can easilier communicate with them later."
+      "p1": "All input fields below are optional, but if you add the contact details of the merchant you can easilier communicate with them later. During this communication the below informations will be hidden from the merchant."
     },
     "labels": {
       "comments": "Comments"
