@@ -40,8 +40,9 @@
 
             {% include "shared/superuser_ticket_url" %}
 
-            {% assign send_result   = "ticket_assigned" | send_email: to: superusers[superuser_id].email, ticket_id: document._id, ticket_url: superuser_ticket_url %}
+            {% assign send_result = "ticket_assigned" | send_email: to: superusers[superuser_id].email, ticket_id: document._id, ticket_url: superuser_ticket_url %}
 
+          {% endif %}
         {% endif %}
 
         {% if superuser_id != nil %}
