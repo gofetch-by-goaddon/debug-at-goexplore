@@ -12,14 +12,7 @@
   {% include "shared/link_styles" %}
 
   <p>
-    {{ l.explainers.new_ticket.p1 }} <a href="{{ 'tickets__new' | path_for: auth_id: document._id }}">{{ l.explainers.new_ticket.p2 }}</a>.
-    {{ tickets.size }}
-    {% if tickets.size == 1 %}
-      {{ l.explainers.tickets.ticket }}
-    {% else %}
-      {{ l.explainers.tickets.tickets }}
-    {% endif %}
-    {{ l.explainers.tickets.p1 }}.
+    {{ l.explainers.intro.p1 }}
   </p>
 
   <table class="table mb-0">
@@ -94,4 +87,19 @@
 
   {% assign auth = document %}
   {% include "shared/auth_result" %}
+
+  <h5 class="my-4">{{ l.headlines.tickets }}</h5>
+
+  <p>
+    {{ l.explainers.new_ticket.p1 }} <a href="{{ 'tickets__new' | path_for: auth_id: document._id }}">{{ l.explainers.new_ticket.p2 }}</a>.
+    {{ tickets.size }}
+    {% if tickets.size == 1 %}
+      {{ l.explainers.tickets.ticket }}
+    {% else %}
+      {{ l.explainers.tickets.tickets }}
+    {% endif %}
+    {{ l.explainers.tickets.p1 }}.
+  </p>
+
+  {% include "shared/webshops/tickets" %}
 {% endif %}
