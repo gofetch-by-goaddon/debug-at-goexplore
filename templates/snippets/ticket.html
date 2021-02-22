@@ -635,6 +635,15 @@
                   <td>
                     {% assign ticket_status = "opened" %}
                     {% include "shared/ticket_status" %}
+
+                    {{ l.log_body.by }} 
+
+                    {% assign superuser_id = log_entry.superuser_id %}
+
+                    {% include "ticket/superuser_identifier" %}
+
+                    {{ identifier }}
+
                   </td>
                   {% assign log_entry = nil | new_hash: created_at: document.opened_at %}
                   {% assign td_klass = "" %}

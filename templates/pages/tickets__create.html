@@ -3,7 +3,7 @@
   {% assign token       = nil | new_uuid | encrypt %}
   {% assign log         = "" | split: " " %}
   {% assign now         = "now" | in_time_zone %}
-  {% assign document    = nil | new_hash: status: "opened" %}
+  {% assign document    = nil | new_hash: status: "opened", author_id: user._id %}
   {% assign document    = document | push_to_hash: "token", token %}
   {% assign document    = document | push_to_hash: "log", log %}
   {% assign document    = document | push_to_hash: "opened_at", now %}
