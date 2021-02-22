@@ -24,7 +24,7 @@
       {% endfor %}
 
       <b><label for="comments">{{ l.labels.comments }}:</label></b>
-      <textarea class="form-control" id="comments" placeholder="{{ l.placeholders.comments }}" rows="2" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
+      <textarea class="form-control" id="comments" name="comments" placeholder="{{ l.placeholders.comments }}" rows="2" onkeyup="textAreaAdjust(this)" onpaste="textAreaAdjust(this)" style="overflow:hidden;resize:none;"></textarea>
     </div>
 
     <div class="mb-4">
