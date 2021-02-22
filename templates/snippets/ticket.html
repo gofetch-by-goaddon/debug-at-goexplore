@@ -638,9 +638,17 @@
 
                     {{ l.log_body.by }} 
 
-                    {% assign superuser_id = document.author_id %}
+                    {% if document.author_id == "merchant" %}
 
-                    {% include "ticket/superuser_identifier" %}
+                      {% assign identifier = document.mail_address | decrypt %}
+
+                    {% else %}
+
+                      {% assign superuser_id = document.author_id %}
+
+                      {% include "ticket/superuser_identifier" %}
+
+                    {% endif %}
 
                     {{ identifier }}
 
