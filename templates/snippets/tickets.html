@@ -106,7 +106,7 @@
 
                 {% include "shared/table_link" %}
                 {% include "shared/extra_table_links" %}
-                <td>
+                <td class="text-right text-nowrap" width="1">
                   <form method="delete" action="{{ 'tickets__destroy' | path_for: id: document._id, format: 'js' }}" data-remote="true">
                     <button type="submit" class="btn btn-link px-0"><i class="fas fa-trash text-danger"></i></button>
                   </form>
