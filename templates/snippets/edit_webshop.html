@@ -307,8 +307,19 @@
 
           <p>{{ l.explainers.errors.p1 }} {{ l.explainers.errors[error_klass] }} {{ l.explainers.errors.p2 }}</p>
 
+          {% assign errors = "" | split: " " %}
+
+          {% for document_error in document[error_field] %}
+
+            {% assign name    = document_error.name | decrypt %}
+            {% assign value   = document_error.value | decrypt %}
+            {% assign error   = nil | new_hash: name: name, value: value %}
+            {% assign errors  = errors | push_to_hash: error %}
+
+          {% endfor %}
+
           <div class="json-pre-container">
-            <div class="json-sample" style="display: none;">{{ document[error_field] | json }}</div>
+            <div class="json-sample" style="display: none;">{{ errors | json }}</div>
             <pre class="language-json"><code class="language-json"></code></pre>
           </div>
 
