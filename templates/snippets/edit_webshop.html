@@ -311,10 +311,10 @@
 
           {% for document_error in document[error_field] %}
 
-            {% assign encrypted_hash = document_error %}
-            {% include "shared/decrypt_hash" %}
-
-            {% assign errors = errors | push_to_array: decrypted_hash %}
+            {% assign name    = document_error.name | decrypt %}
+            {% assign value   = document_error.value | decrypt %}
+            {% assign error   = nil | new_hash: name: name, value: value %}
+            {% assign errors  = errors | push_to_array: error %}
 
           {% endfor %}
 
