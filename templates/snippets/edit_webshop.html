@@ -305,7 +305,7 @@
 
         {% if document[error_field] != nil and document[error_field].size > 0 %}
 
-          <p>{{ l.explainers.errors.p1 }} {{ l.explainers.errors[error_klass] }} {{ l.explainers.errors.p2 }}</p>
+          <p>{{ l.explainers.errors.p1 }} {{ l.explainers.errors[error_klass] }} {{ l.explainers.errors.p2 }}:</p>
 
           {% assign errors = "" | split: " " %}
 
