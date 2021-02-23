@@ -7,7 +7,9 @@
       "config": "Change configuration",
       "reset": "Queue imports",
       "tickets": "Tickets",
-      "danger_zone": "Danger zone"
+      "danger_zone": "Danger zone",
+      "products_error": "Product error",
+      "orders_error": "Orders error"
     },
     "buttons": {
       "submit": "Update",
@@ -45,6 +47,12 @@
         "ticket": "ticket",
         "tickets": "tickets",
         "p1": "has been registered for this webshop"
+      },
+      "errors": {
+        "p1": "The last attempt to import",
+        "p2": "resulted in an error. Error informations can be reviewed below.",
+        "orders": "orders",
+        "products": "products"
       }
     },
     "placeholders": {

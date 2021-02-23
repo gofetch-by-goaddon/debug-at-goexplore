@@ -12,7 +12,7 @@
       "comments": "Comments"
     },
     "placeholders": {
-      "comments": "Write a comment with markdown such as `code` and [links](https://example.com)..."
+      "comments": "Write a comment with markdown such as **bold**, `code` and [links](https://example.com)..."
     },
     "buttons": {
       "extra_fields": "Show more",

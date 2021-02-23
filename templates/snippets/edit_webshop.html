@@ -11,6 +11,7 @@
   {% assign now = "now" | in_time_zone %}
 
   {% include "shared/indent_json_input" %}
+  {% include "shared/indent_json_pre" %}
 
   <style>
     .input-select2 {
@@ -290,4 +291,24 @@
       {{ l.destroy.intro }} <input type="submit" class="submit-link d-inline border-0 py-0 px-0 text-primary bg-white" value="{{ l.destroy.button }}" data-title="{{ l.destroy.title }}" data-confirm="{{ l.destroy.confirm }}" data-commit="{{ l.destroy.commit }}" data-cancel="{{ l.destroy.cancel }}" data-commit-class="btn btn-outline-danger" data-cancel-class="text-primary">. {{ l.destroy.outro }}
     </form>
   </div>
+
+  {% assign error_klasses = "products orders" | split: " " %}
+
+  {% for error_klass in error_klasses %}
+
+    {% capture error_field %}{{ error_klass }}_error{% endcapture %}
+
+    {% if document[error_field] != nil and document[error_field].size > 0 %}
+
+      <h5 class="my-4">{{ l.headlines[error_field] }}</h5>
+
+      <p>{{ l.explainers.errors.p1 }}{{ l.explainers.errors[error_klass] }}{{ l.explainers.errors.p2 }}</p>
+
+      <div class="json-pre-container">
+        <div class="json-sample" style="display: none;">{{ document[error_field] | json }}</div>
+        <pre class="language-json"><code class="language-json"></code></pre>
+      </div>
+
+    {% endif %}
+  {% endfor %}
 {% endif %}
