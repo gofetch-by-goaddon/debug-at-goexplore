@@ -11,7 +11,7 @@
       "show": "Manage"
     },
     "superuser_levels": {
-      "1": "level 1 access"
+      "l1": "level 1 access"
     }
   }
 }
