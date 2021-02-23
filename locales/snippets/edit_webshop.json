@@ -8,8 +8,7 @@
       "reset": "Queue imports",
       "tickets": "Tickets",
       "danger_zone": "Danger zone",
-      "products_error": "Product error",
-      "orders_error": "Orders error"
+      "errors": "Errors"
     },
     "buttons": {
       "submit": "Update",

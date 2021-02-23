@@ -292,23 +292,28 @@
     </form>
   </div>
 
-  {% assign error_klasses = "products orders" | split: " " %}
+  {% if document.products_error != nil or document.orders_error != nil %}
+    {% if document.products_error.size > 0 or document.orders_error.size > 0 %}
 
-  {% for error_klass in error_klasses %}
+      <h5 class="my-4">{{ l.headlines.errors }}</h5>
 
-    {% capture error_field %}{{ error_klass }}_error{% endcapture %}
+      {% assign error_klasses = "products orders" | split: " " %}
 
-    {% if document[error_field] != nil and document[error_field].size > 0 %}
+      {% for error_klass in error_klasses %}
 
-      <h5 class="my-4">{{ l.headlines[error_field] }}</h5>
+        {% capture error_field %}{{ error_klass }}_error{% endcapture %}
 
-      <p>{{ l.explainers.errors.p1 }}{{ l.explainers.errors[error_klass] }}{{ l.explainers.errors.p2 }}</p>
+        {% if document[error_field] != nil and document[error_field].size > 0 %}
 
-      <div class="json-pre-container">
-        <div class="json-sample" style="display: none;">{{ document[error_field] | json }}</div>
-        <pre class="language-json"><code class="language-json"></code></pre>
-      </div>
+          <p>{{ l.explainers.errors.p1 }} {{ l.explainers.errors[error_klass] }} {{ l.explainers.errors.p2 }}</p>
 
+          <div class="json-pre-container">
+            <div class="json-sample" style="display: none;">{{ document[error_field] | json }}</div>
+            <pre class="language-json"><code class="language-json"></code></pre>
+          </div>
+
+        {% endif %}
+      {% endfor %}
     {% endif %}
-  {% endfor %}
+  {% endif %}
 {% endif %}
