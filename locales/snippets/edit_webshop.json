@@ -49,7 +49,7 @@
       },
       "errors": {
         "p1": "The last attempt to import",
-        "p2": "resulted in the following error.",
+        "p2": "resulted in the following error",
         "orders": "orders",
         "products": "products"
       }
