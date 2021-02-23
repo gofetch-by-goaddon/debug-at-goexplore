@@ -5,7 +5,13 @@
     <h5 class="my-4">
       {{ l.auth_headlines[auth_field_name] }}
     </h5>
-    <p>{{ l.auth_explainers[auth_field_name] }}:</p>
+    <p>
+      {% if auth[auth_field_name].size == 0 %}
+        {{ l.auth_explainers.no_data[auth_field_name] }}:
+      {% else %}
+        {{ l.auth_explainers.yes_data[auth_field_name] }}:
+      {% endif %}
+    </p>
 
     {% if auth_field_name == "error" %}
 

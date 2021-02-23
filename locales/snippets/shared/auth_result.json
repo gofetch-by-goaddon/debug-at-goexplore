@@ -7,10 +7,18 @@
       "log": "Log"
     },
     "auth_explainers": {
-      "webshop_config": "This configuration was applied",
-      "setup_config": "This data was collected",
-      "error": "This error occurred",
-      "log": "This was logged"
+      "no_data": {
+        "webshop_config": "An empty configuration was applied",
+        "setup_config": "No data was collected",
+        "error": "No errors occurred",
+        "log": "Nothing was logged"
+      },
+      "yes_data": {
+        "webshop_config": "This configuration was applied",
+        "setup_config": "This data was collected",
+        "error": "This error occurred",
+        "log": "This was logged"
+      }
     }
   }
 }
