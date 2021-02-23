@@ -314,7 +314,7 @@
             {% assign name    = document_error.name | decrypt %}
             {% assign value   = document_error.value | decrypt %}
             {% assign error   = nil | new_hash: name: name, value: value %}
-            {% assign errors  = errors | push_to_hash: error %}
+            {% assign errors  = errors | push_to_array: error %}
 
           {% endfor %}
 
