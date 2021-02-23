@@ -37,7 +37,7 @@
         "p3": "If a user is assigned to the ticket, this user is selected.",
         "p4": "If no users are assigned, all users who are registered through this form to receive ticket notifications related to the specific ecommerce platform are selected.",
         "p5": "If still no users are found, all users with access to tickets related to the specific ecommerce platform will be selected. Which means that users with limited ticket access will be selected for open tickets, and users with full access will be selected regardless the status of the ticket.",
-        "p6": "Finally, if still users have been found, all users with level 1 access level are selected."
+        "p6": "Finally, if still users have been found, all users with level 1 access are selected."
       },
       "auth_relay_ids": {
         "p1": "Choose which ecommerce platform auths this user can access.",
