@@ -14,10 +14,10 @@
         "log": "Nothing was logged"
       },
       "yes_data": {
-        "webshop_config": "This configuration was applied",
-        "setup_config": "This data was collected",
-        "error": "This error occurred",
-        "log": "This was logged"
+        "webshop_config": "The following configuration was applied",
+        "setup_config": "The following data was collected",
+        "error": "An error occurred",
+        "log": "The following was logged"
       }
     }
   }
